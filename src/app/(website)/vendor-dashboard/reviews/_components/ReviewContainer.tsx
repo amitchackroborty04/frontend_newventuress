@@ -1,5 +1,6 @@
-"use client";
-
+"use client"
+import PacificPagination from "@/components/ui/PacificPagination";
+import { useState } from "react";
 import { ReviewdemoTableItems, ReviewdemoTableItemsType } from "@/data/Reviews";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 // import { ImagePlus } from 'lucide-react';
@@ -87,12 +88,21 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
 
 
 const ReviewContainer = () => {
-  
+  const [currentPage, setCurrentPage] = useState(1);
   return (
     <div>
 
 <TableContainer data={ReviewdemoTableItems} columns={MediaColumns} />
-        
+<div className="mt-[40px] flex justify-between">
+        <div className="text-[#444444] font-normal text-[16px]">Showing 1 to 25 in first entries</div>
+       <div className=" w-[400px]">
+       <PacificPagination
+          currentPage={currentPage}
+          onPageChange={(page) => setCurrentPage(page)}
+          totalPages={10}
+        />
+       </div>
+      </div>
     </div>
   )
 }
@@ -116,9 +126,13 @@ const TableContainer = ({
     columns: columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+
+
   return (
     <>
       <DataTable table={table} columns={columns} title="Review List" />
+ 
     </>
   );
 };
