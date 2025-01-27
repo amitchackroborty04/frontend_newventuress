@@ -6,7 +6,7 @@ import GeoChart from "./_components/TopUserCountries";
 
 const Page = () => {
   return (
-    <div className="w-full px-5 bg-[#eaf0ea]">
+    <div className="w-full px-5 ">
       {/* Profile Completion Section */}
       <ProfileCompletion />
 
