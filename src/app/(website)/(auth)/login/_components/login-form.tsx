@@ -27,7 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
-const loginSchema = z.object({
+export const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters long"),
   agreed: z
@@ -53,6 +53,7 @@ export default function LoginForm() {
     startTransition(() => {
       SignInWithEmailAndPassword(data)
         .then((res: ServerResType) => {
+          console.log(res);
           if (res.success) {
             toast.success("Login successfull 🎉", {
               position: "bottom-right",
@@ -68,7 +69,7 @@ export default function LoginForm() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.message);
           toast.error(err.message, {
             position: "bottom-right",
             richColors: true,

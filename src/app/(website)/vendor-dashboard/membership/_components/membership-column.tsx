@@ -1,32 +1,56 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
-import { ColumnDef } from "@tanstack/react-table";
-import { MemberTableDataType } from "@/data/member";
-import { MoreHorizontal } from "lucide-react";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import { TableCell } from "@/components/ui/table";
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+import { ColumnDef } from "@tanstack/react-table";
+import { MoreHorizontal } from "lucide-react";
 
-export const MediaColumns: ColumnDef<MemberTableDataType>[] = [
+import { MemberTableDataType } from "@/data/member";
+
+export const Column: ColumnDef<MemberTableDataType>[] = [
   {
-    accessorKey: "Plan",
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     header: "Plan",
     cell: ({ row }) => {
       return (
-        <div className="text-center">
-          <span className="text-[12px] font-medium leading-[14.4px] text-[#F9FAFD] py-[10px] px-[33px] bg-primary rounded-[12px] text-center">
-            {row.original["Plan"]}
-          </span>
+        <div>
+          <div className="text-center">
+            <span className="text-[12px] font-medium leading-[14.4px] text-[#F9FAFD] py-[10px] px-[33px] bg-primary rounded-[12px] text-center">
+              {row.original.Plan}
+            </span>
+          </div>
         </div>
       );
     },
   },
   {
-    accessorKey: "Pay Method",
     header: "Pay Method",
     cell: ({ row }) => {
       return (
@@ -39,7 +63,6 @@ export const MediaColumns: ColumnDef<MemberTableDataType>[] = [
     },
   },
   {
-    accessorKey: "Store",
     header: "Store",
     cell: ({ row }) => {
       return (
@@ -52,7 +75,6 @@ export const MediaColumns: ColumnDef<MemberTableDataType>[] = [
     },
   },
   {
-    accessorKey: "Time",
     header: "Time",
     cell: ({ row }) => {
       return (
@@ -64,35 +86,32 @@ export const MediaColumns: ColumnDef<MemberTableDataType>[] = [
       );
     },
   },
+
   {
-    id: "actions", // Unique ID for the actions column
     header: "Actions",
-    cell: ({ row }) => {
-      const handleDelete = () => {
-        console.log("Delete clicked for row:", row.original);
-        // Add logic to confirm and delete the row
-      };
-
+    cell: () => {
       return (
-        <TableCell className="text-right h-[154px] flex justify-center">
+        <div className="h-[154px] flex items-center justify-center">
           <DropdownMenu>
-            <DropdownMenuTrigger className="w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <div className="">
-
-              <MoreHorizontal className="h-4 w-4" />
-              </div>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 "
+              >
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={handleDelete} className="text-red-500">
+            <DropdownMenuContent
+              align="end"
+              className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
+            >
+              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0">
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </TableCell>
+        </div>
       );
     },
-    enableSorting: false,
-    size: 100,
   },
 ];

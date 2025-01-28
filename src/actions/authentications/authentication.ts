@@ -13,52 +13,45 @@ export interface ServerResType {
 export async function SignInWithEmailAndPassword(data: LoginFormValues) {
   try {
     // Attempt to sign in with credentials
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false, // Disable automatic redirect to handle it manually
     });
 
-    // If there's an error in the result, throw an AuthError
-    if (result?.error) {
-      return {
-        success: false,
-        message: result.message || "Invalid credentials.",
-      } as ServerResType;
-    }
+    console.log("LOGIN SUCCESS");
 
     // If successful, return a success message
     return { success: true, message: "Login successful." } as ServerResType;
   } catch (error: any) {
-    console.log("SERVER_ACTION_ERROR:", error.message + "END HERE");
+    console.log("SERVER_ACTION_ERROR:", error);
+
     // Handle specific NextAuth errors
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
           return {
             success: false,
-            message: error.message || "Invalid credentials.",
-          } as ServerResType;
-
-        case "CallbackRouteError":
-          return {
-            success: false,
-            message:
-              "The email or password you entered is incorrect. Please try again.",
+            message: "Something went wrong",
           } as ServerResType;
 
         default:
           return {
             success: false,
-            message: "Something went wrong",
+            message:
+              " The email or password you entered is incorrect. Please try again.",
           } as ServerResType;
       }
     }
 
-    // Handle generic errors
-    return {
-      success: false,
-      message: (error as Error).message || "An unexpected error occurred.",
-    } as ServerResType;
+    // Handle CallbackRouteError
+    if (error.message.includes("CallbackRouteError")) {
+      return {
+        success: false,
+        message: "Login failed. Please check your credentials and try again.",
+      } as ServerResType;
+    }
+
+    throw Error(error);
   }
 }
