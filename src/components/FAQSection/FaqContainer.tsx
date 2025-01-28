@@ -36,7 +36,7 @@ const FaqContainer = () => {
   // Loading state: Show skeleton loaders
   if (isLoading) {
     content = (
-      <Accordion type="single" collapsible className="space-y-4">
+      <Accordion type="single" collapsible className="space-y-4 ">
         {[1, 2, 3, 4, 5].map((item) => (
           <SkeletonWrapper isLoading={isLoading} key={item}>
             <AccordionItem

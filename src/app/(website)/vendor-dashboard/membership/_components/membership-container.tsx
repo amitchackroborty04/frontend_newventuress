@@ -1,27 +1,27 @@
 "use client";
 
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { MediaColumns } from "./membership-column";
 
 const MembershipContainer = () => {
-  const [currentPage, setCurrentPage] = useState(1); // Missing import for useState
-
+  const [currentPage, setCurrentPage] = useState(1);
   return (
-    <div>
-      <TableContainer data={MemberTableDataItems} columns={MediaColumns} />
-      <div className="mt-[40px] flex justify-between">
-        <div className="text-[#444444] font-normal text-[16px]">
+    <section className="w-full">
+      <div className="w-full shadow-[0px_0px_22px_8px_#C1C9E4] h-auto  rounded-[24px] bg-white">
+        <TableContainer data={MemberTableDataItems} columns={Column} />
+      </div>
+      <div className="my-[40px] w-full  flex justify-between">
+        <p className="font-normal text-[16px] leading-[19.2px] text-[#444444]">
           Showing 1 to 25 in first entries
-        </div>
-        <div className="w-[400px]">
+        </p>
+        <div>
           <PacificPagination
             currentPage={currentPage}
-            onPageChange={(page) => setCurrentPage(page)}
             totalPages={10}
+            onPageChange={(page) => setCurrentPage(page)}
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -29,11 +29,12 @@ export default MembershipContainer;
 
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
-import { useState } from "react"; // Missing import
 import PacificPagination from "@/components/ui/PacificPagination";
-import { MemberTableDataItems, MemberTableDataType } from "@/data/member";
+import { useState } from "react";
 
-// TableContainer Component
+import { MemberTableDataItems, MemberTableDataType } from "@/data/member";
+import { Column } from "./membership-column";
+
 const TableContainer = ({
   data,
   columns,
@@ -46,7 +47,6 @@ const TableContainer = ({
     columns: columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
   return (
     <>
       <DataTable table={table} columns={columns} title="Membership List" />

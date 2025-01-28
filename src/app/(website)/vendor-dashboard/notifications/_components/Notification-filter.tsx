@@ -11,7 +11,6 @@ const showList = [
 
 const categoriesList = [
   { id: 1, name: "Chose by view", value: "all" },
-  { id: 2, name: "All", value: "all" },
   { id: 3, name: "Read", value: "read" },
   { id: 4, name: "Unread", value: "unread" },
 ];

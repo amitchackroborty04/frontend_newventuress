@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import { MoreHorizontal } from "lucide-react"; // Make sure to import the MoreHorizontal icon from lucide-react
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"; // Import your dropdown components
-import { TableCell } from "@/components/ui/table";
+
 import { NotificationDataType } from "@/data/notifications";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -87,7 +87,7 @@ export const MediaColumns: ColumnDef<NotificationDataType>[] = [
       };
 
       return (
-        <TableCell className="text-right h-[154px] flex justify-center ">
+        <div className="text-right h-[154px] flex justify-center ">
           <DropdownMenu>
             <DropdownMenuTrigger className=" w-8 p-0 ">
               <span className="sr-only">Open menu</span>
@@ -100,7 +100,7 @@ export const MediaColumns: ColumnDef<NotificationDataType>[] = [
               <DropdownMenuItem onClick={handleDelete} className="text-red-500">Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </TableCell>
+        </div>
       );
     },
     enableSorting: false, // Disable sorting for the actions column
