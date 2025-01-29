@@ -3,8 +3,8 @@
 // Packages
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { ArrowRight, EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, EyeIcon, EyeOffIcon, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -47,6 +47,7 @@ const formSchema = z
 export type UserInformationFormType = z.infer<typeof formSchema>;
 
 export default function UserInformationForm() {
+  const [loading, setLoading] = useState<true | false>(false);
   const [passwordVisibility, setPasswordVisibility] = useState({
     password: false,
     confirmPassword: false,
@@ -54,6 +55,12 @@ export default function UserInformationForm() {
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -73,13 +80,15 @@ export default function UserInformationForm() {
     !watch("fullName") ||
     !watch("password") ||
     !watch("confirmPassword") ||
-    !watch("agreed");
+    !watch("agreed") ||
+    loading;
 
   const togglePasswordVisibility = (field: "password" | "confirmPassword") => {
     setPasswordVisibility((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
   const onSubmit = () => {
+    setLoading(true);
     router.push(`/registration/experiences`);
   };
 
@@ -288,7 +297,11 @@ export default function UserInformationForm() {
           <div className="pt-[40px]">
             <Button disabled={isDisable} size="md" type="submit">
               Next
-              <ArrowRight className="ml-2" />
+              {loading ? (
+                <Loader2 className="ml-2 animate-spin" />
+              ) : (
+                <ArrowRight className="ml-2" />
+              )}
             </Button>
           </div>
         </form>

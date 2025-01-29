@@ -25,6 +25,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.monirhrabby.info",
       },
+      {
+        protocol: "https",
+        hostname: "s3-alpha-sig.figma.com",
+      },
     ],
   },
 };

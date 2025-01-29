@@ -2,7 +2,7 @@
 // Packages
 import { motion } from "framer-motion";
 // import { Heart } from "lucide-react";
-import { CiHeart } from "react-icons/ci";
+// import { CiHeart } from "react-icons/ci";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { blurDataUrl } from "@/data/blur-data-url";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Heart } from "lucide-react";
 const AuctionCountDownTimer = dynamic(
   () => import("@/components/shared/cards/auction-card/countdown-timer"),
   {
@@ -26,6 +27,12 @@ interface Props {
 export default function AuctionCard({ isExpired, index }: Props) {
   const [imgLoaded, setImgLoaded] = useState<true | false>(false);
   const endDate = new Date("2025-01-31T23:59:59");
+
+  const [isWishlist, setIsWishlist] = useState(false);
+
+  const handleWishlistToggle = () => {
+    setIsWishlist((prev) => !prev); // Toggle wishlist state
+  };
 
   return (
     <div className="flex relative flex-col grow shrink self-stretch p-3 my-auto mx-auto bg-white rounded-[8px] border border-gray-200 border-solid w-full md:w-[260px] hover:shadow-feature_card transition-shadow duration-300 h-[389px]">
@@ -82,9 +89,20 @@ export default function AuctionCard({ isExpired, index }: Props) {
         </motion.div>
       )}
       <div className="flex absolute top-5 z-0 flex-col w-[32px] left-[22px]">
-        <button className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-gradient-to-r from-[#7091FFCC] via-[#2F4697CC] to-[#7485FBCC] focus:bg-gradient-to-l focus:from-[#121D42] focus:via-[#152764] focus:to-[#4857BD] focus:text-white hover:text-white rounded-[30px] transition-colors duration-300 group">
-          {/* <Heart className="group-hover:fill-white hover:border-0" /> */}
-          <CiHeart/>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            handleWishlistToggle();
+          }}
+          className={`flex gap-2.5 justify-center items-center px-2 bg-white rounded-full   ${isWishlist
+              ? " border-none text-white bg-primary"
+              : " border-blue-500 text-black hover:bg-hover-gradient hover:text-white"
+            }  min-h-[32px] w-[32px]`}
+          aria-label="Add to wishlist"
+        // className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-primary-green rounded-[30px] transition-colors duration-300 group"
+        >
+          <Heart className="group-hover:fill-white hover:border-0 w-4 h-4" />
         </button>
       </div>
       <div className="flex z-0 flex-col mt-2 w-full">

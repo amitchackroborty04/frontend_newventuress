@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import Image from "next/image";
 import { StarRating } from "../clientReview/StarRating";
 import { CartItem } from "@/types/cart";
+import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 interface CartItemProps {
   item: CartItem;
@@ -18,6 +19,11 @@ export function CartItemCard({
   // icon
 }: CartItemProps) {
 
+  const [isWishlist, setIsWishlist] = useState(false);
+
+  const handleWishlistToggle = () => {
+    setIsWishlist((prev) => !prev);
+  };
   return (
     <div className="flex flex-col rounded-lg p-4 border border-gray-200">
       <div className="sm:flex gap-4 ">
@@ -30,15 +36,25 @@ export function CartItemCard({
             fill
             className="rounded-lg object-cover"
           />
-          <button className="absolute top-2 right-2 p-1.5 bg-white hover:bg-gradient-to-r from-[#7091FFCC] via-[#2F4697CC] to-[#7485FBCC] focus:bg-gradient-to-l focus:from-[#121D42] focus:via-[#152764] focus:to-[#4857BD] rounded-full focus:text-white hover:text-white">
-          {/* {icon} */}
-          <FiShoppingCart/>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              handleWishlistToggle();
+            }}
+            className={`absolute top-2 right-2 flex gap-2.5 justify-center items-center px-2 bg-white rounded-full ${isWishlist
+              ? " border-none text-white bg-primary"
+              : " border-blue-500 text-black hover:bg-hover-gradient hover:text-white"
+              }  min-h-[32px] w-[32px]`}
+            aria-label="Add to wishlist"
+          >
+            <FiShoppingCart />
           </button>
         </div>
         <div className="flex-1 space-y-1 pt-2 flex flex-col justify-evenly">
           <div className="flex items-start justify-between">
             <div>
-              <StarRating rating={item.rating} activeColor="fill-amber-500 text-amber-500" inactiveColor="fill-stone-300 text-stone-300"  />
+              <StarRating rating={item.rating} activeColor="fill-amber-500 text-amber-500" inactiveColor="fill-stone-300 text-stone-300" />
               {item.isHot && (
                 <div className="flex items-center gap-3 text-sm">
                   <span className="text-red-500 flex items-center gap-1">
@@ -55,7 +71,7 @@ export function CartItemCard({
                 </div>
               )}
               <h3 className=" font-medium  mt-1">{item.name}</h3>
-              
+
             </div>
             <div className="flex items-center  py-1 rounded">
               <span className="text-xs border rounded-xl flex items-center gap-2 px-2 py-1">

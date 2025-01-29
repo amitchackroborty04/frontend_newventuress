@@ -3,29 +3,87 @@
 // Packages
 import { Plus } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 // Local imports
 import { AdminApprovalModal } from "@/app/(website)/(auth)/_components/admin-aproval-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
+  authSliceType,
   resetAuthSlice,
   updateBusiness,
 } from "@/redux/features/authentication/AuthSlice";
 import { useAppSelector } from "@/redux/store";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import FormHeader from "../../../../_components/form-header";
 
 export function BusinessInfoForm() {
+  const [loading, setLoading] = useState<true | false>(false);
   const authState = useAppSelector((state) => state.auth);
 
-  const currentBusinessInfo = authState.businesses[
-    authState.businesses.length - 1
+  const router = useRouter();
+
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["registration"],
+    mutationFn: (data: authSliceType) =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((res) => res.json()),
+    onSuccess: (data) => {
+      setLoading(true);
+      if (data.status) {
+        // success mesage
+        toast.success(
+          "Your account has been created, and you're all set to log in. Welcome aboard! 🚀",
+          {
+            position: "top-right",
+            richColors: true,
+          }
+        );
+
+        dispatch(resetAuthSlice());
+
+        router.push("/login");
+      } else {
+        setLoading(false);
+        toast.error(data.message, {
+          position: "top-right",
+          style: {
+            color: "red",
+          },
+          richColors: true,
+        });
+      }
+    },
+    onError: () => {
+      setLoading(false);
+      toast.error("Something went wrong", {
+        position: "top-center",
+        richColors: true,
+      });
+    },
+  });
+
+  const currentBusinessInfo = authState.businessInfo[
+    authState.businessInfo.length - 1
   ] || {
-    ...authState.businesses[authState.businesses.length - 1],
-    businessLicense: "",
-    resellerLicense: "",
+    ...authState.businessInfo[authState.businessInfo.length - 1],
+    license: "",
+    resellerBusinessLicense: "",
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,11 +95,10 @@ export function BusinessInfoForm() {
 
   const submitForm = () => {
     console.log(authState);
-
-    dispatch(resetAuthSlice());
+    mutate(authState);
   };
 
-  const isNextDisabled = !currentBusinessInfo?.businessLicense;
+  const isNextDisabled = !currentBusinessInfo?.license;
 
   return (
     <div className="space-y-6">
@@ -59,11 +116,11 @@ export function BusinessInfoForm() {
           <Input
             placeholder="Enter license number"
             required
-            value={currentBusinessInfo.businessLicense}
+            value={currentBusinessInfo.license}
             onChange={(e) =>
               dispatch(
                 updateBusiness({
-                  businessLicense: e.target.value,
+                  license: e.target.value,
                 })
               )
             }
@@ -75,11 +132,11 @@ export function BusinessInfoForm() {
           </label>
           <Input
             placeholder="Enter license number"
-            value={currentBusinessInfo.resellerLicense}
+            value={currentBusinessInfo.resellerBusinessLicense}
             onChange={(e) =>
               dispatch(
                 updateBusiness({
-                  resellerLicense: e.target.value,
+                  resellerBusinessLicense: e.target.value,
                 })
               )
             }
@@ -92,7 +149,11 @@ export function BusinessInfoForm() {
             type="submit"
             onClick={submitForm}
           >
-            Next →
+            {loading || isPending ? (
+              <span>Processing...</span>
+            ) : (
+              <span>Next →</span>
+            )}
           </Button>
           <div>
             <AddMoreButton />

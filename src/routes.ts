@@ -4,7 +4,7 @@
  * @type {string[]}
  */
 
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "/age-alert"];
 
 /**
  * An array of routes that are used for authentication
@@ -19,8 +19,8 @@ export const authRoutes = [
   "/registration/experiences/profession",
   "/registration/country",
   "/registration/country/Canada",
-  "/registration/country/United States",
-  "/registration/country/United States/business_information",
+  "/registration/country/United%20States",
+  "/registration/country/United%20States/business_information",
   "/registration/country/Canada/business_information",
   "/registration/country/Mexico/business_information",
   "/registration/country/Germany/business_information",

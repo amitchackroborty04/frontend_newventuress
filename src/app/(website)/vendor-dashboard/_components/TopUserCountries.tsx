@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Minus, Plus } from "lucide-react"
+import Image from "next/image"
 
 // Define our data type
 interface CountryData {
@@ -17,25 +18,25 @@ interface CountryData {
 // Sample data for different years
 const countryDataByYear: { [key: string]: CountryData[] } = {
   "2024": [
-    { country: "United States", code: "US", percentage: 90, flag: "🇺🇸" },
-    { country: "Canada", code: "CA", percentage: 26, flag: "🇨🇦" },
-    { country: "Mexico", code: "MX", percentage: 18, flag: "🇲🇽" },
-    { country: "Thailand", code: "TH", percentage: 14, flag: "🇹🇭" },
-    { country: "Germany", code: "DE", percentage: 92, flag: "🇩🇪" },
+    { country: "United States", code: "US", percentage: 90, flag: "/assets/flag/usa.png" },
+    { country: "Canada", code: "CA", percentage: 26, flag: "/assets/flag/canada.png" },
+    { country: "Mexico", code: "MX", percentage: 18, flag: "/assets/flag/mexico.png" },
+    { country: "Thailand", code: "TH", percentage: 14, flag: "/assets/flag/thiland.png" },
+    { country: "Germany", code: "DE", percentage: 92, flag: "/assets/flag/germany.png" },
   ],
   "2023": [
-    { country: "United States", code: "US", percentage: 28, flag: "🇺🇸" },
-    { country: "Canada", code: "CA", percentage: 24, flag: "🇨🇦" },
-    { country: "Brazil", code: "BR", percentage: 20, flag: "🇧🇷" },
-    { country: "India", code: "IN", percentage: 16, flag: "🇮🇳" },
-    { country: "Australia", code: "AU", percentage: 12, flag: "🇦🇺" },
+    { country: "United States", code: "US", percentage: 60, flag: "/assets/flag/usa.png" },
+    { country: "Canada", code: "CA", percentage: 26, flag: "/assets/flag/canada.png" },
+    { country: "Mexico", code: "MX", percentage: 28, flag: "/assets/flag/mexico.png" },
+    { country: "Thailand", code: "TH", percentage: 14, flag: "/assets/flag/thiland.png" },
+    { country: "Germany", code: "DE", percentage: 42, flag: "/assets/flag/germany.png" },
   ],
   "2022": [
-    { country: "United States", code: "US", percentage: 25, flag: "🇺🇸" },
-    { country: "United Kingdom", code: "GB", percentage: 22, flag: "🇬🇧" },
-    { country: "Japan", code: "JP", percentage: 20, flag: "🇯🇵" },
-    { country: "France", code: "FR", percentage: 18, flag: "🇫🇷" },
-    { country: "Spain", code: "ES", percentage: 15, flag: "🇪🇸" },
+    { country: "United States", code: "US", percentage: 10, flag: "/assets/flag/usa.png" },
+    { country: "Canada", code: "CA", percentage: 56, flag: "/assets/flag/canada.png" },
+    { country: "Mexico", code: "MX", percentage: 18, flag: "/assets/flag/mexico.png" },
+    { country: "Thailand", code: "TH", percentage: 74, flag: "/assets/flag/thiland.png" },
+    { country: "Germany", code: "DE", percentage: 32, flag: "/assets/flag/germany.png" },
   ],
 }
 
@@ -133,12 +134,12 @@ export default function GeoChart() {
           </div>
         </div>
 
-        <div className="mt-6 space-y-3">
+        <div className="mt-6 space-y-3 pb-[67px]">
           {countryDataByYear[year].map(({ country, percentage, flag }) => (
             <div key={country} className="flex items-center gap-2">
-              <span className="w-8">{flag}</span>
+              <Image src={flag} alt={`${country} flag`} width={24} height={18} className="w-8 h-auto rounded-sm" />
               <span className="w-32">{country}</span>
-              <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div className="flex-1 h-[18px] bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className="h-full transition-all duration-500"
                   style={{
@@ -146,15 +147,18 @@ export default function GeoChart() {
                     backgroundColor: colorScheme[1],
                   }}
                 />
-             
+               
               </div>
-              <span className="w-12 text-right font-medium">{percentage}%</span>
+              <span className="w-12 text-right  font-medium z-40">{percentage}%</span>
             </div>
           ))}
         </div>
-        
+
+
+
+
+
       </CardContent>
     </Card>
   )
 }
-

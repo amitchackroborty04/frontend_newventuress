@@ -65,7 +65,7 @@ const DashRightSide = () => {
   return (
     <div className="flex items-center justify-end gap-x-[20px]">
       <Link
-        href="/"
+        href="/vendor-dashboard/messages"
         className="h-[35px] w-[35px] bg-gradient-to-r from-[#121D42] via-[#152764] to-[#4857BD] hover:from-[#7091FF] hover:via-[#2F4697] hover:to-[#7485FB] transition-all duration-500 ease-in-out text-[#152764] flex justify-center items-center rounded-[24px]"
       >
         <MessageCircleMore className="h-[12px] w-[12px] text-white" />

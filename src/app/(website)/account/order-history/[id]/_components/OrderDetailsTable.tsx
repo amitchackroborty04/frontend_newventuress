@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import Image from "next/image"
 
 interface Product {
@@ -32,7 +33,7 @@ const products: Product[] = [
   }
 ]
 
-const OrderDetailsTable = () => {
+const OrderDetailsTable = ({className}: {className: string}) => {
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('en-PH', {
           style: 'currency',
@@ -42,7 +43,7 @@ const OrderDetailsTable = () => {
       }
     
   return (
-    <div className="w-full max-w-4xl mx-auto mt-10 md:mt-0">
+    <div className={cn("w-full max-w-4xl mx-auto mt-10 md:mt-0", className)}>
     {/* Table for medium and larger screens */}
     <div className="hidden md:block overflow-hidden rounded-lg border border-gray-200 ">
       <table className="w-full ">

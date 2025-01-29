@@ -95,7 +95,7 @@ const ReviewContainer = () => {
 <TableContainer data={ReviewdemoTableItems} columns={MediaColumns} />
 <div className="mt-[40px] flex justify-between">
         <div className="text-[#444444] font-normal text-[16px]">Showing 1 to 25 in first entries</div>
-       <div className=" w-[400px]">
+       <div className=" w-[400px] mb-[84px]">
        <PacificPagination
           currentPage={currentPage}
           onPageChange={(page) => setCurrentPage(page)}

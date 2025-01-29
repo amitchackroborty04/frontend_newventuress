@@ -43,14 +43,14 @@ export function ProvienceSelector({ data, currentState, flag }: Props) {
   // Safely access the Redux state
   const province = useAppSelector(
     (state) =>
-      state.auth.businesses?.[state.auth.businesses.length - 1]?.province || ""
+      state.auth.businessInfo?.[state.auth.businessInfo.length - 1]?.state || ""
   );
 
   // const displayedStates = isUS ? usStates : canadaProvinces;
 
   const handleSelectState = (stateName: string) => {
     try {
-      dispatch(updateBusiness({ province: stateName }));
+      dispatch(updateBusiness({ state: stateName }));
     } catch (err) {
       console.error("Error dispatching updateBusiness:", err);
     }

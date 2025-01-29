@@ -1,8 +1,15 @@
+"use client"
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Box, Settings } from "lucide-react";
 import Link from "next/link";
 
-function AuctionHeader() {
+interface AuctionHeaderProps {
+  showAddAuction: boolean;
+  setShowAddAuction: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AuctionHeader: React.FC<AuctionHeaderProps> = ({ showAddAuction, setShowAddAuction }) => {
   return (
     <div className="h-[80px] w-full bg-white p-[8px] rounded-[12px] flex items-center justify-between">
       <div className="px-[10px] text-[12px] leading-[14.4px]">
@@ -15,17 +22,15 @@ function AuctionHeader() {
       <div className="flex gap-4">
         <Button asChild>
           <Link href="#">
-          Bids Settings <Settings />
+            Bids Settings <Settings />
           </Link>
         </Button>
-        <Button asChild>
-          <Link href="#">
-            Add New <Box />
-          </Link>
+        <Button onClick={() => setShowAddAuction((prev) => !prev)}>
+          {showAddAuction ? "Auction List" : "Add New"} <Box />
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AuctionHeader
+export default AuctionHeader;

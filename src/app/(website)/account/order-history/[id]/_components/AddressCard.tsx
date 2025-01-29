@@ -1,15 +1,17 @@
 import * as React from "react";
 import { AddressInfo } from "./types";
+import { cn } from "@/lib/utils";
 
 interface AddressCardProps {
   title: string;
   info: AddressInfo;
+  className: string
 }
 
-export function AddressCard({ title, info }: AddressCardProps) {
+export function AddressCard({ title, info, className }: AddressCardProps) {
   return (
-    <div className="flex flex-col min-w-[240px] w-[284px]">
-      <div className="flex-1 shrink gap-2.5 self-stretch p-3 w-[140%] md:w-full text-2xl font-medium leading-tight text-green-800 border-b border-solid border-b-stone-300">
+    <div className={cn("flex flex-col min-w-[240px] w-[284px]", className)}>
+      <div className="flex-1 shrink gap-2.5 self-stretch p-3 w-[140%] md:w-full text-2xl font-medium leading-tight text-gradient border-b border-solid border-b-stone-300">
         {title}
       </div>
       <div className="flex flex-col p-3 w-full text-base">

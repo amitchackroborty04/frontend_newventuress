@@ -1,24 +1,20 @@
-'use client'
+"use client";
 
-import React from "react";
-import { IoCheckmarkCircle } from "react-icons/io5";
-import { useState } from 'react'
-import PlansPayment from "./plansPayment";
 import { Button } from "@/components/ui/button";
+import { MembershipPlanType } from "@/types/membership";
+import { useState } from "react";
+import { IoCheckmarkCircle } from "react-icons/io5";
+import PlansPayment from "./plansPayment";
 
-function PlansCard({
-  cardtitle,
-  cardcontent,
-  cardprice,
-  action,
-  bids,
-  messages,
-}: any) {
-  const title = cardtitle === "Standard" ? true : false;
-  const [isOpen, setIsOpen] = useState(false)
+interface Props {
+  data: MembershipPlanType;
+}
+
+function PlansCard({ data }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="w-full border border-[#A3A6AF] rounded-[16px] relative">
-      {title && (
+      {data.planType === "standard" && (
         <div className="bg-primary py-[6px] rounded-tl-[16px] rounded-tr-[16px] absolute w-full">
           <h4 className="text-center text-[11px] text-[#F8ECEC] leading-[13.2px] font-mideum ">
             Most Popular
@@ -27,23 +23,22 @@ function PlansCard({
       )}
       <div className="px-6 gap-[40px] pt-[75.5px]">
         <h2 className="text-xl text-[#1C3A58] font-semibold leading-[24px]">
-          {cardtitle}
+          {data.planType}
         </h2>
         <p className="text-base text-[#696767] font-normal leading-[19.2px] mt-2">
-          {cardcontent}
+          {data.description}
         </p>
         <h4 className="text-[22px] text-[#1A1A1A] font-bold leading-[26.4px] mt-6">
-          ₿{cardprice}
+          ${data.price}
         </h4>
         <div className="mt-[24px]">
           <Button onClick={() => setIsOpen(true)} className="w-full  ">
             Subscribe Now
           </Button>
           <PlansPayment
-            isOpen={isOpen} 
-            onClose={() => setIsOpen(false)} 
-            price={cardprice}
-            
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+            data={data}
           />
         </div>
       </div>
@@ -53,7 +48,7 @@ function PlansCard({
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <span>
-              <IoCheckmarkCircle size={16}  className="text-[#121D42]" />
+              <IoCheckmarkCircle size={16} className="text-[#121D42]" />
             </span>
             <p className="text-sm text-[#444444] font-normal leading-[16.8px]">
               Auction/Listing
@@ -61,7 +56,7 @@ function PlansCard({
           </div>
           <div>
             <p className="text-sm text-gradient font-bold leading-[16.8px]">
-              {action}
+              {data.numberOfAuction}
             </p>
           </div>
         </div>
@@ -69,7 +64,7 @@ function PlansCard({
         <div className="flex justify-between items-center mt-5">
           <div className="flex items-center gap-2">
             <span>
-            <IoCheckmarkCircle size={16}  className="text-[#121D42]" />
+              <IoCheckmarkCircle size={16} className="text-[#121D42]" />
             </span>
             <p className="text-sm text-[#444444] font-normal leading-[16.8px]">
               Bids
@@ -77,7 +72,7 @@ function PlansCard({
           </div>
           <div>
             <p className="text-sm text-gradient font-bold leading-[16.8px]">
-              {bids}
+              {data.numberOfBids}
             </p>
           </div>
         </div>
@@ -85,7 +80,7 @@ function PlansCard({
         <div className="flex justify-between items-center mt-5">
           <div className="flex items-center gap-2">
             <span>
-            <IoCheckmarkCircle size={16}  className="text-[#121D42]" />
+              <IoCheckmarkCircle size={16} className="text-[#121D42]" />
             </span>
             <p className="text-sm text-[#444444] font-normal leading-[16.8px]">
               Messages
@@ -93,7 +88,7 @@ function PlansCard({
           </div>
           <div>
             <p className="text-sm text-gradient font-bold leading-[16.8px]">
-              {messages}
+              Unlimited
             </p>
           </div>
         </div>

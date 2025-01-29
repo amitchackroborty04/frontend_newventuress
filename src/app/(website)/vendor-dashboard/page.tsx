@@ -22,15 +22,13 @@ const Page = () => {
       <div className="w-full mx-auto grid grid-cols-6 gap-8 my-[30px]">
         {/* Geo Chart Component */}
         <GeoChart />
-        
+
         {/* Right Column for Most Sold Items and Analytics */}
         <div className="w-full col-span-2">
           <MostSoldItems />
           <AnalyticsChart />
         </div>
       </div>
-
-    
     </div>
   );
 };

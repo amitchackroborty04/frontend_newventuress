@@ -18,14 +18,14 @@ const page = () => {
       </div>
       <BillingDetails />
       <div className="pt-10 pb-10 hidden md:block">
-        <OrderProgress />
+        <OrderProgress className="" />
       </div>
       <div className="md:hidden grid place-items-center">
         <div>
           <OrderProgressVertical />
         </div>
       </div>
-      <OrderDetailsTable />
+      <OrderDetailsTable className=""/>
     </div>
   );
 };

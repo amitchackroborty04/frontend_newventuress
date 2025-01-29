@@ -10,12 +10,12 @@ export function OrderSummary({ orderDetails }: OrderSummaryProps) {
     <div className="flex flex-col grow shrink self-stretch my-auto font-medium leading-tight rounded-xl border border-solid border-stone-300 md:h-[295px] md:min-w-[240px] md:w-[216px]">
       <div className="flex justify-between items-start w-full text-base">
         <div className="flex flex-col justify-center p-3 border-b border-solid border-b-stone-300 w-[104px]">
-          <div className="text-green-800">Order ID:</div>
+          <div className="text-gradient">Order ID:</div>
           <div className="mt-1 text-black">{orderDetails.orderId}</div>
         </div>
         <div className="shrink-0 w-0 border border-solid  border-l-stone-300 h-[76px]" />
         <div className="flex flex-col flex-1 shrink justify-center p-3 border-b border-solid basis-0 border-b-stone-300">
-          <div className="text-green-800">Payment Method:</div>
+          <div className="text-gradient">Payment Method:</div>
           <div className="mt-1 text-black">{orderDetails.paymentMethod}</div>
         </div>
       </div>

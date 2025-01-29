@@ -3,7 +3,7 @@ import AnalyticsChart from "../_components/analytics-chart";
 import DashboardOverview from "../_components/dashBoardOverview";
 import MostSoldItems from "../_components/MostSoldItems";
 import GeoChart from "../_components/TopUserCountries";
-import ReportsFilter from "./ReportsFilter";
+import ReportsFilter from "./_component/ReportsFilter";
 
 
 
@@ -36,10 +36,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="mt-[40px] flex justify-between">
-        <div className="text-[#444444] font-normal text-[16px]">Showing 1 to 25 in first entries</div>
-     
-      </div>
+      
     </div>
   );
 };

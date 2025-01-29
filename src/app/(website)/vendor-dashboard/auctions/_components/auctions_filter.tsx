@@ -44,7 +44,7 @@ const AuctionsFilter = () => {
           />
         </div>
       </div>
-      <Button size="sm" className="">
+      <Button className="">
         Bulk Delete
       </Button>
     </div>

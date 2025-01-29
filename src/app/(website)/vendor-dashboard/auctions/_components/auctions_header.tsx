@@ -1,8 +1,13 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Box } from "lucide-react";
-import Link from "next/link";
 
-const AuctionsHeader = () => {
+interface AuctionsHeaderProps {
+  showAddAuction: boolean;
+  setShowAddAuction: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AuctionsHeader: React.FC<AuctionsHeaderProps> = ({ showAddAuction, setShowAddAuction }) => {
   return (
     <div className="h-[80px] w-full bg-white p-[8px] rounded-[12px] flex items-center justify-between">
       <div className="px-[10px] text-[12px] leading-[14.4px]">
@@ -13,10 +18,8 @@ const AuctionsHeader = () => {
         <span className="text-gradient"> Archived (30) </span>
       </div>
       <div>
-        <Button asChild>
-          <Link href="/">
-            Add New <Box />
-          </Link>
+        <Button onClick={() => setShowAddAuction((prev) => !prev)}>
+          {showAddAuction ? "Auction List" : "Add New"} <Box />
         </Button>
       </div>
     </div>

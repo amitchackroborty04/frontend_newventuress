@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 // Define the initial state of the counter
 interface Business {
   country: string;
-  province?: string;
-  businessLicense: string;
-  resellerLicense: string;
+  state?: string;
+  license: string;
+  resellerBusinessLicense: string;
 }
 
-const initialState: {
+export interface authSliceType {
   industry: "CBD/HEMP" | "Recreational Cannabis" | "Both" | "";
 
   profession: string[];
@@ -16,8 +16,10 @@ const initialState: {
   fullName: string;
   password: string;
   confirmPassword: string;
-  businesses: Business[];
-} = {
+  businessInfo: Business[];
+}
+
+const initialState: authSliceType = {
   email: "",
   fullName: "",
   password: "",
@@ -25,7 +27,7 @@ const initialState: {
   industry: "",
   profession: [],
 
-  businesses: [],
+  businessInfo: [],
 };
 
 // Create the slice
@@ -40,18 +42,24 @@ const authSlice = createSlice({
       };
     },
     addNewBusiness: (state, action) => {
-      state.businesses = action.payload;
+      state.businessInfo = action.payload;
     },
     updateBusiness: (state, action) => {
-      if (state.businesses.length > 0) {
-        // Find the index of the last business
-        const lastIndex = state.businesses.length - 1;
-        // Update the last business in the array
-        state.businesses[lastIndex] = {
-          ...state.businesses[lastIndex],
-          ...action.payload,
-        };
+      if (state.businessInfo.length === 0) {
+        // If no business exists, add a default one first
+        state.businessInfo.push({
+          country: "",
+          state: "",
+          license: "",
+          resellerBusinessLicense: "",
+        });
       }
+      // Update the last business in the array
+      const lastIndex = state.businessInfo.length - 1;
+      state.businessInfo[lastIndex] = {
+        ...state.businessInfo[lastIndex],
+        ...action.payload,
+      };
     },
     resetAuthSlice: () => {
       return initialState;
