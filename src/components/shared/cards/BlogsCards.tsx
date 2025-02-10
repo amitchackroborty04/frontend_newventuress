@@ -73,10 +73,10 @@ function BlogsCards({ data, index = 0 }: Props) {
         <CardFooter className="p-6 pt-0">
           <Link
             href={`/blogs/${_id}`}
-            className="text-gradient hover:text-primary font-medium inline-flex items-center gap-1"
+            className="text-gradient hover:text-primary font-medium inline-flex items-center gap-1 dark:text-gradient-pink"
           >
             Read More
-            <ArrowRight className="w-[25px] h-[22px] font-light text-[#27376a]" />
+            <ArrowRight className="w-[25px] h-[22px] font-light text-[#27376a] dark:!text-[#6841A5]" />
           </Link>
         </CardFooter>
       </Card>

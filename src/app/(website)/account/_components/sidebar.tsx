@@ -61,7 +61,7 @@ const AccountSidebar = () => {
       <section className="space-y-[40px] md:sticky md:top-[50px]">
         <div className="border-[1px] rounded-[12px] border-[#C5C5C5] w-full  md:w-[270px] h-auto ">
           <div className="h-[70px] w-full flex justify-start items-center border-b border-b-[#C5C5C5]">
-            <h2 className="text-[20px] lg:text-[32px] text-gradient font-semibold text-left pl-3">
+            <h2 className="text-[20px] lg:text-[32px] text-gradient font-semibold text-left pl-3 dark:text-gradient-pink">
               Navigation
             </h2>
           </div>
@@ -73,15 +73,15 @@ const AccountSidebar = () => {
                 <Link
                   href={href}
                   className={cn(
-                    "flex items-center h-[64px] gap-x-3 border-b border-[#C5C5C5] hover:bg-[#E6EEF6] transition-colors duration-300 cursor-pointer",
+                    "flex items-center h-[64px] gap-x-3 border-b border-[#C5C5C5] hover:bg-[#E6EEF6] transition-colors duration-300 cursor-pointer dark:hover:bg-[#482D721A]",
                     name === "Log out" && "text-[#E10E0E] hover:bg-[#E10E0E]/5",
-                    isActive && "bg-[#E6EEF6]",
+                    isActive && "bg-[#E6EEF6] dark:bg-[#482D721A]",
                     id === 6 && "border-b-0"
                   )}
                   key={id}
                 >
                   <span className="text-black">{icon}</span>
-                  <span className="text-[16px] lg:text-[20px] text-black font-normal leading-[24px]">
+                  <span className="text-[16px] lg:text-[20px] text-black font-normal leading-[24px] ">
                     {name}
                   </span>
                 </Link>

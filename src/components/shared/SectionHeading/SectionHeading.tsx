@@ -17,8 +17,15 @@ const SectionHeading = ({ heading, subheading }: Props) => {
       </p>
 
       <Image
-        className="mx-auto"
+        className="mx-auto dark:hidden"
         src="/assets/img/Line.png"
+        width={80}
+        height={80}
+        alt="Picture of the author"
+      />
+      <Image
+        className="mx-auto hidden dark:block"
+        src="/assets/img/dark-Line.png"
         width={80}
         height={80}
         alt="Picture of the author"

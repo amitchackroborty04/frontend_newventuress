@@ -15,7 +15,17 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 
-export const StoreListColumn: ColumnDef<DemoTableItemsType>[] = [
+
+
+
+export const StoreListColumn = ({
+  setIsOpen,
+  setSelectedRow,
+}: {
+  setIsOpen: (value: boolean) => void;
+  setSelectedRow: (row: DemoTableItemsType | null) => void;
+}): ColumnDef<DemoTableItemsType>[] => [
+  
   {
     id: "select",
     header: ({ table }) => (
@@ -87,7 +97,7 @@ export const StoreListColumn: ColumnDef<DemoTableItemsType>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-2">
-          <Box />
+          <Box className="dark:!text-black"/>
           <div className="flex items-center">
             <span className="text-[16px] text-[#E10E0E] font-normal flex items-center gap-2">
               {row.original.remainingBox}
@@ -109,8 +119,8 @@ export const StoreListColumn: ColumnDef<DemoTableItemsType>[] = [
           <span className="text-[16px] text-[#E10E0E] font-normal">
             {row.original.grossSales}
           </span>
-          <span>/MB/</span>
-          <ImInfinite className="text-[16px]" />
+          <span className="dark:text-black">/MB/</span>
+          <ImInfinite className="text-[16px] dark:!text-black" />
         </div>
       );
     },
@@ -153,35 +163,43 @@ export const StoreListColumn: ColumnDef<DemoTableItemsType>[] = [
   },
   {
     header: "Actions",
-    cell: () => {
+    cell: ({ row }) => {
       return (
         <div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#6841A5] dark:hover:bg-[#482D721A]"
+                >
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
               >
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="end"
-              className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
-            >
-              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
-                Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
-                Details
-              </DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                <DropdownMenuItem
+                  className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none rounded-t-[8px] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:hover:bg-[#482D721A] dark:!text-[#6841A5]"
+                  onClick={() => { 
+                    setSelectedRow(row.original);// Set the selected row
+                    setIsOpen(true); // Open the modal
+                  }}
+                >
+                  Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:hover:bg-[#482D721A] dark:!text-[#6841A5]">
+                  Details
+                </DropdownMenuItem>
+                <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:hover:bg-[#482D721A]">
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </div>
       );
     },
   },
 ];
+
+

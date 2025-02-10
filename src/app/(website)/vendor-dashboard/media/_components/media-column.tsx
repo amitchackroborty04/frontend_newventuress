@@ -15,6 +15,7 @@ export const MediaColumns: ColumnDef<DemoTableItemsType>[] = [
     id: "select",
     header: ({ table }) => (
       <Checkbox
+      
         checked={
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
@@ -67,7 +68,7 @@ export const MediaColumns: ColumnDef<DemoTableItemsType>[] = [
     accessorKey: "Store",
     header: "Store",
     cell: ({ row }) => (
-      <p className="text-[18px] text-gradient font-normal leading-[19.2px]">{row.original.Store}</p>
+      <p className="text-[18px] text-gradient dark:text-gradient-pink font-normal leading-[19.2px]">{row.original.Store}</p>
     )
   },
   {
@@ -96,11 +97,11 @@ export const MediaColumns: ColumnDef<DemoTableItemsType>[] = [
           <DropdownMenu>
             <DropdownMenuTrigger className=" w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
+              <MoreHorizontal className="h-4 w-4 dark:text-black " />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem onClick={handleEdit} className="text-blue-500 hover:!bg-[#E6EEF6] cursor-pointer w-full ">Edit</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleDelete} className="text-red-500 cursor-pointer hover:!bg-[#E6EEF6]">Delete</DropdownMenuItem>
+            <DropdownMenuContent className="bg-white border-none" align="start">
+              <DropdownMenuItem onClick={handleEdit} className="text-blue-500 hover:!bg-[#E6EEF6] dark:hover:!bg-[#482D721A] cursor-pointer w-full dark:text-blue-500 ">Edit</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDelete} className="text-red-500 cursor-pointer hover:!bg-[#E6EEF6] dark:hover:!bg-[#482D721A] dark:text-red-500">Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

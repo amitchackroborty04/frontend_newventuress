@@ -16,7 +16,7 @@ export default function VendorStore() {
   }, [searchQuery])
 
   return (
-    <div className="min-h-screen bg-white ">
+    <div className="min-h-screen bg-white vendor-store">
       <SearchBar
         onSearch={setSearchQuery}
         totalResults={filteredVendors.length}

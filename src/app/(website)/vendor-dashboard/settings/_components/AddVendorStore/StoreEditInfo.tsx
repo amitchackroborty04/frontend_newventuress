@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Image from "next/image"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { DemoTableItemsType } from "@/data/StoreListData";
 
 const formSchema = z.object({
   storeName: z.string().min(2, "Store name is required"),
@@ -24,7 +26,13 @@ const formSchema = z.object({
   licenseNumber: z.string().min(1, "License number is required"),
 })
 
-export default function StoreEditInfo() {
+interface OrderDetailsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  rowData: DemoTableItemsType | null;
+}
+
+export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
   const [logoPreview, setLogoPreview] = useState<string | null>(null)
   const [bannerPreview, setBannerPreview] = useState<string | null>(null)
 
@@ -70,30 +78,36 @@ export default function StoreEditInfo() {
   }
 
   return (
-    <div className="min-h-screen ">
-      <div className="  ">
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()} >
+      
+        <DialogContent
+          className="max-w-[1350px] p-0 dark:bg-white dark:border-none"
+          style={{ boxShadow: "0px 0px 22px 8px #C1C9E4" }}
+        >
+    <div className="">
+      <div className="">
       <div
         className={
-          "bg-primary pl-[30px] py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center "
+          "bg-primary dark:bg-pinkGradient pl-[30px] py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center "
         }
       >
        Edit Store Info
       </div>
-        <div className="bg-background rounded-b-lg  px-6 pt-[30px]">
+        <div className=" rounded-b-lg  px-6 pt-[30px]">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid lg:grid-cols-2 gap-8">
+              <div className="grid lg:grid-cols-2 gap-8 ">
                 <div className="space-y-6">
-                  <h3 className="text-[22px] font-medium text-gradient">General Settings</h3>
+                  <h3 className="text-[22px] font-medium text-gradient dark:text-gradient-pink">General Settings</h3>
 
                   <FormField
                     control={form.control}
                     name="storeName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium" >Store Name  <span className="text-red-500">*</span></FormLabel>
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]" >Store Name  <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input {...field} className="h-[51px]" />
+                          <Input {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -105,9 +119,9 @@ export default function StoreEditInfo() {
                     name="storeSlug"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium" >Store Name  <span className="text-red-500">*</span></FormLabel>
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]" >Store Name  <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input {...field} className="h-[51px]"  />
+                          <Input {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -119,9 +133,9 @@ export default function StoreEditInfo() {
                     name="storeEmail"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium">Store Email  <span className="text-red-500">*</span></FormLabel>
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Email  <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input type="email" {...field} className="h-[51px]"/>
+                          <Input type="email" {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black"/>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -133,9 +147,9 @@ export default function StoreEditInfo() {
                     name="storePhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium">Store Phone Number <span className="text-red-500">*</span></FormLabel>
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Phone Number <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input type="tel" {...field}  className="h-[51px]"/>
+                          <Input type="tel" {...field}  className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black"/>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -147,9 +161,9 @@ export default function StoreEditInfo() {
                     name="storeDetails"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium">Store Details <span className="text-red-500">*</span></FormLabel>
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Details <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Textarea rows={4} {...field} />
+                          <Textarea rows={4} {...field} className="h-[108px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black"/>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -161,14 +175,14 @@ export default function StoreEditInfo() {
                     name="licenseType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium">Choose License</FormLabel>
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Choose License</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger className="h-[51px]">
-                              <SelectValue placeholder="Select license type"  />
+                            <SelectTrigger className=" dark:border dark:border-[#B0B0B0] dark:text-black">
+                              <SelectValue placeholder="Select license type" className="h-[51px]"/>
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent className="dark:bg-white dark:border-none">
                             <SelectItem value="business">Business license</SelectItem>
                             <SelectItem value="retail">Retail license</SelectItem>
                             <SelectItem value="wholesale">Wholesale license</SelectItem>
@@ -184,9 +198,9 @@ export default function StoreEditInfo() {
                     name="licenseNumber"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base text-[#444444] text-medium">License Number</FormLabel>
-                        <FormControl>
-                          <Input {...field} placeholder="write here..." className="h-[51px]" />
+                        <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">License Number</FormLabel>
+                        <FormControl className="h-[51px]">
+                          <Input {...field} placeholder="write here..." className="dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -195,13 +209,13 @@ export default function StoreEditInfo() {
                 </div>
 
                 <div className="space-y-6">
-                  <h3 className="text-[22px] font-medium text-gradient">Store Brand Setup</h3>
+                  <h3 className="text-[22px] font-medium text-gradient dark:text-gradient-pink">Store Brand Setup</h3>
 
                   <div className="space-y-4">
                     <div>
-                      <Label className="text-base text-[#444444] text-medium">Store Logo</Label>
+                      <Label className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Logo</Label>
                       <div className="mt-2">
-                        <div className="border-2 border-dashed rounded-lg p-4">
+                        <div className="border-2 border-dashed dark:border-[#6841A5] rounded-lg p-4">
                           {logoPreview ? (
                             <div className="relative">
                               <Image
@@ -235,7 +249,7 @@ export default function StoreEditInfo() {
                           )}
                         </div>
                         <div className="flex justify-end gap-2 mt-2">
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="dark:bg-white dark:text-gradient-pink dark:border dark:border-[#B0B0B0]">
                             Update
                           </Button>
                           <Button size="sm">Confirm</Button>
@@ -244,12 +258,12 @@ export default function StoreEditInfo() {
                     </div>
 
                     <div>
-                      <Label className="text-base text-[#444444] text-medium">Store Banner Type</Label>
+                      <Label className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Banner Type</Label>
                       <Select defaultValue="static">
-                        <SelectTrigger className="mt-2 h-[51px]">
-                          <SelectValue placeholder="Select banner type" />
+                        <SelectTrigger className="mt-2 h-[51px] dark:border dark:border-[#B0B0B0] dark:text-black">
+                          <SelectValue placeholder="Select banner type"/>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-white dark:border-none">
                           <SelectItem value="static">Static Image</SelectItem>
                           <SelectItem value="animated">Animated</SelectItem>
                         </SelectContent>
@@ -257,9 +271,9 @@ export default function StoreEditInfo() {
                     </div>
 
                     <div>
-                      <Label className="text-base text-[#444444] text-medium">Store Banner</Label>
+                      <Label className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Banner</Label>
                       <div className="mt-2">
-                        <div className="border-2 border-dashed rounded-lg p-4">
+                        <div className="border-2 border-dashed dark:border-[#6841A5] rounded-lg p-4">
                           {bannerPreview ? (
                             <div className="relative">
                               <Image
@@ -293,7 +307,7 @@ export default function StoreEditInfo() {
                           )}
                         </div>
                         <div className="flex justify-end gap-2 mt-2">
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="dark:bg-white dark:text-gradient-pink dark:border dark:border-[#B0B0B0]">
                             Update
                           </Button>
                           <Button size="sm">Confirm</Button>
@@ -314,6 +328,8 @@ export default function StoreEditInfo() {
         </div>
       </div>
     </div>
+    </DialogContent>
+    </Dialog>
   )
 }
 

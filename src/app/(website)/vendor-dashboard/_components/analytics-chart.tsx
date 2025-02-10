@@ -52,15 +52,15 @@ export default function AnalyticsChart() {
   return (
     <Card className="w-full col-span-2">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
-        <CardTitle className="text-[#494949] text-[28px] font-semibold">Analytics</CardTitle>
+        <CardTitle className="text-[#494949] text-[28px] font-semibold dark:text-gradient-pink">Analytics</CardTitle>
         <Select defaultValue={month} onValueChange={(value) => setMonth(value as MonthKey)}>
-          <SelectTrigger className="w-[90px] bg-primary text-white focus:ring-0">
+          <SelectTrigger className="w-[90px] bg-primary dark:bg-pinkGradient text-white border-none">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="  text-[12px] rounded-[8px]">
-            <SelectItem value="Nov">Nov 24</SelectItem>
-            <SelectItem value="Dec">Dec 24</SelectItem>
-            <SelectItem value="Jan">Jan 25</SelectItem>
+          <SelectContent className="w-[90px]  text-[12px] rounded-[8px] bg-[#FFFFFF] border-none">
+            <SelectItem className="text-[#000000] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]" value="Nov">Nov 24</SelectItem>
+            <SelectItem className="text-[#000000] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]" value="Dec">Dec 24</SelectItem>
+            <SelectItem className="text-[#000000] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]" value="Jan">Jan 25</SelectItem>
           </SelectContent>
         </Select>
       </CardHeader>
@@ -86,8 +86,8 @@ export default function AnalyticsChart() {
       </Pie>
     </PieChart>
     <div className="absolute inset-0 flex flex-col items-center justify-center">
-      <span className="text-4xl font-bold">{data[0]?.value}%</span>
-      <span className="text-sm text-muted-foreground">Total sales</span>
+      <span className="text-4xl font-bold dark:text-gradient-pink">{data[0]?.value}%</span>
+      <span className="text-sm text-muted-foreground dark:text-gradient-pink">Total sales</span>
     </div>
   </>
 </ChartContainer>
@@ -99,7 +99,7 @@ export default function AnalyticsChart() {
                 className="h-3 w-3 rounded-full"
                 style={{ backgroundColor: item.color }}
               />
-              <span className="text-sm">{item.name}</span>
+              <span className="text-base text-[#000000] font-medium ">{item.name}</span>
             </div>
           ))}
         </div>

@@ -1,18 +1,28 @@
 "use client";
 
 import { StoreListData, DemoTableItemsType } from "@/data/StoreListData";
-import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { StoreListColumn } from "./StoreListColumn";
+import { DataTable } from "@/components/ui/data-table";
+import PacificPagination from "@/components/ui/PacificPagination";
+import { useState } from "react";
+import StoreEditInfo from "./AddVendorStore/StoreEditInfo";
 
 const StoreContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(false); // State for modal open/close
+  const [selectedRow, setSelectedRow] = useState<DemoTableItemsType | null>(null); // State for selected row
+
+  // Call StoreListColumn with the required arguments
+  const columns = StoreListColumn({ setIsOpen, setSelectedRow });
+
   return (
     <section className="w-full">
-      <div className="w-full shadow-[0px_0px_22px_8px_#C1C9E4] h-auto  rounded-[24px] bg-white">
-        <TableContainer data={StoreListData} columns={StoreListColumn} />
+      <div className="w-full shadow-[0px_0px_22px_8px_#C1C9E4] h-auto rounded-[24px] bg-white">
+        <TableContainer data={StoreListData} columns={columns} />
       </div>
-      
-      <div className="my-[40px] w-full  flex justify-between">
+
+      <div className="my-[40px] w-full flex justify-between">
         <p className="font-normal text-[16px] leading-[19.2px] text-[#444444]">
           Showing 1 to 25 in first entries
         </p>
@@ -24,16 +34,20 @@ const StoreContainer = () => {
           />
         </div>
       </div>
+
+      {/* Render the modal */}
+            {isOpen && (
+              <StoreEditInfo
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                rowData={selectedRow}
+              />
+            )}
     </section>
   );
 };
 
 export default StoreContainer;
-
-import { DataTable } from "@/components/ui/data-table";
-import { ColumnDef } from "@tanstack/react-table";
-import PacificPagination from "@/components/ui/PacificPagination";
-import { useState } from "react";
 
 const TableContainer = ({
   data,
@@ -44,7 +58,7 @@ const TableContainer = ({
 }) => {
   const table = useReactTable({
     data,
-    columns: columns,
+    columns,
     getCoreRowModel: getCoreRowModel(),
   });
   return (

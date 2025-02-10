@@ -21,7 +21,7 @@ function FAQSection() {
         {/* Right Content Section */}
         <div className="md:w-full lg:w-3/5">
           <div className="text-center lg:text-left">
-            <h1 className="text-[25px] md:text-[32px] lg:text-[32px] font-semibold text-gradient pb-2">
+            <h1 className="text-[25px] md:text-[32px] lg:text-[32px] font-semibold text-gradient dark:text-gradient-pink pb-2">
               What do you want to know?
             </h1>
             <p className="text-[16px] md:text-[18px] lg:text-[20px] text-[#444444] leading-6 mb-10">

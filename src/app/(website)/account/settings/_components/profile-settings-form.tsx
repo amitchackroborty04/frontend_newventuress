@@ -253,6 +253,7 @@ export default function ProfileSettingsForm() {
                     type="file"
                     accept="image/*"
                     className="hidden"
+
                     id="fileInput"
                     value={value ? "" : undefined} // Reset value to allow re-selection of the same file
                     onChange={(e) => {
@@ -275,6 +276,7 @@ export default function ProfileSettingsForm() {
             size="sm"
             type="button"
             onClick={() => document.getElementById("fileInput")?.click()}
+            className="dark:bg-white dark:text-gradient-pink dark:border dark:border-[#6841A5]"
           >
             Upload Image
           </Button>

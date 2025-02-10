@@ -7,6 +7,7 @@ import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CartSummary } from "./cart-summary";
+import SectionHeading from "@/components/shared/SectionHeading/SectionHeading";
 
 export default function CartPage() {
   const [items, setItems] = useState<CartItem[]>(initialItems);
@@ -49,13 +50,13 @@ export default function CartPage() {
 
   return (
     <div className="container section border-b-[1px] border-[#C0CFE6]/50 pb-[40px] ">
-      <h1 className="text-2xl font-semibold text-gradient text-center mb-8">
-        Your Shopping Cart
-      </h1>
+      <div className="mt-[-10px]">
+            <SectionHeading heading={"Your Shopping Cart"} subheading={""} />
+          </div>
 
       <div className="max-w-7xl mx-auto lg:grid md:grid-cols-[1fr_500px] gap-8">
         <div className="space-y-6 lg:border-r-[.5px] border-[#C0CFE6]/70 md:pr-8">
-          <h2 className="text-xl font-semibold text-gradient mb-6">
+          <h2 className="text-xl font-semibold text-gradient dark:text-gradient-pink mb-6">
             Cart Items
           </h2>
           <div className="space-y-4">

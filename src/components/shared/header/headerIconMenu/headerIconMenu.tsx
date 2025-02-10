@@ -28,7 +28,7 @@ function HeaderIconMenu({ icons, onClick }: HeaderIconMenuProps) {
           <span className="sr-only">{icon.srOnlyText}</span>
           <Image src={icon.src} width={24} height={24} alt={icon.alt} />
           {icon.count && (
-            <div className="w-[12px] h-[12px] text-white absolute top-0 right-0 bg-primary text-[8px] rounded-full flex justify-center items-center">
+            <div className="w-[12px] h-[12px] text-white absolute top-0 right-0 bg-primary dark:bg-pinkGradient text-[8px] rounded-full flex justify-center items-center">
               {icon.count}
             </div>
           )}

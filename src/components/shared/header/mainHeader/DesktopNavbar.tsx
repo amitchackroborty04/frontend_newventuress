@@ -124,7 +124,7 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
       <div>
         {!loggedin ? (
           <div className="hidden lg:flex lg:flex-1 gap-x-[20px] lg:justify-end">
-            <Button variant="outline" asChild size="md">
+            <Button variant="outline" asChild size="md" className="dark:bg-white dark:hover:bg-[#482D721A] dark:text-black dark:border dark:border-[#6741a521] dark:shadow">
               <Link href="/login">Log in</Link>
             </Button>
             <Button size="md" asChild>

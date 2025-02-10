@@ -28,11 +28,32 @@ export function VendorCard({ vendor }: VendorCardProps) {
         </div>
 
         <div>
-          <h2 className="text-lg md:text-[32px] font-medium mb-1">
+          <h2 className="text-lg md:text-[32px] font-medium mb-1 dark:text-black">
             {vendor.name}
           </h2>
           <div className="flex items-center gap-2 mb-4">
             <span className="text-gray-600">{vendor.followers} Followers</span>
+            <div className="flex">
+              {[1, 2, 3, 4].map((star) => (
+                              <Image
+                                key={star}
+                                loading="lazy"
+                                src="/assets/svg/star-fill.svg"
+                                alt="star fill"
+                                height={12}
+                                width={12}
+                                className="object-contain shrink-0 w-3 aspect-square fill-amber-500"
+                              />
+                            ))}
+                            <Image
+                                            loading="lazy"
+                                            src="/assets/svg/star-outline.svg"
+                                            alt="star outline"
+                                            height={12}
+                                            width={12}
+                                            className="object-contain shrink-0 w-3 aspect-square fill-stone-300"
+                                          />
+            </div>
             <div className="flex items-center gap-2">
               {/* <StarRating rating={vendor.rating} /> */}
               <span className="ml-1 text-sm text-gray-600">
@@ -43,15 +64,15 @@ export function VendorCard({ vendor }: VendorCardProps) {
 
           <div className="space-y-3 text-sm">
             <div className="flex items-start gap-3  md:text-xl">
-              <MapPin className="w-5 h-5 text-[#0057A8] shrink-0 mt-0.5" />
+              <MapPin className="w-5 h-5 text-[#0057A8] dark:!text-[#6841A5] shrink-0 mt-0.5" />
               <span className="text-gray-700">{vendor.address}</span>
             </div>
             <div className="flex items-center gap-3 md:text-xl ">
-              <Phone className="w-5 h-5 text-[#0057A8]" />
+              <Phone className="w-5 h-5 text-[#0057A8] dark:!text-[#6841A5]" />
               <span className="text-gray-700">{vendor.phone}</span>
             </div>
             <div className="flex items-center gap-3 md:text-xl">
-              <Mail className="w-5 h-5 text-[#0057A8]" />
+              <Mail className="w-5 h-5 text-[#0057A8] dark:!text-[#6841A5]" />
               <span className="text-gray-700">{vendor.email}</span>
             </div>
           </div>

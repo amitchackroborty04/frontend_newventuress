@@ -15,14 +15,14 @@ function SearchBer() {
   return (
     <>
       <div className="hidden md:block">
-        <form className="flex flex-1 gap-2 w-full md:w-[542px] lg:w-[772px] border-1 border-primary-green outline-0 mb-1 lg:mb-0">
+        <form className="flex flex-1 gap-2 w-full  border-1 border-primary-green outline-0 mb-1 lg:mb-0">
           <div className="flex-1 relative h-[34px] lg:h-full">
             <div className="flex items-center h-[44px]">
               <Search className="absolute left-2.5 top-2.4 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search"
-                className="pl-8 rounded-[6px]  lg:h-full border-[1px] border-[#0057A8] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-[15px] leading-[21px] placeholder:text-[#9C9C9C]"
+                className="pl-8 rounded-[6px]  lg:h-full border-[1px] border-[#0057A8] dark:border-[#6841A5] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-[15px] leading-[21px] placeholder:text-[#9C9C9C]"
               />
             </div>
             <Button className="   absolute right-0 top-0 mt-[4px] lg:mt-[0] h-[36px]  lg:h-full rounded-l-none dark:hover:opacity-90 ">
@@ -37,7 +37,7 @@ function SearchBer() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-0 z-10 hover:bg-primary hover:text-white"
+            className="absolute right-0 z-10 hover:bg-primary dark:bg-pinkGradient hover:text-white"
             onClick={toggleSearch}
             aria-label="Toggle search"
           >
@@ -51,7 +51,7 @@ function SearchBer() {
             <Input
               type="search"
               placeholder="Search..."
-              className="w-full pr-10 border border-[#0057A8]"
+              className="w-full pr-10 border border-[#0057A8] dark:border-[#6841A5]"
               onBlur={() => {
                 if (!isSearchVisible) setIsSearchVisible(false)
               }}

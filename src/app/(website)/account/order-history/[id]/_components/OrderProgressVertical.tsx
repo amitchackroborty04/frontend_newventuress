@@ -40,7 +40,7 @@ export default function OrderProgressMobile() {
       {/* Progress Line */}
       <Progress
         value={progressValue}
-        className="absolute left-0 top-10 h-[370px] translate-x-[17px] w-[5px] bg-gray-200 [&>div]:bg-primary"
+        className="absolute left-0 top-10 h-[370px] translate-x-[17px] w-[5px] bg-gray-200 [&>div]:bg-primary dark:[&>div]:bg-pinkGradient"
         orientation="vertical"
       />
       {/* Status Points */}
@@ -50,8 +50,8 @@ export default function OrderProgressMobile() {
           <div
             className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.ordered.isComplete
-                ? "bg-primary"
-                : "bg-white border border-[#0f283f] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.ordered.isComplete && (
@@ -60,7 +60,7 @@ export default function OrderProgressMobile() {
           </div>
           <p
             className={`text-sm font-medium ${
-              orderStatus.ordered.isComplete ? "text-gradient" : "text-black"
+              orderStatus.ordered.isComplete ? "text-gradient dark:text-gradient-pink" : "text-black"
             }`}
           >
             Order received
@@ -72,21 +72,21 @@ export default function OrderProgressMobile() {
           <div
             className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.processing.isComplete
-                ? "bg-primary"
-                : "bg-white border border-[#0f283f] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.processing.isComplete ? (
               <Check className="h-5 w-5 text-white" />
             ) : (
-              <span className="text-gradient">2</span>
+              <span className="text-gradient dark:text-gradient-pink">2</span>
             )}
           </div>
           <p
             className={`text-sm font-medium ${
               orderStatus.processing.isComplete
-                ? "text-gradient"
-                : "text-black"
+                ? "text-gradient dark:text-gradient-pink"
+                : "text-black dark:text-gradient-pink"
             }`}
           >
             Processing
@@ -98,19 +98,19 @@ export default function OrderProgressMobile() {
           <div
             className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.shipping.isComplete
-                ? "bg-primary"
-                : "bg-white border border-[#0f283f] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.shipping.isComplete ? (
               <Check className="h-5 w-5 text-white" />
             ) : (
-              <span className="text-gradient">3</span>
+              <span className="text-gradient dark:text-gradient-pink">3</span>
             )}
           </div>
           <p
             className={`text-sm font-medium ${
-              orderStatus.shipping.isComplete ? "text-gradient" : "text-black"
+              orderStatus.shipping.isComplete ? "text-gradient dark:text-gradient-pink" : "text-black"
             }`}
           >
             On the way
@@ -122,21 +122,21 @@ export default function OrderProgressMobile() {
           <div
             className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.delivered.isComplete
-                ? "bg-primary"
-                : "bg-white border border-[#0f283f] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.delivered.isComplete ? (
               <Check className="h-5 w-5 text-white" />
             ) : (
-              <span className="text-gradient">4</span>
+              <span className="text-gradient dark:text-gradient-pink">4</span>
             )}
           </div>
           <div className="flex flex-col">
             <p
               className={`text-sm font-medium ${
                 orderStatus.delivered.isComplete
-                  ? "text-gradient"
+                  ? "text-gradient dark:text-gradient-pink"
                   : "text-black"
               }`}
             >

@@ -24,7 +24,7 @@ export default function Error({
         <div className="text-[25px] md:text-4xl lg:text-[48px] font-semibold leading-[30px] md:leading-[45px] lg:leading-[57px] text-center text-[#121D42] pt-[40px]">
           Oops!
         </div>
-        <div className="text-[19px] md:text-2xl lg:text-3xl font-semibold leading-[19px] md:leading-[45px] lg:leading-[67px] text-center text-[#152764]">
+        <div className="text-[19px] md:text-2xl lg:text-3xl font-semibold leading-[19px] md:leading-[45px] lg:leading-[67px] text-center text-[#152764] dark:text-gradient-pink">
           {error.name}
         </div>
         <div className="text-base md:text-xl lg:text-[25px] font-normal leading-[30px] text-[#6D6D6D] pt-[8px] pb-[16px] md:pb-[20px] text-center">

@@ -31,12 +31,12 @@ export default function CuponFilter() {
   return (
     <div className="flex items-center bg-white mb-[30px] gap-4 p-4 w-full rounded-[12px]">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-medium">Show</span>
+        <span className="text-base font-medium dark:text-[#444444]">Show</span>
         <Select defaultValue="all">
-          <SelectTrigger className="w-[100px] bg-primary text-white border-0 [&>svg]:text-white">
+          <SelectTrigger className="w-[66px] bg-primary dark:bg-pinkGradient text-white border-0 [&>svg]:text-white">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="dark:bg-white dark:border-none">
             <SelectItem value="all">All</SelectItem>
             <SelectItem value="active">Active</SelectItem>
             <SelectItem value="inactive">Inactive</SelectItem>
@@ -45,13 +45,13 @@ export default function CuponFilter() {
       </div>
 
       <div className="flex items-center gap-2">
-        <span className="text-sm font-medium">Entries</span>
+        <span className="text-base font-medium dark:text-[#444444]">Entries</span>
         <Select>
-          <SelectTrigger className="w-[140px] bg-primary text-white border-0  [&>svg]:text-white">
+          <SelectTrigger className="w-[140px] bg-primary dark:bg-pinkGradient text-white border-0  [&>svg]:text-white">
             <SelectValue placeholder="Chose stores" />
            
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="dark:bg-white dark:border-none">
             <SelectItem value="store1">Store 1</SelectItem>
             <SelectItem value="store2">Store 2</SelectItem>
             <SelectItem value="store3">Store 3</SelectItem>
@@ -70,7 +70,7 @@ export default function CuponFilter() {
               })
             }}
             trigger={
-              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
+              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary dark:bg-pinkGradient flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
                 {formatDateRange(date)}
                 <ChevronDown  size={18}/>
               </button>

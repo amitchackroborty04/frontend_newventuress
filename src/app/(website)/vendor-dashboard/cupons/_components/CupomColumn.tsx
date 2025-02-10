@@ -14,7 +14,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     cell: ({ row }) => {
       return (
         <div className=" ">
-          <span className="text-[16px]   text-gradient font-mediuml ">
+          <span className="text-[16px] text-gradient font-mediuml dark:text-gradient-pink ">
             {row.original.code}
           </span>
         </div>
@@ -26,7 +26,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     cell: ({ row }) => {
       return (
         <div className=" w-[149px]">
-          <span className="text-[12px]  text-white bg-primary p-[10px] rounded-[12px] font-normal">
+          <span className="text-[12px]  text-white bg-primary p-[10px] rounded-[12px] font-normal dark:bg-pinkGradient" >
             {row.original.type}
           </span>
         </div>

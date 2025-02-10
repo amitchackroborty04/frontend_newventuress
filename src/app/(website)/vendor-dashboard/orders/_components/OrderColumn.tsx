@@ -125,9 +125,9 @@ export const OrderColumn = ({
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:hover:bg-[#482D721A]"
               >
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4 dark:!text-[#6841A5]" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
@@ -135,12 +135,12 @@ export const OrderColumn = ({
               className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
             >
               {status === "pending" && (
-                <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] rounded-t-[8px] focus:outline-none">
+                <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] dark:!text-[#6841A5] rounded-t-[8px] focus:outline-none">
                   Accept
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem
-                className="p-[8px] hover:bg-[#E6EEF6] rounded-t-[8px] focus:outline-none cursor-pointer"
+                className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] dark:!text-[#6841A5] rounded-t-[8px] focus:outline-none cursor-pointer"
                 onClick={() => {
                   setSelectedRow(row.original); // Set the selected row
                   setIsOpen(true); // Open the modal
@@ -148,7 +148,7 @@ export const OrderColumn = ({
               >
                 Details
               </DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none cursor-pointer">
+              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none cursor-pointer">
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>

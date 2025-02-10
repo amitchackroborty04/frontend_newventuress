@@ -24,10 +24,10 @@ const PacificDropdownSelector = ({
       value={selectedValue}
       onValueChange={(val) => onValueChange(val)} // Update the state on selection
     >
-      <SelectTrigger className="rounded-[8px] bg-primary text-white">
+      <SelectTrigger className="rounded-[8px] bg-primary dark:bg-pinkGradient border-none text-white">
         <SelectValue placeholder={selectedValue || placeholderText} />
       </SelectTrigger>
-      <SelectContent className="w-fit">
+      <SelectContent className="w-fit bg-white border-none">
         <SelectGroup>
           {list.map((item: any) => (
             <SelectItem key={item.id} value={item.value}>

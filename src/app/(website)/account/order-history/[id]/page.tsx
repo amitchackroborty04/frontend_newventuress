@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div className="w-full md:pr-2">
       <div className="flex justify-between mb-10">
-        <div className="text-gradient font-bold text-[32px]">
+        <div className="text-gradient font-bold text-[32px] dark:text-gradient-pink">
           Order Details
         </div>
         <div className="hidden md:block">

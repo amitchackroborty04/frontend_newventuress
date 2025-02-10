@@ -94,7 +94,7 @@ function BlogCommets() {
             />
           ))}
         </div>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="dark:bg-white dark:hover:bg-[#482D721A] dark:text-gradient-pink dark:border dark:border-[#6841A5] dark:shadow">
           Read More
         </Button>
       </div>

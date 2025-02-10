@@ -89,7 +89,7 @@ const NewsletterForm = () => {
                 type="email"
                 placeholder="Enter Your Email"
                 required
-                className="placeholder:text-[#B3B3B3] flex-1 bg-white text-black text-center lg:text-left text-sm lg:text-base p-[21px] lg:p-6 border-[1px] border-[#0057A8] focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="placeholder:text-[#B3B3B3] flex-1 bg-white text-black text-center lg:text-left text-sm lg:text-base p-[21px] lg:p-6 border-[1px] border-[#0057A8] dark:border-[#6841A5] focus-visible:ring-0 focus-visible:ring-offset-0"
               />
               {/* Display validation error messages */}
               <FormMessage />

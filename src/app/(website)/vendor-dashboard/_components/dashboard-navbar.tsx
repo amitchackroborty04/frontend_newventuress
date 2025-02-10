@@ -24,7 +24,7 @@ const DashNav = () => {
         <div className="flex items-center gap-x-[16px]">
           <div
             className={cn(
-              "w-full h-[46px] rounded-[4px] pl-[16px] flex items-center gap-[12px] font-medium text-[18px] leading-[21.4px] transition-colors duration-300 bg-transparent text-[#152764] "
+              "w-full h-[46px] rounded-[4px] pl-[16px] flex items-center gap-[12px] font-medium text-[18px] leading-[21.4px] transition-colors duration-300 bg-transparent text-[#152764] dark:text-gradient-pink dark:!text-[#6841A5]"
             )}
           >
             {currentTab?.icon} {currentTab?.name}
@@ -66,15 +66,15 @@ const DashRightSide = () => {
     <div className="flex items-center justify-end gap-x-[20px]">
       <Link
         href="/vendor-dashboard/messages"
-        className="h-[35px] w-[35px] bg-gradient-to-r from-[#121D42] via-[#152764] to-[#4857BD] hover:from-[#7091FF] hover:via-[#2F4697] hover:to-[#7485FB] transition-all duration-500 ease-in-out text-[#152764] flex justify-center items-center rounded-[24px]"
+        className="h-[35px] w-[35px] bg-gradient-to-r dark:bg-pinkGradient from-[#121D42] via-[#152764] to-[#4857BD] hover:from-[#7091FF] hover:via-[#2F4697] hover:to-[#7485FB] transition-all duration-500 ease-in-out text-[#152764] flex justify-center items-center rounded-[24px]"
       >
-        <MessageCircleMore className="h-[12px] w-[12px] text-white" />
+        <MessageCircleMore className="h-[16px] w-[16px] text-white" />
       </Link>
       <Link
         href="/vendor-dashboard/notifications"
-        className="h-[35px] w-[35px] border-[1px] border-[#152764] ] text-[#152764] flex justify-center items-center rounded-[24px] hover:bg-white/20 transition-colors duration-300"
+        className="h-[35px] w-[35px] border-[1px] dark:border-[#6841A5] border-[#152764] ] text-[#152764] flex justify-center items-center rounded-[24px] hover:bg-white/20 transition-colors duration-300"
       >
-        <Bell className="h-[12px] w-[12px]" />
+        <Bell className="h-[16px] w-[16px]" />
       </Link>
 
       <div className="flex items-center gap-x-[10px]">
@@ -86,7 +86,7 @@ const DashRightSide = () => {
           className="rounded-full"
         />
         <div className="flex flex-col gap-y-[2px]">
-          <h3 className="text-[16px] font-medium leading-[20px] text-gradient">
+          <h3 className="text-[16px] font-medium leading-[20px] text-gradient dark:text-gradient-pink">
           Aliana
           </h3>
           <p className="text-[12px] leading-[14px] font-normal text-[#B0CBE4]">

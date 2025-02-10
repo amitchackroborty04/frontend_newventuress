@@ -27,7 +27,7 @@ export default function Toggle({ className, defaultChecked = false, ...props }: 
       <span
         className={cn(
           "inline-block h-5 w-5 transform rounded-full transition-transform",
-          enabled ? "translate-x-6 bg-[#1a237e]" : "translate-x-0.5 s bg-[#9e9e9e]",
+          enabled ? "translate-x-6 bg-[#1a237e] dark:bg-pinkGradient dark:border dark:border-[#6841A5]" : "translate-x-0.5 s bg-[#9e9e9e] dark:hover:bg-[#482D721A]",
         )}
       />
     </button>

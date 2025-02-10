@@ -42,10 +42,10 @@ function NewsletterPage() {
             {/* Right column with form */}
             <div className="flex-1 w-full bg-white/70 p-[20px] md:p-[40px] rounded-[16px]">
               <div className="space-y-4 mb-5">
-                <h2 className="text-[25px] lg:text-[32px] font-semibold text-gradient">
+                <h2 className="text-[25px] lg:text-[32px] font-semibold text-gradient dark:text-gradient-pink">
                   Subscribe Newsletter
                 </h2>
-                <h3 className="text-semibold leading-[26.4px] lg:text-[22px] text-gradient">
+                <h3 className="text-semibold leading-[26.4px] lg:text-[22px] text-gradient dark:text-gradient-pink">
                   Get bidding update earlier.
                 </h3>
                 <p className="text-[#444444] text-[14px] lg:text-[16px]">

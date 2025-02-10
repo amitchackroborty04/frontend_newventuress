@@ -19,7 +19,7 @@ export default function WishlistPage() {
       />
 
       <div className="container py-[40px] md:py-[60px] lg:py-[80px]">
-        <h1 className="heading text-center mb-8">
+        <h1 className="heading dark:text-gradient-pink text-center mb-8">
           Your Wishlist
         </h1>
         <WishlistContainer />

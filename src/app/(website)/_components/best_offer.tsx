@@ -37,7 +37,7 @@ const bestOfferData: BestOfferData[] = [
 const BestOffer: React.FC = () => {
   return (
     <div className="container pb-[40px] md:pb-[60px] lg:pb-[80px] mt-[-70px]">
-      <h3 className="heading">
+      <h3 className="heading text-gradient dark:text-gradient-pink">
         Best Offer
       </h3>
       <p className="lg:text-xl text-[16px] mt-1 font-normal leading-[24px] text-[#444444] pt-[6] md:pt-[7px] lg:pt-[8px]">
@@ -89,7 +89,7 @@ const BestOffer: React.FC = () => {
               </div>
             </div>
 
-            <h5 className="text-base font-medium leading-[24px] text-[#0057A8] pt-[6px]">
+            <h5 className="text-base font-medium leading-[24px] text-[#0057A8] dark:text-gradient-pink pt-[6px]">
               {offer?.name}
             </h5>
           </div>
@@ -102,10 +102,11 @@ const BestOffer: React.FC = () => {
           </Button>
         </div>
 
-        <button className="group flex items-center gap-[14px]">
+        <button className="group flex items-center text-gradient dark:text-gradient-pink gap-[14px]">
           See All
-          <FaArrowRightLong className="w-[20px] h-[20px] text-[#0057A8] transform group-hover:translate-x-2 transition-all duration-400" />
+          <FaArrowRightLong className="w-[20px] h-[20px] !text-[#152764] dark:!text-[#6841A5] transform group-hover:translate-x-2 transition-all duration-400" />
         </button>
+
       </div>
     </div>
   );

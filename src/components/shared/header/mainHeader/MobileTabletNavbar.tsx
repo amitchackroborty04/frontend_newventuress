@@ -155,14 +155,14 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   About
                 </Link>
@@ -176,7 +176,7 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/blogs"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Blog
                 </Link>
@@ -188,7 +188,7 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/contact"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Contact
                 </Link>
@@ -199,7 +199,7 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 {!loggedin ? (
                   <div className="grid grid-cols-2 gap-[30px]">
                     <Link href="/login">
-                      <Button variant="outline" className="w-[170px]">
+                      <Button variant="outline" className="w-[170px] dark:hover:bg-[#482D721A] dark:text-black dark:bg-white">
                         Log in
                       </Button>
                     </Link>

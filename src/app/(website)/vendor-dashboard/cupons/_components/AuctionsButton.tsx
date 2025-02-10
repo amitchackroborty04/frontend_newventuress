@@ -27,9 +27,9 @@ const AuctionsButton = ({ row }: any) => {
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:hover:bg-[#482D721A]"
           >
-            <MoreHorizontal className="h-4 w-4" />
+            <MoreHorizontal className="h-4 w-4 dark:!text-[#6841A5]" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -40,14 +40,14 @@ const AuctionsButton = ({ row }: any) => {
             //   onClick={handleEdit}
            
            
-            className="p-[8px] hover:bg-[#E6EEF6] cursor-pointer  focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0  "
+            className="p-[8px] hover:bg-[#E6EEF6] cursor-pointer dark:!text-[#6841A5] rounded-t-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:hover:bg-[#482D721A] "
           > 
             Edit
           </DropdownMenuItem>
           
           <DropdownMenuItem
             //   onClick={handleDelete}s
-            className="p-[8px] text-red-600 cursor-pointer hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 c"
+            className="p-[8px] text-red-600 cursor-pointer dark:hover:bg-[#482D721A] hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 c"
           >
             Delete
           </DropdownMenuItem>

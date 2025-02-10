@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -24,38 +24,38 @@ function Categories() {
     { name: "Tinctures", link: "#" },
     { name: "Accessories", link: "#" },
     { name: "Vape Products", link: "#" },
-    { name: "Edibles", link: "#" },
+    { name: "Edibles", link: "#" }
   ];
 
   // Animation Variants for Dropdown
   const dropdownVariants = {
     hidden: { opacity: 0, scale: 0.95, y: -10 },
     visible: { opacity: 1, scale: 1, y: 0 },
-    exit: { opacity: 0, scale: 0.95, y: -10 },
+    exit: { opacity: 0, scale: 0.95, y: -10 }
   };
 
   // Animation Variants for Links
   const linkVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
+    exit: { opacity: 0, y: -20 }
   };
 
   return (
     <DropdownMenu
-      onOpenChange={(isOpen) => setDropdownOpen(isOpen)} // Tracks dropdown open state
+      onOpenChange={isOpen => setDropdownOpen(isOpen)} // Tracks dropdown open state
     >
       <DropdownMenuTrigger asChild className="">
         <Button
           variant="outline"
-          className="mb-2 lg:mb-0 w-fit h-[44px] text-white hover:text-white justify-between gap-2 bg-primary  focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="mb-2 lg:mb-0 w-[178px] lg:w-[178px] text-[14px] lg:text-[16px] h-[44px] text-white hover:text-white gap-2 bg-primary dark:bg-pinkGradient dark:text-white focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:border-none"
         >
           {category}
-          <ChevronDown className="h-4 w-4" />
+          <ChevronDown className="h-4 " />
         </Button>
       </DropdownMenuTrigger>
       <AnimatePresence>
-        {isDropdownOpen && (
+        {isDropdownOpen &&
           <motion.div
             initial="hidden"
             animate="visible"
@@ -65,9 +65,9 @@ function Categories() {
           >
             <DropdownMenuContent
               align="start"
-              className="w-[180px] rounded-lg p-0 font-medium leading-[24px] text-black mt-[30px] lg:mt-[10px] overflow-hidden"
+              className="w-[180px] rounded-lg p-0 font-medium leading-[24px] text-black mt-[30px] lg:mt-[10px] overflow-hidden bg-white"
             >
-              {categories.map((item, index) => (
+              {categories.map((item, index) =>
                 <motion.div
                   key={item.name}
                   variants={linkVariants}
@@ -81,17 +81,16 @@ function Categories() {
                     onClick={() => setCategory(item.name)}
                   >
                     <Link
-                      className="w-full text-[20px] p-4 hover:bg-[#E6EEF6]"
+                      className="w-full text-[20px] p-4 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                       href={item.link}
                     >
                       {item.name}
                     </Link>
                   </DropdownMenuItem>
                 </motion.div>
-              ))}
+              )}
             </DropdownMenuContent>
-          </motion.div>
-        )}
+          </motion.div>}
       </AnimatePresence>
     </DropdownMenu>
   );

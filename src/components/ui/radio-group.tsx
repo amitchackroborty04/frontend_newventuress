@@ -44,7 +44,7 @@ const RadioGroupItem = React.forwardRef<
               <stop offset="100%" stopColor="#4857BD" />
             </linearGradient>
           </defs>
-          <circle cx="12" cy="12" r="10" fill="url(#gradient-fill)" />
+          <circle cx="12" cy="12" r="10" fill="url(#gradient-fill) " />
         </svg>
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>

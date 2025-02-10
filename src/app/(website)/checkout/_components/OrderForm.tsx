@@ -112,7 +112,7 @@ const OrderForm: React.FC = () => {
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <div className="flex justify-center gap-[30px] flex-wrap">
             <div className="flex flex-col gap-[30px] w-[570px]">
-              <h1 className="text-gradient text-xl md:text-2xl lg:text-[32px] font-semibold leading-[24px] md:leading-[32px] lg:leading-[38px]">
+              <h1 className="text-gradient dark:text-gradient-pink text-xl md:text-2xl lg:text-[32px] font-semibold leading-[24px] md:leading-[32px] lg:leading-[38px]">
                 Billing Information
               </h1>
               <FormField
@@ -120,7 +120,7 @@ const OrderForm: React.FC = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-[#444444]">
                       Full Name<span className="text-[#E10E0E]">*</span>
                     </FormLabel>
                     <FormControl>
@@ -128,7 +128,7 @@ const OrderForm: React.FC = () => {
                         placeholder=""
                         type=""
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -141,7 +141,7 @@ const OrderForm: React.FC = () => {
                 name="country"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-[#444444]">
                       Country<span className="text-[#E10E0E]">*</span>
                     </FormLabel>
                     <FormControl>
@@ -149,7 +149,7 @@ const OrderForm: React.FC = () => {
                         placeholder=""
                         type="text"
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -163,7 +163,7 @@ const OrderForm: React.FC = () => {
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-[#444444]">
                       Town/City/Region<span className="text-[#E10E0E]">*</span>
                     </FormLabel>
                     <FormControl>
@@ -171,7 +171,7 @@ const OrderForm: React.FC = () => {
                         placeholder=""
                         type="text"
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -185,7 +185,7 @@ const OrderForm: React.FC = () => {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-[#444444]">
                       Address<span className="text-[#E10E0E]">*</span>
                     </FormLabel>
                     <FormControl>
@@ -193,7 +193,7 @@ const OrderForm: React.FC = () => {
                         placeholder=""
                         type="text"
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -207,13 +207,13 @@ const OrderForm: React.FC = () => {
                 name="apartment"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Apartment/Floor</FormLabel>
+                    <FormLabel className="text-[#444444]">Apartment/Floor</FormLabel>
                     <FormControl>
                       <Input
                         placeholder=""
                         type="text"
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -227,7 +227,7 @@ const OrderForm: React.FC = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-[#444444]">
                       Email<span className="text-[#E10E0E]">*</span>
                     </FormLabel>
                     <FormControl>
@@ -235,7 +235,7 @@ const OrderForm: React.FC = () => {
                         placeholder=""
                         type="text"
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -249,13 +249,13 @@ const OrderForm: React.FC = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel className="text-[#444444]">Phone Number</FormLabel>
                     <FormControl>
                       <Input
                         placeholder=""
                         type="text"
                         {...field}
-                        className="h-[48px]"
+                        className="h-[48px] border border-[#B0B0B0]"
                       />
                     </FormControl>
 
@@ -277,7 +277,7 @@ const OrderForm: React.FC = () => {
             {/* right side content---------------------------- */}
 
             <div className="w-[570px] ">
-              <h1 className="text-gradient text-xl md:text-2xl lg:text-[32px] font-semibold leading-[24px] md:leading-[32px] lg:leading-[38px] pb-[32px]">
+              <h1 className="text-gradient dark:text-gradient-pink text-xl md:text-2xl lg:text-[32px] font-semibold leading-[24px] md:leading-[32px] lg:leading-[38px] pb-[32px]">
                 Order Summary
               </h1>
               <div>
@@ -307,7 +307,7 @@ const OrderForm: React.FC = () => {
                             htmlFor="creditCard"
                             className={`w-full border cursor-pointer rounded-lg flex items-center justify-between px-4 py-3 ${
                               field.value === "creditCard"
-                                ? "bg-[#E6EEF6] border-[#121D42]"
+                                ? "bg-[#E6EEF6] border-[#121D42] dark:border-[#6841A5]"
                                 : "border-zinc-200"
                             }`}
                           >
@@ -316,12 +316,12 @@ const OrderForm: React.FC = () => {
                               
                                 id="creditCard"
                                 value="creditCard"
-                                className="h-5 w-5 border-[#121D42] text-[#121D42] before:bg-[#121D42] data-[state=checked]:border-[#121D42] data-[state=checked]:text-[#121D42]"
+                                className="h-5 w-5 border-[#121D42] dark:border-[#6841A5] text-[#121D42] before:bg-[#121D42] data-[state=checked]:border-[#121D42] data-[state=checked]:text-[#121D42]"
                               />
                               <span
-                                className={`text-sm ${
+                                className={`text-sm dark:text-gradient-pink ${
                                   field.value === "creditCard"
-                                    ? "text-gradient"
+                                    ? "text-gradient dark:text-gradient-pink"
                                     : ""
                                 }`}
                               >
@@ -355,7 +355,7 @@ const OrderForm: React.FC = () => {
                                       <Input
                                         placeholder="Cardholder Name"
                                         {...field}
-                                        className="h-[48px]"
+                                        className="h-[48px] border border-[#B0B0B0]"
                                       />
                                     </FormControl>
                                     <FormMessage />
@@ -371,7 +371,7 @@ const OrderForm: React.FC = () => {
                                       <Input
                                         placeholder="Card Number"
                                         {...field}
-                                        className="h-[48px]"
+                                        className="h-[48px] border border-[#B0B0B0]"
                                       />
                                     </FormControl>
                                     <FormMessage />
@@ -388,7 +388,7 @@ const OrderForm: React.FC = () => {
                                         <Input
                                           placeholder="Exp.Date"
                                           {...field}
-                                          className="h-[48px]"
+                                          className="h-[48px] border border-[#B0B0B0]"
                                         />
                                       </FormControl>
                                       <FormMessage />
@@ -404,7 +404,7 @@ const OrderForm: React.FC = () => {
                                         <Input
                                           placeholder="CVV"
                                           {...field}
-                                          className="h-[48px]"
+                                          className="h-[48px] border border-[#B0B0B0]"
                                         />
                                       </FormControl>
                                       <FormMessage />
@@ -420,7 +420,7 @@ const OrderForm: React.FC = () => {
                           htmlFor="paypal"
                           className={`w-full border cursor-pointer rounded-lg flex items-center justify-between px-4 py-4 ${
                             field.value === "paypal"
-                              ? "bg-[#E6EEF6] border-[#121D42]"
+                              ? "bg-[#E6EEF6] border-[#121D42] dark:border-[#6841A5]"
                               : "border-zinc-200"
                           }`}
                         >
@@ -428,10 +428,10 @@ const OrderForm: React.FC = () => {
                             <RadioGroupItem
                               id="paypal"
                               value="paypal"
-                              className="h-5 w-5 border-[#121D42] text-[#121D42] before:bg-[#121D42] data-[state=checked]:border-[#121D42] data-[state=checked]:text-[#121D42]"
+                              className="h-5 w-5 border-[#121D42] dark:border-[#6841A5] text-[#121D42] before:bg-[#121D42] data-[state=checked]:border-[#121D42] data-[state=checked]:text-[#121D42]"
                             />
                             <span
-                              className={`text-sm ${
+                              className={`text-sm dark:text-gradient-pink ${
                                 field.value === "paypal" ? "text-[#121D42]" : ""
                               }`}
                             >
@@ -461,7 +461,7 @@ const OrderForm: React.FC = () => {
                               className="h-5 w-5 border-[#121D42] text-[#121D42] before:bg-[#121D42] data-[state=checked]:border-[#121D42] data-[state=checked]:text-[#121D42]"
                             />
                             <span
-                              className={`text-sm ${
+                              className={`text-sm dark:text-gradient-pink ${
                                 field.value === "cashOnDelivery"
                                   ? "text-[#121D42]"
                                   : ""
@@ -495,7 +495,7 @@ const OrderForm: React.FC = () => {
                   name="coupon"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gradient text-[16px]">
+                      <FormLabel className="text-gradient text-[16px] dark:text-gradient-pink">
                         Add Coupon{" "}
                       </FormLabel>
                       <span className="text-[#9C9C9C] text-[10px]">
@@ -507,7 +507,7 @@ const OrderForm: React.FC = () => {
                           placeholder=""
                           type="text"
                           {...field}
-                          className="h-[48px]"
+                          className="h-[48px] border border-[#B0B0B0]"
                         />
                       </FormControl>
 

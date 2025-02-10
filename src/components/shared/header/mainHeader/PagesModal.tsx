@@ -68,7 +68,7 @@ const PagesModal: React.FC<PagesModalProps> = ({ isOpen, onClose }) => {
                   <Dialog.Title className="w-full">
                     <Link
                       href={link.href}
-                      className={`inline-block hover:bg-[#E6EEF6] w-full p-6 py-[12px] text-black font-normal text-[16px] 
+                      className={`inline-block hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] w-full p-6 py-[12px] text-black font-normal text-[16px] 
                         ${index === links.length - 1 ? "rounded-b-[8px]" : ""}`}
                       onClick={onClose}
                     >

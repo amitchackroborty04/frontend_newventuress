@@ -65,7 +65,7 @@ const OrderHistory = () => {
         {/* Table for medium and larger screens */}
         <div className="w-full hidden lg:block overflow-hidden rounded-lg  border-[#C5C5C5] border-[1px]">
           <div className="flex justify-between items-center p-3">
-            <h1 className="text-[32px] font-semibold my-5 text-gradient">
+            <h1 className="text-[32px] font-semibold my-5 text-gradient dark:text-gradient-pink">
               Recet Order History
             </h1>
 
@@ -104,7 +104,7 @@ const OrderHistory = () => {
                   <td className="px-6 py-4 font-medium">
                     {product.status}
                   </td>
-                  <td className="px-6 py-4 text-gradient font-medium">
+                  <td className="px-6 py-4 text-gradient font-medium dark:text-gradient-pink">
                     <Link href="#"> view Details </Link>
                   </td>
                 </tr>

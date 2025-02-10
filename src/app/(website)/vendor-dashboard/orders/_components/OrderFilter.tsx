@@ -54,7 +54,7 @@ function OrderFilter() {
   }
 
   return (
-    <div className="h-[68px] mt-[30px] p-[8px] bg-white w-full flex items-center justify-between rounded-[12px]">
+    <div className="h-[68px] mt-[30px] p-[8px] bg-white w-full flex items-center justify-between rounded-[12px] px-4">
       <div className="flex gap-x-[28px] items-center">
         <div className="h-full flex items-center gap-x-[9px] w-fit">
           <span className="text-[16px] font-medium leading-[19.2px] text-[#444444]">Show</span>
@@ -75,7 +75,7 @@ function OrderFilter() {
               })
             }}
             trigger={
-              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
+              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary dark:bg-pinkGradient flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
                 {formatDateRange(date)}
                 <ChevronDown size={18} />
               </button>
@@ -91,7 +91,7 @@ function OrderFilter() {
         </div>
       </div>
       <div>
-        <button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">Bulk Delete</button>
+        <button className="px-[20px] py-[9px] bg-primary dark:bg-pinkGradient text-[#F5F5F5] rounded-lg">Bulk Delete</button>
       </div>
     </div>
   )

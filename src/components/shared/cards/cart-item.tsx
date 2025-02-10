@@ -1,5 +1,5 @@
 // package import 
-import { Check, Minus, Plus } from "lucide-react";
+import { Check, Heart, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { StarRating } from "../clientReview/StarRating";
 import { CartItem } from "@/types/cart";
@@ -15,7 +15,6 @@ export function CartItemCard({
   item,
   onUpdateQuantity,
   onRemove,
-  icon
 }: CartItemProps) {
 
   const [isWishlist, setIsWishlist] = useState(false);
@@ -44,11 +43,11 @@ export function CartItemCard({
             }}
             className={`absolute top-2 right-2 flex gap-2.5 justify-center items-center px-2 bg-white rounded-full ${isWishlist
               ? " border-none text-white bg-primary"
-              : " border-blue-500 text-black hover:bg-hover-gradient hover:text-white"
+              : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white dark:hover:text-white dark:!text-[#ffffff]"
               }  min-h-[32px] w-[32px]`}
             aria-label="Add to wishlist"
           >
-            {icon}
+            <Heart className="group-hover:fill-white hover:border-0 w-4 h-4 dark:text-black dark:!hover:text-white" />
           </button>
         </div>
         <div className="flex-1 space-y-1 pt-2 flex flex-col justify-evenly">
@@ -56,11 +55,11 @@ export function CartItemCard({
             <div>
               <StarRating className="w-[14px] h-[14px] pb-[5px] -ml-1" rating={item.rating} activeColor="fill-amber-500 text-amber-500" inactiveColor="fill-stone-300 text-stone-300" />
               <p className={`text-xs font-normal leading-[14px] pb-[4px] ${item.stock === "Out of Stoke" ? "text-[#E10E0E]" : "text-[#2A6C2D]"}`}>{item.stock}</p>
-              <h3 className="text-base leading-[19px] font-medium text-gradient">{item.name}</h3>
+              <h3 className="text-base leading-[19px] font-medium text-gradient dark:text-gradient-pink">{item.name}</h3>
 
             </div>
             <div className="flex items-center md:-mt-3 py-1 rounded">
-              <span className="text-xs border rounded-xl flex items-center gap-2 px-2 py-1">
+              <span className="text-xs border dark:border-[#0000001f] rounded-xl flex items-center gap-2 px-2 py-1 dark:text-black">
                 <Check className="w-3 h-3" />
                 In stock
               </span>
@@ -99,7 +98,7 @@ export function CartItemCard({
             {/* cart item remove button */}
             <button
               onClick={() => onRemove(item.id)}
-              className="text-base font-normal leading-[19px] text-[#00417E]"
+              className="text-base font-normal leading-[19px] text-[#00417E] dark:text-gradient-pink"
             >
               Remove
             </button>

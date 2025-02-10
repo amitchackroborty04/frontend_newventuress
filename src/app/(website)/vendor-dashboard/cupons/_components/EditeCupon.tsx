@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
+import { ScrollArea } from "@/components/ui/scroll-area"
 // import Modal from "@/components/shared/modal/modal"
 
 const formSchema = z.object({
@@ -62,36 +63,36 @@ function onBack ()  {
   return (
 
  <div className="">
-     <div className="  bg-gray-50 ">
+     <div className="bg-gray-50 rounded-lg">
 
       <div className="mx-auto w-[1250px] rounded-lg bg-white shadow-sm">
-        <div className="relative mb-6 rounded-t-lg bg-gradient-to-r from-[#1e2875] to-[#3c3c8f] p-4">
+        <div className="relative mb-6 rounded-t-lg bg-gradient-to-r from-[#1e2875] to-[#3c3c8f] px-[32px] py-[16px] dark:bg-pinkGradient">
           <h1 className="text-2xl font-semibold text-white">Add Coupons</h1>
           <Button
             variant="secondary"
             size="sm"
-            className="absolute right-4 top-4"
+            className="absolute right-4 top-4 dark:bg-white dark:!text-[#6841A5]"
             onClick={() =>onBack()}
           >
             
-            Back to List <ArrowRight className="mr-2 h-4 w-4" />
+            Back to List <ArrowRight className="mr-2 h-4 w-4 dark:!text-[#6841A5]" />
           </Button>
         </div>
-
+        <ScrollArea className="h-[calc(100vh-200px)]">
         <div className="">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4">
-
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-[32px] py-[16px]">
+            
               <FormField
                 control={form.control}
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex justify-start text-[#444444]">
+                    <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">
                       Title <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter title" {...field} />
+                      <Input placeholder="Enter title" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -103,9 +104,9 @@ function onBack ()  {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex justify-start text-[#444444]">Description</FormLabel>
+                    <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Description</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Type Description here" {...field} />
+                      <Textarea placeholder="Type Description here" {...field} className="border border-[#B0B0B0] h-[91px]"/>
                     </FormControl>
                   </FormItem>
                 )}
@@ -117,9 +118,9 @@ function onBack ()  {
                   name="discountType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Discount Type</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Discount Type</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} />
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -130,9 +131,9 @@ function onBack ()  {
                   name="amount"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Amount</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Amount</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} />
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -143,9 +144,9 @@ function onBack ()  {
                   name="startDate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Start Date</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Start Date</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} />
+                        <Input type="date" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -156,9 +157,9 @@ function onBack ()  {
                   name="expireDate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Expire Date</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Expire Date</FormLabel>
                       <FormControl>
-                        <Input   type="date" {...field} />
+                        <Input   type="date" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -170,9 +171,9 @@ function onBack ()  {
                 name="emailRestrictions"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex justify-start text-[#444444]">Email Restrictions</FormLabel>
+                    <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Email Restrictions</FormLabel>
                     <FormControl>
-                      <Input placeholder="Percentage discount" {...field} />
+                      <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                     </FormControl>
                   </FormItem>
                 )}
@@ -184,9 +185,9 @@ function onBack ()  {
                   name="usageLimit"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Usage Limit</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Usage Limit</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} />
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -197,9 +198,9 @@ function onBack ()  {
                   name="usageLimitPerUser"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Usage limit per user</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Usage limit per user</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} />
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -211,11 +212,11 @@ function onBack ()  {
                 name="product"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="flex justify-start text-[#444444]">Product</FormLabel>
+                    <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Product</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select product" />
+                        <SelectTrigger className="border border-[#B0B0B0] h-[41px]">
+                          <SelectValue placeholder="Select product"/>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -233,11 +234,11 @@ function onBack ()  {
                   name="category"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Category</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Category</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select category" />
+                          <SelectTrigger className="border border-[#B0B0B0] h-[41px]">
+                            <SelectValue placeholder="Select category"/>
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -254,11 +255,11 @@ function onBack ()  {
                   name="subCategory"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="flex justify-start text-[#444444]">Sub-Category</FormLabel>
+                      <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Sub-Category</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select sub-category" />
+                          <SelectTrigger className="border border-[#B0B0B0] h-[41px]">
+                            <SelectValue placeholder="Select sub-category"/>
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -280,7 +281,7 @@ function onBack ()  {
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel className="text-[#444444]">Save this information for faster Adding Products</FormLabel>
+                      <FormLabel className="text-[#919792] text-[12px] font-normal">Save this information for faster Adding Products</FormLabel>
                     </div>
                   </FormItem>
                 )}
@@ -294,6 +295,7 @@ function onBack ()  {
             </form>
           </Form>
         </div>
+        </ScrollArea>
       </div>
     </div>
  </div>

@@ -43,7 +43,7 @@ const ContactForm: React.FC = () => {
   return (
     <div className="flex flex-col grow p-[20px] max-w-[670px] bg-[#E6EEF6] rounded-2xl min-h-[648px] max-md:mt-8 max-md:max-w-full gap-[24px]">
       <div className="flex flex-col gap-[8px] w-full max-md:max-w-full">
-        <h1 className="text-[25px] lg:text-[32px] font-semibold leading-[38.4px] text-gradient max-md:max-w-full">
+        <h1 className="text-[25px] lg:text-[32px] font-semibold leading-[38.4px] text-gradient max-md:max-w-full dark:text-gradient-pink">
           We are Here to Help!
         </h1>
         <div >
@@ -66,7 +66,7 @@ const ContactForm: React.FC = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Full Name*" {...field} className="w-full h-[51px] p-[16px] text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                  <Input placeholder="Full Name*" {...field} className="w-full h-[51px] p-[16px] text-black text-[16px] bg-white border-[#0057A8] dark:border dark:border-[#6841A5] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email Address*" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Input placeholder="Email Address*" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white dark:border dark:border-[#6841A5] border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,7 +97,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Subject" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Input placeholder="Subject" {...field} className="w-full h-[51px] p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,7 +113,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea placeholder="Ask your Queries*" {...field} className="w-full p-[16px]text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] h-[170px] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Textarea placeholder="Ask your Queries*" {...field} className="w-full p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] h-[170px] focus-visible:ring-0 focus-visible:ring-offset-0"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

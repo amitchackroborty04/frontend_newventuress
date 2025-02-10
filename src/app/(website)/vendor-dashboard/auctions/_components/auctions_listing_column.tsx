@@ -55,11 +55,11 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
             />
           </div>
           <div className="flex flex-col gap-y-[8px]">
-            <h3 className="text-[18px] leading-[21.6px] font-semibold text-gradient">
+            <h3 className="text-[18px] leading-[21.6px] font-semibold text-gradient dark:text-gradient-pink">
               {row.original.name}
             </h3>
             <div className="flex items-center  py-1 rounded">
-              <span className="text-xs border rounded-xl flex items-center gap-2 px-2 py-1">
+              <span className="text-sm text-[#444444] font-normal  border border-[#444444] rounded-3xl flex items-center gap-2 px-2 py-1 ">
                 <Check className="w-3 h-3" />
                 In stock (08)
               </span>
@@ -80,7 +80,7 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
   {
     header: "Store",
     cell: ({ row }) => (
-      <h4 className="max-w-[137px] text-gradient font-semibold text-[18px] leading-[21.6px]  flex justify-center ml-10 ">
+      <h4 className="max-w-[137px] text-gradient font-semibold text-[18px] leading-[21.6px]  flex justify-center ml-10 dark:text-gradient-pink ">
         {row.original.store}
       </h4>
     ),
@@ -105,6 +105,11 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
   {
     header: "Date",
     accessorKey: "date",
+    cell: ({ row }) => (
+      <h4 className="text-base text-[#444444] font-normal leading-[19.2px]">
+        {row.original.date}
+      </h4>
+    ),
   },
   {
     id: "actions", // Unique ID for the actions column
@@ -126,25 +131,25 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 "
+                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0  dark:hover:bg-[#482D721A]"
               >
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4 dark:text-black" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              align="end"
+              align="start"
               className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D] cursor-pointer z-20"
             >
               <DropdownMenuItem
                 onClick={handleEdit}
-                className="p-[8px] text-primary hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="p-[8px] text-primary dark:text-[#444444] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               >
                 
                 Edit
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={handleDelete}
-                className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               >
                 Delete
               </DropdownMenuItem>

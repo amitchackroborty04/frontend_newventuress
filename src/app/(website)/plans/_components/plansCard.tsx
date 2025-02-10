@@ -15,7 +15,7 @@ function PlansCard({ data }: Props) {
   return (
     <div className="w-full border border-[#A3A6AF] rounded-[16px] relative">
       {data.planType === "standard" && (
-        <div className="bg-primary py-[6px] rounded-tl-[16px] rounded-tr-[16px] absolute w-full">
+        <div className="bg-primary py-[6px] rounded-tl-[16px] rounded-tr-[16px] absolute w-full dark:bg-pinkGradient">
           <h4 className="text-center text-[11px] text-[#F8ECEC] leading-[13.2px] font-mideum ">
             Most Popular
           </h4>

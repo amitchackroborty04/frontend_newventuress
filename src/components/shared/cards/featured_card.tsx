@@ -44,21 +44,20 @@ export default function FeaturedProductCard({
 
       {/* ======= add wishlist ========= */}
       <div className="absolute right-[20px] top-5 z-0 flex w-[32px] flex-col">
-        <button
+      <button
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
             handleWishlistToggle();
           }}
-          className={`flex items-center justify-center gap-2.5 rounded-full bg-white px-2 ${
-            isWishlist
-              ? "border-none bg-primary text-white"
-              : "border-blue-500 text-black hover:bg-hover-gradient hover:text-white"
-          } min-h-[32px] w-[32px]`}
+          className={`flex gap-2.5 justify-center items-center px-2 bg-white rounded-full   ${isWishlist
+              ? " border-none text-white bg-primary"
+              : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white"
+            }  min-h-[32px] w-[32px]`}
           aria-label="Add to wishlist"
-          // className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-primary-green rounded-[30px] transition-colors duration-300 group"
+        // className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-primary-green rounded-[30px] transition-colors duration-300 group"
         >
-          <Heart className="h-4 w-4 hover:border-0 group-hover:fill-white" />
+          <Heart className="group-hover:fill-white hover:border-0 w-4 h-4" />
         </button>
       </div>
       <div className="z-0 mt-2 flex w-full flex-col">

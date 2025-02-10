@@ -23,7 +23,7 @@ export function ProfileCard({ user, onEdit }: ProfileCardProps) {
           <p className="text-[#9C9C9C] text-[16px] font-normal leading-[19.2px]">{user.role}</p>
         </div>
         <button
-          className="text-gradient hover:text-primary-green text-[16px] font-semibold"
+          className="text-gradient hover:text-primary-green text-[16px] font-semibold dark:text-gradient-pink"
           onClick={onEdit}
         >
           Edit Profile

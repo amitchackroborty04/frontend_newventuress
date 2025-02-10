@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react"
 import { format } from "date-fns"
 import type { DateRange } from "react-day-picker"
 import DateRangePicker from "./DateRangePicker";
+import { Button } from "@/components/ui/button";
 // Demo lists for the dropdowns
 const showList = [
   { id: 1, name: "All", value: "all" },
@@ -80,7 +81,7 @@ function StoreFilter() {
               })
             }}
             trigger={
-              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
+              <button className="h-[34px] px-[10px] dark:bg-pinkGradient rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2 text-white hover:bg-[#1e2875]/90">
                 {formatDateRange(date)}
                 <ChevronDown size={18} />
               </button>
@@ -89,9 +90,9 @@ function StoreFilter() {
         </div>
       </div>
       <div>
-        <button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">
+        <Button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">
           Bulk Delete
-        </button>
+        </Button>
       </div>
     </div>
   );

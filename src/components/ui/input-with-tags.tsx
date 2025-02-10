@@ -78,7 +78,7 @@ const InputWithTags = ({
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder || "Type something and press Enter..."}
-          className="w-full px-4 py-2 border  rounded-[8px] disabled:opacity-50 disabled:cursor-not-allowed outline-none ring-0 border-[#9C9C9C] h-[54px]"
+          className="w-full dark:bg-white dark:text-black   px-4 py-2 border  rounded-[8px] disabled:opacity-50 disabled:cursor-not-allowed outline-none ring-0 border-[#B0B0B0] dark:border-[#6841A5] h-[54px]"
           disabled={limit ? tags.length >= limit : false}
         />
       </motion.div>

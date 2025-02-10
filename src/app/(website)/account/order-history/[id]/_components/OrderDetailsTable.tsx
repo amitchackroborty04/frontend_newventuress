@@ -46,19 +46,19 @@ const OrderDetailsTable = ({ className }: { className: string }) => {
     <div className={cn("w-full max-w-4xl mx-auto mt-10 md:mt-0", className)}>
       {/* Table for medium and larger screens */}
       <div className="hidden md:block overflow-hidden rounded-lg border border-gray-200 ">
-        <table className="w-full ">
-          <thead className="bg-gray-100">
+        <table className="w-full text-center ">
+          <thead className="bg-gray-100 dark:bg-[#482D721A]">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+              <th className="px-6 py-4 text-center text-base font-medium text-[#444444] ">
                 Product
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+              <th className="px-6 py-4 text-center text-base font-medium text-gray-600">
                 Price
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+              <th className="px-6 py-4 text-center text-base font-medium text-gray-600">
                 Quantity
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+              <th className="px-6 py-4 text-center text-base font-medium text-gray-600">
                 Subtotal
               </th>
             </tr>
@@ -75,18 +75,18 @@ const OrderDetailsTable = ({ className }: { className: string }) => {
                       height={80}
                       className="rounded-lg"
                     />
-                    <span className="text-sm font-medium text-gray-900">
+                    <span className="text-base font-medium text-primary dark:text-gradient-pink ">
                       {product.name}
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600">
+                <td className="px-6 py-4 text-base text-[#181818] font-medium">
                   {formatPrice(product.price)}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600">
+                <td className="px-6 py-4 text-base text-[#181818] font-medium">
                   X{product.quantity}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900 font-medium">
+                <td className="px-6 py-4 text-base text-[#181818] font-medium">
                   {formatPrice(product.price * product.quantity)}
                 </td>
               </tr>

@@ -50,8 +50,8 @@ export const ActionColumn: ColumnDef<DemoTableItemsType>[] = [
             />
           </div>
           <div>
-            <h4 className="text-[18px] text-gradient font-semibold">{row.original.name}</h4>
-            <div className="flex items-center w-[110px] h-[22px] text-[12px] mt-3 p-[10px] border border-[#9E9E9E] rounded-[24px] shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]">
+            <h4 className="text-[18px] text-gradient font-semibold dark:text-gradient-pink">{row.original.name}</h4>
+            <div className="flex items-center w-[110px] h-[22px] text-[12px] mt-3 p-[10px] dark:text-[#444444] border border-[#9E9E9E] rounded-[24px] shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]">
               <Check className="w-[12px] h-[12px] text-[#6E6E6E] mr-2" /> 
               In stock 
               <span>({row.original.stock})</span>
@@ -121,14 +121,14 @@ export const ActionColumn: ColumnDef<DemoTableItemsType>[] = [
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+              <Button variant="ghost" className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#6841A5] dark:hover:bg-[#482D721A]">
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]">
-              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">Edit</DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">Details</DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer" >Delete</DropdownMenuItem>
+            <DropdownMenuContent align="end" className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D] ">
+              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:!text-[#6841A5]">Edit</DropdownMenuItem>
+              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:!text-[#6841A5]">Details</DropdownMenuItem>
+              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer" >Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

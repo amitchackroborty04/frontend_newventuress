@@ -32,7 +32,7 @@ export default function ProfileCompletion() {
   return (
   <div className="w-full h-[173px] bg-white rounded-[12px] p-[24px] my-[30px]">
       <div className="w-full max-w-2xl   space-y-2">
-      <h1 className="text-[22px] font-semibold text-gradient">
+      <h1 className="text-[22px] font-semibold  text-gradient text-transparent dark:text-gradient-pink ">
         Welcome to the {profileData.domain}
       </h1>
       
@@ -40,7 +40,7 @@ export default function ProfileCompletion() {
        
         <Progress 
           value={profileData.completionPercentage} 
-          className="h-2 w-[270px] bg-[#C5C5C5] [&>div]:bg-[#0057A8]"
+          className="h-2 w-[270px] bg-[#C5C5C5] [&>div]:bg-[#0057A8] dark:[&>div]:bg-pinkGradient"
         /> 
          <div className="flex justify-between text-[12px] ml-5">
         <span>Profile complete {profileData.completionPercentage}%</span>
