@@ -26,7 +26,7 @@ const AgeAlert = () => {
       title: "You are not allowed",
       text: "You must be 18+ years to enter this site.",
       confirmButtonText: "CLOSE",
-      confirmButtonColor: "green dark:bg-pinkGradient", // Green background for the close button
+      confirmButtonColor: "green", // Green background for the close button
       backdrop: true, // Enable backdrop for the SweetAlert
       allowOutsideClick: false, // Disable closing when clicking outside
       position: "center", // Ensures alert stays centered

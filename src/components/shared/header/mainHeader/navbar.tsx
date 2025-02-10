@@ -29,7 +29,7 @@ function Navbar({ loggedin }: Props) {
         "/forgot-password",
       ]}
     >
-      <header className={cn("bg-white", pathName !== "/" && "border-b-2")}>
+      <header className={cn("bg-white", pathName !== "/" && "")}>
         <div className="lg:hidden">
           <MobileTabletNavbar loggedin={loggedin} />
         </div>

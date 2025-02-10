@@ -16,6 +16,7 @@ import Navbar from "@/components/shared/header/mainHeader/navbar";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/provider/theme-provider";
 import { Toaster } from "sonner";
+import SearchBerCategories from "@/components/shared/searchBerCategories/searchBerCategories";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,9 @@ export default async function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="light" >
             <div>
               <Navbar loggedin={!!session} />
+            </div>
+            <div>
+            <SearchBerCategories />
             </div>
             <AgeRestrictionGuard>{children}</AgeRestrictionGuard>
 

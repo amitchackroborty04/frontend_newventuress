@@ -42,12 +42,12 @@ export default function ProductGallery() {
   };
 
   return (
-    <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-sm ">
+    <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-sm  ">
       <h2 className="text-base text-[#232321] dark:text-gradient-pink font-medium mb-4">Product Gallery</h2>
 
       {/* Dropzone */}
       <div
-        className="relative border-[1px] border-dashed border-[#919792] rounded-lg p-8 mb-4"
+        className="relative border-[1px] border-dashed border-[#919792] dark:border-[#6841A5] rounded-lg p-8 mb-4"
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
       >
@@ -110,9 +110,9 @@ export default function ProductGallery() {
       </div>
 
       <div className="flex gap-2 justify-end">
-        <Button type="button"  className="px-8">
+        <button type="button"  className="px-8 border border-[#B0B0B0] rounded-lg text-gradient dark:text-gradient-pink">
           Update
-        </Button>
+        </button>
         <Button type="button" 
         onClick={handleImageConfirmation}
         >

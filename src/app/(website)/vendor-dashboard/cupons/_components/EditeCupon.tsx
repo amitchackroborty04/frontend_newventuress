@@ -133,7 +133,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Amount</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] "/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -146,7 +146,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Start Date</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                        <Input type="date" {...field} className="border border-[#B0B0B0] h-[51px] dark:!text-[#9E9E9E]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -159,7 +159,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Expire Date</FormLabel>
                       <FormControl>
-                        <Input   type="date" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                        <Input   type="date" {...field} className="border border-[#B0B0B0] h-[51px] dark:!text-[#9E9E9E]"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -215,11 +215,11 @@ function onBack ()  {
                     <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Product</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className="border border-[#B0B0B0] h-[41px]">
+                        <SelectTrigger className="border border-[#B0B0B0] dark:!text-[#9E9E9E] h-[41px]">
                           <SelectValue placeholder="Select product"/>
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="dark:bg-white dark:border-none">
                         <SelectItem value="product1">Product 1</SelectItem>
                         <SelectItem value="product2">Product 2</SelectItem>
                       </SelectContent>
@@ -237,11 +237,11 @@ function onBack ()  {
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Category</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger className="border border-[#B0B0B0] h-[41px]">
+                          <SelectTrigger className="border border-[#B0B0B0] dark:!text-[#9E9E9E] h-[41px]">
                             <SelectValue placeholder="Select category"/>
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-white dark:border-none">
                           <SelectItem value="category1">Category 1</SelectItem>
                           <SelectItem value="category2">Category 2</SelectItem>
                         </SelectContent>
@@ -258,11 +258,11 @@ function onBack ()  {
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Sub-Category</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger className="border border-[#B0B0B0] h-[41px]">
+                          <SelectTrigger className="border border-[#B0B0B0] dark:!text-[#9E9E9E] h-[41px]">
                             <SelectValue placeholder="Select sub-category"/>
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-white dark:border-none">
                           <SelectItem value="sub1">Sub-Category 1</SelectItem>
                           <SelectItem value="sub2">Sub-Category 2</SelectItem>
                         </SelectContent>

@@ -40,7 +40,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      storeName: "Island Guy Smokes",
+      storeName: "Island Guy Smokes", 
       storeSlug: "#53863",
       storeEmail: "alinaulgi@gmail.com",
       storePhone: "+68 0036856365",

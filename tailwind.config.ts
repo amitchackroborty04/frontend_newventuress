@@ -132,6 +132,8 @@ const config: Config = {
         feature_card: "0px 0px 10px 1px #C1C9E4",
       },
     },
+
+    
   },
   variants: {
     extend: {

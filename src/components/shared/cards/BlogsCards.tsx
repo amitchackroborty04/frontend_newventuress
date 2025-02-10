@@ -41,7 +41,7 @@ function BlogsCards({ data, index = 0 }: Props) {
         height: 0,
       }}
     >
-      <Card className="overflow-hidden bg-[#E6EEF6] shadow-none border-0">
+      <Card className="overflow-hidden bg-[#E6EEF6] bg-[#482D721A] shadow-none border-0">
         <CardHeader className="p-0 group overflow-hidden">
           <Image
             src={image}

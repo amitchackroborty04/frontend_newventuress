@@ -6,7 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import ProductGallery from "@/components/shared/imageUpload/ProductGallery";
 
 import { DateTimePicker } from "@/components/ui/datetime-picker";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -32,7 +31,7 @@ const formSchema = z.object({
   sku: z.string().optional(),
   stockQuantity: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  productType: z.enum(["CBD", "Recreational"]),
+  productType: z.enum(["CBD", "Recreational"])
 });
 
 const AddAuctionForm: React.FC = () => {
@@ -48,15 +47,18 @@ const AddAuctionForm: React.FC = () => {
       sku: "",
       stockQuantity: "",
       tags: [],
-      productType: "CBD",
-    },
+      productType: "CBD"
+    }
   });
 
   const [tags, setTags] = React.useState<string[]>([]);
-  useEffect(() => {
-    form.setValue("tags", tags); // Update the 'tags' field in the form
-    form.trigger("tags");
-  }, [tags, form, form.trigger]);
+  useEffect(
+    () => {
+      form.setValue("tags", tags); // Update the 'tags' field in the form
+      form.trigger("tags");
+    },
+    [tags, form, form.trigger]
+  );
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(data);
   };
@@ -68,7 +70,7 @@ const AddAuctionForm: React.FC = () => {
       <div className="bg-white rounded-[24px] p-[32px]">
         <div
           className={
-            "bg-primary px-4 py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center"
+            "bg-primary dark:bg-pinkGradient px-4 py-3 mb- rounded-t-3xl text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center"
           }
         >
           Add Auction
@@ -80,170 +82,175 @@ const AddAuctionForm: React.FC = () => {
                 <FormField
                   control={form.control}
                   name="title"
-                  render={({ field }) => (
+                  render={({ field }) =>
                     <FormItem>
-                      <FormLabel>
+                      <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
                         Title<span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
                         <Input
                           placeholder=""
                           type=""
-                          className="h-[51px] border-[#9C9C9C]"
+                          className="py-6 border-[1px] border-[#B0B0B0] text-black text-[16px]"
                           {...field}
                         />
                       </FormControl>
 
                       <FormMessage />
-                    </FormItem>
-                  )}
+                    </FormItem>}
                 />
 
                 <FormField
                   control={form.control}
                   name="description"
-                  render={({ field }) => (
+                  render={({ field }) =>
                     <FormItem>
-                      <FormLabel>Short Description</FormLabel>
+                      <FormLabel className="leading-[19.2px] text-[#9C9C9C] text-[16px] font-medium">
+                        Short Description
+                      </FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Type Description Here"
-                          className="resize-none border-[#9C9C9C]"
+                          className="py-3 resize-none border-[#9E9E9E]"
                           rows={3}
                           {...field}
                         />
                       </FormControl>
 
                       <FormMessage />
-                    </FormItem>
-                  )}
+                    </FormItem>}
                 />
-
-
 
                 <FormField
                   control={form.control}
                   name="productType"
-                  render={({ field }) => (
+                  render={({ field }) =>
                     <FormItem>
-                      <FormLabel>Product Type *</FormLabel>
+                      <FormLabel className="leading-[19.2px] text-[#9C9C9C] text-[16px] font-medium">
+                        Product Type<span className="text-red-500">*</span>
+                      </FormLabel>
                       <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex flex-col space-y-1"
-                        >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="CBD" />
-                            </FormControl>
-                            <FormLabel className="font-normal">CBD</FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="Recreational" />
-                            </FormControl>
-                            <FormLabel className="font-normal">
-                              Recreational
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
+                        <div className="space-y-2">
+                          {["CBD", "Recreational"].map(type =>
+                            <div
+                              key={type}
+                              className="flex items-center space-x-2"
+                            >
+                              <Checkbox
+                                id={type}
+                                checked={field.value === type}
+                                onCheckedChange={checked => {
+                                  if (checked) {
+                                    field.onChange(type); // Ensures only one checkbox is selected at a time
+                                  } else {
+                                    field.onChange(""); // Clears the selection
+                                  }
+                                }}
+                                className="h-4 w-4 border-[#C5C5C5]"
+                              />
+                              <Label
+                                htmlFor={type}
+                                className="leading-[19.2px] text-[#9C9C9C] text-[16px] font-medium"
+                              >
+                                {type}
+                              </Label>
+                            </div>
+                          )}
+                        </div>
                       </FormControl>
                       <FormMessage />
-                    </FormItem>
-                  )}
+                    </FormItem>}
                 />
+
                 <FormField
                   control={form.control}
                   name="category"
-                  render={({ field }) => (
+                  render={({ field }) =>
                     <FormItem>
-                      <FormLabel>
+                      <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
                         Category<span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder=""
+                          className="py-6 border-[1px] border-[#B0B0B0] text-black text-[16px]"
                           type=""
-                          className="h-[51px] border-[#9C9C9C]"
                           {...field}
                         />
                       </FormControl>
 
                       <FormMessage />
-                    </FormItem>
-                  )}
+                    </FormItem>}
                 />
 
                 <FormField
                   control={form.control}
                   name="startingPrice"
-                  render={({ field }) => (
+                  render={({ field }) =>
                     <FormItem className="flex flex-col ">
-                      <FormLabel className=" leading-tight text-[#444444] text-[14px] font-semibold">
+                      <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
                         Starting Price
                       </FormLabel>
-                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px]">
-                        <div className="gap-3 self-stretch px-4 text-sm font-semibold leading-tight text-[#0057A8] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
+                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-[#B0B0B0] h-[51px]">
+                        <div className="gap-3 self-stretch px-4 dark:!text-[#6841A5] text-sm font-semibold leading-tight text-[#0057A8] dark:bg-[#482D721A] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
                           $
                         </div>
                         <FormControl>
                           <Input
                             placeholder="0.00"
                             type="number"
-                            className="flex-1 shrink gap-2 self-stretch py-3 pr-5 pl-4 my-auto text-base leading-snug rounded-lg min-w-[240px] border-none h-[50px]"
+                            className="flex-1 shrink gap-2 self-stretch py-3 pr-5 pl-4 my-auto text-base leading-snug rounded-lg min-w-[240px] border-none h-[50px] dark:text-black"
                             {...field}
                           />
                         </FormControl>
                       </div>
                       <FormMessage />
-                    </FormItem>
-                  )}
+                    </FormItem>}
                 />
 
                 <div className="grid grid-cols-12 gap-4">
-                  <div className="col-span-6">
+                  <div className="col-span-6 w-auto">
                     <FormField
                       control={form.control}
                       name="startingTime"
-                      render={({ }) => (
+                      render={({}) =>
                         <FormItem>
-                          <FormLabel>Starting Time</FormLabel>
+                          <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                            Starting Time
+                          </FormLabel>
                           <FormControl>
                             <DateTimePicker
                               hourCycle={24}
                               value={date24}
                               onChange={setDate24}
-                              className="h-[51px] border-[#9C9C9C]"
+                              className=" border-[#B0B0B0] dark:bg-white dark:hover:text-[#C5C5C5] dark:text-[#444444]"
                             />
                           </FormControl>
 
                           <FormMessage />
-                        </FormItem>
-                      )}
+                        </FormItem>}
                     />
                   </div>
 
-                  <div className="col-span-6">
+                  <div className="col-span-6 w-auto">
                     <FormField
                       control={form.control}
                       name="endingTime"
-                      render={({ }) => (
+                      render={({}) =>
                         <FormItem>
-                          <FormLabel>Ending Time</FormLabel>
+                          <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                            Ending Time
+                          </FormLabel>
                           <FormControl>
                             <DateTimePicker
                               hourCycle={24}
                               value={date24}
                               onChange={setDate24}
-                              className="h-[51px] border-[#9C9C9C]"
-
+                              className=" border-[#B0B0B0] dark:bg-white dark:hover:text-[#C5C5C5] dark:text-[#444444]"
                             />
                           </FormControl>
 
                           <FormMessage />
-                        </FormItem>
-                      )}
+                        </FormItem>}
                     />
                   </div>
                 </div>
@@ -253,9 +260,11 @@ const AddAuctionForm: React.FC = () => {
                     <FormField
                       control={form.control}
                       name="sku"
-                      render={({ field }) => (
+                      render={({ field }) =>
                         <FormItem>
-                          <FormLabel>SKU</FormLabel>
+                          <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                            SKU
+                          </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Fox-0369"
@@ -266,8 +275,7 @@ const AddAuctionForm: React.FC = () => {
                           </FormControl>
 
                           <FormMessage />
-                        </FormItem>
-                      )}
+                        </FormItem>}
                     />
                   </div>
 
@@ -275,9 +283,11 @@ const AddAuctionForm: React.FC = () => {
                     <FormField
                       control={form.control}
                       name="stockQuantity"
-                      render={({ field }) => (
+                      render={({ field }) =>
                         <FormItem>
-                          <FormLabel>Stock Quantity</FormLabel>
+                          <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                            Stock Quantity
+                          </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="123"
@@ -288,8 +298,7 @@ const AddAuctionForm: React.FC = () => {
                           </FormControl>
 
                           <FormMessage />
-                        </FormItem>
-                      )}
+                        </FormItem>}
                     />
                   </div>
                 </div>
@@ -305,19 +314,19 @@ const AddAuctionForm: React.FC = () => {
                   <Checkbox id="save-info" />
                   <Label
                     htmlFor="save-info"
-                    className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="text-sm font-normal text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#919792]"
                   >
                     Save this information for faster check-out next time
                   </Label>
                 </div>
               </div>
-              <div className="w-[600px] h-full mt-[16px] border border-[#9C9C9C] rounded-lg  ">
+              <div className="w-[600px] h-full mt-[16px] border border-[#B0B0B0] rounded-lg  ">
                 <ProductGallery />
               </div>
             </div>
             <div className="flex justify-end">
               <Button type="submit" className="py-[12px] px-[24px]">
-                Submit
+              Confirm
               </Button>
             </div>
           </form>
