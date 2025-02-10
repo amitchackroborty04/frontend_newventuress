@@ -77,7 +77,7 @@ const PacificPagination: React.FC<PaginationProps> = ({
             )}
           >
             <ChevronLeft
-              className={cn("h-4 w-4", currentPage === 1 && "text-white")}
+              className={cn("h-4 w-4", currentPage === 1 && "text-white dark:text-[#6841A5] ")}
             />
           </PaginationLink>
         </PaginationItem>
@@ -117,7 +117,7 @@ const PacificPagination: React.FC<PaginationProps> = ({
               "cursor-not-allowed bg-[#E3E3E3] border-0  pointer-events-none"
             )}
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight  className={cn("h-4 w-4", currentPage === 1 && "text-white dark:text-[#6841A5]")} />
           </PaginationLink>
         </PaginationItem>
       </PaginationContent>

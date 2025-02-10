@@ -15,6 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import Image from "next/image"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { DemoTableItemsType } from "@/data/StoreListData";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 const formSchema = z.object({
   storeName: z.string().min(2, "Store name is required"),
@@ -81,7 +82,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()} >
       
         <DialogContent
-          className="max-w-[1350px] p-0 dark:bg-white dark:border-none"
+          className="max-w-[1350px]  dark:bg-white dark:border-none"
           style={{ boxShadow: "0px 0px 22px 8px #C1C9E4" }}
         >
     <div className="">
@@ -93,7 +94,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
       >
        Edit Store Info
       </div>
-        <div className=" rounded-b-lg  px-6 pt-[30px]">
+        <ScrollArea className="h-[750px] px-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid lg:grid-cols-2 gap-8 ">
@@ -325,7 +326,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
               </div>
             </form>
           </Form>
-        </div>
+        </ScrollArea>
       </div>
     </div>
     </DialogContent>

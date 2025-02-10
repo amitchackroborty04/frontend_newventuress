@@ -41,10 +41,10 @@ const MembershipFilter = () => {
     return "Pick a date range"
   }
   return (
-    <div className="h-[60px] p-[8px] bg-white w-full flex justify-between items-center">
+    <div className="h-[60px] p-[8px] bg-white w-full flex justify-between items-center rounded-[12px]">
       <div className="flex gap-x-[12px]">
         {/* Dropdown for "Show" */}
-        <div className="h-full flex items-center gap-x-[9px] w-fit">
+        <div className="h-full flex items-center gap-x-[9px] w-fit pl-4">
           <span className="text-[16px] font-medium leading-[19.2px] text-[#444444]">
             Show
           </span>
@@ -67,7 +67,7 @@ const MembershipFilter = () => {
               })
             }}
             trigger={
-              <button className="w-auto flex py-[8px] px-[10px] rounded-[8px] text-base  justify-start  font-normal bg-primary text-[#F5F5F5] hover:text-[#F5F5F5]">
+              <button className="w-auto flex py-[8px] px-[10px] rounded-[8px] text-base  justify-start  font-normal bg-primary dark:bg-pinkGradient border-none text-[#F5F5F5] hover:text-[#F5F5F5]">
                 {formatDateRange(date)}
                 <ChevronDown />
               </button>
@@ -77,7 +77,10 @@ const MembershipFilter = () => {
       
        
       </div>
-      <Button className="w-[135px] h-[43px] px-[24px] py-[12px] text-[16px] font-medium leading-[19.2px]">Bulk Delete</Button>
+      <div className="pr-3">
+
+      <Button className="w-[135px] h-[43px] px-[24px] py-[12px] text-[16px] font-medium leading-[19.2px] ">Bulk Delete</Button>
+      </div>
     </div>
   );
 };

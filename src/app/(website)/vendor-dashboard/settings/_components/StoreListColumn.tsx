@@ -64,7 +64,12 @@ export const StoreListColumn = ({
     },
   },
   {
-    header: "Profile",
+    id: "profile",
+    header: () => <div className="ml-[-200px] flex items-center justify-center gap-2 ">
+     
+      <span>Profile</span>
+    </div>,
+   
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-4">
@@ -78,13 +83,13 @@ export const StoreListColumn = ({
             />
           </div>
           <div className=" w-[250px] text-left  ">
-            <h4 className="text-[18px] text-gradient font-semibold">
+            <h4 className="text-[18px] text-gradient  dark:text-gradient-pink font-semibold">
               {row.original.name}
             </h4>
-            <h5 className="text-[16px] font-normal text-gradient py-2">
+            <h5 className="text-[16px] font-normal text-gradient dark:text-gradient-pink py-2">
               @<span className="text-[#3D3D3D]"> {row.original.userName}</span>
             </h5>
-            <p className="text-[16px] font-normal text-wrap text-gradient">
+            <p className="text-[16px] font-normal text-wrap text-gradient dark:text-gradient-pink">
               {row.original.userStatus}
             </p>
           </div>

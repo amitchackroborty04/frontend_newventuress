@@ -14,7 +14,7 @@ const Page = () => {
 <ReportsFilter/>
 
 {/* Title  */}
-    <div className="bg-primary px-[32px] py-[20px] h-[78px] rounded-t-[24px] mb-[30px]">
+    <div className="bg-primary dark:bg-pinkGradient px-[32px] py-[20px] h-[78px] rounded-t-[24px] mb-[30px]">
       <h1  className="text-white text-[28px] font-semibold">Reports</h1>
     </div>
 

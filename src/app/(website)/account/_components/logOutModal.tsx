@@ -47,7 +47,7 @@ const LogOutModal = ({ onModalClose }: Props) => {
                 </div>
               </div>
               <div>
-                <div className="leading-[38px] font-[600] text-[32px] text-[#0057A8]">
+                <div className="leading-[38px] font-[600] text-[32px] text-gradient dark:text-gradient-pink ">
                   Are You Sure To Log Out?
                 </div>
                 <div className=" font-[400] text-[22px] text-[#102011] pb-3 pt-2 mb-5">
@@ -61,10 +61,10 @@ const LogOutModal = ({ onModalClose }: Props) => {
                 <Button
                   onClick={onLogout}
                   variant="outline"
-                  className="w-full relative"
+                  className="w-full relative dark:bg-white dark:text-[#6841A5] dark:border-[#B0B0B0]"
                   disabled={loading}
                 >
-                  Yes{" "}
+                  Yes
                   {loading && (
                     <Loader2 className="animate-spin absolute right-5" />
                   )}

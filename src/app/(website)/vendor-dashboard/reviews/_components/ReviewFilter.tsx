@@ -28,25 +28,25 @@ export default function ReviewFilter() {
     return "Pick a date range"
   }
   return (
-    <div className="h-[90px] w-full bg-white p-[8px] px-[10px] rounded-[12px] flex items-center justify-between mb-[30px]">
+    <div className="h-[68px] w-full bg-white p-[8px] px-4 rounded-[12px]  flex items-center justify-between mb-[30px]">
       <div className="flex items-center gap-4 w-[484px]">
-        <span className="text-[16px] font-medium">Show</span>
+        <span className="text-[16px] font-medium text-[#444444]">Show</span>
         <Select defaultValue="all">
-          <SelectTrigger className="h-9 w-24 bg-primary text-white hover:bg-[#1e2875]/90">
+          <SelectTrigger className="h-9 w-24 bg-primary dark:bg-pinkGradient border-none text-white hover:bg-[#1e2875]/90">
             <SelectValue placeholder="All" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white border-none">
             <SelectItem value="all">All</SelectItem>
             <SelectItem value="active">Active</SelectItem>
             <SelectItem value="inactive">Inactive</SelectItem>
           </SelectContent>
         </Select>
       <Select>
-        <SelectTrigger className="h-9 w-[140px] bg-primary text-white hover:bg-[#1e2875]/90">
+        <SelectTrigger className="h-9 w-[140px] bg-primary dark:bg-pinkGradient border-none text-white hover:bg-[#1e2875]/90">
           <SelectValue placeholder="Filter by status" />
-          {/* <ChevronDown className="h-4 w-4" /> */}
+         
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white border-none">
           <SelectItem value="pending">Pending</SelectItem>
           <SelectItem value="completed">Completed</SelectItem>
           <SelectItem value="cancelled">Cancelled</SelectItem>
@@ -64,7 +64,7 @@ export default function ReviewFilter() {
                     })
                   }}
                   trigger={
-                    <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90 ">
+                    <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary dark:bg-pinkGradient border-none flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90 ">
                       {formatDateRange(date)}
                       <ChevronDown size={18} />
                     </button>
@@ -79,7 +79,7 @@ export default function ReviewFilter() {
   </div>
 
       <div className="ml-auto">
-        <Button variant="destructive" className="h-9 bg-primary text-white hover:bg-[#1e2875]/90">
+        <Button variant="destructive" className="py-3 px-6 bg-primary dark:bg-pinkGradient border-none text-white hover:bg-[#1e2875]/90">
           Bulk Delete
         </Button>
       </div>

@@ -42,7 +42,7 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
       return (
         <div>
           <div className="text-center">
-            <span className="text-[12px] font-medium leading-[14.4px] text-[#F9FAFD] py-[10px] px-[33px] bg-primary rounded-[12px] text-center">
+            <span className="text-[12px] font-medium leading-[14.4px] text-[#F9FAFD] py-[10px] px-[33px] bg-primary dark:bg-pinkGradient rounded-[12px] text-center">
               {row.original.Plan}
             </span>
           </div>
@@ -67,7 +67,7 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-center">
-          <p className="text-[18px] font-bold text-gradient">
+          <p className="text-[18px] font-bold text-gradient dark:text-gradient-pink">
             {row.original.Store}
           </p>
         </div>
@@ -96,16 +96,16 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 "
+                className="h-8 w-8 hover:bg-white "
               >
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4 dark:!text-[#6841A5]" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
               className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
             >
-              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
+              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>

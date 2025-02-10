@@ -45,7 +45,7 @@ export default function PolicySupportForm() {
     <div className="bg-white rounded-[24px] p-[32px]">
       <div
         className={
-          "bg-primary px-4 py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5"
+          "bg-primary dark:bg-pinkGradient px-4 py-3 mb- rounded-t-[24px] text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5"
         }
       >
         Policy & Support
@@ -59,9 +59,9 @@ export default function PolicySupportForm() {
             name="policyTabLabel"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Policy Tab Label</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Policy Tab Label</FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C]"/>
+                  <Input {...field} className="!h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -72,9 +72,9 @@ export default function PolicySupportForm() {
             name="shippingPolicy"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Shipping Policy</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Shipping Policy</FormLabel>
                 <FormControl>
-                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C]"/>
+                  <Textarea {...field}  className="resize-none !h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -85,9 +85,9 @@ export default function PolicySupportForm() {
             name="returnPolicy"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Return Policy</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Return Policy</FormLabel>
                 <FormControl>
-                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C]"/>
+                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -98,9 +98,9 @@ export default function PolicySupportForm() {
             name="cancellationPolicy"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cancellation policy</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Cancellation policy</FormLabel>
                 <FormControl>
-                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C]" />
+                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-black" />
                 </FormControl>
               </FormItem>
             )}
@@ -114,9 +114,9 @@ export default function PolicySupportForm() {
             name="media1"
             render={() => (
               <FormItem>
-                <FormLabel>Add Media</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Add Media</FormLabel>
                 <FormControl>
-                <div className="border-2 border-dashed rounded-lg p-6 text-center relative">
+                <div className="border-2 border-dashed border-[#919792] dark:!border-[#6841A5] rounded-lg p-6 text-center relative">
                     {instagramPreview ? (
                       <div className="relative">
                         <Image src={instagramPreview} alt="Instagram Preview" className="mx-auto w-32 h-32 object-cover rounded-md"/>
@@ -155,9 +155,9 @@ export default function PolicySupportForm() {
             name="media2"
             render={() => (
               <FormItem>
-                <FormLabel>Add Media</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Add Media</FormLabel>
                 <FormControl>
-                <div className="border-2 border-dashed rounded-lg p-6 text-center relative">
+                <div className="border-2 border-dashed border-[#919792] dark:!border-[#6841A5] rounded-lg p-6 text-center relative">
                     {instagramPreview ? (
                       <div className="relative">
                         <Image src={instagramPreview} alt="Instagram Preview" className="mx-auto w-32 h-32 object-cover rounded-md"/>
@@ -201,9 +201,9 @@ export default function PolicySupportForm() {
             name="customerSupport.phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Phone</FormLabel>
                 <FormControl>
-                  <Input type="tel" {...field}  className=" h-[51px] border-[#9C9C9C]"/>
+                  <Input type="tel" {...field}  className=" !h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -214,9 +214,9 @@ export default function PolicySupportForm() {
             name="customerSupport.email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Email</FormLabel>
                 <FormControl>
-                  <Input type="email" {...field}  className=" h-[51px] border-[#9C9C9C]"/>
+                  <Input type="email" {...field}  className=" !h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -227,9 +227,9 @@ export default function PolicySupportForm() {
             name="customerSupport.address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Address</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Address</FormLabel>
                 <FormControl>
-                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C]" />
+                  <Textarea {...field}  className="resize-none h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                 </FormControl>
               </FormItem>
             )}
@@ -240,9 +240,9 @@ export default function PolicySupportForm() {
             name="customerSupport.country"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Country</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Country</FormLabel>
                 <FormControl>
-                  <Input {...field}  className=" h-[51px] border-[#9C9C9C]"/>
+                  <Input {...field}  className=" !h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -253,9 +253,9 @@ export default function PolicySupportForm() {
             name="customerSupport.province"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Province</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Province</FormLabel>
                 <FormControl>
-                  <Input {...field}  className=" h-[51px] border-[#9C9C9C]"/>
+                  <Input {...field}  className=" !h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black"/>
                 </FormControl>
               </FormItem>
             )}

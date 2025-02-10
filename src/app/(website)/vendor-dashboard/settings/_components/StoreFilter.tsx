@@ -46,7 +46,7 @@ function StoreFilter() {
     return "Pick a date range"
   }
   return (
-    <div className="h-[60px] p-[8px] bg-white w-full flex items-center justify-between rounded-[12px]">
+    <div className="h-[60px] p-[8px] bg-white w-full flex items-center justify-between rounded-[12px] px-4">
       {/* Dropdown for "Show" */}
       <div className="flex gap-x-[28px]">
         <div className="h-full flex items-center gap-x-[9px] w-fit">
