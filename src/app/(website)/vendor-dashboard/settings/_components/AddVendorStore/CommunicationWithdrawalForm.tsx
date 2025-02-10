@@ -37,7 +37,7 @@ export default function CommunicationWithdrawalForm() {
     <div className="bg-white rounded-[24px] p-[32px]">
       <div
         className={
-          "bg-primary px-4 py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5"
+          "bg-primary dark:bg-pinkGradient px-4 py-3 mb- rounded-t-[24px] text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5 "
         }
       >
         Communication Withdrawal
@@ -45,16 +45,16 @@ export default function CommunicationWithdrawalForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-6">
-          <h2 className="text-xl font-medium text-gradient">Commission Setup</h2>
+          <h2 className="text-xl font-medium text-gradient dark:text-gradient-pink">Commission Setup</h2>
 
           <FormField
             control={form.control}
             name="communicationFor"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Communication For</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Communication For</FormLabel>
                 <FormControl>
-                  <Input placeholder="Admin" {...field} className="h-[51px] border-[#9C9C9C]"/>
+                  <Input placeholder="Admin" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-black"/>
                 </FormControl>
               </FormItem>
             )}
@@ -65,16 +65,16 @@ export default function CommunicationWithdrawalForm() {
             name="productPerPage"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Product Per page</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Product Per page</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl className="h-[51px] border-[#9C9C9C]">
+                  <FormControl className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-[#444444]">
                     <SelectTrigger>
-                      <SelectValue placeholder="By Global Rule" />
+                      <SelectValue className="text-[#444444]" placeholder="By Global Rule" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="global">By Global Rule</SelectItem>
-                    <SelectItem value="custom">Custom Rule</SelectItem>
+                  <SelectContent className="bg-white border-none">
+                    <SelectItem className="text-[#444444]"  value="global">By Global Rule</SelectItem>
+                    <SelectItem className="text-[#444444]" value="custom">Custom Rule</SelectItem>
                   </SelectContent>
                 </Select>
               </FormItem>
@@ -82,7 +82,7 @@ export default function CommunicationWithdrawalForm() {
           />
 
           <div className="space-y-4">
-            <h3 className="text-base font-medium text-gradient">Transaction Charges</h3>
+            <h3 className="text-base font-medium text-gradient dark:text-gradient-pink">Transaction Charges</h3>
             <p className="text-sm text-gray-500">
               These charges will be deducted from vendor&apos;s total order commission depending upon Order Payment
               Method.
@@ -93,14 +93,14 @@ export default function CommunicationWithdrawalForm() {
               name="transactionChargesMode"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Transaction Charges Mode</FormLabel>
+                  <FormLabel className="text-base text-[#444444] font-medium">Transaction Charges Mode</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl className="h-[51px] border-[#9C9C9C]">
+                    <FormControl className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-[#444444]">
                       <SelectTrigger>
                         <SelectValue placeholder="By Global Rule" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-white border-none">
                       <SelectItem value="global">By Global Rule</SelectItem>
                       <SelectItem value="custom">Custom Rule</SelectItem>
                     </SelectContent>
@@ -115,14 +115,14 @@ export default function CommunicationWithdrawalForm() {
             name="withdrawalSetup"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Withdrawal setup</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Withdrawal setup</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl className="h-[51px] border-[#9C9C9C]">
+                  <FormControl className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-[#444444]">
                     <SelectTrigger>
                       <SelectValue placeholder="By Global Rule" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-white border-none">
                     <SelectItem value="global">By Global Rule</SelectItem>
                     <SelectItem value="custom">Custom Rule</SelectItem>
                   </SelectContent>
@@ -136,14 +136,14 @@ export default function CommunicationWithdrawalForm() {
             name="paymentSetup"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Payment setup</FormLabel>
+                <FormLabel className="text-base text-[#444444] font-medium">Payment setup</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl className="h-[51px] border-[#9C9C9C]">
+                  <FormControl className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-[#444444]">
                     <SelectTrigger>
                       <SelectValue placeholder="By Global Rule" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-white border-none">
                     <SelectItem value="global">By Global Rule</SelectItem>
                     <SelectItem value="custom">Custom Rule</SelectItem>
                   </SelectContent>

@@ -35,10 +35,10 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
             className="rounded-full object-cover"
           />
           <div>
-            <h1 className="mt-2 text-[18px] font-semibold text-gradient ">
+            <h1 className="mt-2 text-[18px] font-semibold text-gradient dark:text-gradient-pink ">
               {row.original.name}
             </h1>
-            <h1 className="mt-2">{row.original.mail}</h1>
+            <h1 className="mt-2 text-base text-[#444444] font-normal">{row.original.mail}</h1>
           </div>
         </div>
       );
@@ -46,7 +46,7 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
   },
 
   {
-    accessorKey: "Store",
+    accessorKey: "products",
     header: "products",
     cell: () => {
       return (
@@ -67,8 +67,8 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
     cell: ({ row }) => {
       return (
         <div
-          className="w-[110px]   text-[16px] font-[400]"
-          title={row.original.date}
+          className="w-[110px]   text-[16px] font-normal text-[#444444] "
+        
         >
           {row.original.date}
         </div>

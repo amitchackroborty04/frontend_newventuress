@@ -44,7 +44,7 @@ const NotificationFilter = () => {
     return "Pick a date range"
   }
   return (
-    <div className="h-[60px] p-[8px] bg-white w-full flex justify-between items-center">
+    <div className="h-[60px] p-[8px] bg-white w-full flex justify-between items-center rounded-[12px] px-4">
       <div className="flex gap-x-[12px]">
         {/* Dropdown for "Show" */}
         <div className="h-full flex items-center gap-x-[9px] w-fit">
@@ -70,7 +70,7 @@ const NotificationFilter = () => {
               })
             }}
             trigger={
-              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
+              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary dark:bg-pinkGradient flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
                 {formatDateRange(date)}
                 <ChevronDown size={18} />
               </button>

@@ -55,10 +55,10 @@ const DashSidebar = () => {
                 }
               }}
               className={cn(
-                " w-full h-[46px] rounded-[4px] pl-[16px] flex items-center gap-[12px] font-medium text-[18px] leading-[21.4px] transition-colors duration-300 bg-transparent dark:text-gradient-pink text-[#152764] hover:text-[#152764] my-[80px]"
+                " w-full h-[46px] rounded-[4px] pl-[16px] flex items-center gap-[12px] font-medium text-[18px] leading-[21.4px] transition-colors duration-300 bg-transparent dark:text-gradient-pink text-[#152764] dark:text-gradient-pink hover:text-[#152764] dark:text-[#6841A5] my-[80px]"
               )}
             >
-              <LogOutIcon className="w-[16px] h-[16px]" /> Logout
+              <LogOutIcon className="w-[16px] h-[16px] " /> Logout
             </button>
           </div>
         </ScrollArea>

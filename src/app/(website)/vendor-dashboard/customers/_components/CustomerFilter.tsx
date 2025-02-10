@@ -81,7 +81,7 @@ function CustomerFilter() {
               })
             }}
             trigger={
-              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
+              <button className="h-[34px] px-[10px] rounded-[8px] text-nowrap text-base bg-primary dark:bg-pinkGradient flex items-center justify-center gap-2   text-white hover:bg-[#1e2875]/90">
                 {formatDateRange(date)}
                 <ChevronDown size={18} />
               </button>

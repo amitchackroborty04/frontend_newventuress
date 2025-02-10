@@ -29,10 +29,10 @@ export const MediaColumns: ColumnDef<NotificationDataType>[] = [
                 className="rounded-full"
                 priority
               />
-              <p className="text-base text-gradient font-bold leading-[19.2px]"	>{row.original.Name}</p>
+              <p className="text-base text-gradient dark:text-gradient-pink font-bold leading-[19.2px]"	>{row.original.Name}</p>
             </div>
           </div>
-          <p className="text-base text-[#444444] font-normal leading-[19.2px] mt-3">has changed membership plan to <span className="text-gradient">{row.original.Plan}</span>.</p>
+          <p className="text-base text-[#444444] font-normal leading-[19.2px] mt-3">has changed membership plan to <span className="text-gradient dark:text-gradient-pink">{row.original.Plan}</span>.</p>
         </div>
       );
     },
@@ -43,7 +43,7 @@ export const MediaColumns: ColumnDef<NotificationDataType>[] = [
     cell: ({ row }) => {
       return (
         <div className=" flex justify-center">
-          <div className=" bg-primary rounded-[12px]">
+          <div className=" bg-primary dark:bg-pinkGradient rounded-[12px]">
             <p className="text-[12px] text-[#F9FAFD] font-medium leading-[14.4px] py-[10px] px-[23px] ">{row.original.Type}</p>
           </div>
         </div>
@@ -89,15 +89,15 @@ export const MediaColumns: ColumnDef<NotificationDataType>[] = [
       return (
         <div className="text-right py-[49px] flex justify-center ">
           <DropdownMenu>
-            <DropdownMenuTrigger className=" w-8 p-0 ">
+            <DropdownMenuTrigger className=" w-8 p-0  ">
               <span className="sr-only">Open menu</span>
               <div className="">
-                <MoreHorizontal className="h-4 w-4 " />
+                <MoreHorizontal className="h-4 w-4  dark:text-black " />
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={handleEdit} className="text-blue-500 hover:bg-[#E6EEF6] cursor-pointer">Mark as seen</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleDelete} className="text-red-500 cursor-pointer">Delete</DropdownMenuItem>
+            <DropdownMenuContent className="bg-white border-none" align="end">
+              <DropdownMenuItem onClick={handleEdit} className="text-blue-500 dark:text-[#6841A5]  hover:bg-[#E6EEF6] cursor-pointer dark:hover:bg-[#482D721A]">Mark as seen</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDelete} className="text-red-500 dark:text-red-500 cursor-pointer dark:hover:bg-[#482D721A] ">Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
