@@ -1,8 +1,7 @@
 "use client";
 
 // Packages
-import { Plus, PlusIcon } from "lucide-react";
-import Link from "next/link";
+import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
@@ -11,6 +10,7 @@ import { toast } from "sonner";
 import { AdminApprovalModal } from "@/app/(website)/(auth)/_components/admin-aproval-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import MotionAccordion from "@/components/ui/motion-accordion";
 import {
   addBusinessField,
   addCannabisField,
@@ -21,7 +21,7 @@ import {
   updateCannabisLicense,
   updateMetrcLicense
 } from "@/redux/features/authentication/AuthSlice";
-import { useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import FormHeader from "../../../../_components/form-header";
@@ -29,6 +29,12 @@ import FormHeader from "../../../../_components/form-header";
 export function BusinessInfoForm() {
   const [loading, setLoading] = useState<true | false>(false);
   const authState = useAppSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const businesses = authState["businessInfo"]
+
+ 
+
 
   const router = useRouter();
 
@@ -114,20 +120,15 @@ export function BusinessInfoForm() {
     }
   }, [router, authState])
 
-  const metrcLicense = currentBusinessInfo["license"]["metrcLicense"];
-  const cannabisLicense = currentBusinessInfo["license"]["cannabisLicense"];
-  const businessLicenses = currentBusinessInfo["license"]["businessLicense"];
 
 
-  const lastMetrcIndex = metrcLicense.length - 1;
-  const lastCannabisLicenceIndex =  cannabisLicense.length - 1
-  const lastBusinessLicenceIndex =  businessLicenses.length - 1
+
 
 
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,77 +148,14 @@ export function BusinessInfoForm() {
         title="Select your business information"
       />
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium">
-            Provide your Matrc business license
-            <span className="text-red-500">*</span>
-          </label>
-         {metrcLicense.map((_, i) => (
-          <div className="flex items-center gap-x-2" key={i}>
-          <Input
-             placeholder="Enter license number"
-             
-             value={metrcLicense[i]}
-             onChange={(e) =>
-               dispatch(
-                 updateMetrcLicense({
-                   index: i,
-                   newLicenseValue: e.target.value
-                 })
-               )
-             }
-           />
-          {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField())}><PlusIcon /></Button>}
-          </div>
-         ))}
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-medium">
-            Provide your Cannabis business license 
-          </label>
-          {cannabisLicense.map((_, i) => (
-            <div className="flex items-center gap-x-2" key={i}>
-            <Input
-               placeholder="Enter license number"
-               
-               value={cannabisLicense[i]}
-               onChange={(e) =>
-                 dispatch(
-                   updateCannabisLicense({
-                     index: i,
-                     newLicenseValue: e.target.value
-                   })
-                 )
-               }
-             />
-            {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField())}><PlusIcon /></Button>}
-            </div>
-          ))}
-        </div>
-        {!authState["industry"].includes("Recreational Cannabis") && <div className="space-y-2">
-          <label className="text-sm font-medium">
-            Provide your Business license 
-          </label>
-          {businessLicenses.map((_, i) => (
-            <div className="flex items-center gap-x-2" key={i}>
-            <Input
-               placeholder="Enter license number"
-               
-               value={businessLicenses[i]}
-               onChange={(e) =>
-                 dispatch(
-                   updateBusinessLicense({
-                     index: i,
-                     newLicenseValue: e.target.value
-                   })
-                 )
-               }
-             />
-            {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField())}><PlusIcon /></Button>}
-            </div>
-          ))}
-        </div>}
-        <div className="flex items-center justify-between pt-[40px]">
+      
+
+      {businesses.map((item, i) => (
+         <LicenseGroup key={item.country} country={item.country} index={i} />
+      ))}
+      
+
+       <div className="flex items-center justify-between pt-[40px]">
           <Button
             disabled={isNextDisabled}
             className="min-w-[155px]"
@@ -230,9 +168,6 @@ export function BusinessInfoForm() {
               <span>Next →</span>
             )}
           </Button>
-          <div>
-            <AddMoreButton />
-          </div>
         </div>
       </form>
       <AdminApprovalModal
@@ -248,12 +183,111 @@ export function BusinessInfoForm() {
 
 export default BusinessInfoForm;
 
-const AddMoreButton = () => {
+interface LicenseGroupProps {
+  country: string;
+  index: number
+}
+
+const LicenseGroup = ({country, index}: LicenseGroupProps) => {
+  const authState = useAppSelector((state) => state.auth);
+  const myBusinessInfoAsCountry = authState.businessInfo.find((item) => item.country == country);
+  const dispatch = useAppDispatch()
+
+  if(!myBusinessInfoAsCountry) return null;
+
+
+
+
+
+  // licenses
+  const metrcLicense = myBusinessInfoAsCountry["license"]["metrcLicense"];
+  const cannabisLicense = myBusinessInfoAsCountry["license"]["cannabisLicense"];
+  const businessLicenses = myBusinessInfoAsCountry["license"]["businessLicense"];
+
+
+  const lastMetrcIndex = metrcLicense.length - 1;
+  const lastCannabisLicenceIndex =  cannabisLicense.length - 1
+  const lastBusinessLicenceIndex =  businessLicenses.length - 1
+
+ 
+
+
   return (
-    <Button variant="outline">
-      <Link href="/registration/country" className="flex items-center w-auto">
-        Add More <Plus className="ml-2" />
-      </Link>
-    </Button>
-  );
-};
+    <MotionAccordion title={country}>
+    <div className="space-y-2">
+       <label className="text-sm font-medium">
+         Provide your Matrc business license
+         <span className="text-red-500">*</span>
+       </label>
+      {metrcLicense.map((_, i) => (
+       <div className="flex items-center gap-x-2" key={i}>
+       <Input
+          placeholder="Enter license number"
+          
+          value={metrcLicense[i]}
+          onChange={(e) =>
+            dispatch(
+              updateMetrcLicense({
+                index: i,
+                newLicenseValue: e.target.value,
+                businessInfoIndex: index
+              })
+            )
+          }
+        />
+       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField())}><PlusIcon /></Button>}
+       </div>
+      ))}
+     </div>
+     <div className="space-y-2">
+       <label className="text-sm font-medium">
+         Provide your Cannabis business license 
+       </label>
+       {cannabisLicense.map((_, i) => (
+         <div className="flex items-center gap-x-2" key={i}>
+         <Input
+            placeholder="Enter license number"
+            
+            value={cannabisLicense[i]}
+            onChange={(e) =>
+              dispatch(
+                updateCannabisLicense({
+                  index: i,
+                  newLicenseValue: e.target.value
+                })
+              )
+            }
+          />
+         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField())}><PlusIcon /></Button>}
+         </div>
+       ))}
+     </div>
+     {!authState["industry"].includes("Recreational Cannabis") && <div className="space-y-2">
+       <label className="text-sm font-medium">
+         Provide your Business license 
+       </label>
+       {businessLicenses.map((_, i) => (
+         <div className="flex items-center gap-x-2" key={i}>
+         <Input
+            placeholder="Enter license number"
+            
+            value={businessLicenses[i]}
+            onChange={(e) =>
+              dispatch(
+                updateBusinessLicense({
+                  index: i,
+                  newLicenseValue: e.target.value,
+                  businessInfoIndex: index
+                })
+              )
+            }
+          />
+         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField())}><PlusIcon /></Button>}
+         </div>
+       ))}
+     </div>}
+     
+    </MotionAccordion>
+  
+  )
+}
