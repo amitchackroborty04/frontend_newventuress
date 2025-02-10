@@ -108,16 +108,26 @@ const authSlice = createSlice({
     updateMetrcLicense: (state, action) => {
       const { index, newLicenseValue } = action.payload;
     
-      // Ensure there's at least one business
       if (state.businessInfo.length > 0) {
         const lastIndex = state.businessInfo.length - 1;
     
-        // Validate the license index before updating
         if (
           index >= 0 &&
           index < state.businessInfo[lastIndex].license.metrcLicense.length
         ) {
-          state.businessInfo[lastIndex].license.metrcLicense[index] = newLicenseValue;
+          state.businessInfo = state.businessInfo.map((business, i) =>
+            i === lastIndex
+              ? {
+                  ...business,
+                  license: {
+                    ...business.license,
+                    metrcLicense: business.license.metrcLicense.map((license, j) =>
+                      j === index ? newLicenseValue : license
+                    )
+                  }
+                }
+              : business
+          );
         } else {
           console.error("Invalid metrcLicense index");
         }
@@ -128,43 +138,58 @@ const authSlice = createSlice({
     updateCannabisLicense: (state, action) => {
       const { index, newLicenseValue } = action.payload;
     
-      // Ensure there's at least one business
       if (state.businessInfo.length > 0) {
         const lastIndex = state.businessInfo.length - 1;
     
-        // Validate the license index before updating
         if (
           index >= 0 &&
           index < state.businessInfo[lastIndex].license.cannabisLicense.length
         ) {
-          state.businessInfo[lastIndex].license.cannabisLicense[index] = newLicenseValue;
+          state.businessInfo = state.businessInfo.map((business, i) =>
+            i === lastIndex
+              ? {
+                  ...business,
+                  license: {
+                    ...business.license,
+                    cannabisLicense: business.license.cannabisLicense.map((license, j) =>
+                      j === index ? newLicenseValue : license
+                    )
+                  }
+                }
+              : business
+          );
         } else {
-          console.error("Invalid metrcLicense index");
+          console.error("Invalid cannabisLicense index");
         }
       } else {
-        console.error("No businessInfo available to update a metrc license");
+        console.error("No businessInfo available to update a cannabis license");
       }
     },
     updateBusinessLicense: (state, action) => {
-      const { index, newLicenseValue } = action.payload;
+      const { index, newLicenseValue, businessInfoIndex } = action.payload;
     
-      // Ensure there's at least one business
-      if (state.businessInfo.length > 0) {
-        const lastIndex = state.businessInfo.length - 1;
-    
-        // Validate the license index before updating
-        if (
-          index >= 0 &&
-          index < state.businessInfo[lastIndex].license.businessLicense.length
-        ) {
-          state.businessInfo[lastIndex].license.businessLicense[index] = newLicenseValue;
-        } else {
-          console.error("Invalid metrcLicense index");
-        }
-      } else {
-        console.error("No businessInfo available to update a metrc license");
+      if (
+        state.businessInfo?.[businessInfoIndex]?.license?.businessLicense &&
+        index >= 0 &&
+        index < state.businessInfo[businessInfoIndex].license.businessLicense.length
+      ) {
+        // Immutably update the state
+        state.businessInfo = state.businessInfo.map((business, i) => 
+          i === businessInfoIndex
+            ? {
+                ...business,
+                license: {
+                  ...business.license,
+                  businessLicense: business.license.businessLicense.map((license, j) =>
+                    j === index ? newLicenseValue : license
+                  )
+                }
+              }
+            : business
+        );
       }
-    },
+    }
+    ,
     
     resetAuthSlice: () => {
       return initialState;

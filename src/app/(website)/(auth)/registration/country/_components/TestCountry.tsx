@@ -1,12 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 "use client"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { addNewBusiness } from "@/redux/features/authentication/AuthSlice"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { VectorMap } from "@react-jvectormap/core"
 import { worldMill } from "@react-jvectormap/world"
 import { AnimatePresence, motion } from "framer-motion"
 import { Loader2 } from "lucide-react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 // Define the countries you want to include
@@ -52,7 +55,6 @@ function TestCountry() {
   const authState = useAppSelector((state) => state.auth)
 
   const businesses = authState.businessInfo
-  console.log("show Business ifno", businesses)
 
   // check if prev form value not found
   const { profession } = authState
@@ -142,6 +144,15 @@ function TestCountry() {
       </div>
     `)
   }
+
+  const isContinueDisble = businesses.length == 0
+
+  const countriesLists = selectedCountries.join("_")
+
+  const redirectUrl =
+      selectedCountries.includes("United States") || selectedCountries.includes("Canada")
+        ? `/registration/country/${countriesLists}`
+        : `/registration/country/${countriesLists}/business_information`;
 
   return (
  <div>
@@ -253,6 +264,11 @@ function TestCountry() {
       </div>
     </nav>
 
+   </div>
+   <div className="mt-3 flex justify-end">
+    <Button asChild disabled={isContinueDisble}>
+      <Link className={cn(isContinueDisble ? "pointer-events-none opacity-70" : "opacity-100", "w-full")} href={redirectUrl} >Continue</Link>
+    </Button>
    </div>
  </div>
   )
