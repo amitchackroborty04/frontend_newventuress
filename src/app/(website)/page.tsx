@@ -5,7 +5,6 @@ import FAQSection from "@/components/FAQSection/FAQSection";
 import Hero from "@/components/hero/Hero";
 import PopularCategories from "@/components/PopularCategories/PopularCategories";
 import { ClientReviews } from "@/components/shared/clientReview/ClientReview";
-import SearchBerCategories from "@/components/shared/searchBerCategories/searchBerCategories";
 import AboutSection from "@/components/shared/sections/about-section";
 import PopularBlog from "@/components/shared/sections/popularBlogs/popularBlogs";
 import BestOffer from "./_components/best_offer";
@@ -22,7 +21,6 @@ const Page = async () => {
   return (
     <div>
       <div className="min-h-screen ">
-        <SearchBerCategories />
 
         <Hero />
         <PopularCategories loggedin={loggedin} token={token} />

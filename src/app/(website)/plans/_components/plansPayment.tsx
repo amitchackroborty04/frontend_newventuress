@@ -61,41 +61,41 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
   };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[96%] lg:min-w-[650px] h-[668px] lg:h-[751px] p-[12px] lg:p-[40px] bg-[#E6EEF6] rounded-[12px]">
+      <DialogContent className="w-[96%] lg:min-w-[650px] h-[668px] lg:h-[751px] p-[12px] lg:p-[40px] bg-[#E6EEF6] dark:border-none rounded-[12px]">
         <div>
           <div className="bg-white rounded-[12px] p-[20px] mb-[30px] lg:mb-[40px]">
-            <h3 className="text-[20px] lg:text-[26px] font-bold">Standard</h3>
+            <h3 className="text-[20px] lg:text-[26px] font-semibold text-[#444444]">Standard</h3>
             <div className="mt-4 space-y-3">
               <div className="flex justify-between ">
                 <div className="flex items-center gap-3 text-[16px] font-normal text-[#444444]">
                   <span>
-                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] " />
+                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] dark:!text-[#6841A5]" />
                   </span>
                   <span>Auction/Listing</span>
                 </div>
-                <span className="text-[#0057A8] text-[15px] font-bold">
+                <span className="text-[#0057A8] dark:text-gradient-pink text-[15px] font-bold">
                   {data.numberOfAuction}
                 </span>
               </div>
               <div className="flex justify-between">
                 <div className="flex items-center gap-3 text-[16px] font-normal text-[#444444]">
                   <span>
-                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] " />
+                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] dark:!text-[#6841A5]" />
                   </span>
                   <span>Bids</span>
                 </div>
-                <span className="text-[#0057A8] text-[15px] font-bold">
+                <span className="text-[#0057A8] dark:text-gradient-pink text-[15px] font-bold">
                   {data.numberOfBids}
                 </span>
               </div>
               <div className="flex justify-between">
                 <div className="flex items-center gap-3 text-[16px] font-normal text-[#444444]">
                   <span>
-                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] " />
+                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] dark:!text-[#6841A5]" />
                   </span>
                   <span>Messages</span>
                 </div>
-                <span className="text-[#0057A8] text-[15px] font-bold">
+                <span className="text-[#0057A8] dark:text-gradient-pink text-[15px] font-bold">
                   Unlimited
                 </span>
               </div>
@@ -134,9 +134,9 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
                             <RadioGroupItem
                               value="credit-card"
                               id="credit-card"
-                              className="h-[20px] w-[20px] border-[#0057A8] text-[#0057A8] fill-[#0057A8]"
+                              className="h-[20px] w-[20px] border-[#0057A8] text-[#0057A8]  fill-[#0057A8]"
                             />
-                            <Label htmlFor="credit-card">Credit Card</Label>
+                            <Label htmlFor="credit-card" className="dark:text-gradient-pink">Credit Card</Label>
                           </div>
                           <div className="flex space-x-2 items-center">
                             <Image
@@ -243,7 +243,7 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
                               id="paypal"
                               className="h-[20px] w-[20px] border-[#0057A8] text-[#0057A8] fill-[#0057A8]"
                             />
-                            <Label htmlFor="paypal">PayPal</Label>
+                            <Label htmlFor="paypal" className="dark:text-gradient-pink">PayPal</Label>
                           </div>
                           <Image
                             src="/assets/img/ppLogo.png"

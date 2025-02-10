@@ -69,7 +69,7 @@ export function AddListingForm() {
       <div className="bg-white rounded-[24px] p-[32px]  ">
       <div
         className={
-          "bg-primary px-4 py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center dark:bg-pinkGradient"
+          "bg-primary px-4 py-3 mb- rounded-t-3xl text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center dark:bg-pinkGradient"
         }
       >
         Add New Product
@@ -83,11 +83,11 @@ export function AddListingForm() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">
+                    <FormLabel className="text-base text-[#444444] font-normal">
                       Title <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#6841A5] dark:text-black " />
+                      <Input {...field} className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:text-black " />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -99,12 +99,12 @@ export function AddListingForm() {
                 name="shortDescription"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">Short Description</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal ">Short Description</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Type Description here"
                         {...field}
-                        className=" border-[1px] border-[#B0B0B0] dark:border-[#6841A5]"
+                        className=" border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]"
                         rows={3}
                       />
                     </FormControl>
@@ -118,12 +118,12 @@ export function AddListingForm() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">Description</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">Description</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Type Description here"
                         {...field}
-                        className=" border-[1px] border-[#B0B0B0] dark:border-[#6841A5]"
+                        className=" border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]"
                         rows={3}
                       />
                     </FormControl>
@@ -138,7 +138,7 @@ export function AddListingForm() {
                   name="productType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">
+                      <FormLabel className="text-base text-[#444444] font-normal">
                         Product Type <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
@@ -151,13 +151,13 @@ export function AddListingForm() {
                             <FormControl>
                               <RadioGroupItem  value="CBD" />
                             </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444] dark:text-gradient-pink  ">CBD</FormLabel>
+                            <FormLabel className="font-normal text-base text-[#444444]">CBD</FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center space-x-3 space-y-0">
                             <FormControl>
                               <RadioGroupItem value="Recreational" />
                             </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444] dark:text-gradient-pink">
+                            <FormLabel className="font-normal text-base text-[#444444]">
                               Recreational
                             </FormLabel>
                           </FormItem>
@@ -173,7 +173,7 @@ export function AddListingForm() {
                   name="stockStatus"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">
+                      <FormLabel className="text-base text-[#444444] font-normal">
                         Stock Status <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
@@ -186,7 +186,7 @@ export function AddListingForm() {
                             <FormControl>
                               <RadioGroupItem value="In Stock" />
                             </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444] dark:text-gradient-pink">
+                            <FormLabel className="font-normal text-base text-[#444444]">
                               In Stock
                             </FormLabel>
                           </FormItem>
@@ -194,7 +194,7 @@ export function AddListingForm() {
                             <FormControl>
                               <RadioGroupItem value="Out of Stock" />
                             </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444] dark:text-gradient-pink">
+                            <FormLabel className="font-normal text-base text-[#444444]">
                               Out of Stock
                             </FormLabel>
                           </FormItem>
@@ -212,14 +212,14 @@ export function AddListingForm() {
                   name="store"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">
+                      <FormLabel className="text-base text-[#444444] font-normal">
                         Store <span className="text-red-500">*</span>
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#6841A5]">
+                        <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]">
                           <SelectTrigger>
                             <SelectValue placeholder="Select store" />
                           </SelectTrigger>
@@ -239,14 +239,14 @@ export function AddListingForm() {
                   name="category"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">
+                      <FormLabel className="text-base text-[#444444] font-normal">
                         Category <span className="text-red-500">*</span>
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#6841A5]">
+                        <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]">
                           <SelectTrigger>
                             <SelectValue placeholder="Select category" />
                           </SelectTrigger>
@@ -266,14 +266,14 @@ export function AddListingForm() {
                   name="subCategory"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">
+                      <FormLabel className="text-base text-[#444444] font-normal">
                         Sub-Category <span className="text-red-500">*</span>
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#6841A5]">
+                        <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]">
                           <SelectTrigger>
                             <SelectValue placeholder="Select sub-category" />
                           </SelectTrigger>
@@ -295,11 +295,11 @@ export function AddListingForm() {
                   name="purchasePrice"
                   render={({ field }) => (
                     <FormItem className="flex flex-col ">
-                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal dark:text-gradient-pink">
+                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal">
                         Starting Price
                       </FormLabel>
-                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#6841A5]">
-                        <div className="gap-3 self-stretch px-4 text-sm font-semibold leading-tight text-[#0057A8] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
+                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#B0B0B0]">
+                        <div className="gap-3 self-stretch dark:bg-[#482D721A] px-4 text-sm font-semibold leading-tight text-[#0057A8] dark:!text-[#6841A5] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
                           $
                         </div>
                         <FormControl>
@@ -324,8 +324,8 @@ export function AddListingForm() {
                       <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal dark:text-gradient-pink">
                         Starting Price
                       </FormLabel>
-                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#6841A5]">
-                        <div className="gap-3 self-stretch px-4 text-sm font-semibold leading-tight text-[#0057A8] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
+                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#B0B0B0]">
+                        <div className="gap-3 self-stretch px-4 text-sm font-semibold leading-tight text-[#0057A8] dark:!text-[#6841A5] bg-gray-200 dark:bg-[#482D721A] rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
                           $
                         </div>
                         <FormControl>
@@ -350,8 +350,8 @@ export function AddListingForm() {
                       <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal dark:text-gradient-pink">
                         Starting Price
                       </FormLabel>
-                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#6841A5]">
-                        <div className="gap-3 self-stretch px-4 text-sm font-semibold leading-tight text-[#0057A8] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
+                      <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#B0B0B0]">
+                        <div className="gap-3 self-stretch px-4 text-sm font-semibold leading-tight text-[#0057A8] dark:!text-[#6841A5] dark:bg-[#482D721A] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
                           $
                         </div>
                         <FormControl>
@@ -375,9 +375,9 @@ export function AddListingForm() {
                   name="sizeKG"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">Size (KG)</FormLabel>
+                      <FormLabel className="text-base text-[#444444] font-normal">Size (KG)</FormLabel>
                       <FormControl>
-                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#6841A5]"/>
+                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0]"/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -389,9 +389,9 @@ export function AddListingForm() {
                   name="quantity"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">Quantity</FormLabel>
+                      <FormLabel className="text-base text-[#444444] font-normal">Quantity</FormLabel>
                       <FormControl>
-                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#6841A5]"/>
+                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0]"/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -403,9 +403,9 @@ export function AddListingForm() {
                   name="sku"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">SKU</FormLabel>
+                      <FormLabel className="text-base text-[#444444] font-normal">SKU</FormLabel>
                       <FormControl>
-                        <Input placeholder="Fox-0389" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#6841A5]"/>
+                        <Input placeholder="Fox-0389" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0]"/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -425,7 +425,7 @@ export function AddListingForm() {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel className="text-base text-[#444444] font-normal dark:text-gradient-pink">COA (Certificate Of Authenticity)</FormLabel>
+                      <FormLabel className="text-base text-[#444444] font-normal">COA (Certificate Of Authenticity)</FormLabel>
                     </div>
                   </FormItem>
                 )}
@@ -434,7 +434,7 @@ export function AddListingForm() {
               
               <div className="mt-3">
                 <InputWithTags
-                  className=""
+                  className="dark:border-[#B0B0B0]"
                   placeholder="Add Tags"
                   limit={10}
                   tags={tags} // Pass tags
@@ -443,7 +443,7 @@ export function AddListingForm() {
               </div>
             </div>
             
-            <div className="w-[600px] h-full mt-[16px] border border-[#9C9C9C] dark:border-[#6841A5] rounded-lg  ">
+            <div className="w-[600px] h-full mt-[16px] border border-[#9C9C9C] dark:border-[#B0B0B0] rounded-lg  ">
               <ProductGallery />
             </div>
           </div>

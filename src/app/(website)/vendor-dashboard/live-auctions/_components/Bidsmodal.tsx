@@ -59,16 +59,16 @@ const SAMPLE_BIDS: Bid[] = [
 export function Bidsmodal({ isOpen, onClose }: BidsModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[1250px]">
+      <DialogContent className="max-w-[1250px] dark:bg-white dark:border-none">
         <DialogHeader>
-          <div className="flex items-center justify-between bg-primary text-white p-4 -mx-6 -mt-6 rounded-t-lg">
+          <div className="flex items-center justify-between bg-primary dark:bg-pinkGradient text-white p-4 -mx-6 -mt-6 rounded-t-lg">
             <DialogTitle className="text-xl">Bids</DialogTitle>
             <Button
               variant="ghost"
               onClick={onClose}
-              className="text-[#1e2f65] hover:text-white hover:bg-primary bg-white"
+              className="text-[#1e2f65] hover:text-white hover:bg-primary dark:!text-[#6841A5] dark:hover:bg-pinkGradient dark:hover:!text-white  bg-white"
             >
-              <ChevronLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="mr-2 h-4 w-4 dark:!text-[#6841A5] dark:hover:!text-white" />
               Back to List
             </Button>
           </div>
@@ -85,16 +85,16 @@ export function Bidsmodal({ isOpen, onClose }: BidsModalProps) {
               Highest bidder was: Oregon Greener
             </p>
           </div>
-          <Table className="px-0 text-center">
+          <Table className="px-0 text-center text-[#444444] text-[16px] font-medium">
             <TableHeader >
               <TableRow >
-                <TableHead className="text-center">Bidder Name</TableHead>
-                <TableHead className="text-center">Bidding Time</TableHead>
-                <TableHead className="text-center">Bid</TableHead>
-                <TableHead className="text-center">Auto</TableHead>
+                <TableHead className="text-center text-[#444444] text-[16px] font-medium">Bidder Name</TableHead>
+                <TableHead className="text-center text-[#444444] text-[16px] font-medium">Bidding Time</TableHead>
+                <TableHead className="text-center text-[#444444] text-[16px] font-medium">Bid</TableHead>
+                <TableHead className="text-center text-[#444444] text-[16px] font-medium">Auto</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="">
               {SAMPLE_BIDS.map((bid, index) =>
                 <TableRow key={index}>
                   <TableCell>

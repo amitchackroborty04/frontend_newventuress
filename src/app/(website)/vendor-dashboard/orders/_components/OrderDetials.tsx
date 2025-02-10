@@ -55,14 +55,14 @@ export default function OrderDetails({ isOpen, onClose, rowData }: OrderDetailsP
                 <DialogTitle className="text-xl font-semibold">Order Details</DialogTitle>
               </div>
               <div className="bg-white rounded-lg">
-                <Button variant="ghost" className="text-gradient dark:text-gradient-pink w-[146px] h-[40px" onClick={onClose}>
+                <Button variant="ghost" className="text-gradient dark:text-gradient-pink dark:hover:!text-[#6841A5] w-[146px] h-[40px" onClick={onClose}>
                   Back to List <GoArrowRight className="text-[#121D42] dark:!text-[#6841A5]" />
                 </Button>
               </div>
             </div>
           </DialogHeader>
             
-          <ScrollArea className="p-6  max-h-[750px]">
+          <ScrollArea className="p-6  max-h-[760px]">
             <div className="flex flex-wrap  gap-8 ">
               <div className="relative flex flex-wrap  shrink items-start bg-white rounded-xl border border-solid border-stone-300">
                 <AddressCard title="Billing Address" info={addressInfo} className="flex flex-col min-w-[417px]" />
