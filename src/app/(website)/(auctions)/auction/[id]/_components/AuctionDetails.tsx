@@ -167,14 +167,7 @@ const AuctionDetails = () => {
                     </div>
                   </div>
                   <div className="flex gap-1 items-end self-start mt-2 font-medium leading-tight">
-                    {/* <div className="self-stretch text-lg whitespace-nowrap text-zinc-900">
-                      ₿{productData.price.toFixed(2)}
-                    </div>
-                    <div className="self-stretch text-sm text-[#9C9C9C]">
-                      <span className="line-through">
-                        ₿{productData.originalPrice.toFixed(2)}
-                      </span>
-                    </div> */}
+                 
 
                     <span className="text-gradient text-[18px]">
                       Winning Bid:

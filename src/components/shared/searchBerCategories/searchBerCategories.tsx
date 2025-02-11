@@ -14,7 +14,7 @@ function SearchBerCategories() {
           <div className="w-[100%] lg:w-[60%] hidden md:block lg:block">
             <SearchBer />
           </div>
-          <div className="">
+          <div className="  w-[150px]   lg:w-[246px]  ">
             <ThemeSwitcher />
           </div>
         </div>

@@ -31,11 +31,11 @@ const Hero = () => {
 
         {/* Three images */}
         <Anim variant="zoomIn">
-          <div className="grid grid-cols-3 gap-4 lg:gap-[24px] mx-auto max-w-[1200px] mt-[-50px] lg:mt-[-100px] z-50 justify-items-center p-2">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 lg:gap-[24px] mx-auto max-w-[1200px] mt-[-50px] lg:mt-[-100px] z-50 justify-items-center py-2 px-4">
             {["hero1.png", "hero2.png", "hero3.png"].map((img, index) => (
               <div
                 key={index}
-                className="h-[150px] w-[143px] md:w-[245px] md:h-[250px] lg:h-[300px] lg:w-[370px] rounded-[16px] relative"
+                className=" h-[120px] w-[103px] md:w-[245px] md:h-[250px] lg:h-[300px] lg:w-[370px] rounded-[16px] relative"
               >
                 <Image
                   src={`/assets/img/${img}`}
