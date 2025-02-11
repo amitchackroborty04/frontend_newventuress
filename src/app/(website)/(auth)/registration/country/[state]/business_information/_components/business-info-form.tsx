@@ -114,6 +114,7 @@ export function BusinessInfoForm() {
     },
   };
 
+
   useEffect(() => {
     if(authState["businessInfo"].length === 0) {
       router.push("/registration")
@@ -230,7 +231,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
               updateMetrcLicense({
                 index: i,
                 newLicenseValue: e.target.value,
-                businessInfoIndex: index
+                metrcInfoIndex: index
               })
             )
           }
@@ -253,7 +254,8 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
               dispatch(
                 updateCannabisLicense({
                   index: i,
-                  newLicenseValue: e.target.value
+                  newLicenseValue: e.target.value,
+                  cannabisInfoIndex: index
                 })
               )
             }
