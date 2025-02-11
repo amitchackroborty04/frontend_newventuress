@@ -37,11 +37,11 @@ function SearchBer() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-0 z-10 hover:bg-primary dark:hover:bg-pinkGradient "
+            className="absolute right-0 z-10  hover:bg-primary  dark:hover:bg-pinkGradient hover:text-white "
             onClick={toggleSearch}
             aria-label="Toggle search"
           >
-         <Search size={20}  className=" text-[#000000] hover:text-white dark:text-black dark:hover:text-white" />
+         <Search size={20} className=" text-[#000000]  " />
 
           </Button>
           <div

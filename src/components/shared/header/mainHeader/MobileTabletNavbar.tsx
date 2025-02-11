@@ -181,7 +181,7 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                   Blog
                 </Link>
                 <PagesMobileNav
-                  label="page"
+                  label="Page"
                   links={pagesMobileLinks}
                   onClose={closeMobileMenu}
                 />

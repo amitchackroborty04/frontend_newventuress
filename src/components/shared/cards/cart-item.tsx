@@ -42,12 +42,12 @@ export function CartItemCard({
               handleWishlistToggle();
             }}
             className={`absolute top-2 right-2 flex gap-2.5 justify-center items-center px-2 bg-white rounded-full ${isWishlist
-              ? " border-none text-white bg-primary"
+              ? " border-none text-white bg-primary dark:bg-pinkGradient"
               : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white dark:hover:text-white dark:!text-[#ffffff]"
               }  min-h-[32px] w-[32px]`}
             aria-label="Add to wishlist"
           >
-            <Heart className="group-hover:fill-white hover:border-0 w-4 h-4 dark:text-black dark:!hover:text-white" />
+            <Heart className="group-hover:fill-white hover:border-0 w-4 h-4 dark:text-black dark:hover:text-white" />
           </button>
         </div>
         <div className="flex-1 space-y-1 pt-2 flex flex-col justify-evenly">
