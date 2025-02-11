@@ -199,12 +199,12 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 {!loggedin ? (
                   <div className="grid grid-cols-2 gap-[30px]">
                     <Link href="/login">
-                      <Button variant="outline" className="w-[170px] dark:hover:bg-[#482D721A] dark:text-black dark:bg-white">
+                      <Button variant="outline" className="w-[163px] dark:hover:bg-[#482D721A] dark:text-black dark:bg-white">
                         Log in
                       </Button>
                     </Link>
                     <Link href="/registration">
-                      <Button type="button" className="w-[170px]">
+                      <Button type="button" className="w-[163px]">
                         Sign up 
                       </Button>
                     </Link>
