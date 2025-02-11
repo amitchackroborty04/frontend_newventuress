@@ -90,7 +90,7 @@ function CustomerFilter() {
         </div>
       </div>
       <div>
-        <button className="rounded-lg bg-primary px-[20px] py-[9px] text-[#F5F5F5]">
+        <button className="rounded-lg bg-primary dark:bg-pinkGradient dark:bg px-[20px] py-[9px] text-[#F5F5F5]">
           Bulk Delete
         </button>
       </div>

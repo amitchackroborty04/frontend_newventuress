@@ -54,7 +54,7 @@ export default function CommunicationWithdrawalForm() {
               <FormItem>
                 <FormLabel className="text-base text-[#444444] font-medium">Communication For</FormLabel>
                 <FormControl>
-                  <Input placeholder="Admin" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-black"/>
+                  <Input placeholder="Admin" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black"/>
                 </FormControl>
               </FormItem>
             )}

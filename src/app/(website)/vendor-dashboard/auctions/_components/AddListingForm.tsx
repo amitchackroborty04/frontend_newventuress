@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -30,6 +29,7 @@ import {
 import ProductGallery from "@/components/shared/imageUpload/ProductGallery";
 import React, { useEffect } from "react";
 import { InputWithTags } from "@/components/ui/input-with-tags";
+import { Label } from "@/components/ui/label";
 
 export function AddListingForm() {
   const form = useForm<ProductFormValues>({
@@ -133,77 +133,87 @@ export function AddListingForm() {
               />
 
               <div className="grid grid-cols-2 gap-6">
-                <FormField
+              <FormField
                   control={form.control}
                   name="productType"
-                  render={({ field }) => (
+                  render={({ field }) =>
                     <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal">
-                        Product Type <span className="text-red-500">*</span>
+                      <FormLabel className="leading-[19.2px] text-base text-[#444444] font-normal">
+                        Product Type<span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex flex-col space-y-1"
-                        >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem  value="CBD" />
-                            </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444]">CBD</FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="Recreational" />
-                            </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444]">
-                              Recreational
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
+                        <div className="space-y-2">
+                          {["CBD", "Recreational"].map(type =>
+                            <div
+                              key={type}
+                              className="flex items-center space-x-2"
+                            >
+                              <Checkbox
+                                id={type}
+                                checked={field.value === type}
+                                onCheckedChange={checked => {
+                                  if (checked) {
+                                    field.onChange(type); // Ensures only one checkbox is selected at a time
+                                  } else {
+                                    field.onChange(""); // Clears the selection
+                                  }
+                                }}
+                                className="h-4 w-4 border-[#C5C5C5]"
+                              />
+                              <Label
+                                htmlFor={type}
+                                className="leading-[19.2px] text-base text-[#444444] font-normal"
+                              >
+                                {type}
+                              </Label>
+                            </div>
+                          )}
+                        </div>
                       </FormControl>
                       <FormMessage />
-                    </FormItem>
-                  )}
+                    </FormItem>}
                 />
 
                 <FormField
-                  control={form.control}
-                  name="stockStatus"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base text-[#444444] font-normal">
-                        Stock Status <span className="text-red-500">*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex flex-col space-y-1"
-                        >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="In Stock" />
-                            </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444]">
-                              In Stock
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="Out of Stock" />
-                            </FormControl>
-                            <FormLabel className="font-normal text-base text-[#444444]">
-                              Out of Stock
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                                  control={form.control}
+                                  name="productType"
+                                  render={({ field }) =>
+                                    <FormItem>
+                                      <FormLabel className="leading-[19.2px] text-base text-[#444444] font-normal">
+                                      Stock Status <span className="text-red-500">*</span>
+                                      </FormLabel>
+                                      <FormControl>
+                                        <div className="space-y-2">
+                                          {["In Stoke", "Out of Stoke"].map(type =>
+                                            <div
+                                              key={type}
+                                              className="flex items-center space-x-2"
+                                            >
+                                              <Checkbox
+                                                id={type}
+                                                checked={field.value === type}
+                                                onCheckedChange={checked => {
+                                                  if (checked) {
+                                                    field.onChange(type); // Ensures only one checkbox is selected at a time
+                                                  } else {
+                                                    field.onChange(""); // Clears the selection
+                                                  }
+                                                }}
+                                                className="h-4 w-4 border-[#C5C5C5]"
+                                              />
+                                              <Label
+                                                htmlFor={type}
+                                                className="leading-[19.2px] text-base text-[#444444] font-normal"
+                                              >
+                                                {type}
+                                              </Label>
+                                            </div>
+                                          )}
+                                        </div>
+                                      </FormControl>
+                                      <FormMessage />
+                                    </FormItem>}
+                                />
               </div>
 
               <div className="grid grid-cols-3 gap-6">
@@ -220,11 +230,11 @@ export function AddListingForm() {
                         defaultValue={field.value}
                       >
                         <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]">
-                          <SelectTrigger>
+                          <SelectTrigger className="dark:text-[#444444]">
                             <SelectValue placeholder="Select store" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent >
+                        <SelectContent className="dark:bg-white dark:border-none">
                           <SelectItem  value="store1">Store 1</SelectItem>
                           <SelectItem value="store2">Store 2</SelectItem>
                         </SelectContent>
@@ -247,11 +257,11 @@ export function AddListingForm() {
                         defaultValue={field.value}
                       >
                         <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]">
-                          <SelectTrigger>
+                          <SelectTrigger className="dark:text-[#444444]">
                             <SelectValue placeholder="Select category" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-white dark:border-none">
                           <SelectItem value="category1">Category 1</SelectItem>
                           <SelectItem value="category2">Category 2</SelectItem>
                         </SelectContent>
@@ -274,11 +284,11 @@ export function AddListingForm() {
                         defaultValue={field.value}
                       >
                         <FormControl className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]">
-                          <SelectTrigger>
+                          <SelectTrigger className="dark:text-[#444444]">
                             <SelectValue placeholder="Select sub-category" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-white dark:border-none">
                           <SelectItem value="sub1">Sub-category 1</SelectItem>
                           <SelectItem value="sub2">Sub-category 2</SelectItem>
                         </SelectContent>
@@ -295,7 +305,7 @@ export function AddListingForm() {
                   name="purchasePrice"
                   render={({ field }) => (
                     <FormItem className="flex flex-col ">
-                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal">
+                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal ">
                         Starting Price
                       </FormLabel>
                       <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#B0B0B0]">
@@ -321,7 +331,7 @@ export function AddListingForm() {
                   name="sellingPrice"
                   render={({ field }) => (
                     <FormItem className="flex flex-col ">
-                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal dark:text-gradient-pink">
+                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal">
                         Starting Price
                       </FormLabel>
                       <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#B0B0B0]">
@@ -347,7 +357,7 @@ export function AddListingForm() {
                   name="discountPrice"
                   render={({ field }) => (
                     <FormItem className="flex flex-col ">
-                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal dark:text-gradient-pink">
+                      <FormLabel className=" leading-tight text-[#444444] text-[16px] font-normal">
                         Starting Price
                       </FormLabel>
                       <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-neutral-400 h-[51px] dark:border-[#B0B0B0]">
@@ -377,7 +387,7 @@ export function AddListingForm() {
                     <FormItem>
                       <FormLabel className="text-base text-[#444444] font-normal">Size (KG)</FormLabel>
                       <FormControl>
-                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0]"/>
+                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:!text-[#444444]"/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -391,7 +401,7 @@ export function AddListingForm() {
                     <FormItem>
                       <FormLabel className="text-base text-[#444444] font-normal">Quantity</FormLabel>
                       <FormControl>
-                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0]"/>
+                        <Input type="number" {...field} className="h-[51px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:!text-[#444444]"/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>

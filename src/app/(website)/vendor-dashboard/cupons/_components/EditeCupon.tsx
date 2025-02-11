@@ -92,7 +92,7 @@ function onBack ()  {
                       Title <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter title" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                      <Input placeholder="Enter title" {...field} className="border border-[#B0B0B0] h-[51px] text-black dark:!text-black"/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -106,7 +106,7 @@ function onBack ()  {
                   <FormItem>
                     <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Description</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Type Description here" {...field} className="border border-[#B0B0B0] h-[91px]"/>
+                      <Textarea placeholder="Type Description here" {...field} className="border border-[#B0B0B0] h-[91px] text-black dark:!text-black"/>
                     </FormControl>
                   </FormItem>
                 )}
@@ -120,7 +120,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Discount Type</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] text-black dark:!text-black"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -133,7 +133,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Amount</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] "/>
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] text-black dark:!text-black"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -146,7 +146,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Start Date</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} className="border border-[#B0B0B0] h-[51px] dark:!text-[#9E9E9E]"/>
+                        <Input type="date" {...field} className="border border-[#B0B0B0] h-[51px] dark:!text-[#9E9E9E] text-black"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -173,7 +173,7 @@ function onBack ()  {
                   <FormItem>
                     <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Email Restrictions</FormLabel>
                     <FormControl>
-                      <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                      <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] text-black dark:!text-black"/>
                     </FormControl>
                   </FormItem>
                 )}
@@ -187,7 +187,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Usage Limit</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] text-black dark:!text-black"/>
                       </FormControl>
                     </FormItem>
                   )}
@@ -200,7 +200,7 @@ function onBack ()  {
                     <FormItem>
                       <FormLabel className="flex justify-start text-[#444444] text-[16px] font-normal">Usage limit per user</FormLabel>
                       <FormControl>
-                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px]"/>
+                        <Input placeholder="Percentage discount" {...field} className="border border-[#B0B0B0] h-[51px] text-black dark:!text-black"/>
                       </FormControl>
                     </FormItem>
                   )}

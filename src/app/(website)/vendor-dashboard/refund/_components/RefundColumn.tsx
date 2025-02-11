@@ -83,7 +83,9 @@ export const RefundColumn: ColumnDef<DemoTableItemsType>[] = [
         cell: () => {
           return (
             <div>
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4 dark:!text-[#6841A5]
+
+" />
             </div>
           );
         },

@@ -111,7 +111,7 @@ export default function SocialMediaForm() {
                     id={`${platform}-title`}
                     value={formData[platform as "facebook" | "instagram"].title}
                     onChange={(e) => handleInputChange(platform as "facebook" | "instagram", "title", e.target.value)}
-                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black"
+                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black dark:!text-black"
                   />
                 </div>
                 <div className="space-y-2">
@@ -124,7 +124,7 @@ export default function SocialMediaForm() {
                     onChange={(e) =>
                       handleInputChange(platform as "facebook" | "instagram", "description", e.target.value)
                     }
-                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black"
+                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black dark:!text-black"
                   />
                 </div>
                 {/* Image Upload Section */}
@@ -136,7 +136,7 @@ export default function SocialMediaForm() {
                       accept="image/jpeg,image/png"
                       id={`${platform}-image`}
                       onChange={(e) => handleFileChange(platform as "facebook" | "instagram", e)}
-                      className="hidden"
+                      className="hidden dark:!text-black"
                     />
 
                     {formData[platform as "facebook" | "instagram"].imagePreview ? (
@@ -144,6 +144,8 @@ export default function SocialMediaForm() {
                         <Image
                           src={formData[platform as "facebook" | "instagram"].imagePreview || ''}
                           alt={`${platform} preview`}
+                          width={80}
+                          height={80}
                           className="w-full max-w-[200px] rounded-lg border border-gray-300 mx-auto"
                         />
                         <button
@@ -183,7 +185,7 @@ export default function SocialMediaForm() {
                     id={platform}
                     value={formData.socialProfiles[platform as keyof typeof formData.socialProfiles]}
                     onChange={(e) => handleInputChange("socialProfiles", platform, e.target.value)}
-                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black"
+                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black dark:!text-black"
                   />
                 </div>
               ))}
