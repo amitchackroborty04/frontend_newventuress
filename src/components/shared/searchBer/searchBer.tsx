@@ -14,7 +14,7 @@ function SearchBer() {
   }
   return (
     <>
-      <div className="hidden md:block">
+      <div className="hidden md:block lg:block">
         <form className="flex flex-1 gap-2 w-full  border-1 border-primary-green outline-0 mb-1 lg:mb-0">
           <div className="flex-1 relative h-[34px] lg:h-full">
             <div className="flex items-center h-[44px]">
