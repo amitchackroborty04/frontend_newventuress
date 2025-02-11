@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // Define the initial state of the counter
 interface Business {
   country: string;
-  state?: string;
+  state?: string[];
   license: {
     metrcLicense: string[],
     cannabisLicense: string[],
@@ -50,12 +50,53 @@ const authSlice = createSlice({
     addNewBusiness: (state, action) => {
       state.businessInfo = action.payload;
     },
+    addStateToBusiness: (state, action) => {
+      const { country, stateName } = action.payload;
+
+      const businessIndex = state.businessInfo.findIndex(
+        (business) => business.country === country
+      );
+
+      if (businessIndex !== -1) {
+        const business = state.businessInfo[businessIndex];
+        if (!business.state) {
+          business.state = [];
+        }
+
+        if (!business.state.includes(stateName)) {
+          business.state.push(stateName);
+        } else {
+          console.warn(`${stateName} is already present for country: ${country}`);
+        }
+      } else {
+        console.error(`No business found for country: ${country}`);
+      }
+    },
+
+    removeStateFromBusiness: (state, action) => {
+      const { country, stateName } = action.payload;
+
+      const businessIndex = state.businessInfo.findIndex(
+        (business) => business.country === country
+      );
+
+      if (businessIndex !== -1) {
+        const business = state.businessInfo[businessIndex];
+        if (business.state?.includes(stateName)) {
+          business.state = business.state.filter((state) => state !== stateName);
+        } else {
+          console.warn(`${stateName} not found for country: ${country}`);
+        }
+      } else {
+        console.error(`No business found for country: ${country}`);
+      }
+    },
     updateBusiness: (state, action) => {
       if (state.businessInfo.length === 0) {
         // If no business exists, add a default one first
         state.businessInfo.push({
           country: "",
-          state: "",
+          state: [""],
           license: {
             metrcLicense: [""],
             cannabisLicense: [""],
@@ -210,7 +251,9 @@ export const {
   addCannabisField,
   addBusinessField,
   updateCannabisLicense,
-  updateBusinessLicense
+  updateBusinessLicense,
+  addStateToBusiness,
+  removeStateFromBusiness
 
 } = authSlice.actions;
 
