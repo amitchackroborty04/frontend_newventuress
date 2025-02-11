@@ -2,6 +2,7 @@
 // @ts-nocheck
 "use client"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { addNewBusiness } from "@/redux/features/authentication/AuthSlice"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { VectorMap } from "@react-jvectormap/core"
@@ -11,7 +12,6 @@ import { Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-
 // Define the countries you want to include
 const countries = {
   US: "United States",
@@ -20,6 +20,10 @@ const countries = {
   DE: "Germany",
   ES: "Spain",
   TH: "Thailand",
+  NL: "Netherlands",
+  MT: "Malta",
+  UY: "Uruguay",
+  CO: "Colombia",
 }
 
 const disabledColor = "#808080" // Gray color for disabled countries
@@ -29,12 +33,16 @@ function TestCountry() {
   const [loading, setLoading] = useState<true | false>(false)
 
   const [regionColors, setRegionColors] = useState({
-    US: 100, // Green for United States
-    CA: 100, // Green for Canada
-    MX: 100, // Green for Mexico
-    DE: 100, // Green for Germany
-    ES: 100, // Green for Spain
-    TH: 100, // Green for Thailand
+    US: 80,
+    CA: 100,
+    MX: 100,
+    DE: 80,
+    ES: 100,
+    TH: 80,
+    NL: 100,
+    MT: 80,
+    UY: 100,
+    CO: 100,
   })
 
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
@@ -47,7 +55,6 @@ function TestCountry() {
   const authState = useAppSelector((state) => state.auth)
 
   const businesses = authState.businessInfo
-  console.log("show Business ifno", businesses)
 
   // check if prev form value not found
   const { profession } = authState
@@ -84,7 +91,7 @@ function TestCountry() {
       if (prevSelected.includes(countryName)) {
         // If already selected, remove it
         newSelected = prevSelected.filter((country) => country !== countryName)
-      } else if (prevSelected.length < 3) {
+      } else if (prevSelected.length < 12) {
         // If not selected and less than 3 countries are selected, add it
         newSelected = [...prevSelected, countryName]
       } else {
@@ -138,106 +145,132 @@ function TestCountry() {
     `)
   }
 
-  const countriess = selectedCountries.join('_')
+  const isContinueDisble = businesses.length == 0
+
+  const countriesLists = selectedCountries.join("_")
 
   const redirectUrl =
-      selectedCountries.includes("United States")  || selectedCountries.includes("Canada")
-        ? `/registration/country/${countriess}`
-        : `/registration/country/${countriess}/business_information`;
+      selectedCountries.includes("United States") || selectedCountries.includes("Canada")
+        ? `/registration/country/${countriesLists}`
+        : `/registration/country/${countriesLists}/business_information`;
 
   return (
-    <motion.div
-      exit={{
-        opacity: 0,
-        transition: {
-          duration: 1,
-        },
-      }}
-      style={{
-        margin: "auto",
-        width: "100%",
-        height: "600px",
-        position: "relative",
-      }}
-    >
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              transition: {
-                duration: 0.5,
-              },
-            }}
-            exit={{
-              opacity: 0,
-            }}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-              width: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black
-              zIndex: 100, // Ensure it layers on top of the map
-            }}
-          >
-            <div className="w-full h-full flex justify-center items-center">
-              <Loader2 className="animate-spin h-5 w-5 z-50 text-white " />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <VectorMap
-        map={worldMill}
-        containerStyle={{
-          width: "700px",
-          height: "600px",
-        }}
-        backgroundColor="#DBDDDF"
-        series={{
-          regions: [
-            {
-              scale: colorScale, // Color scale for countries
-              values: {
-                // Check if mapPaths is available
-                ...(mapPaths
-                  ? Object.keys(mapPaths).reduce((acc, key) => {
-                      // If the country code is in the `countries` list, set color to green
-                      if (countries[key]) {
-                        acc[key] = 100 // Green for selected countries
-                      } else {
-                        acc[key] = disabledColor // Gray for disabled countries
-                      }
-                      return acc
-                    }, {})
-                  : {}),
-                ...regionColors, // Override the enabled countries' colors (green for selected)
-              },
-              min: 0,
-              max: 100,
-            },
-          ],
-        }}
-        onRegionTipShow={handleRegionTipShow}
-        onRegionClick={handleRegionClick}
-      />
-      <div className="mt-4 w-full flex justify-end">
-        <Button asChild >
-          <Link href={redirectUrl}>
-          Continue</Link></Button>      </div>
-      <div className="mt-4 hidden">
-        <h3>Selected Countries:</h3>
-        <ul>
-          {selectedCountries.map((country, index) => (
-            <li key={index}>{country}</li>
-          ))}
-        </ul>
+ <div>
+     <motion.div
+   
+   exit={{
+     opacity: 0,
+     transition: {
+       duration: 1,
+     },
+   }}
+   style={{
+     margin: "auto",
+     width: "100%",
+     height: "600px",
+     position: "relative",
+   }}
+ >
+   <AnimatePresence>
+     {loading && (
+       <motion.div
+         initial={{
+           opacity: 0,
+         }}
+         animate={{
+           opacity: 1,
+           transition: {
+             duration: 0.5,
+           },
+         }}
+         exit={{
+           opacity: 0,
+         }}
+         style={{
+           position: "absolute",
+           top: 0,
+           left: 0,
+           height: "100%",
+           width: "100%",
+           backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black
+           zIndex: 100, // Ensure it layers on top of the map
+         }}
+       >
+         <div className="w-full h-full flex justify-center items-center">
+           <Loader2 className="animate-spin h-5 w-5 z-50 text-white " />
+         </div>
+       </motion.div>
+     )}
+   </AnimatePresence>
+   <VectorMap
+     map={worldMill}
+     containerStyle={{
+       width: "700px",
+       height: "600px",
+     }}
+     backgroundColor="#DBDDDF"
+     series={{
+       regions: [
+         {
+           scale: colorScale, // Color scale for countries
+           values: {
+             // Check if mapPaths is available
+             ...(mapPaths
+               ? Object.keys(mapPaths).reduce((acc, key) => {
+                   // If the country code is in the `countries` list, set color to green
+                   if (countries[key]) {
+                     acc[key] = 100 // Green for selected countries
+                   } else {
+                     acc[key] = disabledColor // Gray for disabled countries
+                   }
+                   return acc
+                 }, {})
+               : {}),
+             ...regionColors, // Override the enabled countries' colors (green for selected)
+           },
+           min: 0,
+           max: 100,
+         },
+       ],
+     }}
+     onRegionTipShow={handleRegionTipShow}
+     onRegionClick={handleRegionClick}
+   />
+
+
+   <div className="mt-4 hidden">
+     <h3>Selected Countries:</h3>
+     <ul>
+       {selectedCountries.map((country, index) => (
+         <li key={index}>{country}</li>
+       ))}
+     </ul>
+   </div>
+ </motion.div>
+
+ <div>
+ <nav className="flex items-center bg-gray-300  gap-6 p-4">
+      <div className="flex items-center gap-2">
+        <div className="w-5 h-5 rounded-full bg-[#007853]" />
+        <span className="text-slate-600 text-sm">CBD </span>
       </div>
-    </motion.div>
+      <div className="flex items-center gap-2">
+        <div className="w-5 h-5 rounded-full bg-[#008000]" />
+        <span className="text-slate-600 text-sm">Recreational </span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-5 h-5 rounded-full bg-[#ffffff]" />
+        <span className="text-slate-600 text-sm">No Service</span>
+      </div>
+    </nav>
+
+   </div>
+   <div className="mt-3 flex justify-end">
+    <Button asChild disabled={isContinueDisble}>
+      <Link className={cn(isContinueDisble ? "pointer-events-none opacity-70" : "opacity-100", "w-full")} href={redirectUrl} >Continue</Link>
+    </Button>
+   </div>
+ </div>
   )
 }
 

@@ -5,7 +5,7 @@ import React from "react";
 function BlogDetails() {
   return (
     <div>
-      <article className="mb-8 bg-[#E6EEF6] rounded-lg">
+      <article className="mb-8 bg-[#E6EEF6] bg-[#482D721A] rounded-lg">
         <div className="overflow-hidden">
           <Image
             src="/assets/blogs/blogs.png"

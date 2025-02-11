@@ -1,163 +1,202 @@
 "use client"
 
-import * as z from "zod"
-import { useState } from "react";
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
+import { useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { ImagePlus, Trash2 } from "lucide-react"
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { ImageIcon, Trash2 } from "lucide-react"
+import Image from "next/image"
 
-const formSchema = z.object({
-  facebookTitle: z.string(),
-  facebookDescription: z.string(),
-  facebookImage: z.any().optional(),
-  instagramTitle: z.string(),
-  instagramDescription: z.string(),
-  instagramImage: z.any().optional(),
-  socialProfiles: z.object({
-    facebook: z.string().url().optional(),
-    twitter: z.string().url().optional(),
-    instagram: z.string().url().optional(),
-    linkedin: z.string().url().optional(),
-  }),
-})
-
-type FormValues = z.infer<typeof formSchema>
+interface SocialMediaData {
+  facebook: {
+    title: string
+    description: string
+    image?: File
+    imagePreview?: string
+  }
+  instagram: {
+    title: string
+    description: string
+    image?: File
+    imagePreview?: string
+  }
+  socialProfiles: {
+    facebook: string
+    twitter: string
+    instagram: string
+    linkedin: string
+  }
+}
 
 export default function SocialMediaForm() {
-  const [facebookPreview, setFacebookPreview] = useState<string | null>(null);
-  const [instagramPreview, setInstagramPreview] = useState<string | null>(null);
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      socialProfiles: {},
+  const [formData, setFormData] = useState<SocialMediaData>({
+    facebook: {
+      title: "",
+      description: "",
+    },
+    instagram: {
+      title: "",
+      description: "",
+    },
+    socialProfiles: {
+      facebook: "",
+      twitter: "",
+      instagram: "",
+      linkedin: "",
     },
   })
 
-  function onSubmit(data: FormValues) {
-    console.log(data)
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log("Form Data:", formData)
+  }
+
+  const handleInputChange = (section: "facebook" | "instagram" | "socialProfiles", field: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: value,
+      },
+    }))
+  }
+
+  const handleFileChange = (section: "facebook" | "instagram", e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        [section]: {
+          ...prev[section],
+          image: file,
+          imagePreview: URL.createObjectURL(file), // Generate preview URL
+        },
+      }))
+    }
+  }
+
+  const handleImageRemove = (section: "facebook" | "instagram") => {
+    setFormData((prev) => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        image: undefined,
+        imagePreview: undefined,
+      },
+    }))
   }
 
   return (
-    <div className="bg-white rounded-[24px] p-[32px]">
-      <div className="bg-primary px-4 py-3 mb-5 rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center">
-        Social Media Setting
-      </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Facebook Setup */}
-            <div className="space-y-6">
-              <h2 className="text-xl font-medium">Facebook Setup</h2>
-              <FormField control={form.control} name="facebookTitle" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Facebook Title</FormLabel>
-                  <FormControl><Input {...field} className="h-[51px] border-[#9C9C9C]"/></FormControl>
-                </FormItem>
-              )}/>
-              <FormField control={form.control} name="facebookDescription" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Facebook Description</FormLabel>
-                  <FormControl><Textarea {...field} rows={3} className="resize-none h-[51px] border-[#9C9C9C]"/></FormControl>
-                </FormItem>
-              )}/>
-              <FormItem>
-                <FormLabel>Facebook Image</FormLabel>
-                <FormControl>
-                  <div className="border-2 border-dashed rounded-lg p-6 text-center relative">
-                    {facebookPreview ? (
-                      <div className="relative">
-                        <Image src={facebookPreview} alt="Facebook Preview" className="mx-auto w-32 h-32 object-cover rounded-md"/>
-                        <button type="button" onClick={() => setFacebookPreview(null)} className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full">
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="mx-auto w-12 h-12 flex items-center justify-center">
-                          <ImagePlus className="w-8 h-8 text-gray-400" />
-                        </div>
-                        <p className="mt-2 text-sm text-gray-500">Drop your image here, or browse</p>
-                        <p className="text-xs text-gray-400">Jpeg, png are allowed</p>
-                        <input
-                          type="file"
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          accept="image/jpeg,image/png"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              setFacebookPreview(URL.createObjectURL(file));
-                            }
-                          }}
-                        />
-                      </>
-                    )}
-                  </div>
-                </FormControl>
-              </FormItem>
-            </div>
+    <form onSubmit={handleSubmit} className="w-full">
+      <Card className="bg-white pt-[30px] px-[30px]">
+        <div className="bg-primary dark:bg-pinkGradient px-4 py-3 rounded-t-[24px] text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5">
+          Social Media Setting
+        </div>
 
-            {/* Instagram Setup */}
-            <div className="space-y-6">
-              <h2 className="text-xl font-medium">Instagram Setup</h2>
-              <FormField control={form.control} name="instagramTitle" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Instagram Title</FormLabel>
-                  <FormControl><Input {...field} className="h-[51px] border-[#9C9C9C]"/></FormControl>
-                </FormItem>
-              )}/>
-              <FormField control={form.control} name="instagramDescription" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Instagram Description</FormLabel>
-                  <FormControl><Textarea {...field} className="resize-none h-[51px] border-[#9C9C9C]" rows={3} /></FormControl>
-                </FormItem>
-              )}/>
-              <FormItem>
-                <FormLabel>Instagram Image</FormLabel>
-                <FormControl>
-                  <div className="border-2 border-dashed rounded-lg p-6 text-center relative">
-                    {instagramPreview ? (
+        <CardContent className="p-6 space-y-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Facebook & Instagram Setup */}
+            {["facebook", "instagram"].map((platform) => (
+              <div key={platform} className="space-y-4">
+                <h2 className="text-[22px] font-semibold text-gradient dark:text-gradient-pink">
+                  {platform.charAt(0).toUpperCase() + platform.slice(1)} Setup
+                </h2>
+                <div className="space-y-2">
+                  <Label className="text-base text-[#444444] font-medium" htmlFor={`${platform}-title`}>
+                    {platform.charAt(0).toUpperCase() + platform.slice(1)} Title
+                  </Label>
+                  <Input
+                    id={`${platform}-title`}
+                    value={formData[platform as "facebook" | "instagram"].title}
+                    onChange={(e) => handleInputChange(platform as "facebook" | "instagram", "title", e.target.value)}
+                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-base text-[#444444] font-medium" htmlFor={`${platform}-description`}>
+                    {platform.charAt(0).toUpperCase() + platform.slice(1)} Description
+                  </Label>
+                  <Textarea
+                    id={`${platform}-description`}
+                    value={formData[platform as "facebook" | "instagram"].description}
+                    onChange={(e) =>
+                      handleInputChange(platform as "facebook" | "instagram", "description", e.target.value)
+                    }
+                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black"
+                  />
+                </div>
+                {/* Image Upload Section */}
+                <div className="space-y-2">
+                  <Label className="text-base text-[#444444] font-medium">{platform} Image</Label>
+                  <div className="border-2 border-dashed border-[#919792] dark:border-[#6841A5] rounded-lg p-6 text-center relative">
+                    <Input
+                      type="file"
+                      accept="image/jpeg,image/png"
+                      id={`${platform}-image`}
+                      onChange={(e) => handleFileChange(platform as "facebook" | "instagram", e)}
+                      className="hidden"
+                    />
+
+                    {formData[platform as "facebook" | "instagram"].imagePreview ? (
                       <div className="relative">
-                        <Image src={instagramPreview} alt="Instagram Preview" className="mx-auto w-32 h-32 object-cover rounded-md"/>
-                        <button type="button" onClick={() => setInstagramPreview(null)} className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full">
-                          <Trash2 size={16} />
+                        <Image
+                          src={formData[platform as "facebook" | "instagram"].imagePreview || ''}
+                          alt={`${platform} preview`}
+                          className="w-full max-w-[200px] rounded-lg border border-gray-300 mx-auto"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleImageRemove(platform as "facebook" | "instagram")}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
+                        >
+                          <Trash2 className="h-5 w-5" />
                         </button>
                       </div>
                     ) : (
-                      <>
-                        <div className="mx-auto w-12 h-12 flex items-center justify-center">
-                          <ImagePlus className="w-8 h-8 text-gray-400" />
-                        </div>
-                        <p className="mt-2 text-sm text-gray-500">Drop your image here, or browse</p>
-                        <p className="text-xs text-gray-400">Jpeg, png are allowed</p>
-                        <input
-                          type="file"
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          accept="image/jpeg,image/png"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              setInstagramPreview(URL.createObjectURL(file));
-                            }
-                          }}
-                        />
-                      </>
+                      <label
+                        htmlFor={`${platform}-image`}
+                        className="cursor-pointer flex flex-col items-center gap-2 text-gray-500"
+                      >
+                        <ImageIcon className="h-8 w-8" />
+                        <p>Drop your image here, or browse</p>
+                        <p className="text-sm">Jpeg, png are allowed</p>
+                      </label>
                     )}
                   </div>
-                </FormControl>
-              </FormItem>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Social Profiles */}
+          <div className="space-y-4">
+            <h2 className="text-[22px] font-semibold text-gradient dark:text-gradient-pink">Social Profile</h2>
+            <div className="space-y-4">
+              {["facebook", "twitter", "instagram", "linkedin"].map((platform) => (
+                <div key={platform} className="space-y-2">
+                  <Label className="text-base text-[#444444] font-medium capitalize" htmlFor={platform}>
+                    {platform}
+                  </Label>
+                  <Input
+                    id={platform}
+                    value={formData.socialProfiles[platform as keyof typeof formData.socialProfiles]}
+                    onChange={(e) => handleInputChange("socialProfiles", platform, e.target.value)}
+                    className="border border-[#9E9E9E] dark:border-[#B0B0B0] !h-[51px] text-black"
+                  />
+                </div>
+              ))}
             </div>
           </div>
+
           <div className="flex justify-end">
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="bg-[#1a237e] hover:bg-[#1a237e]/90">
+              Submit
+            </Button>
           </div>
-        </form>
-      </Form>
-    </div>
+        </CardContent>
+      </Card>
+    </form>
   )
 }

@@ -29,13 +29,13 @@ export const CustomerListColumn: ColumnDef<DemoTableItemsType>[] = [
             />
           </div>
           <div className="w-[250px] text-left">
-            <h4 className="text-gradient text-[18px] font-semibold">
+            <h4 className="text-gradient dark:text-gradient-pink text-[18px] font-semibold">
               {row.original.name}
             </h4>
             <h5 className="text-gradient py-2 text-[16px] font-normal">
               <span className="text-[#3D3D3D]"> {row.original.userEmail}</span>
             </h5>
-            <p className="text-wrap text-[16px] font-normal">
+            <p className="text-wrap text-[16px] text-[#444444] font-normal ">
               {row.original.userInfo}
             </p>
           </div>
@@ -48,7 +48,7 @@ export const CustomerListColumn: ColumnDef<DemoTableItemsType>[] = [
     header: "Store",
     cell: ({ row }) => {
       return (
-        <div className="text-gradient text-[18px] font-semibold">
+        <div className="text-gradient dark:text-gradient-pink text-[18px] font-semibold">
           {row.original.store}
         </div>
       );
@@ -99,16 +99,16 @@ export const CustomerListColumn: ColumnDef<DemoTableItemsType>[] = [
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="h-8 w-8 hover:bg-white p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               >
-                <MoreHorizontal className="h-4 w-4" />
+                <MoreHorizontal className="h-4 w-4 dark:!text-[#6841A5]" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
               className="h-auto w-[110px] rounded-lg bg-white shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
             >
-              <DropdownMenuItem className="rounded-b-[8px] p-[8px] text-red-600 hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
+              <DropdownMenuItem className="rounded-[8px] p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer">
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>

@@ -142,7 +142,7 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
             >
               <DropdownMenuItem
                 onClick={handleEdit}
-                className="p-[8px] text-primary dark:text-[#444444] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="p-[8px] text-primary dark:text-[#444444] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-t-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               >
                 
                 Edit

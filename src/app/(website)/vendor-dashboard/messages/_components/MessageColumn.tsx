@@ -51,7 +51,7 @@ export const MessageColumn: ColumnDef<VendorMessageDataType>[] = [
             />
           </div>
           <div className="text-left" >
-          <h4 className="text-lg font-semibold leading-[21px] text-gradient">{row.original.name}</h4>
+          <h4 className="text-lg font-semibold leading-[21px] text-gradient dark:text-gradient-pink">{row.original.name}</h4>
             <h4 className="text-base font-normal leading-[19px] text-[#444444] py-[8px]">{row?.original?.email}</h4>
             <p className="w-52 text-base font-normal leading-[19px] text-[#444444]">{row.original.location}</p>
           </div>
@@ -64,7 +64,7 @@ export const MessageColumn: ColumnDef<VendorMessageDataType>[] = [
     cell: ({ row }) => {
       return (
         <div className="w-[250px] h-[44px] flex justify-center gap-[2px]">
-          <span className="text-lg font-semibold leading-[21px] text-gradient text-center">{row.original.query}</span>
+          <span className="text-lg font-semibold leading-[21px] text-gradient dark:text-gradient-pink text-center">{row.original.query}</span>
         </div>
       );
     },
@@ -106,13 +106,13 @@ export const MessageColumn: ColumnDef<VendorMessageDataType>[] = [
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0">
-                <MoreHorizontal className="h-4 w-4" />
+              <Button variant="ghost" className="h-8 w-8 hover:bg-white">
+                <MoreHorizontal className="h-4 w-4 dark:!text-[#6841A5]" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]">
-              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-default cursor-pointer">Reply</DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-default cursor-pointer" >Delete</DropdownMenuItem>
+              <DropdownMenuItem className="p-[8px] text-primary dark:text-[#444444] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-t-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0">Reply</DropdownMenuItem>
+              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-default " >Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

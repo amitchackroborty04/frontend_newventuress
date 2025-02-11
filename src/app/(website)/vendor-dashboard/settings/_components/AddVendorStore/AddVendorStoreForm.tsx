@@ -60,7 +60,7 @@ export default function AddVendorStoreForm() {
     <div className="bg-white rounded-[24px] p-[32px]">
       <div
         className={
-          "bg-primary px-4 py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5"
+          "bg-primary dark:bg-pinkGradient px-4 py-3 mb- rounded-t-[24px] text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center mb-5"
         }
       >
         Add Vendor Store
@@ -72,11 +72,11 @@ export default function AddVendorStoreForm() {
             name="userName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
+                <FormLabel className="text-base text-[#444444] font-normal">
                   User Name <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C]" />
+                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -87,11 +87,11 @@ export default function AddVendorStoreForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
+                <FormLabel className="text-base text-[#444444] font-normal">
                   Email <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C]" />
+                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -102,11 +102,11 @@ export default function AddVendorStoreForm() {
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
+                <FormLabel className="text-base text-[#444444] font-normal">
                   Full Name <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C]" />
+                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -122,11 +122,11 @@ export default function AddVendorStoreForm() {
                 name="storeName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">
                       Store Name <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-[51px] border-[#9C9C9C]" />
+                      <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,11 +138,11 @@ export default function AddVendorStoreForm() {
                 name="storeSlug"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">
                       Store Slug <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-[51px] border-[#9C9C9C]" />
+                      <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -154,11 +154,11 @@ export default function AddVendorStoreForm() {
                 name="storeEmail"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">
                       Store Email <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input type="email" {...field} className="h-[51px] border-[#9C9C9C]" />
+                      <Input type="email" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -170,11 +170,11 @@ export default function AddVendorStoreForm() {
                 name="storePhone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">
                       Store Phone number <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input type="tel" {...field} className="h-[51px] border-[#9C9C9C]" />
+                      <Input type="tel" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -186,11 +186,11 @@ export default function AddVendorStoreForm() {
                 name="storeDescription"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Short Description about Store</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">Short Description about Store</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Type Description here"
-                        className="min-h-[270px] resize-none border-[#9C9C9C]"
+                        className="min-h-[270px] resize-none border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black"
                         {...field}
                       />
                     </FormControl>
@@ -209,9 +209,9 @@ export default function AddVendorStoreForm() {
                 name="storeLogo"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Store Logo</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">Store Logo</FormLabel>
                     <FormControl>
-                      <div className="border-2 border-dashed rounded-lg p-6 text-center relative">
+                      <div className="border-2 border-dashed border-[#919792] dark:border-[#6841A5] rounded-lg p-6 text-center relative">
                         {logoPreview ? (
                           <div className="relative w-full h-48">
                             <Image
@@ -261,16 +261,16 @@ export default function AddVendorStoreForm() {
                 name="storeBannerType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Store Banner type</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">Store Banner type</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl className="h-[51px] border-[#9C9C9C]">
+                      <FormControl className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] text-[#444444]">
                         <SelectTrigger>
-                          <SelectValue placeholder="Select banner type" />
+                          <SelectValue className="text-[#444444]" placeholder="Select banner type" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="static">Static Image</SelectItem>
-                        <SelectItem value="slider">Slider</SelectItem>
+                      <SelectContent className="dark:bg-white border-none">
+                        <SelectItem className="text-[#444444]"   value="static">Static Image</SelectItem>
+                        <SelectItem className="text-[#444444]"  value="slider">Slider</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -283,9 +283,9 @@ export default function AddVendorStoreForm() {
                 name="storeBanner"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Store Banner</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">Store Banner</FormLabel>
                     <FormControl>
-                      <div className="border-2 border-dashed rounded-lg p-6 text-center relative">
+                      <div className="border-2 border-dashed border-[#919792] dark:border-[#6841A5] rounded-lg p-6 text-center relative">
                         {bannerPreview ? (
                           <div className="relative w-full h-48">
                             <Image
@@ -335,16 +335,16 @@ export default function AddVendorStoreForm() {
                 name="license"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Choose License</FormLabel>
+                    <FormLabel className="text-base text-[#444444] font-normal">Choose License</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl className="h-[51px] border-[#9C9C9C]">
+                      <FormControl className="h-[51px] border-[#9C9C9C]  dark:border-[#B0B0B0] text-[#444444]">
                         <SelectTrigger>
                           <SelectValue placeholder="Select license type" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="business">Business license</SelectItem>
-                        <SelectItem value="personal">Personal license</SelectItem>
+                      <SelectContent className="dark:bg-white border-none">
+                        <SelectItem className="text-[#444444]" value="business">Business license</SelectItem>
+                        <SelectItem className="text-[#444444]" value="personal">Personal license</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
