@@ -22,7 +22,7 @@ function PlansCard({ data }: Props) {
         </div>
       )}
       <div className="px-6 gap-[40px] pt-[75.5px]">
-        <h2 className="text-xl text-[#1C3A58] font-semibold leading-[24px]">
+        <h2 className="text-xl text-gradient dark:text-gradient-pink font-semibold leading-[24px]">
           {data.planType}
         </h2>
         <p className="text-base text-[#696767] font-normal leading-[19.2px] mt-2">
@@ -48,14 +48,14 @@ function PlansCard({ data }: Props) {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <span>
-              <IoCheckmarkCircle size={16} className="text-[#121D42]" />
+              <IoCheckmarkCircle size={16} className="text-[#121D42] dark:text-[#845CC4]" />
             </span>
             <p className="text-sm text-[#444444] font-normal leading-[16.8px]">
               Auction/Listing
             </p>
           </div>
           <div>
-            <p className="text-sm text-gradient font-bold leading-[16.8px]">
+            <p className="text-sm text-gradient dark:text-gradient-pink font-bold leading-[16.8px]">
               {data.numberOfAuction}
             </p>
           </div>
@@ -64,14 +64,14 @@ function PlansCard({ data }: Props) {
         <div className="flex justify-between items-center mt-5">
           <div className="flex items-center gap-2">
             <span>
-              <IoCheckmarkCircle size={16} className="text-[#121D42]" />
+              <IoCheckmarkCircle size={16} className="text-[#121D42] dark:text-[#845CC4]" />
             </span>
             <p className="text-sm text-[#444444] font-normal leading-[16.8px]">
               Bids
             </p>
           </div>
           <div>
-            <p className="text-sm text-gradient font-bold leading-[16.8px]">
+            <p className="text-sm text-gradient dark:text-gradient-pink font-bold leading-[16.8px]">
               {data.numberOfBids}
             </p>
           </div>
@@ -80,14 +80,14 @@ function PlansCard({ data }: Props) {
         <div className="flex justify-between items-center mt-5">
           <div className="flex items-center gap-2">
             <span>
-              <IoCheckmarkCircle size={16} className="text-[#121D42]" />
+              <IoCheckmarkCircle size={16} className="text-[#121D42] dark:text-[#845CC4]" />
             </span>
             <p className="text-sm text-[#444444] font-normal leading-[16.8px]">
               Messages
             </p>
           </div>
           <div>
-            <p className="text-sm text-gradient font-bold leading-[16.8px]">
+            <p className="text-sm text-gradient dark:text-gradient-pink font-bold leading-[16.8px]">
               Unlimited
             </p>
           </div>

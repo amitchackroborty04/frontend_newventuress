@@ -75,7 +75,7 @@ export function Bidsmodal({ isOpen, onClose }: BidsModalProps) {
         </DialogHeader>
         <div className="mt-4 max-w-[1250px]">
           <div className="mb-4">
-            <p className="text-[20px] text-gradient font-semibold mb-1">
+            <p className="text-[20px] text-gradient dark:text-gradient-pink font-semibold mb-1">
               Total Bids Placed:
             </p>
             <p className="text-[16px] text-[#3D3D3D] font-normal leading-[19.2px]">

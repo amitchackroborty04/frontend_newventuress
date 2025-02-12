@@ -76,7 +76,7 @@ export default function AddVendorStoreForm() {
                   User Name <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,7 +91,7 @@ export default function AddVendorStoreForm() {
                   Email <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -106,7 +106,7 @@ export default function AddVendorStoreForm() {
                   Full Name <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -115,7 +115,7 @@ export default function AddVendorStoreForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* General Settings */}
             <div className="space-y-6">
-              <h2 className="text-xl font-medium">General Settings</h2>
+              <h2 className="text-xl font-medium dark:text-gradient-pink">General Settings</h2>
 
               <FormField
                 control={form.control}
@@ -126,7 +126,7 @@ export default function AddVendorStoreForm() {
                       Store Name <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                      <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -142,7 +142,7 @@ export default function AddVendorStoreForm() {
                       Store Slug <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                      <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -158,7 +158,7 @@ export default function AddVendorStoreForm() {
                       Store Email <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input type="email" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                      <Input type="email" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -174,7 +174,7 @@ export default function AddVendorStoreForm() {
                       Store Phone number <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input type="tel" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black" />
+                      <Input type="tel" {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -190,7 +190,7 @@ export default function AddVendorStoreForm() {
                     <FormControl>
                       <Textarea
                         placeholder="Type Description here"
-                        className="min-h-[270px] resize-none border-[#9C9C9C] dark:border-[#B0B0B0] dark:text-black"
+                        className="min-h-[270px] resize-none border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black"
                         {...field}
                       />
                     </FormControl>
@@ -202,7 +202,7 @@ export default function AddVendorStoreForm() {
 
             {/* Store Brand Setup */}
             <div className="space-y-6">
-              <h2 className="text-xl font-medium">Store Brand Setup</h2>
+              <h2 className="text-xl font-medium dark:text-gradient-pink">Store Brand Setup</h2>
 
               <FormField
                 control={form.control}

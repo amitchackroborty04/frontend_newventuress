@@ -20,7 +20,7 @@ const DashNav = () => {
     <div style={{
       backgroundImage: "url('/assets/img/dashboard_nav_bg.svg')",
     }}  className="bg-cover bg-center bg-no-repeat w-full h-[94px] bg-white flex items-center px-[38px]">
-      <div className="ml-[336px] flex justify-between w-full">
+      <div className="ml-[190px] 2xl:ml-[336px] flex justify-between w-full">
         <div className="flex items-center gap-x-[16px]">
           <div
             className={cn(

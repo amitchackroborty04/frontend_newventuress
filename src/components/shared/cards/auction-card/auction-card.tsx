@@ -96,8 +96,8 @@ export default function AuctionCard({ isExpired, index }: Props) {
             handleWishlistToggle();
           }}
           className={`flex gap-2.5 justify-center items-center px-2 bg-white rounded-full   ${isWishlist
-              ? " border-none text-white bg-primary"
-              : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white"
+              ? " border-none text-white bg-primary dark:bg-pinkGradient"
+              : "  text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white"
             }  min-h-[32px] w-[32px]`}
           aria-label="Add to wishlist"
         // className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-primary-green rounded-[30px] transition-colors duration-300 group"

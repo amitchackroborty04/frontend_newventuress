@@ -9,9 +9,9 @@ import { Flame, Heart, Minus, Plus, RefreshCw } from "lucide-react";
 import { useRef, useState } from "react";
 import { ProductImageGallery } from "./ProductImageGallery";
 import { ReviewForm } from "./ReviewForm";
-import { SizeSelector } from "./SizeSelector";
+
 import { StarRating } from "./StarRating";
-import { ProductData, SizeOption } from "./types";
+import { ProductData,  } from "./types";
 import { useQuery } from "@tanstack/react-query";
 import ErrorContainer from "@/components/ui/error-container";
 
@@ -78,23 +78,15 @@ const fetchProducts = async () => {
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
-  const [sizes, setSizes] = useState<SizeOption[]>(productData.sizes);
+  
   const [isWishlist, setIsWishlist] = useState(false);
 
-  //animation
-  // const descriptionRef = useRef(null);
+
+
   const relatedItemsRef = useRef(null);
   const reviewSectionRef = useRef(null);
 
-  // Scroll progress for Description Section
-  // const { scrollYProgress: descriptionScrollY } = useScroll({
-  //   target: descriptionRef,
-  //   offset: ["0 1", "1.33 1"],
-  // });
-  // const descriptionScale = useTransform(descriptionScrollY, [0, 1], [0.8, 1]);
-  // const descriptionOpacity = useTransform(descriptionScrollY, [0, 1], [0.6, 1]);
-
-  // Scroll progress for Related Items Section
+ 
   const { scrollYProgress: relatedItemsScrollY } = useScroll({
     target: relatedItemsRef,
     offset: ["0 1", "1.33 1"],
@@ -126,14 +118,7 @@ const ProductDetails = () => {
     setQuantity((prev) => (increment ? prev + 1 : Math.max(1, prev - 1)));
   };
 
-  const handleSizeSelect = (sizeValue: string) => {
-    const updatedSizes = sizes.map((size) => ({
-      ...size,
-      isSelected: size.value === sizeValue, // Mark only the selected size
-    }));
-    setSizes(updatedSizes); // Update sizes state
-    // setSelectedSize(sizeValue); // Update selected size
-  };
+
   const handleWishlistToggle = () => {
     setIsWishlist((prev) => !prev); // Toggle wishlist state
   };
@@ -166,7 +151,7 @@ const ProductDetails = () => {
             <div className="flex w-[30%] min-w-[240px] shrink grow flex-col justify-center">
               <div className="flex max-w-full flex-col">
                 <div className="flex w-full flex-col">
-                  <div className="text-gradient text-4xl font-semibold leading-tight">
+                  <div className="text-gradient dark:text-gradient-pink text-4xl font-semibold leading-tight">
                     {productData.title}
                   </div>
                   <div className="mt-2 flex w-full flex-col items-start">
@@ -206,21 +191,21 @@ const ProductDetails = () => {
                         alt="store name"
                       />
                     </Avatar>
-                    <div className="text-gradient">{productData.store}</div>
+                    <div className="text-gradient dark:text-gradient-pink">{productData.store}</div>
                   </div>
                 </div>
                 <div className="mt-5 h-[1px] w-full border border-solid border-b-stone-700" />
                 <div className="mt-6 flex w-full flex-col">
                   {/* Size Selector */}
-                  <SizeSelector sizes={sizes} onSelect={handleSizeSelect} />
+                  
                   <div className="mt-4 flex w-full items-start gap-4">
-                    <div className="flex h-10 w-[163px] items-center gap-2.5 rounded-3xl bg-white px-2.5 shadow-[-4px_-4px_8px_rgba(0,0,0,0.05)]">
+                    <div className="flex h-10 w-[163px] items-center gap-2.5 rounded-3xl bg-white px-2.5 shadow-[-4px_-4px_8px_rgba(0,0,0,0.05)] dark:shadow-">
                       <button
                         onClick={() => handleQuantityChange(false)}
                         className="my-auto flex min-h-[41px] w-[41px] items-center gap-2.5 self-stretch rounded-lg px-2 py-2.5"
                         aria-label="Decrease quantity"
                       >
-                        <Minus />
+                        <Minus color="#444444" />
                       </button>
                       <div className="my-auto min-h-[41px] w-[41px] self-stretch whitespace-nowrap px-2.5 py-2.5 text-center text-xl leading-tight text-[#444444]">
                         {quantity}
@@ -230,7 +215,7 @@ const ProductDetails = () => {
                         className="my-auto flex min-h-[41px] w-[41px] items-center gap-2.5 self-stretch rounded-lg px-2 py-2.5"
                         aria-label="Increase quantity"
                       >
-                        <Plus />
+                        <Plus color="#444444" />
                       </button>
                     </div>
                     {/* wishlist----------------- */}
@@ -243,7 +228,7 @@ const ProductDetails = () => {
                       } h-[42px] min-h-[41px] w-[43px]`}
                       aria-label="Add to wishlist"
                     >
-                      <Heart fill={isWishlist ? "red" : "none"} />
+                      <Heart className="text-[#444444]/20" fill={isWishlist ? "red" : "none"} />
                     </button>
                   </div>
                   <div className="mt-4 flex w-full items-center gap-8 text-base leading-tight">
@@ -252,16 +237,16 @@ const ProductDetails = () => {
                     </Button>
                     <Button
                       variant={"outline"}
-                      className="my-auto min-h-[43px] w-[170px] gap-2.5 self-stretch"
+                      className="my-auto min-h-[43px] w-[170px] gap-2.5 self-stretch dark:bg-white dark:text-gradient-pink dark:border-[#6841A5] dark:hover:text-transparent dark:hover:bg-red-300"
                     >
                       Buy Now
                     </Button>
                   </div>
                 </div>
               </div>
-              <div className="mt-12 flex h-[42px] w-full items-center gap-2 overflow-hidden rounded-lg border border-solid border-slate-400 max-md:mt-10">
+              <div className="mt-12 flex h-[42px] w-full items-center gap-2 overflow-hidden rounded-lg border border-solid border-slate-400 dark:border-[#6841A5] max-md:mt-10">
                 <div className="my-auto flex min-h-[41px] w-[43px] items-center justify-center gap-2.5 self-stretch rounded-lg px-2 py-2.5">
-                  <RefreshCw />
+                  <RefreshCw color="#444444"/>
                 </div>
                 <div className="my-auto self-stretch text-base leading-tight text-black">
                   No return Policy
@@ -270,7 +255,7 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="mt-10 flex w-full flex-col items-center text-center max-md:max-w-full">
-            <div className="text-gradient text-2xl font-semibold leading-tight max-md:max-w-full">
+            <div className="text-gradient dark:text-gradient-pink text-2xl font-semibold leading-tight max-md:max-w-full">
               Description
             </div>
             <div className="mt-5 text-base leading-5 text-neutral-700 max-md:max-w-full">
@@ -288,7 +273,7 @@ const ProductDetails = () => {
           opacity: relatedItemsOpacity,
         }}
       >
-        <h1 className="text-gradient text-[28px] font-semibold leading-[33.6px]">
+        <h1 className="text-gradient dark:text-gradient-pink text-[28px] font-semibold leading-[33.6px]">
           Explore related Items
         </h1>
         <div className="mt-[24px] grid grid-cols-1 gap-[30px] md:grid-cols-3 lg:grid-cols-4">
@@ -305,7 +290,7 @@ const ProductDetails = () => {
           opacity: reviewSectionOpacity,
         }}
       >
-        <h2 className="text-gradient mt-[50px] text-center text-[25px] font-[600]">
+        <h2 className="text-gradient dark:text-gradient-pink mt-[50px] text-center text-[25px] font-[600]">
           Review
         </h2>
         <div>

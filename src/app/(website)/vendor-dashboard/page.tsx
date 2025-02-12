@@ -8,7 +8,7 @@ import OngoinContainer from "@/components/OngoinOderStatus/OngoinContainer";
 
 const Page = () => {
   return (
-    <div className="w-full px-5 ">
+    <div className="w-full ">
       {/* Profile Completion Section */}
       <ProfileCompletion />
 

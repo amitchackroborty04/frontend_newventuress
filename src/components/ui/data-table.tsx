@@ -30,11 +30,11 @@ export function DataTable<TData, TValue>({
   titleClass,
 }: DataTableProps<TData, TValue>) {
   return (
-    <div className="rounded-[24px] bg-white dark:bg-[482D721A] pt-[32px]">
+    <div className="rounded-[24px] bg-white dark:bg-[482D721A] px-[16px] pt-[24px]">
       <div
         className={cn(
           titleClass,
-          "mx-[32px] flex h-[78px] items-center rounded-t-[24px] bg-primary dark:bg-pinkGradient px-4 py-3 text-[32px] text-white pl-[32px]",
+          "flex h-[78px] items-center rounded-t-[24px] bg-primary dark:bg-pinkGradient px-4 py-3 text-[25px] 2xl:text-[32px] text-white pl-[32px] mx-[12px]",
         )}
       >
         {title}
@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                className="text-center"
+                className="text-center "
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
