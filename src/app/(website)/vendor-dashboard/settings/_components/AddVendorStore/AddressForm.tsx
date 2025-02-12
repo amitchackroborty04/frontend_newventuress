@@ -67,7 +67,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Name</FormLabel>
                   <FormControl>
-                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -80,7 +80,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Address</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Textarea {...field} className="h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -93,7 +93,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Country</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Textarea {...field} className="h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -106,7 +106,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Province</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Textarea {...field} className="h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -124,7 +124,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Name</FormLabel>
                   <FormControl>
-                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -137,7 +137,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Address</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Textarea {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -150,7 +150,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Country</FormLabel>
                   <FormControl>
-                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}
@@ -163,7 +163,7 @@ export default function AddressForm() {
                 <FormItem>
                   <FormLabel className="text-base text-[#444444] font-medium">Province</FormLabel>
                   <FormControl>
-                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black" />
+                    <Input {...field} className="!h-[51px] border-[#9E9E9E] dark:border-[#9E9E9E] text-black dark:!text-black" />
                   </FormControl>
                 </FormItem>
               )}

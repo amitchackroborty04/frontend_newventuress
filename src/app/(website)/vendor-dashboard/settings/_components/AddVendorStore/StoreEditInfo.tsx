@@ -82,11 +82,9 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()} >
       
         <DialogContent
-          className="max-w-[1350px]  dark:bg-white dark:border-none"
+          className="max-w-[1350px]  dark:bg-white dark:!border-none p-0"
           style={{ boxShadow: "0px 0px 22px 8px #C1C9E4" }}
         >
-    <div className="">
-      <div className="">
       <div
         className={
           "bg-primary dark:bg-pinkGradient pl-[30px] py-3 mb- rounded-t-lg text-white text-[32px] leading-[38px] font-semibold h-[78px] flex items-center "
@@ -94,7 +92,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
       >
        Edit Store Info
       </div>
-        <ScrollArea className="h-[750px] px-4">
+        <ScrollArea className="h-[650px] p-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid lg:grid-cols-2 gap-8 ">
@@ -108,7 +106,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                       <FormItem>
                         <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]" >Store Name  <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black" />
+                          <Input {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:!text-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -122,7 +120,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                       <FormItem>
                         <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]" >Store Name  <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black" />
+                          <Input {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:!text-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -136,7 +134,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                       <FormItem>
                         <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Email  <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input type="email" {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black"/>
+                          <Input type="email" {...field} className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:!text-black"/>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -150,7 +148,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                       <FormItem>
                         <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">Store Phone Number <span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input type="tel" {...field}  className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black"/>
+                          <Input type="tel" {...field}  className="h-[51px] dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:!text-black"/>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -201,7 +199,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                       <FormItem>
                         <FormLabel className="text-base text-[#444444] dark:text-[#444444] text-normal leading-[19.2px]">License Number</FormLabel>
                         <FormControl className="h-[51px]">
-                          <Input {...field} placeholder="write here..." className="dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:text-black" />
+                          <Input {...field} placeholder="write here..." className="dark:border dark:border-[#B0B0B0] dark:placeholder:text-[#3D3D3D] dark:!text-black" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -222,13 +220,15 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                               <Image
                                 src={logoPreview || "/placeholder.svg"}
                                 alt="Store logo preview"
+                                width={100}
+                                height={100}
                                 className="max-w-full h-auto rounded"
                               />
                               <Button
                                 type="button"
                                 variant="destructive"
                                 size="icon"
-                                className="absolute top-2 right-2"
+                                className="absolute top-2 right-2 dark:bg-pinkGradient"
                                 onClick={() => removeImage("logo")}
                               >
                                 <X className="h-4 w-4" />
@@ -280,13 +280,15 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                               <Image
                                 src={bannerPreview || "/placeholder.svg"}
                                 alt="Store banner preview"
+                                width={100}
+                                height={100}
                                 className="max-w-full h-auto rounded"
                               />
                               <Button
                                 type="button"
                                 variant="destructive"
                                 size="icon"
-                                className="absolute top-2 right-2"
+                                className="absolute top-2 right-2 dark:bg-pinkGradient"
                                 onClick={() => removeImage("banner")}
                               >
                                 <X className="h-4 w-4" />
@@ -318,7 +320,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end pb-[56px]">
+              <div className="flex justify-end ">
               <Button type="submit" className=" py-[12px] px-[100px]  ">
                 Submit
               </Button>
@@ -327,8 +329,6 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
             </form>
           </Form>
         </ScrollArea>
-      </div>
-    </div>
     </DialogContent>
     </Dialog>
   )

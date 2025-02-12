@@ -30,7 +30,7 @@ export default function DashboardOverview() {
   ]
 
   return (
-    <div className="flex   gap-[30px]">
+    <div className="flex gap-[20px]  2xl:gap-[30px]">
       {metrics.map((metric) => (
         <OverViewCard 
         key={metric.title}

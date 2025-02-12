@@ -114,45 +114,19 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
   {
     id: "actions", // Unique ID for the actions column
     header: "Actions", // Column header
-    cell: ({ row }) => {
-      const handleEdit = () => {
-        console.log("Edit clicked for row:", row.original);
-        // Add logic to open a form or modal for editing
-      };
-
-      const handleDelete = () => {
-        console.log("Delete clicked for row:", row.original);
-        // Add logic to confirm and delete the row
-      };
-
+    cell: () => {
       return (
         <div className="py-[41px] flex items-center justify-center">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0  dark:hover:bg-[#482D721A]"
-              >
-                <MoreHorizontal className="h-4 w-4 dark:text-black" />
+              <Button variant="ghost" className="h-8 w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#6841A5] dark:hover:bg-[#482D721A]">
+                <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="start"
-              className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D] cursor-pointer z-20"
-            >
-              <DropdownMenuItem
-                onClick={handleEdit}
-                className="p-[8px] text-primary dark:text-[#444444] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-t-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-              >
-                
-                Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={handleDelete}
-                className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-              >
-                Delete
-              </DropdownMenuItem>
+            <DropdownMenuContent align="end" className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D] ">
+              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:!text-[#6841A5] rounded-t-[8px]">Edit</DropdownMenuItem>
+              <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:!text-[#6841A5]">Details</DropdownMenuItem>
+              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer" >Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

@@ -89,7 +89,7 @@ export const MediaColumns: ColumnDef<NotificationDataType>[] = [
       return (
         <div className="text-right py-[49px] flex justify-center ">
           <DropdownMenu>
-            <DropdownMenuTrigger className=" w-8 p-0  ">
+            <DropdownMenuTrigger className=" w-8 p-0 focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0">
               <span className="sr-only">Open menu</span>
               <div className="">
                 <MoreHorizontal className="h-4 w-4  dark:text-black " />

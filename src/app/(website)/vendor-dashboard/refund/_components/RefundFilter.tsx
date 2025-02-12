@@ -1,6 +1,7 @@
 
 "use client";
 
+import { Button } from "@/components/ui/button";
 import PacificDropdownSelector from "@/components/ui/PacificDropdownSelector";
 import { useState } from "react";
 
@@ -75,7 +76,7 @@ function RefundFilter() {
         </div>
       </div>
       <div>
-        <button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">Bulk Delete</button>
+        <Button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">Bulk Delete</Button>
       </div>
     </div>
   )
