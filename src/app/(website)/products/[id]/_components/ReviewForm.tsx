@@ -24,7 +24,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = () => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 rounded-lg w-full"
     >
-      <h2 className="text-lg font-semibold text-gradient">Add a review</h2>
+      <h2 className="text-lg font-semibold text-gradient dark:text-gradient-pink">Add a review</h2>
 
       <div className="flex gap-2">
         <label htmlFor="rating" className="text-base text-neutral-700">
@@ -43,7 +43,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = () => {
           id="review"
           value={review}
           onChange={(e) => setReview(e.target.value)}
-          className="p-3 border rounded-lg min-h-[120px] border-neutral-300 focus:border-green-600 focus:ring-green-600"
+          className="p-3 border rounded-lg min-h-[120px] border-neutral-300 focus:border-green-600 focus:ring-green-600 dark:bg-white text-black"
           placeholder="Write your review"
           required
           aria-required="true"

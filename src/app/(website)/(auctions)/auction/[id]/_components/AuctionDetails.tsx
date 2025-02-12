@@ -149,7 +149,7 @@ const AuctionDetails = () => {
             <div className="flex flex-col grow shrink justify-center min-w-[240px] w-[30%]">
               <div className="flex flex-col max-w-full">
                 <div className="flex flex-col w-full">
-                  <div className="text-4xl font-semibold leading-tight text-gradient">
+                  <div className="text-4xl font-semibold leading-tight text-gradient  dark:text-gradient-pink ">
                     {productData.title}
                   </div>
                   <div className="flex flex-col items-start mt-2 w-full">
