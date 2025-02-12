@@ -187,6 +187,8 @@ export default function PolicySupportForm() {
                           <Image
                             src={supportPreview2 || "/placeholder.svg"}
                             alt="Support Preview 2"
+                            width={100}
+                            height={80}
                             className="mx-auto w-32 h-32 object-cover rounded-md"
                           />
                           <button

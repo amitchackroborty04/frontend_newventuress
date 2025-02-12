@@ -91,7 +91,7 @@ const AddAuctionForm: React.FC = () => {
                         <Input
                           placeholder=""
                           type=""
-                          className="py-6 border-[1px] border-[#B0B0B0] text-black text-[16px]"
+                          className="py-6 border-[1px] border-[#B0B0B0] dark:!text-black text-[16px]"
                           {...field}
                         />
                       </FormControl>
@@ -111,7 +111,7 @@ const AddAuctionForm: React.FC = () => {
                       <FormControl>
                         <Textarea
                           placeholder="Type Description Here"
-                          className="py-3 resize-none border-[#9E9E9E]"
+                          className="py-3 resize-none border-[#9E9E9E] dark:!text-black "
                           rows={3}
                           {...field}
                         />
@@ -172,7 +172,7 @@ const AddAuctionForm: React.FC = () => {
                       </FormLabel>
                       <FormControl>
                         <Input
-                          className="py-6 border-[1px] border-[#B0B0B0] text-black text-[16px]"
+                          className="py-6 border-[1px] border-[#B0B0B0] text-black text-[16px] dark:!text-black "
                           type=""
                           {...field}
                         />
@@ -198,7 +198,7 @@ const AddAuctionForm: React.FC = () => {
                           <Input
                             placeholder="0.00"
                             type="number"
-                            className="flex-1 shrink gap-2 self-stretch py-3 pr-5 pl-4 my-auto text-base leading-snug rounded-lg min-w-[240px] border-none h-[50px] dark:text-black"
+                            className="flex-1 shrink gap-2 self-stretch py-3 pr-5 pl-4 my-auto text-base leading-snug rounded-lg min-w-[240px] border-none h-[50px] dark:!text-black"
                             {...field}
                           />
                         </FormControl>
@@ -269,7 +269,7 @@ const AddAuctionForm: React.FC = () => {
                             <Input
                               placeholder="Fox-0369"
                               type="text"
-                              className="h-[51px] border-[#9C9C9C]"
+                              className="h-[51px] border-[#9C9C9C] dark:!text-black "
                               {...field}
                             />
                           </FormControl>
@@ -292,7 +292,7 @@ const AddAuctionForm: React.FC = () => {
                             <Input
                               placeholder="123"
                               type="number"
-                              className="h-[51px] border-[#9C9C9C]"
+                              className="h-[51px] border-[#9C9C9C] dark:!text-black "
                               {...field}
                             />
                           </FormControl>

@@ -108,19 +108,7 @@ export default function AuctionCard({ isExpired, index }: Props) {
       <div className="flex z-0 flex-col mt-2 w-full">
         <div className="flex flex-col w-full">
           <div className="flex gap-10 justify-between items-center w-full">
-            {/* <div className="flex gap-2 items-center self-stretch my-auto text-xs leading-tight text-[#E10E0E] whitespace-nowrap">
-              <div className="flex gap-1 items-center self-stretch my-auto">
-                <Image
-                  loading="lazy"
-                  width={9}
-                  height={9}
-                  src="/assets/svg/hot.svg"
-                  alt="hot icon"
-                  className="object-contain shrink-0 self-stretch my-auto aspect-[0.75] fill-[#E10E0E] w-[9px]"
-                />
-                <div className="self-stretch my-auto text-[#E10E0E]">Hot</div>
-              </div>
-            </div> */}
+           
             <div>
               <p className="text-xs font-medium leading-[14px] text-[#9C9C9C]">8 Views</p>
             </div>

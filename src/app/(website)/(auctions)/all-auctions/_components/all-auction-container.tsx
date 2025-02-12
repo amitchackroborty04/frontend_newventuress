@@ -26,7 +26,7 @@ const AllAuctionsContainer = () => {
         <PacificPagination
           currentPage={currentPage}
           onPageChange={(page) => setCurrentPage(page)}
-          totalPages={10}
+          totalPages={7 }
         />
       </div>
     </div>

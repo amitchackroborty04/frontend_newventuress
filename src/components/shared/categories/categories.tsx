@@ -65,7 +65,7 @@ function Categories() {
           >
             <DropdownMenuContent
               align="start"
-              className="w-[180px] rounded-lg p-0 font-medium leading-[24px] text-black mt-[30px] lg:mt-[10px] overflow-hidden bg-white dark:border-none"
+              className="w-[180px] rounded-lg p-0 font-medium leading-[24px] text-black mt-[10px] lg:mt-[10px] overflow-hidden bg-white dark:border-none"
             >
               {categories.map((item, index) =>
                 <motion.div

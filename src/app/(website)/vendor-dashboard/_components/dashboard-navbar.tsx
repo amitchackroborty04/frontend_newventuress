@@ -50,7 +50,7 @@ const SearchButton = () => {
           <Input
             type="search"
             placeholder="Search"
-            className="pl-8 rounded-[6px]  lg:h-full border-[1px] border-[#4857BD] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-[15px] leading-[21px] placeholder:text-gradient"
+            className="pl-8 rounded-[6px]  lg:h-full border-[1px] border-[#4857BD] focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-[15px] leading-[21px] placeholder:text-gradient dark:!text-black"
           />
         </div>
         <Button className="absolute right-0 top-0 mt-[4px] lg:mt-[0] h-[36px]  lg:h-full rounded-l-none text-sm font-semibold leading-[17px]">

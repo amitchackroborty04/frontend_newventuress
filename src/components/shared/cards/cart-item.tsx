@@ -42,12 +42,12 @@ export function CartItemCard({
               handleWishlistToggle();
             }}
             className={`absolute top-2 right-2 flex gap-2.5 justify-center items-center px-2 bg-white rounded-full ${isWishlist
-              ? " border-none text-white bg-primary dark:bg-pinkGradient"
-              : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white dark:hover:text-white dark:!text-[#ffffff]"
+              ? " border-none text-white bg-primary dark:bg-pinkGradient  "
+              : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white dark:hover:!text-white "
               }  min-h-[32px] w-[32px]`}
             aria-label="Add to wishlist"
           >
-            <Heart className="group-hover:fill-white hover:border-0 w-4 h-4 dark:text-black dark:hover:text-white" />
+            <Heart className={`"group-hover:fill-white hover:border-0 w-4 h-4 dark:text-black dark:hover:!text-white ${isWishlist ? "!text-white" : ""}`} />
           </button>
         </div>
         <div className="flex-1 space-y-1 pt-2 flex flex-col justify-evenly">
@@ -78,7 +78,7 @@ export function CartItemCard({
           {/* shadow-[-4px_-4px_8px_0px_#0000000D] */}
           <div className=" flex items-center justify-between gap-4 mt-[8px]">
             {/* quantity buttons */}
-            <div className="w-[163px] h-[32px] flex justify-between items-center px-[24px] bg-white border border-white rounded-[24px] shadow-[0px_28px_20px_0px_#0000000D] ">
+            <div className="w-[163px] h-[32px] flex justify-between items-center px-[24px] bg-white border border-white rounded-[24px] shadow-[28px_28px_20px_28px_#0000000D]  ">
               <button
                 onClick={() =>
                   onUpdateQuantity(item.id, Math.max(0, item.quantity - 1))
