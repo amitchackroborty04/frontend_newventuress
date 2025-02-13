@@ -66,7 +66,7 @@ const ContactForm: React.FC = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Full Name*" {...field} className="w-full h-[51px] p-[16px] text-black text-[16px] bg-white border-[#0057A8] dark:border dark:border-[#6841A5] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                  <Input placeholder="Full Name*" {...field} className="w-full h-[51px] p-[16px] text-black text-[16px] bg-white border-[#0057A8] dark:border dark:border-[#6841A5] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email Address*" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white dark:border dark:border-[#6841A5] border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Input placeholder="Email Address*" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white dark:border dark:border-[#6841A5] border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,7 +97,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Subject" {...field} className="w-full h-[51px] p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Input placeholder="Subject" {...field} className="w-full h-[51px] p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,7 +113,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea placeholder="Ask your Queries*" {...field} className="w-full p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] h-[170px] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Textarea placeholder="Ask your Queries*" {...field} className="w-full p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] h-[170px] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

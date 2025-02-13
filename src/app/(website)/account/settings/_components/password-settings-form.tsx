@@ -60,7 +60,7 @@ export default function PasswordSettingsForm() {
                   placeholder="Enter your new password"
                   type="text"
                   {...field}
-                  className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                  className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                 />
               </FormControl>
 
@@ -82,7 +82,7 @@ export default function PasswordSettingsForm() {
                   <PasswordInput
                     placeholder="Enter your new password"
                     {...field}
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                   />
                 </FormControl>
 
@@ -103,7 +103,7 @@ export default function PasswordSettingsForm() {
                   <PasswordInput
                     placeholder="Enter your confirm new password"
                     {...field}
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                   />
                 </FormControl>
 

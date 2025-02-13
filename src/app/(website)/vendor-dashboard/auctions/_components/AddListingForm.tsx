@@ -87,7 +87,7 @@ export function AddListingForm() {
                       Title <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:text-black " />
+                      <Input {...field} className="h-[51px] border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:!text-black " />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -104,7 +104,7 @@ export function AddListingForm() {
                       <Textarea
                         placeholder="Type Description here"
                         {...field}
-                        className=" border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]"
+                        className=" border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:!text-black"
                         rows={3}
                       />
                     </FormControl>
@@ -123,7 +123,7 @@ export function AddListingForm() {
                       <Textarea
                         placeholder="Type Description here"
                         {...field}
-                        className=" border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0]"
+                        className=" border-[1px] border-[#B0B0B0] dark:border-[#B0B0B0] dark:!text-black"
                         rows={3}
                       />
                     </FormControl>

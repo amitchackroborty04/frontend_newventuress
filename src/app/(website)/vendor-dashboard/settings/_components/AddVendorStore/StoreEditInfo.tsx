@@ -52,7 +52,10 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+     console.log("Form Data:", values);
+  console.log("Logo Image Path:", logoPreview);
+  console.log("Banner Image Path:", bannerPreview);
+   
   }
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "banner") => {
