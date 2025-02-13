@@ -15,7 +15,7 @@ interface Props {
   loggedin: boolean;
 }
 
-function Navbar({ loggedin }: Props) {
+function Navbar({  }: Props) {
   const pathName = usePathname();
 
   return (
