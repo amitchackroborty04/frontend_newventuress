@@ -32,7 +32,7 @@ const productData: ProductData = {
   images: [
     { src: "/assets/img/prodDetails.png", alt: "Product thumbnail 1" },
     { src: "/assets/img/prodDetails.png", alt: "Product thumbnail 2" },
-    { src: "/assets/img/prodDetails.png", alt: "Product thumbnail 3" },
+    { src: "/assets/img/orderProduct.png", alt: "Product thumbnail 3" },
   ],
   mainImage: { src: "/assets/img/prodDetails.png", alt: "Product main image" },
 };
@@ -92,11 +92,7 @@ const ProductDetails = () => {
     offset: ["0 1", "1.33 1"],
   });
   const relatedItemsScale = useTransform(relatedItemsScrollY, [0, 1], [0.8, 1]);
-  const relatedItemsOpacity = useTransform(
-    relatedItemsScrollY,
-    [0, 1],
-    [0.6, 1],
-  );
+  
 
   // Scroll progress for Review Section
   const { scrollYProgress: reviewSectionScrollY } = useScroll({
@@ -139,7 +135,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div>
+    <div >
       <SectionHeading heading={"Our products"} subheading={""} />
       <section className="flex items-center justify-center px-4 pt-10">
         <div className="flex w-full max-w-[1200px] flex-col">
@@ -254,11 +250,11 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex w-full flex-col items-center text-center max-md:max-w-full">
+          <div className="mt-10 flex w-full flex-col items-center text-center ">
             <div className="text-gradient dark:text-gradient-pink text-2xl font-semibold leading-tight max-md:max-w-full">
               Description
             </div>
-            <div className="mt-5 text-base leading-5 text-neutral-700 max-md:max-w-full">
+            <div className="mt-5 text-base leading-5 text-[#444444] max-md:max-w-full">
               {productData.description}
             </div>
           </div>
@@ -266,31 +262,31 @@ const ProductDetails = () => {
       </section>
 
       <motion.section
-        className="container my-[80px]"
+        className="container   md:my-[80px]"
         ref={relatedItemsRef}
         style={{
           scale: relatedItemsScale,
-          opacity: relatedItemsOpacity,
+       
         }}
       >
         <h1 className="text-gradient dark:text-gradient-pink text-[28px] font-semibold leading-[33.6px]">
           Explore related Items
         </h1>
-        <div className="mt-[24px] grid grid-cols-1 gap-[30px] md:grid-cols-3 lg:grid-cols-4">
+        <div className=" mt-[24px] grid grid-cols-1 gap-[30px] md:grid-cols-3 lg:grid-cols-4 ">
           {products.slice(0, 4).map((product: any) => (
             <FeaturedProductCard key={product._id} product={product} />
           ))}
         </div>
       </motion.section>
       <motion.div
-        className="container mb-[50px]"
+        className="container "
         ref={reviewSectionRef}
         style={{
           scale: reviewSectionScale,
           opacity: reviewSectionOpacity,
         }}
       >
-        <h2 className="text-gradient dark:text-gradient-pink mt-[50px] text-center text-[25px] font-[600]">
+        <h2 className="text-gradient dark:text-gradient-pink mt-0 md:mt-[50px] text-center text-[25px] font-[600]">
           Review
         </h2>
         <div>

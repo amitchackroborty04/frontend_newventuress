@@ -72,7 +72,7 @@ const OrderHistory = () => {
             <ButtonArrow text=" Explore More" href="/"/>
           </div>
           <table className="w-full ">
-            <thead className="bg-gray-100 ">
+            <thead className="bg-gray-100  dark:bg-[#482D721A]">
               <tr className="">
                 <th className="px-6 py-4 text-left text-[16px] font-medium text-[#444444]">
                   Order Id{" "}
