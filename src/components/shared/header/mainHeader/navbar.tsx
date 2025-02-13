@@ -31,10 +31,10 @@ function Navbar({ loggedin }: Props) {
     >
       <header className={cn("bg-white", pathName !== "/" && "")}>
         <div className="lg:hidden">
-          <MobileTabletNavbar loggedin={loggedin} />
+          <MobileTabletNavbar loggedin={true} />
         </div>
         <div className="hidden lg:block">
-          <DesktopNavbar pathName={pathName} loggedin={loggedin} />
+          <DesktopNavbar pathName={pathName} loggedin={true} />
         </div>
       </header>
     </Hideon>

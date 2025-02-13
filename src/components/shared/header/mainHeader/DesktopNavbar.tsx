@@ -43,6 +43,12 @@ const Navicons = [
     alt: "user-icon",
     srOnlyText: "View account",
   },
+  {
+    href: "/rewards",
+    src: "/assets/svg/gift.svg",
+    alt: "rewards",
+    srOnlyText: "View rewards",
+  }
 ];
 
 function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
