@@ -25,6 +25,19 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.monirhrabby.info",
       },
+      {
+        protocol: "https",
+        hostname: "s3-alpha-sig.figma.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media-cldnry.s-nbcnews.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co.com",
+      },
+
     ],
   },
 };

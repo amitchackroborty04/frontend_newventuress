@@ -1,5 +1,11 @@
+import AuctionMainSection from "./_components/AuctionMainSection";
+
 const Page = () => {
-  return <div>Auction Listing page</div>;
+  return (
+    <div className="space-y-[30px]">
+      <AuctionMainSection/>
+    </div>
+  );
 };
 
 export default Page;

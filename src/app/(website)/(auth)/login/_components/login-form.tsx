@@ -10,7 +10,10 @@ import { z } from "zod";
 
 // Local imports
 
-import { SignInWithEmailAndPassword } from "@/actions/authentications/authentication";
+import {
+  ServerResType,
+  SignInWithEmailAndPassword,
+} from "@/actions/authentications/authentication";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -22,9 +25,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
-const loginSchema = z.object({
+export const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters long"),
   agreed: z
@@ -36,6 +40,9 @@ export type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
   const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
+  const callback = useSearchParams().get("callback") || "/"
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -49,15 +56,26 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormValues) => {
     startTransition(() => {
       SignInWithEmailAndPassword(data)
-        .then((res: any) => {
+        .then((res: ServerResType) => {
+          console.log(res);
           if (res.success) {
             toast.success("Login successfull 🎉", {
               position: "bottom-right",
               richColors: true,
             });
+
+            router.push(callback);
+
+            router.refresh();
+          } else {
+            toast.error(res.message, {
+              position: "top-center",
+              richColors: true,
+            });
           }
         })
         .catch((err) => {
+          console.log(err.message);
           toast.error(err.message, {
             position: "bottom-right",
             richColors: true,

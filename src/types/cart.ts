@@ -6,9 +6,10 @@ export interface CartItem {
     image: string
     quantity: number
     rating: number
-    isHot?: boolean
-    icon: "heart",
-    views?: number
+    stock : string
+    // isHot?: boolean
+    // icon: "heart",
+    // views?: number
   }
   
   export interface CartState {

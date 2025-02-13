@@ -43,6 +43,12 @@ const Navicons = [
     alt: "user-icon",
     srOnlyText: "View account",
   },
+  {
+    href: "/rewards",
+    src: "/assets/svg/gift.svg",
+    alt: "rewards",
+    srOnlyText: "View rewards",
+  }
 ];
 
 function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
@@ -67,8 +73,8 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         <Link
           href="/"
           className={cn(
-            "text-[20px] font-medium hover:text-gradient",
-            pathName === "/" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "/" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           Home
@@ -76,8 +82,8 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         <Link
           href="/about"
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "/about" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "/about" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           About
@@ -85,9 +91,9 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         <Link
           href=""
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
             pathName === "/products"
-              ? "text-gradient"
+              ? "text-primary-blue-main dark:text-primary-pink-main"
               : "text-black font-normal"
           )}
         >
@@ -96,8 +102,8 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         <Link
           href="/blogs"
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "/blogs" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "/blogs" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           Blog
@@ -105,8 +111,8 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         <Link
           href=""
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           <PagesList />
@@ -114,8 +120,8 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         <Link
           href="/contact"
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "/contact" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "/contact" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           Contact
@@ -124,7 +130,7 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
       <div>
         {!loggedin ? (
           <div className="hidden lg:flex lg:flex-1 gap-x-[20px] lg:justify-end">
-            <Button variant="outline" asChild size="md">
+            <Button variant="outline" asChild size="md" className="dark:bg-white dark:hover:bg-[#482D721A] dark:text-black dark:border dark:border-[#6741a521] dark:shadow">
               <Link href="/login">Log in</Link>
             </Button>
             <Button size="md" asChild>

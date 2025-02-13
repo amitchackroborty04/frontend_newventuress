@@ -20,7 +20,7 @@ const footerLinks = [
       { label: "Contact", href: "/contact" },
       { label: "Privacy Policy", href: "/privacyPolicy" },
       { label: "Terms and Conditions", href: "/term-and-conditions" },
-      { label: "FAQs", href: "/faqs" },
+      { label: "FAQs", href: "/faq" },
     ],
   },
   {
@@ -40,7 +40,7 @@ const Footer = () => {
       <footer className="bg-[#101218] text-white pt-12 lg:pt-20 pb-12">
         <div className="container mx-auto px-4">
           {/* Footer Content Layout */}
-          <div className="grid grid-cols-4 gap-4 lg:gap-x-24">
+          <div className="grid grid-cols-4 gap-6 lg:gap-x-24">
             {/* Logo Column */}
             <div className="flex flex-col items-center col-span-4 lg:col-span-1">
               <Link href="/" aria-label="Go to homepage">

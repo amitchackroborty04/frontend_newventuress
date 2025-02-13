@@ -9,7 +9,19 @@ export default async function AccountLayout({
 }) {
   return (
     <div>
-      <PageHeader title="Account" items={[]} />
+      <PageHeader
+            title="Your Account"
+            items={[
+              {
+              label: "Home",
+              href: "/",
+            },
+            {
+            label: "Account>Dashboard",
+            href: "/acount",
+          },
+        ]}
+      />
       <div className="my-[80px] container mx-auto flex flex-col md:flex-row gap-6">
         {/* Sidebar */}
         <aside className=" md:w-[270px] h-auto">

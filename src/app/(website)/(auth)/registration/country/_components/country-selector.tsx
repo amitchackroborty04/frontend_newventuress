@@ -25,6 +25,7 @@ const colorScale = ["#C8EEFF", "#0071A4", "#008000"]; // Green for selected coun
 
 function CountrySelector() {
   const [loading, setLoading] = useState<true | false>(false);
+
   const [regionColors, setRegionColors] = useState({
     US: 100, // Green for United States
     CA: 100, // Green for Canada
@@ -38,9 +39,10 @@ function CountrySelector() {
   const router = useRouter();
 
   const [mapPaths, setMapPaths] = useState(null);
+ 
   const authState = useAppSelector((state) => state.auth);
 
-  const businesses = authState.businesses;
+  const businesses = authState.businessInfo;
 
   // check if prev form value not found
   const { profession } = authState;
@@ -48,7 +50,7 @@ function CountrySelector() {
   // if prev state value not found then start from first
 
   if (profession.length == 0) {
-    redirect("/registration");
+    router.push("/registration");
   }
 
   // Dynamically set the map paths after the component has mounted
@@ -85,9 +87,12 @@ function CountrySelector() {
         ...businesses,
         {
           country: countryName,
-          province: "",
-          businessLicense: "",
-          resellerLicense: "",
+          state: "",
+          license: {
+            metrcLicense: [""],
+            cannabisLicense: [""],
+            businessLicense: [""]
+          }
         },
       ])
     );
@@ -97,8 +102,18 @@ function CountrySelector() {
         ? `/registration/country/${countryName}`
         : `/registration/country/${countryName}/business_information`;
 
+    console.log("redirectUrl", redirectUrl);
+
     router.push(redirectUrl);
   }
+
+
+
+
+
+  
+  
+  
 
   function handleRegionTipShow(event, label, code) {
     const countryName = countries[code] || "Unknown Country";

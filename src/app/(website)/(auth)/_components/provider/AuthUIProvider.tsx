@@ -66,7 +66,7 @@ const AuthUIProvider = async ({
                   src={sidebarImage}
                   alt="CBD Products"
                   fill
-                  className="object-cover rounded-[16px]"
+                  className="object-cover object-center rounded-[16px]"
                   placeholder="blur"
                   blurDataURL={base64}
                 />

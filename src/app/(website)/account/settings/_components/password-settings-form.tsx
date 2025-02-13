@@ -60,7 +60,7 @@ export default function PasswordSettingsForm() {
                   placeholder="Enter your new password"
                   type="text"
                   {...field}
-                  className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                  className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                 />
               </FormControl>
 
@@ -69,7 +69,7 @@ export default function PasswordSettingsForm() {
           )}
         />
 
-        <div className="grid grid-cols-2 gap-[30px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-[30px]">
           <FormField
             control={form.control}
             name="newPassword"
@@ -82,7 +82,7 @@ export default function PasswordSettingsForm() {
                   <PasswordInput
                     placeholder="Enter your new password"
                     {...field}
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                   />
                 </FormControl>
 
@@ -103,7 +103,7 @@ export default function PasswordSettingsForm() {
                   <PasswordInput
                     placeholder="Enter your confirm new password"
                     {...field}
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                   />
                 </FormControl>
 

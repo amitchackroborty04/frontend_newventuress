@@ -1,4 +1,4 @@
-import { PacificDropdownType } from "@/types";
+// import { PacificDropdownType } from "@/types";
 import {
   Select,
   SelectContent,
@@ -12,22 +12,24 @@ const PacificDropdownSelector = ({
   list,
   selectedValue,
   onValueChange,
+  placeholderText,
 }: {
-  list: PacificDropdownType[]; // List of items
+  list: any; // List of items
   selectedValue: string; // Currently selected value
   onValueChange: (value: string) => void; // Function to handle value change
+  placeholderText?: string;
 }) => {
   return (
     <Select
       value={selectedValue}
       onValueChange={(val) => onValueChange(val)} // Update the state on selection
     >
-      <SelectTrigger className="bg-[#ECECEC] rounded-[8px] text-[#0057A8]">
-        <SelectValue placeholder={selectedValue} />
+      <SelectTrigger className="rounded-[8px] bg-primary dark:bg-pinkGradient border-none text-white">
+        <SelectValue placeholder={selectedValue || placeholderText} />
       </SelectTrigger>
-      <SelectContent className="w-fit">
+      <SelectContent className="w-fit bg-white border-none">
         <SelectGroup>
-          {list.map((item) => (
+          {list.map((item: any) => (
             <SelectItem key={item.id} value={item.value}>
               {item.name}
             </SelectItem>

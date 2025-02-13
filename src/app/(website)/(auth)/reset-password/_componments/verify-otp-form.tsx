@@ -3,13 +3,15 @@
 // Packages
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 // Local imports
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 const otpSchema = z.object({
@@ -17,6 +19,7 @@ const otpSchema = z.object({
     .string()
     .length(6, "OTP must be 6 digits")
     .regex(/^[0-9]+$/, "OTP must contain only numbers"),
+  email: z.string().email("Please enter a valid email address"),
 });
 
 type OTPSchemaType = z.infer<typeof otpSchema>;
@@ -25,32 +28,126 @@ interface VerifyOTPFormProps {
   onVerified: () => void;
 }
 
+interface Response {
+  status: boolean;
+  message: string;
+}
+
 export function VerifyOTPForm({ onVerified }: VerifyOTPFormProps) {
   const [loading, setLoading] = useState(false);
-  const correctOtp = "123456"; // Correct OTP for validation when we get otp from backend its dynamic
+  const [closeTimer, setCloseTimer] = useState(30);
+  const [resendDisabled, setResendDisabled] = useState(false);
+  const searchparams = useSearchParams();
+  const router = useRouter();
+
+  const email = searchparams.get("email");
+
+  const { mutate: resendOtp, isPending: isResending } = useMutation<
+    Response,
+    unknown,
+    { email: string }
+  >({
+    mutationKey: ["forget-password"],
+    mutationFn: (data) =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/forget-password`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((res) => res.json()),
+    onSuccess: (data) => {
+      setLoading(true);
+      if (!data.status) {
+        form.setError("email", {
+          type: "manual",
+          message: data.message,
+        });
+
+        setLoading(false);
+        return;
+      }
+      // handle success
+      toast.success(data.message, {
+        position: "bottom-right",
+        richColors: true,
+      });
+
+      setLoading(false);
+
+      startResendTimer(); // Start the cooldown timer
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
+  const startResendTimer = () => {
+    setCloseTimer(30);
+    setResendDisabled(true);
+
+    const timer = setInterval(() => {
+      setCloseTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setResendDisabled(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!email) {
+      setLoading(true);
+      router.push("/forget-password");
+    }
+  }, [email, router]);
 
   const form = useForm<OTPSchemaType>({
     resolver: zodResolver(otpSchema),
     defaultValues: {
       otp: "",
+      email: email || "",
+    },
+  });
+
+  const { mutate, isPending } = useMutation<Response, unknown, OTPSchemaType>({
+    mutationKey: ["OTP_Verify"],
+    mutationFn: (data) =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/checkotp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((res) => res.json()),
+    onSuccess: (data) => {
+      if (!data.status) {
+        form.setError("otp", {
+          type: "manual",
+          message: data.message,
+        });
+        return;
+      }
+
+      // handle success
+      onVerified();
+    },
+    onError: (err: any) => {
+      toast.error("Something went wrong!", err);
     },
   });
 
   const handleSubmit = (values: OTPSchemaType) => {
-    setLoading(true);
-    setTimeout(() => {
-      if (values.otp !== correctOtp) {
-        form.setError("otp", { message: "Incorrect OTP" });
-      } else {
-        toast.success("OTP Verified  🎉", {
-          position: "top-center",
-          richColors: true,
-        });
-        onVerified();
-      }
-
-      setLoading(false);
-    }, 3000);
+    mutate(values);
   };
 
   return (
@@ -156,13 +253,30 @@ export function VerifyOTPForm({ onVerified }: VerifyOTPFormProps) {
           <Button
             type="button"
             variant="link"
-            className="text-gradient text-base font-normal leading-[19.2px]"
-            onClick={() => {}}
+            className="text-gradient text-base font-normal leading-[19.2px] disabled:opacity-80 disabled:text-gray-500"
+            onClick={() => {
+              if (!email) {
+                toast.warning(
+                  "Unable to retrieve your email from the provided parameters. Please verify and try again.",
+                  {
+                    position: "bottom-right",
+                    richColors: true,
+                  }
+                );
+                return;
+              }
+              resendOtp({ email: email });
+            }}
+            disabled={resendDisabled || isResending}
           >
-            Resend
+            {resendDisabled ? `Resend in ${closeTimer}s` : "Resend"}
           </Button>
         </div>
-        <Button type="submit" className="w-full" disabled={loading}>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={loading || isPending || isResending}
+        >
           {loading ? "Wait a second..." : "Verify"}
         </Button>
       </form>

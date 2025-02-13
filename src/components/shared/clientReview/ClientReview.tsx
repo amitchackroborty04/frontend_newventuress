@@ -13,8 +13,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { ReviewCard } from "./ReviewCard";
+import { cn } from "@/lib/utils";
 import SectionHeading from "../SectionHeading/SectionHeading";
+import { ReviewCard } from "./ReviewCard";
 
 // Review data this come from Backend **********************
 const reviewsData = [
@@ -59,6 +60,7 @@ const reviewsData = [
 export const ClientReviews: React.FC = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [api, setApi] = React.useState<CarouselApi>();
+  
 
   React.useEffect(() => {
     if (!api) {
@@ -112,8 +114,8 @@ export const ClientReviews: React.FC = () => {
           ))}
         </CarouselContent>
         <div className="absolute flex justify-between space-x-5 -bottom-10 left-[calc(50%-20px)] w-[40px]">
-          <CarouselPrevious className="px-4 py-2 h-[40px] w-[140] bg-primary !text-white rounded-full hover:bg-primary-green-hover" />
-          <CarouselNext className="px-4 py-2 h-[40px] w-[140] bg-primary !text-white rounded-full hover:bg-primary-green-hover" />
+          <CarouselPrevious className={cn("px-4 py-2 h-[40px] w-[140]  !text-white rounded-full ")} />
+          <CarouselNext className="px-4 py-2 h-[40px] w-[140]  !text-white rounded-full " />
         </div>
       </Carousel>
     </section>

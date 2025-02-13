@@ -4,7 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -21,12 +21,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useMutation } from "@tanstack/react-query";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
 });
 
 type ForgotPasswordSchemaType = z.infer<typeof forgotPasswordSchema>;
+
+interface Response {
+  status: boolean;
+  message: string;
+}
 
 export function ForgotPasswordForm() {
   const [loadiing, setLoading] = useState(false);
@@ -39,19 +45,52 @@ export function ForgotPasswordForm() {
     },
   });
 
-  const handleSubmit = (values: ForgotPasswordSchemaType) => {
-    setLoading(true);
-    setTimeout(() => {
-      toast.success("6 Digit Otp sent to your email", {
-        position: "top-center",
+  const { mutate, isPending } = useMutation<
+    Response,
+    unknown,
+    ForgotPasswordSchemaType
+  >({
+    mutationKey: ["forget-password"],
+    mutationFn: (data) =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/forget-password`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((res) => res.json()),
+    onSuccess: (data) => {
+      setLoading(true);
+      if (!data.status) {
+        form.setError("email", {
+          type: "manual",
+          message: data.message,
+        });
+
+        setLoading(false);
+        return;
+      }
+      // handle success
+      toast.success(data.message, {
+        position: "bottom-right",
         richColors: true,
       });
+
+      router.push(`/reset-password?email=${form.getValues("email")}`);
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
+  useEffect(() => {
+    return () => {
       setLoading(false);
+    };
+  }, []);
 
-      router.push("/reset-password");
-    }, 3000);
-
-    console.log("OTP Sent to your email", values);
+  const handleSubmit = (values: ForgotPasswordSchemaType) => {
+    mutate(values);
   };
 
   return (
@@ -107,8 +146,16 @@ export function ForgotPasswordForm() {
               )}
             />
           </div>
-          <Button type="submit" className="w-full " disabled={loadiing}>
-            {loadiing ? "Generating a 6 Digit OTP" : " Send OTP"}
+          <Button
+            type="submit"
+            className="w-full "
+            disabled={loadiing || isPending}
+          >
+            {isPending
+              ? "Generating a 6 Digit OTP"
+              : loadiing
+              ? "Wait a few second..."
+              : " Send OTP"}
           </Button>
         </form>
       </Form>

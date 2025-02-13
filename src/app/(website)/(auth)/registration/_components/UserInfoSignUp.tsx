@@ -3,13 +3,14 @@
 // Packages
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { ArrowRight, EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, EyeIcon, EyeOffIcon, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 // Local Imports
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -21,18 +22,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { setRegistrationValue } from "@/redux/features/authentication/AuthSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import FormHeader from "./form-header";
 
 // Zod Schema for validation
 const formSchema = z
   .object({
+    businessName: z.string().nonempty("Business name is required"),
     email: z.string().email("Invalid email address"),
     fullName: z.string().min(2, "Full name must be at least 2 characters"),
     password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z
       .string()
       .min(6, "Confirm Password must be at least 6 characters"),
+    agreed: z.boolean().refine((val) => val, {
+      message: "Please agree to the terms and privacy policy",
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"], // Error will appear on the `confirmPassword` field
@@ -42,6 +48,7 @@ const formSchema = z
 export type UserInformationFormType = z.infer<typeof formSchema>;
 
 export default function UserInformationForm() {
+  const [loading, setLoading] = useState<true | false>(false);
   const [passwordVisibility, setPasswordVisibility] = useState({
     password: false,
     confirmPassword: false,
@@ -50,29 +57,40 @@ export default function UserInformationForm() {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const form = useForm({
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
+
+  const form = useForm<UserInformationFormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: authState.email,
       fullName: authState.fullName,
       password: authState.password,
-      confirmPassword: authState.password,
+      confirmPassword: authState.confirmPassword,
+      agreed: false,
+      businessName: authState["businessName"]
     },
   });
 
   const { watch } = form;
+
   const isDisable =
     !watch("email") ||
     !watch("fullName") ||
     !watch("password") ||
-    !watch("confirmPassword");
+    !watch("confirmPassword") ||
+    !watch("agreed") ||
+    loading;
 
   const togglePasswordVisibility = (field: "password" | "confirmPassword") => {
     setPasswordVisibility((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
-  const onSubmit = (data: UserInformationFormType) => {
-    console.log(data);
+  const onSubmit = () => {
+    setLoading(true);
     router.push(`/registration/experiences`);
   };
 
@@ -98,7 +116,7 @@ export default function UserInformationForm() {
       <FormHeader
         label="Sign Up"
         paragraph="Continue to register as a customer or vendor, Please provide the information."
-        title="Enter your Personal Information"
+        title="Enter your Business Information"
       />
 
       <Form {...form}>
@@ -106,6 +124,32 @@ export default function UserInformationForm() {
           className="flex flex-col gap-[20px] text-[20px]"
           onSubmit={form.handleSubmit(onSubmit)}
         >
+          {/* business name Field */}
+           <FormField
+            name="businessName"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Business Name</FormLabel>
+                <FormControl>
+                  <Input
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                    placeholder="Write your business name"
+                    onChange={(e) => {
+                      dispatch(
+                        setRegistrationValue({
+                          businessName: e.target.value,
+                        })
+                      );
+                      field.onChange(e.target.value);
+                    }}
+                    value={field.value}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {/* Email Field */}
           <FormField
             name="email"
@@ -217,7 +261,16 @@ export default function UserInformationForm() {
                         passwordVisibility.confirmPassword ? "text" : "password"
                       }
                       placeholder="Confirm your password"
-                      {...field}
+                      onChange={(e) => {
+                        dispatch(
+                          setRegistrationValue({
+                            confirmPassword: e.target.value,
+                          })
+                        );
+
+                        field.onChange(e.target.value);
+                      }}
+                      value={field.value}
                     />
                     <button
                       type="button"
@@ -239,10 +292,44 @@ export default function UserInformationForm() {
             )}
           />
 
+          <FormField
+            name="agreed"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center space-x-2 text-[#9E9E9E]">
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className=" border-2 border-[#9E9E9E] data-[state=checked]:bg-[#00417E] data-[state=checked]:text-white"
+                  />
+                  <label
+                    htmlFor="remember"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I agree with the{" "}
+                    <Link href="#" className="text-gradient">
+                      term of service
+                    </Link>{" "}
+                    and{" "}
+                    <Link href="#" className="text-gradient">
+                      privacy policy
+                    </Link>
+                  </label>
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <div className="pt-[40px]">
             <Button disabled={isDisable} size="md" type="submit">
               Next
-              <ArrowRight className="ml-2" />
+              {loading ? (
+                <Loader2 className="ml-2 animate-spin" />
+              ) : (
+                <ArrowRight className="ml-2" />
+              )}
             </Button>
           </div>
         </form>

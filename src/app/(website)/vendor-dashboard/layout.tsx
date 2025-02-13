@@ -8,11 +8,11 @@ export default async function VendorDashboardLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="bg-[#E6EEF6]">
+    <div className="bg-[#E6EEF6] dark:bg-[#482D721A]">
       <DashNav />
-      <div className="flex items-start h-full ">
+      <div className="flex items-start h-full">
         <DashSidebar />
-        <div className="px-[30px] pt-[30px] w-full">{children}</div>
+        <div className="px-[20px] pt-[20px] 2xl:px-[30px] 2xl:pt-[30px] w-full">{children}</div>
       </div>
     </div>
   );

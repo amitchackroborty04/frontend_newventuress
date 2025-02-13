@@ -5,16 +5,16 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center font-medium justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:text-white disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 leading-[19.2px] transition-colors duration-300",
+  "inline-flex items-center font-medium justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none  focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:text-white disabled:opacity-70 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 leading-[19.2px] transition-colors duration-300 ",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-[#FFFFFF] font-medium hover:bg-primary-hover rounded-[8px]",
+          "bg-primary text-white shadow  dark:bg-pinkGradient dark:hover:opacity-90   hover:bg-primary-hover ",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border border-[#0057A8]/20 font-medium text-[#0057A8] hover:bg-[#E6EEF6] disabled:bg-[#FFFFFF] disabled:text-[#C5C5C5] disabled:border-none",
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground disabled:text-gray-400",
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -55,3 +55,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
+

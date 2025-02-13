@@ -6,23 +6,25 @@ import Image from "next/image";
 // Local imports
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Rating } from "@/components/ui/Rating";
 import { useCountdown } from "@/hooks/useCountDown";
+import { Product } from "@/types/product";
 
-export default function BiddingCard() {
+export default function BiddingCard({ product }: { product: Product }) {
   const endDate = new Date("2025-01-31T23:59:59");
   const timeLeft = useCountdown(endDate);
 
   return (
-    <Card className=" shadow-none p-[16px] relative">
+    <Card className="relative p-[16px] shadow-none">
       <div className="overflow-hidden rounded-[8px]">
         <Image
           height={300}
           width={400}
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/07a15d7f9b9bb47f1c399eb2bcca6083f278b4bf5bd9f04b6458478c49d90e56?placeholderIfAbsent=true&apiKey=13a72d2a8d4c40b0974e394fc11603d9"
           alt="American Beauty product"
-          className="w-full h-[266px] object-cover rounded-[8px] hover:scale-105 duration-300 "
+          className="h-[266px] w-full rounded-[8px] object-cover duration-300 hover:scale-105"
         />
-        <Button className="absolute -top-[10px] -right-[10px] rounded-full w-[56px] h-[56px] p-0 bg-primary hover:bg-[#2c6130]">
+        <Button className="absolute -right-[10px] -top-[10px] h-[56px] w-[56px] rounded-full bg-primary p-0 hover:bg-[#2c6130]">
           <Image
             src="/assets/svg/hammer.svg"
             alt="hammer"
@@ -33,34 +35,37 @@ export default function BiddingCard() {
       </div>
 
       <CardContent className="mt-[10px] p-0">
-        <Button className="w-full mb-4">Bid Now</Button>
+        <Button className="mb-4 w-full">Bid Now</Button>
 
-        <div className="flex items-center justify-center gap-1 mb-2">
-          {[...Array(4)].map((_, i) => (
+        <div className="mb-2 flex items-center justify-center gap-1">
+          {/* {[...Array(4)].map((_, i) => (
             <Star
               key={i}
-              className="w-[16px] h-[16px] fill-[#FF8A00] text-[#FF8A00]"
+              className="h-[16px] w-[16px] fill-[#FF8A00] text-[#FF8A00]"
             />
-          ))}
-          <Star className="w-[16px] h-[16px] text-[#CCCCCC] fill-[#CCCCCC]" />
+          ))} */}
+          <Rating productId={product._id} />
+          <Star className="h-[16px] w-[16px] fill-[#CCCCCC] text-[#CCCCCC]" />
         </div>
-        <div className="flex items-center justify-center text-[#E10E0E] text-[16px] font-normal leading-[19.2px]">
-          <Flame className="w-4 h-4 mr-1" />
+        <div className="flex items-center justify-center text-[16px] font-normal leading-[19.2px] text-[#E10E0E]">
+          <Flame className="mr-1 h-4 w-4" />
           Hot
-          <span className="text-[#9C9C9C] ml-2">8 Views</span>
+          <span className="ml-2 text-[#9C9C9C]">8 Views</span>
         </div>
 
-        <h2 className="text-[25px] leading-[30px] font-semibold text-center text-gradient mb-2">
-          American Beauty
+        <h2 className="text-gradient mb-2 text-center text-[25px] font-semibold leading-[30px]">
+          {product.title}
         </h2>
 
-        <div className="flex items-baseline justify-center gap-2 mb-4">
-          <span className="text-xl font-bold">₿7,000.00</span>
-          <span className="text-gray-400 line-through text-sm">₿9,25.00</span>
+        <div className="mb-4 flex items-baseline justify-center gap-2">
+          <span className="text-xl font-bold">₿{product.discountPrice}</span>
+          <span className="text-sm text-gray-400 line-through">
+            ₿{product.selllingPrice}
+          </span>
         </div>
 
-        <div className="bg-[#E6EEF6] p-[12px] rounded-[8px] max-w-[275px] mx-auto">
-          <p className="text-gray-500 text-sm mb-2 text-center">
+        <div className="mx-auto max-w-[275px] rounded-[8px] bg-[#E6EEF6] p-[12px]">
+          <p className="mb-2 text-center text-sm text-gray-500">
             Hurry up! Offer ends in:
           </p>
           <div className="grid grid-cols-4 gap-2 text-center">

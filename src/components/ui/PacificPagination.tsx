@@ -61,7 +61,7 @@ const PacificPagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <Pagination>
+    <Pagination >
       <PaginationContent>
         <PaginationItem>
           <PaginationLink
@@ -71,13 +71,13 @@ const PacificPagination: React.FC<PaginationProps> = ({
               } else handlePageClick(currentPage - 1);
             }}
             className={cn(
-              "border border-primary-green-hover hover:bg-primary-green-hover hover:text-white",
+              "border  border-[#152764] dark:border-[#6841A5] hover:bg-gradient-to-r hover:from-[#4857BD] hover:via-[#6B87DF] hover:to-[#BCC9FA] hover:text-[#4857BD] dark:hover:bg-pinkGradient dark:text-white   ",
               currentPage === 1 &&
-                "cursor-not-allowed bg-[#E3E3E3] border-0  pointer-events-none"
+              "cursor-not-allowed bg-[#E3E3E3] border-0  pointer-events-none"
             )}
           >
             <ChevronLeft
-              className={cn("h-4 w-4", currentPage === 1 && "text-white")}
+              className={cn("h-4 w-4", currentPage === 1 && "text-white dark:text-[#6841A5] ")}
             />
           </PaginationLink>
         </PaginationItem>
@@ -87,10 +87,14 @@ const PacificPagination: React.FC<PaginationProps> = ({
             <PaginationLink
               onClick={() => handlePageClick(page)}
               className={cn(
-                "border cursor-pointer border-primary-green-hover hover:bg-[#2A6C2D] hover:text-white",
+
+                "border cursor-pointer border-[#4857BD] dark:border-[#6841A5] hover:bg-gradient-to-r hover:from-[#4857BD] hover:via-[#6B87DF] hover:to-[#BCC9FA] hover:text-[#4857BD] dark:hover:bg-pinkGradient dark:hover:opacity-90  ",
                 page === currentPage
-                  ? "bg-[#2A6C2D] text-white"
-                  : "hover:bg-primary-green-hover hover:text-white text-[#2A6C2D]"
+                  ? "bg-gradient-to-r from-[#121D42] via-[#152764] to-[#4857BD] text-white dark:bg-pinkGradient dark:text-white"
+                  : "hover:bg-gradient-to-r hover:from-[#4857BD] hover:via-[#6B87DF] hover:to-[#BCC9FA] text-gradient hover:text-[#4857BD] dark:text-gradient-pink dark:hover:text-pink-400/50 dark:hover:bg-[#482D721A] "
+
+              
+
               )}
             >
               {page === "..." ? "..." : page}
@@ -108,12 +112,12 @@ const PacificPagination: React.FC<PaginationProps> = ({
               }
             }}
             className={cn(
-              "border border-primary-green-hover hover:bg-primary-green-hover hover:text-white",
+              "border  border-[#152764] dark:border-[#6841A5] hover:bg-gradient-to-r hover:from-[#4857BD] hover:via-[#6B87DF] hover:to-[#BCC9FA] hover:text-[#4857BD] dark:hover:bg-pinkGradient dark:text-white ",
               currentPage === totalPages &&
-                "cursor-not-allowed bg-[#E3E3E3] border-0  pointer-events-none"
+              "cursor-not-allowed bg-[#E3E3E3] border-0  pointer-events-none"
             )}
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight  className={cn("h-4 w-4", currentPage === 1 && "text-white dark:text-[#6841A5]")} />
           </PaginationLink>
         </PaginationItem>
       </PaginationContent>
