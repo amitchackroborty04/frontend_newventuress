@@ -136,6 +136,7 @@ export function BusinessInfoForm() {
   };
 
   const submitForm = () => {
+    console.log(authState)
     router.push("/login")
   };
 
@@ -236,7 +237,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
             )
           }
         />
-       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField())}><PlusIcon /></Button>}
+       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({businessIndex: index}))}><PlusIcon /></Button>}
        </div>
       ))}
      </div>
@@ -260,7 +261,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
               )
             }
           />
-         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField())}><PlusIcon /></Button>}
+         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({businessIndex: index}))}><PlusIcon /></Button>}
          </div>
        ))}
      </div>
@@ -284,7 +285,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
               )
             }
           />
-         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField())}><PlusIcon /></Button>}
+         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({businessIndex: index}))}><PlusIcon /></Button>}
          </div>
        ))}
      </div>}

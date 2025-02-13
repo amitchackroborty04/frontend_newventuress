@@ -112,37 +112,34 @@ const authSlice = createSlice({
         ...action.payload,
       };
     },
-    addMetrcField: (state) => {
+    addMetrcField: (state, action) => {
+      const {businessIndex} = action.payload
       // Ensure businessInfo is not empty
-      if (state.businessInfo.length > 0) {
-        const lastIndex = state.businessInfo.length - 1;
-    
-        // Add a new empty string (or any placeholder) to the metrcLicense array
-        state.businessInfo[lastIndex].license.metrcLicense.push("");
+      if (businessIndex !== -1) {
+        // Add a new empty string to the metrcLicense array for the specific business
+        state.businessInfo[businessIndex].license.metrcLicense.push("");
       } else {
-        console.error("No businessInfo available to add a new metrc field");
+        console.error(`No business found for for add new field`);
       }
     },
-    addCannabisField: (state) => {
+    addCannabisField: (state, action) => {
+      const {businessIndex} = action.payload
       // Ensure businessInfo is not empty
-      if (state.businessInfo.length > 0) {
-        const lastIndex = state.businessInfo.length - 1;
-    
-        // Add a new empty string (or any placeholder) to the metrcLicense array
-        state.businessInfo[lastIndex].license.cannabisLicense.push("");
+      if (businessIndex !== -1) {
+        // Add a new empty string to the metrcLicense array for the specific business
+        state.businessInfo[businessIndex].license.cannabisLicense.push("");
       } else {
-        console.error("No businessInfo available to add a new metrc field");
+        console.error(`No business found for for add new field`);
       }
     },
-    addBusinessField: (state) => {
+    addBusinessField: (state, action) => {
+      const {businessIndex} = action.payload
       // Ensure businessInfo is not empty
-      if (state.businessInfo.length > 0) {
-        const lastIndex = state.businessInfo.length - 1;
-    
-        // Add a new empty string (or any placeholder) to the metrcLicense array
-        state.businessInfo[lastIndex].license.businessLicense.push("");
+      if (businessIndex !== -1) {
+        // Add a new empty string to the metrcLicense array for the specific business
+        state.businessInfo[businessIndex].license.businessLicense.push("");
       } else {
-        console.error("No businessInfo available to add a new metrc field");
+        console.error(`No business found for for add new field`);
       }
     },
     

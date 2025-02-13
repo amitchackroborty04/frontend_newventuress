@@ -267,7 +267,7 @@ function TestCountry() {
    </div>
    <div className="mt-3 flex justify-end">
     <Button asChild disabled={isContinueDisble}>
-      <Link className={cn(isContinueDisble ? "pointer-events-none opacity-70" : "opacity-100", "w-full")} href={redirectUrl} >Continue</Link>
+      <Link className={cn(isContinueDisble ? "pointer-events-none opacity-70" : "opacity-100", "w-full")} href={redirectUrl} onClick={() => setLoading(true)}>Continue</Link>
     </Button>
    </div>
  </div>
