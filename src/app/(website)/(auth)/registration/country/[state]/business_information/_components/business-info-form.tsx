@@ -103,16 +103,10 @@ export function BusinessInfoForm() {
     },
   });
 
-  const currentBusinessInfo = authState.businessInfo[
-    authState.businessInfo.length - 1
-  ] || {
-    ...authState.businessInfo[authState.businessInfo.length - 1],
-    license: {
-      metrcLicense: [""],
-      cannabisLicense: [""],
-      businessLicense: [""]
-    },
-  };
+  // Check if any business in the businessInfo array has an empty metrcLicense field
+const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
+  business.license.metrcLicense.some((license) => !license.trim())
+);
 
 
   useEffect(() => {
@@ -136,11 +130,12 @@ export function BusinessInfoForm() {
   };
 
   const submitForm = () => {
-    console.log(authState)
-    router.push("/login")
+    router.push("/registration/overview")
   };
 
-  const isNextDisabled = !currentBusinessInfo?.license;
+  const isNextDisabled =
+  !authState.businessInfo.length || // Check if businessInfo array is empty
+  isAnyMetrcLicenseEmpty; 
 
   return (
     <div className="space-y-6">
