@@ -51,11 +51,11 @@ export default function FeaturedProductCard({
             handleWishlistToggle();
           }}
           className={`flex gap-2.5 justify-center items-center px-2 bg-white rounded-full   ${isWishlist
-              ? " border-none text-white bg-primary"
+              ? " border-none text-white bg-primary dark:bg-pinkGradient"
               : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white"
             }  min-h-[32px] w-[32px]`}
           aria-label="Add to wishlist"
-        // className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-primary-green rounded-[30px] transition-colors duration-300 group"
+       
         >
           <Heart className="group-hover:fill-white hover:border-0 w-4 h-4" />
         </button>
@@ -65,15 +65,7 @@ export default function FeaturedProductCard({
           <div className="flex w-full items-center justify-between gap-10">
             <div className="my-auto flex items-center gap-2 self-stretch whitespace-nowrap text-xs leading-tight text-[#E10E0E]">
               <div className="my-auto flex items-center gap-1 self-stretch">
-                {/* hot icon  */}
-                {/* <Image
-                  loading="lazy"
-                  width={9}
-                  height={9}
-                  src="/assets/svg/hot.svg"
-                  alt="hot icon"
-                  className="object-contain shrink-0 self-stretch my-auto aspect-[0.75] fill-[#E10E0E] w-[9px]"
-                /> */}
+              
                 <div
                   className={cn(
                     "my-auto text-[12px] font-normal",

@@ -29,7 +29,7 @@ const ProductsYouMayLike = () => {
     return <div>Error: {error.message}</div>;
   }
   return (
-    <div className="section container border-t-[1px] border-[#C0CFE6]/50 pt-[50px]">
+    <div className="section container md:border-t-[1px] border-[#C0CFE6]/50 md:pt-[50px] mt-[40px]">
       <SectionHeading heading="Products you might like" subheading="Products" />
 
       <div className="my-[50px] grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">

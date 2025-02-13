@@ -79,15 +79,33 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
     accessorKey: "Comments",
     header: "Comments",
     cell: ({ row }) => {
+     
       return (
-        <div className="w-[518px] text-left  " title={row.original.Comments}>
-          <p className="text-base text-[#444444] font-normal leading-[19.2px]">{row.original.Comments}</p>
+        <div className="relative group 2xl:w-[518px] text-start">
+          <div 
+            className="overflow-hidden text-ellipsis cursor-pointer"
+            style={{
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 3,
+              overflow: "hidden",
+              color: "#444444",
+              fontSize: "16px",
+            }}
+          >
+            {row.original.Comments} 
+          </div>
           
+          
+          <div className="absolute right-0 top-full mt-1 w-max max-w-xs bg-primary dark:bg-pinkGradient z-50  p-4 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 dark:text-[#FFFFFF] ">
+            
+            {row.original.Comments}
+          </div>
         </div>
       );
     },
-    size: 600, // Optional: Set a fixed width for this column
-  },
+    size: 600,
+  }
 ];
 
 const ReviewContainer = () => {
