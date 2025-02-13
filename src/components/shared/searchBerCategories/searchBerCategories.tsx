@@ -5,7 +5,7 @@ import ThemeSwitcher from "./theme-switcher";
 
 function SearchBerCategories() {
   return (
-    <Hideon routes={["/vendor-dashboard", "/registration"]}>
+    <Hideon routes={["/vendor-dashboard", "/registration", "/login"]}>
       <div className="bg-[#E6EEF6] dark:bg-[#482D721A] pt-[9px]  md:py-[10px]">
         <div className=" container  flex gap-x-[10px]  lg:gap-x-[20px] justify-between   ">
           <div className="w-[178px] lg:w-[15%]">
