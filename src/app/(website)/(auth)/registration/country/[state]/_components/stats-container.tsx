@@ -48,7 +48,7 @@ const StateContainer = ({
         <button
           key={state.name}
           onClick={() => handleSelect(state.name)}
-          className={`p-3 border rounded-md transition-colors duration-300 text-lg font-medium ${
+          className={`p-2 md:p-3 border rounded-md transition-colors duration-300 text-[14px] md:text-lg font-medium ${
             myStats?.includes(state.name)
               ? "border-[#B0CBE4] bg-primary text-white"
               : "border-[#B0CBE4]  hover:bg-[#E9EBF8]"
