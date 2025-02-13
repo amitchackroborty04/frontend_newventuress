@@ -49,7 +49,7 @@ export default function CartPage() {
   const { subtotal, shipping, tax, total } = calculateTotals();
 
   return (
-    <div className="container section border-b-[1px] border-[#C0CFE6]/50 pb-[40px] ">
+    <div className="container section md:border-b-[1px] border-[#C0CFE6]/50 pb-10 ">
       <div className="mt-[-10px]">
             <SectionHeading heading={"Your Shopping Cart"} subheading={""} />
           </div>
