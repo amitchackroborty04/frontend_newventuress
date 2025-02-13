@@ -49,7 +49,7 @@ const NextButton = ({
 
   return (
     <div className="flex justify-end w-full mt-16">
-      <Button disabled={isDisabled} className="min-w-[155px] h-full" asChild>
+      <Button disabled={isDisabled} className="w-fit md:min-w-[155px] h-full text-[14px]" asChild >
         <Link
           href={`/registration/country/${currentState}/business_information`}
           className={cn(isDisabled ? "opacity-50 pointer-events-none" : "", "w-[155px]")}
