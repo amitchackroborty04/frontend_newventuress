@@ -113,7 +113,7 @@ export default function ProfileSettingsForm() {
                   <Input
                     placeholder="Cameron Williamson"
                     {...field}
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -130,7 +130,7 @@ export default function ProfileSettingsForm() {
                 <FormControl>
                   <Input
                     placeholder="@cameronwilliamson"
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                     {...field}
                   />
                 </FormControl>
@@ -148,7 +148,7 @@ export default function ProfileSettingsForm() {
                 <FormControl>
                   <Input
                     placeholder="georgia.young@example.com"
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                     type="email"
                     {...field}
                   />
@@ -168,7 +168,7 @@ export default function ProfileSettingsForm() {
                   <Input
                     placeholder="(+33)7 75 55 65 33"
                     type="text"
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                     {...field}
                   />
                 </FormControl>
@@ -187,7 +187,7 @@ export default function ProfileSettingsForm() {
                   <Input
                     placeholder="USA"
                     type="text"
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                     {...field}
                   />
                 </FormControl>
@@ -206,7 +206,7 @@ export default function ProfileSettingsForm() {
                   <Input
                     placeholder="Arizona"
                     type="text"
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                     {...field}
                   />
                 </FormControl>
@@ -225,7 +225,7 @@ export default function ProfileSettingsForm() {
                   <Input
                     placeholder="4517 Washington Ave. Manchester, Kentucky 39495"
                     type="text"
-                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px]"
+                    className="h-[50px] border-[1px] border-[#C5C5C5] focus-visible:ring-primary-green-hover rounded-[8px] dark:!text-[#000000]"
                     {...field}
                   />
                 </FormControl>

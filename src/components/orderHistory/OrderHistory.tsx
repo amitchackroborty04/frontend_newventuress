@@ -91,7 +91,7 @@ const OrderHistory = () => {
             </thead>
             <tbody className="divide-y divide-gray-200 ">
               {products.map((product) => (
-                <tr className="hover:bg-[#E6EEF6] text-[#444444] text-[16px] font-normal" key={product.id}>
+                <tr className="hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] text-[#444444] text-[16px] font-normal" key={product.id}>
                   <td className="px-6 py-4 ">
                     <p className="">#{product.id}</p>
                   </td>
@@ -121,7 +121,7 @@ const OrderHistory = () => {
           {products.map((product) => (
             <div
               key={product.id}
-              className=" w-full  border-b border-[#C5C5C5] p-3  hover:bg-[#E6EEF6] "
+              className=" w-full  border-b border-[#C5C5C5] p-3  hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] "
             >
               <div className="flex justify-between gap-4 mb-4">
                 <p className="text-[16px] font-normal text-[#444444]">
