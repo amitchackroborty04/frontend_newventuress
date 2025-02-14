@@ -141,8 +141,8 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
     <div className="space-y-6">
       <FormHeader
         label="Sign Up"
-        paragraph="Continue to register as a customer or vendor, Please provide the information."
-        title="Select your business information"
+        paragraph="Please enter the following information to continue your registration."
+        title="Select location and enter license information"
       />
       <form onSubmit={handleSubmit} className="space-y-4">
       

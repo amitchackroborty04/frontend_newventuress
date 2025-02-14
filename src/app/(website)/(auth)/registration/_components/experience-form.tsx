@@ -86,23 +86,23 @@ console.log(isButtonDisabled)
     <div className="py-[20px] md:py-0">
       <FormHeader
         label="Sign Up"
-        paragraph="Continue to register as a customer or vendor, Please provide the information."
-        title="What do you want to experience?"
+        paragraph="Please enter the following information to continue your registration."
+        title="Select your industry"
       />
       <form className="space-y-6">
         <div className="space-y-4">
           <div className="space-y-4">
             <div className="flex items-center space-x-2 cursor-pointer">
               <Checkbox
-                id="CBD/HEMP"
+                id="HEMP/CBD"
                 checked={isChecked("CBD/HEMP")}
                 onCheckedChange={() => handleExperiencChange("CBD/HEMP")}
               />
               <label
-                htmlFor="CBD/HEMP"
+                htmlFor="HEMP/CBD"
                 className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70 "
               >
-                CBD/HEMP
+                HEMP/CBD
               </label>
             </div>
             <div className="flex items-center space-x-2 cursor-pointer">

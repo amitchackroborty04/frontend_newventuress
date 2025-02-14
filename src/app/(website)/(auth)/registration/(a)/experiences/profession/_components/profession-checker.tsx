@@ -105,8 +105,8 @@ const isButtonDisabled = selectedProfessions.length === 0;
         <div>
           <FormHeader
             label="Sign Up"
-            paragraph="Continue to register as a customer or vendor, Please provide the information."
-            title="What’s your profession?"
+            paragraph="Please enter the following information to continue your registration."
+            title="Select your roles"
           />
 
           <div className="space-y-4">
