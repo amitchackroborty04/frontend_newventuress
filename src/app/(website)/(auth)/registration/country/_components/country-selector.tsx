@@ -98,7 +98,7 @@ function CountrySelector() {
       }
 
       // Log the selected countries
-      console.log("Selected countries:", newSelected)
+      console.log("AuthState", authState)
 
       // Update the clicked region's color (for visual feedback)
       setRegionColors((prevColors) => {
@@ -113,18 +113,33 @@ function CountrySelector() {
         return newColors
       })
 
+      const businessessArray =  newSelected.map((country) => {
+        if (country === "United States" || country === "Canada") {
+          return {
+            country,
+            state: [],
+            license: [],
+          };
+        } else {
+          return {
+            country,
+            state: [],
+            license: [
+              {
+                name: country,
+                metrcLicense: [""],
+                cannabisLicense: [""],
+                businessLicense: [""],
+              },
+            ],
+          };
+        }
+      })
+
       // Dispatch action to update business list
       dispatch(
         addNewBusiness(
-          newSelected.map((country) => ({
-            country: country,
-            state: "",
-            license: {
-              metrcLicense: [""],
-              cannabisLicense: [""],
-              businessLicense: [""],
-            },
-          })),
+          businessessArray
         ),
       )
 

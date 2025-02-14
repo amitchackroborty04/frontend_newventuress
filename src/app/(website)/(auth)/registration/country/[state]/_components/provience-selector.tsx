@@ -75,7 +75,15 @@ const NextButton = ({
 export function ProvienceSelector({  currentState, countries }: Props) {
 
   const isEmptyPreviousField = useAppSelector((state) => state.auth.profession.length === 0);
-  const business = useAppSelector((state) => state.auth.businessInfo)
+  const authstate = useAppSelector((state) => state.auth)
+
+  const business = authstate.businessInfo
+
+
+
+ 
+
+
 
   if(isEmptyPreviousField) {
     redirect("/registration")
@@ -105,13 +113,10 @@ export function ProvienceSelector({  currentState, countries }: Props) {
  <BreadcrumbItem>
  <BreadcrumbLink>{country}</BreadcrumbLink>
  </BreadcrumbItem>
- {state && state.map.length > 0 && state.map((name) => (
-  <>
-  <BreadcrumbSeparator />
+{state && state.length > 0 && <><BreadcrumbSeparator />
  <BreadcrumbItem>
- <BreadcrumbPage>{name}</BreadcrumbPage>
- </BreadcrumbItem></>
- ))}
+ <BreadcrumbPage>{state?.join(", ")}</BreadcrumbPage>
+ </BreadcrumbItem></> }
  </BreadcrumbList>
  </Breadcrumb></div>
     )

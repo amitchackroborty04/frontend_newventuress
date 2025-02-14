@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { AdminApprovalModal } from "@/app/(website)/(auth)/_components/admin-aproval-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import MotionAccordion from "@/components/ui/motion-accordion";
+import { Accordion, AccordionItem } from "@/components/ui/motion-accordion";
 import {
   addBusinessField,
   addCannabisField,
@@ -31,7 +31,10 @@ export function BusinessInfoForm() {
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const businesses = authState["businessInfo"]
+  const businesses = authState["businessInfo"];
+
+
+
 
  
 
@@ -105,8 +108,8 @@ export function BusinessInfoForm() {
 
   // Check if any business in the businessInfo array has an empty metrcLicense field
 const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
-  business.license.metrcLicense.some((license) => !license.trim())
-);
+  business.license.some((liences) => liences.metrcLicense.some((l) => !l.trim())))
+;
 
 
   useEffect(() => {
@@ -114,11 +117,6 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
       router.push("/registration")
     }
   }, [router, authState])
-
-
-
-
-
 
 
 
@@ -146,10 +144,16 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
       />
       <form onSubmit={handleSubmit} className="space-y-4">
       
-
-      {businesses.map((item, i) => (
-         <LicenseGroup key={item.country} country={item.country} index={i} />
+<Accordion>
+  
+{businesses.map(({country, license}, i) => (
+        <AccordionItem title={country} key={country} variant="fill">
+          {license.map(({metrcLicense, name, cannabisLicense, businessLicense}) => (
+              <LicenseGroup key={name} country={country} index={i} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
+          ))}
+        </AccordionItem>
       ))}
+</Accordion>
       
 
        <div className="flex items-center justify-between pt-[40px]">
@@ -182,24 +186,31 @@ export default BusinessInfoForm;
 
 interface LicenseGroupProps {
   country: string;
-  index: number
+  index: number;
+
+  metrcLicense: string[];
+  cannabisLicense: string[];
+  businessLicenses: string[];
+  title: string
 }
 
-const LicenseGroup = ({country, index}: LicenseGroupProps) => {
+const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title}: LicenseGroupProps) => {
   const authState = useAppSelector((state) => state.auth);
   const myBusinessInfoAsCountry = authState.businessInfo.find((item) => item.country == country);
   const dispatch = useAppDispatch()
 
   if(!myBusinessInfoAsCountry) return null;
 
+  console.log(metrcLicense)
+
 
 
 
 
   // licenses
-  const metrcLicense = myBusinessInfoAsCountry["license"]["metrcLicense"];
-  const cannabisLicense = myBusinessInfoAsCountry["license"]["cannabisLicense"];
-  const businessLicenses = myBusinessInfoAsCountry["license"]["businessLicense"];
+  // const metrcLicense = myBusinessInfoAsCountry.;
+  // const cannabisLicense = myBusinessInfoAsCountry["license"]["cannabisLicense"];
+  // const businessLicenses = myBusinessInfoAsCountry["license"]["businessLicense"];
 
 
   const lastMetrcIndex = metrcLicense.length - 1;
@@ -210,7 +221,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
 
 
   return (
-    <MotionAccordion title={country}>
+    <AccordionItem title={title} variant="outline">
     <div className="space-y-2">
        <label className="text-sm font-medium">
          Provide your Matrc business license
@@ -285,7 +296,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
        ))}
      </div>}
      
-    </MotionAccordion>
+    </AccordionItem>
   
   )
 }
