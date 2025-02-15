@@ -52,7 +52,9 @@ function CountrySelector() {
 
   const authState = useAppSelector((state) => state.auth)
 
-  const businesses = authState.businessInfo
+  const businesses = authState.businessInfo;
+
+  
 
   // check if prev form value not found
   const { profession } = authState

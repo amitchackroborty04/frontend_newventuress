@@ -107,27 +107,27 @@ const authSlice = createSlice({
         console.error(`No business found for country: ${country}`);
       }
     },
-    // updateBusiness: (state, action) => {
-    //   // if (state.businessInfo.length === 0) {
-    //   //   // If no business exists, add a default one first
-    //   //   state.businessInfo.push({
-    //   //     country: "",
-    //   //     state: [""],
-    //   //     license: {
-    //   //       metrcLicense: [""],
-    //   //       cannabisLicense: [""],
-    //   //       businessLicense: [""]
+    updateBusiness: (state, action) => {
+      if (state.businessInfo.length === 0) {
+        // If no business exists, add a default one first
+        state.businessInfo.push({
+          country: "",
+          state: [""],
+          license: {
+            metrcLicense: [""],
+            cannabisLicense: [""],
+            businessLicense: [""]
         
-    //   //     }
-    //   //   });
-    //   // }
-    //   // // Update the last business in the array
-    //   // const lastIndex = state.businessInfo.length - 1;
-    //   // state.businessInfo[lastIndex] = {
-    //   //   ...state.businessInfo[lastIndex],
-    //   //   ...action.payload,
-    //   // };
-    // },
+          }
+        });
+      }
+      // Update the last business in the array
+      const lastIndex = state.businessInfo.length - 1;
+      state.businessInfo[lastIndex] = {
+        ...state.businessInfo[lastIndex],
+        ...action.payload,
+      };
+    },
     addMetrcField: (state, action) => {
       const { businessIndex, name } = action.payload;
     

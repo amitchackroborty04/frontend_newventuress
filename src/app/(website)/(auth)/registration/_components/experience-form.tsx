@@ -30,7 +30,7 @@ export function ExperienceForm() {
     redirect("/registration");
   }
 
-  const handleExperiencChange = (
+   const handleExperiencChange = (
     type: "CBD/HEMP" | "Recreational Cannabis" | "Select All"
   ) => {
     const currentIndustries = Array.isArray(authState.industry) ? authState.industry : [];
@@ -150,3 +150,5 @@ console.log(isButtonDisabled)
 }
 
 export default ExperienceForm;
+
+
