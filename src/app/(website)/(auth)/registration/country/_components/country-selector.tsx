@@ -32,11 +32,11 @@ function CountrySelector() {
 
   const [regionColors, setRegionColors] = useState({
     US: 80,
-    CA: 100,
+    CA: 80,
     MX: 100,
     DE: 80,
     ES: 100,
-    TH: 80,
+    TH: 100,
     NL: 100,
     MT: 80,
     UY: 100,
@@ -190,7 +190,7 @@ function CountrySelector() {
       <h3 className="text-lg font-semibold">Selected Countries:</h3>
       <div className="flex flex-wrap gap-2 mt-2">
         {cSelectedCountries.map((country, index) => {
-          const isNorthAmerica = ["Canada", "United States", "Mexico"].includes(country);
+          const isNorthAmerica = ["Canada", "United States", "Germany"].includes(country);
           return (
             <span
               key={index}
@@ -198,7 +198,7 @@ function CountrySelector() {
                 isNorthAmerica ? "bg-[#007853]" : "bg-[#008000]"
               } text-white rounded-full text-sm flex items-center gap-x-2`}
             >
-              {country}:  {isNorthAmerica ? "HEMP/CBD" : "Recreational Cannabis"}
+              {country}: {isNorthAmerica ? "HEMP/CBD" : "Recreational Cannabis"}
               <span className="bg-white hover:bg-white/80 cursor-pointer text-black rounded-full" onClick={() => handleRemoveCountry(country)}><X className="h-4 w-4" /></span>
             </span>
           );
@@ -307,7 +307,7 @@ function CountrySelector() {
  <nav className="flex items-center bg-gray-300  gap-6 p-4">
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#007853]" />
-        <span className="text-slate-600 text-sm"> HEMP/CBD </span>
+        <span className="text-slate-600 text-sm">HEMP/CBD </span>
       </div>
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#008000]" />
