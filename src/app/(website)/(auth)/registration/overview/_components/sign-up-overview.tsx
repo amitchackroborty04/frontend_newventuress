@@ -17,7 +17,7 @@ const SignUpOverview = () => {
     const businessInfos = authState.businessInfo
 
 
-    console.log(authState)
+    console.log("authState", authState)
 
 
 
@@ -31,6 +31,8 @@ const SignUpOverview = () => {
           state: entry.state
         }))
       );
+
+    console.log(licenses)
 
     if(!businessName || !email || !fullName || experiences.length == 0) {
         dispatch(resetAuthSlice());
@@ -53,10 +55,25 @@ const SignUpOverview = () => {
             <div className="flex items-start justify-between">
             <div>
             <h3>Country - {i + 1}: {item.country}</h3>
-           {item?.state && item.state.length >= 1 &&  <h3>State Of {item.country}: {item.state.join(", ")}</h3>}
-           {item?.metrcLicense.length >= 1 && <h3 className="flex items-center gap-x-4 flex-wrap">Metrc license No: {item.metrcLicense.join(", ")} <CustomBadge className="text-[#CA8A04] bg-[#FEFCE8]">Pending</CustomBadge></h3>}
-            {item?.cannabisLicense.length >= 1 && <h3 className="flex items-center gap-x-4 flex-wrap">Cannabis license No: {item.cannabisLicense.join(", ")} <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Auto Approved</CustomBadge></h3>}
-            {item?.businessLicense.length >= 1 && <h3>Metrc license No: {item.businessLicense.join(", ")}</h3>}
+           {item?.state && item.state.length >= 1 &&  <h3>License Of {item.name}</h3>}
+           {item?.metrcLicense.length > 0 && item.metrcLicense.some((license) => license.trim() !== "") && (
+  <h3 className="flex items-center gap-x-4 flex-wrap">
+    Metrc license No: {item.metrcLicense.join(", ")}
+    <CustomBadge className="text-[#CA8A04] bg-[#FEFCE8]">Pending</CustomBadge>
+  </h3>
+)}
+
+           {item?.cannabisLicense.length > 0 && item.cannabisLicense.some((license) => license.trim() !== "") && (
+  <h3 className="flex items-center gap-x-4 flex-wrap">
+    Cannabis license No: {item.cannabisLicense.join(", ")}
+    <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Auto Approved</CustomBadge>
+  </h3>
+)}
+
+            {item?.businessLicense.length > 0 && item.businessLicense.some((license) => license.trim() !== "") && (
+  <h3>Business license No: {item.businessLicense.join(", ")}</h3>
+)}
+
               </div>
 
             {/* <Badge >Pending</Badge> */}
