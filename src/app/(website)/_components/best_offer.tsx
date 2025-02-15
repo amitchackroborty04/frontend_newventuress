@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
-import { FaStar } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { StarRating } from "../cart/_components/star-rating";
 
 interface BestOfferData {
   id: number;
@@ -16,21 +15,25 @@ const bestOfferData: BestOfferData[] = [
     id: 1,
     img: "/assets/img/best_offer/best_offer1.png",
     name: "American Beauty",
+    
   },
   {
     id: 2,
     img: "/assets/img/best_offer/best_offer2.png",
     name: "American Beauty",
+    
   },
   {
     id: 3,
     img: "/assets/img/best_offer/best_offer3.png",
     name: "American Beauty",
+    
   },
   {
     id: 4,
     img: "/assets/img/best_offer/best_offer4.png",
     name: "American Beauty",
+    
   },
 ];
 
@@ -80,13 +83,7 @@ const BestOffer: React.FC = () => {
                   8 Views
                 </span>
               </div>
-              <div className="flex items-center gap-1">
-                <FaStar className="text-[#FF8A00] w-[12px] h-[12px]" />
-                <FaStar className="text-[#FF8A00] w-[12px] h-[12px]" />
-                <FaStar className="text-[#FF8A00] w-[12px] h-[12px]" />
-                <FaStar className="text-[#FF8A00] w-[12px] h-[12px]" />
-                <FaRegStar className="w-[12px] h-[12px]" />
-              </div>
+              <StarRating rating={4} />
             </div>
 
             <h5 className="text-base font-medium leading-[24px] text-[#0057A8] dark:text-gradient-pink pt-[6px]">
