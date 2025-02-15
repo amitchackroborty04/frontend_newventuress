@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { resetAuthSlice } from "@/redux/features/authentication/AuthSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import Link from "next/link";
@@ -14,6 +15,22 @@ const SignUpOverview = () => {
     const fullName = authState.fullName;
     const experiences = authState.industry;
     const businessInfos = authState.businessInfo
+
+
+    console.log(authState)
+
+
+
+    const licenses = businessInfos.flatMap(entry =>
+        entry.license.map(lic => ({
+          name: lic.name,
+          country: entry.country,
+          metrcLicense: lic.metrcLicense,
+          cannabisLicense: lic.cannabisLicense,
+          businessLicense: lic.businessLicense,
+          state: entry.state
+        }))
+      );
 
     if(!businessName || !email || !fullName || experiences.length == 0) {
         dispatch(resetAuthSlice());
@@ -31,13 +48,20 @@ const SignUpOverview = () => {
         </div>
 
         <div className="mt-[20px] grid grid-cols-1 md:grid-cols-2 gap-y-[20px] gap-x-[30px]">
-            {businessInfos.map((item, i) => (
-                <div key={item.country} className="bg-[#E6EEF6] rounded-[12px] p-[20px] text-[#444444] font-medium text-[20px]">
+            {licenses.map((item, i) => (
+                <div key={i} className="bg-[#E6EEF6] rounded-[12px] p-[20px] text-[#444444] font-medium text-[17px]">
+            <div className="flex items-start justify-between">
+            <div>
             <h3>Country - {i + 1}: {item.country}</h3>
            {item?.state && item.state.length >= 1 &&  <h3>State Of {item.country}: {item.state.join(", ")}</h3>}
-            {item?.license?.metrcLicense.length >= 1 && <h3>Metrc license No: {item.license.metrcLicense.join(", ")}</h3>}
-            {item?.license?.cannabisLicense.length >= 1 && <h3>Cannabis license No: {item.license.cannabisLicense.join(", ")}</h3>}
-            {item?.license?.businessLicense.length >= 1 && <h3>Metrc license No: {item.license.businessLicense.join(", ")}</h3>}
+           {item?.metrcLicense.length >= 1 && <h3 className="flex items-center gap-x-4 flex-wrap">Metrc license No: {item.metrcLicense.join(", ")} <CustomBadge className="text-[#CA8A04] bg-[#FEFCE8]">Pending</CustomBadge></h3>}
+            {item?.cannabisLicense.length >= 1 && <h3 className="flex items-center gap-x-4 flex-wrap">Cannabis license No: {item.cannabisLicense.join(", ")} <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Auto Approved</CustomBadge></h3>}
+            {item?.businessLicense.length >= 1 && <h3>Metrc license No: {item.businessLicense.join(", ")}</h3>}
+              </div>
+
+            {/* <Badge >Pending</Badge> */}
+              </div>
+            
             
             </div>
             ))}
@@ -54,3 +78,17 @@ const SignUpOverview = () => {
 }
 
 export default SignUpOverview
+
+
+interface CustomBadgeProps {
+  children: string;
+  className?:string
+}
+
+const CustomBadge = ({children, className}: CustomBadgeProps) => {
+  return (
+    <div  className={cn(className, "text-[8px]  rounded-full px-2 py-1")}>
+     {children}
+    </div>
+  )
+}

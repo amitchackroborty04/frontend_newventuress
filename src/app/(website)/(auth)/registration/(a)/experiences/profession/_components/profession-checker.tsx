@@ -21,7 +21,7 @@ interface Profession {
   label: string;
 }
 
-const professions: Profession[] = [
+export const professions: Profession[] = [
   { id: "farmmer", label: "Farmer" },
   { id: "cultivator", label: "Cultivator" },
   { id: "processor", label: "Processor" },
