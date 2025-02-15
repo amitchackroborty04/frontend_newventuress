@@ -1,33 +1,33 @@
 "use client"
 import {
-    Button
+  Button
 } from "@/components/ui/button"
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
 } from "@/components/ui/form"
 import {
-    Input
+  Input
 } from "@/components/ui/input"
 import {
-    MultiSelector,
-    MultiSelectorContent,
-    MultiSelectorInput,
-    MultiSelectorItem,
-    MultiSelectorList,
-    MultiSelectorTrigger
+  MultiSelector,
+  MultiSelectorContent,
+  MultiSelectorInput,
+  MultiSelectorItem,
+  MultiSelectorList,
+  MultiSelectorTrigger
 } from "@/components/ui/multi-select"
 import { setRegistrationValue } from "@/redux/features/authentication/AuthSlice"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import {
-    zodResolver
+  zodResolver
 } from "@hookform/resolvers/zod"
 import {
-    useForm
+  useForm
 } from "react-hook-form"
 import * as z from "zod"
 import { professions } from "../../(a)/experiences/profession/_components/profession-checker"
@@ -107,7 +107,7 @@ export default function EditRegistrationForm({toggle}: Props) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" mx-auto  grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
         
         <FormField
           control={form.control}

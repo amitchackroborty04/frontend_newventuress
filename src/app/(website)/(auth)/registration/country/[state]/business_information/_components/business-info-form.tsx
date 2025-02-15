@@ -142,13 +142,14 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
   };
 
   const submitForm = () => {
+    setLoading(true)
    
     router.push("/registration/overview")
   };
 
   const isNextDisabled =
   !authState.businessInfo.length || // Check if businessInfo array is empty
-  isAnyMetrcLicenseEmpty; 
+  isAnyMetrcLicenseEmpty || loading; 
 
   return (
     <div className="space-y-6">
