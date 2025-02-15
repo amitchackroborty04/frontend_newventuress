@@ -198,7 +198,7 @@ function CountrySelector() {
                 isNorthAmerica ? "bg-[#007853]" : "bg-[#008000]"
               } text-white rounded-full text-sm flex items-center gap-x-2`}
             >
-              {country} {isNorthAmerica ? "HEMP/CBD" : "CBD/THCA"}
+              {country}:  {isNorthAmerica ? "HEMP/CBD" : "Recreational Cannabis"}
               <span className="bg-white hover:bg-white/80 cursor-pointer text-black rounded-full" onClick={() => handleRemoveCountry(country)}><X className="h-4 w-4" /></span>
             </span>
           );
@@ -207,6 +207,8 @@ function CountrySelector() {
     </div>
   )}
 </div>
+
+
  <div>
      <motion.div
    
@@ -219,7 +221,7 @@ function CountrySelector() {
    style={{
      margin: "auto",
      width: "100%",
-     height: "600px",
+     height: "500px",
      position: "relative",
    }}
  >
@@ -305,11 +307,11 @@ function CountrySelector() {
  <nav className="flex items-center bg-gray-300  gap-6 p-4">
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#007853]" />
-        <span className="text-slate-600 text-sm">CBD </span>
+        <span className="text-slate-600 text-sm"> HEMP/CBD </span>
       </div>
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#008000]" />
-        <span className="text-slate-600 text-sm">Recreational </span>
+        <span className="text-slate-600 text-sm">Recreational Cannabis</span>
       </div>
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#ffffff]" />
