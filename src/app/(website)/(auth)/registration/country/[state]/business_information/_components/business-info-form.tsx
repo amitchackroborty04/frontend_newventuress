@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { AdminApprovalModal } from "@/app/(website)/(auth)/_components/admin-aproval-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import MotionAccordion from "@/components/ui/motion-accordion";
+import { Accordion, AccordionItem } from "@/components/ui/motion-accordion";
 import {
   addBusinessField,
   addCannabisField,
@@ -31,7 +31,10 @@ export function BusinessInfoForm() {
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const businesses = authState["businessInfo"]
+  const businesses = authState["businessInfo"];
+
+
+
 
  
 
@@ -105,8 +108,8 @@ export function BusinessInfoForm() {
 
   // Check if any business in the businessInfo array has an empty metrcLicense field
 const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
-  business.license.metrcLicense.some((license) => !license.trim())
-);
+  business.license.some((liences) => liences.metrcLicense.some((l) => !l.trim())))
+;
 
 
   useEffect(() => {
@@ -114,10 +117,6 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
       router.push("/registration")
     }
   }, [router, authState])
-
-
-
-
 
 
 
@@ -130,6 +129,7 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
   };
 
   const submitForm = () => {
+   
     router.push("/registration/overview")
   };
 
@@ -141,15 +141,21 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
     <div className="space-y-6">
       <FormHeader
         label="Sign Up"
-        paragraph="Continue to register as a customer or vendor, Please provide the information."
-        title="Select your business information"
+        paragraph="Please enter the following information to continue your registration."
+        title="Select location and enter license information"
       />
       <form onSubmit={handleSubmit} className="space-y-4">
       
-
-      {businesses.map((item, i) => (
-         <LicenseGroup key={item.country} country={item.country} index={i} />
+<Accordion>
+  
+{businesses.map(({country, license}, i) => (
+        <AccordionItem title={country} key={country} variant="fill">
+          {license.map(({metrcLicense, name, cannabisLicense, businessLicense}) => (
+              <LicenseGroup key={name} country={country} index={i} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
+          ))}
+        </AccordionItem>
       ))}
+</Accordion>
       
 
        <div className="flex items-center justify-between pt-[40px]">
@@ -182,10 +188,15 @@ export default BusinessInfoForm;
 
 interface LicenseGroupProps {
   country: string;
-  index: number
+  index: number;
+
+  metrcLicense: string[];
+  cannabisLicense: string[];
+  businessLicenses: string[];
+  title: string
 }
 
-const LicenseGroup = ({country, index}: LicenseGroupProps) => {
+const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title}: LicenseGroupProps) => {
   const authState = useAppSelector((state) => state.auth);
   const myBusinessInfoAsCountry = authState.businessInfo.find((item) => item.country == country);
   const dispatch = useAppDispatch()
@@ -197,9 +208,9 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
 
 
   // licenses
-  const metrcLicense = myBusinessInfoAsCountry["license"]["metrcLicense"];
-  const cannabisLicense = myBusinessInfoAsCountry["license"]["cannabisLicense"];
-  const businessLicenses = myBusinessInfoAsCountry["license"]["businessLicense"];
+  // const metrcLicense = myBusinessInfoAsCountry.;
+  // const cannabisLicense = myBusinessInfoAsCountry["license"]["cannabisLicense"];
+  // const businessLicenses = myBusinessInfoAsCountry["license"]["businessLicense"];
 
 
   const lastMetrcIndex = metrcLicense.length - 1;
@@ -210,7 +221,7 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
 
 
   return (
-    <MotionAccordion title={country}>
+    <AccordionItem title={title} variant="outline">
     <div className="space-y-2">
        <label className="text-sm font-medium">
          Provide your Matrc business license
@@ -227,12 +238,13 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
               updateMetrcLicense({
                 index: i,
                 newLicenseValue: e.target.value,
-                metrcInfoIndex: index
+                metrcInfoIndex: index,
+                name: title
               })
             )
           }
         />
-       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({businessIndex: index}))}><PlusIcon /></Button>}
+       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
        </div>
       ))}
      </div>
@@ -251,12 +263,13 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
                 updateCannabisLicense({
                   index: i,
                   newLicenseValue: e.target.value,
-                  cannabisInfoIndex: index
+                  cannabisInfoIndex: index,
+                  name: title
                 })
               )
             }
           />
-         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({businessIndex: index}))}><PlusIcon /></Button>}
+         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
          </div>
        ))}
      </div>
@@ -275,17 +288,18 @@ const LicenseGroup = ({country, index}: LicenseGroupProps) => {
                 updateBusinessLicense({
                   index: i,
                   newLicenseValue: e.target.value,
-                  businessInfoIndex: index
+                  businessInfoIndex: index,
+                  name: title
                 })
               )
             }
           />
-         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({businessIndex: index}))}><PlusIcon /></Button>}
+         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
          </div>
        ))}
      </div>}
      
-    </MotionAccordion>
+    </AccordionItem>
   
   )
 }

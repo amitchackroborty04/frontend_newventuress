@@ -1,10 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 "use client"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import { addNewBusiness } from "@/redux/features/authentication/AuthSlice"
-import { useAppDispatch, useAppSelector } from "@/redux/store"
+
+// Packages
 import { VectorMap } from "@react-jvectormap/core"
 import { worldMill } from "@react-jvectormap/world"
 import { AnimatePresence, motion } from "framer-motion"
@@ -12,24 +10,24 @@ import { Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+
+// Local imports
+import { Button } from "@/components/ui/button"
+import { countriesData } from "@/data/countries"
+import { cn } from "@/lib/utils"
+import { addNewBusiness } from "@/redux/features/authentication/AuthSlice"
+import { useAppDispatch, useAppSelector } from "@/redux/store"
+
 // Define the countries you want to include
-const countries = {
-  US: "United States",
-  CA: "Canada",
-  MX: "Mexico",
-  DE: "Germany",
-  ES: "Spain",
-  TH: "Thailand",
-  NL: "Netherlands",
-  MT: "Malta",
-  UY: "Uruguay",
-  CO: "Colombia",
-}
+const countries = countriesData.reduce((acc, { countryCode, country }) => {
+  acc[countryCode] = country;
+  return acc;
+}, {});
 
 const disabledColor = "#808080" // Gray color for disabled countries
 const colorScale = ["#C8EEFF", "#0071A4", "#008000"] // Green for selected countries
 
-function TestCountry() {
+function CountrySelector() {
   const [loading, setLoading] = useState<true | false>(false)
 
   const [regionColors, setRegionColors] = useState({
@@ -100,7 +98,7 @@ function TestCountry() {
       }
 
       // Log the selected countries
-      console.log("Selected countries:", newSelected)
+      console.log("AuthState", authState)
 
       // Update the clicked region's color (for visual feedback)
       setRegionColors((prevColors) => {
@@ -115,18 +113,33 @@ function TestCountry() {
         return newColors
       })
 
+      const businessessArray =  newSelected.map((country) => {
+        if (country === "United States" || country === "Canada") {
+          return {
+            country,
+            state: [],
+            license: [],
+          };
+        } else {
+          return {
+            country,
+            state: [],
+            license: [
+              {
+                name: country,
+                metrcLicense: [""],
+                cannabisLicense: [""],
+                businessLicense: [""],
+              },
+            ],
+          };
+        }
+      })
+
       // Dispatch action to update business list
       dispatch(
         addNewBusiness(
-          newSelected.map((country) => ({
-            country: country,
-            state: "",
-            license: {
-              metrcLicense: [""],
-              cannabisLicense: [""],
-              businessLicense: [""],
-            },
-          })),
+          businessessArray
         ),
       )
 
@@ -154,7 +167,10 @@ function TestCountry() {
         ? `/registration/country/${countriesLists}`
         : `/registration/country/${countriesLists}/business_information`;
 
+  
+
   return (
+   <>
  <div>
      <motion.div
    
@@ -171,6 +187,7 @@ function TestCountry() {
      position: "relative",
    }}
  >
+  
    <AnimatePresence>
      {loading && (
        <motion.div
@@ -270,9 +287,9 @@ function TestCountry() {
       <Link className={cn(isContinueDisble ? "pointer-events-none opacity-70" : "opacity-100", "w-full")} href={redirectUrl} onClick={() => setLoading(true)}>Continue</Link>
     </Button>
    </div>
- </div>
+ </div></>
   )
 }
 
-export default TestCountry
+export default CountrySelector
 
