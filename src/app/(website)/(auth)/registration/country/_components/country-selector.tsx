@@ -6,7 +6,7 @@
 import { VectorMap } from "@react-jvectormap/core"
 import { worldMill } from "@react-jvectormap/world"
 import { AnimatePresence, motion } from "framer-motion"
-import { Loader2 } from "lucide-react"
+import { Loader2, X } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -45,6 +45,8 @@ function CountrySelector() {
 
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
 
+  
+
   const dispatch = useAppDispatch()
   const router = useRouter()
 
@@ -53,6 +55,8 @@ function CountrySelector() {
   const authState = useAppSelector((state) => state.auth)
 
   const businesses = authState.businessInfo;
+
+  const cSelectedCountries = businesses.map((business) => business.country)
 
   
 
@@ -105,13 +109,7 @@ function CountrySelector() {
       // Update the clicked region's color (for visual feedback)
       setRegionColors((prevColors) => {
         const newColors = { ...prevColors }
-        Object.keys(countries).forEach((countryCode) => {
-          if (newSelected.includes(countries[countryCode])) {
-            newColors[countryCode] = 50 // Color changed to show selection
-          } else {
-            newColors[countryCode] = 100 // Reset color for unselected countries
-          }
-        })
+       
         return newColors
       })
 
@@ -151,6 +149,18 @@ function CountrySelector() {
     setLoading(false)
   }
 
+
+
+  function handleRemoveCountry(country) {
+
+   const newSelected = businesses.filter((business) => business.country !== country);
+
+   setSelectedCountries(newSelected.map((business) => business.country))
+
+   dispatch(addNewBusiness(newSelected))
+
+  }
+
   function handleRegionTipShow(event, label, code) {
     const countryName = countries[code] || "Unknown Country"
     label.html(`
@@ -173,6 +183,30 @@ function CountrySelector() {
 
   return (
    <>
+
+<div className="py-4">
+  {cSelectedCountries.length > 0 && (
+    <div className="mt-4 p-4 border rounded-sm shadow-md bg-gray-100">
+      <h3 className="text-lg font-semibold">Selected Countries:</h3>
+      <div className="flex flex-wrap gap-2 mt-2">
+        {cSelectedCountries.map((country, index) => {
+          const isNorthAmerica = ["Canada", "United States", "Mexico"].includes(country);
+          return (
+            <span
+              key={index}
+              className={`px-3 py-1 ${
+                isNorthAmerica ? "bg-[#007853]" : "bg-[#008000]"
+              } text-white rounded-full text-sm flex items-center gap-x-2`}
+            >
+              {country} {isNorthAmerica ? "HEMP/CBD" : "CBD/THCA"}
+              <span className="bg-white hover:bg-white/80 cursor-pointer text-black rounded-full" onClick={() => handleRemoveCountry(country)}><X className="h-4 w-4" /></span>
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  )}
+</div>
  <div>
      <motion.div
    
