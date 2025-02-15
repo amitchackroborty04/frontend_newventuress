@@ -46,11 +46,6 @@ export function BusinessInfoForm() {
           businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
       }))
   );
-
-
-
-
-
  
 
 

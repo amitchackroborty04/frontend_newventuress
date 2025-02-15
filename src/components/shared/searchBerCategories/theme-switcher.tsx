@@ -28,7 +28,7 @@ const ThemeSwitcher = () => {
           value="CBD/HEMP"
           className="text-[#152764] data-[state=active]:text-white  text-[8px] lg:text-base  "
         >
-          CBD/HEMP
+          HEMP/CBD
         </TabsTrigger>
 
         <TabsTrigger
