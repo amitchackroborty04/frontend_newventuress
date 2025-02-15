@@ -15,6 +15,11 @@ const SignUpOverview = () => {
     const experiences = authState.industry;
     const businessInfos = authState.businessInfo
 
+
+    console.log(authState)
+
+
+
     const licenses = businessInfos.flatMap(entry =>
         entry.license.map(lic => ({
           name: lic.name,

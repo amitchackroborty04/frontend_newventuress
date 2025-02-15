@@ -33,6 +33,19 @@ export function BusinessInfoForm() {
 
   const businesses = authState["businessInfo"];
 
+  const business1 = businesses.filter((item) => item.country === "United States" || item.country === "Canada")
+ 
+
+  const business3 = businesses
+  .filter((item) => item.country !== "United States" && item.country !== "Canada")  // Filter countries
+  .flatMap((every) => 
+      every.license.map(lic => ({
+          license: lic,
+          businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
+      }))
+  );
+
+
 
 
 
@@ -148,12 +161,16 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
       
 <Accordion>
   
-{businesses.map(({country, license}, i) => (
+{business1.map(({country, license}, i) => (
         <AccordionItem title={country} key={country} variant="fill">
           {license.map(({metrcLicense, name, cannabisLicense, businessLicense}) => (
               <LicenseGroup key={name} country={country} index={i} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
           ))}
         </AccordionItem>
+      ))}
+{business3.map(({businessIndex, license}) => (
+      <LicenseGroup variant="fill" key={businessIndex} country={license.name} index={businessIndex} metrcLicense={license.metrcLicense} cannabisLicense={license.cannabisLicense} businessLicenses={license.businessLicense} title={license.name} />
+        
       ))}
 </Accordion>
       
@@ -193,10 +210,11 @@ interface LicenseGroupProps {
   metrcLicense: string[];
   cannabisLicense: string[];
   businessLicenses: string[];
-  title: string
+  title: string;
+  variant?: "outline" | "fill"
 }
 
-const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title}: LicenseGroupProps) => {
+const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title , variant = "outline"}: LicenseGroupProps) => {
   const authState = useAppSelector((state) => state.auth);
   const myBusinessInfoAsCountry = authState.businessInfo.find((item) => item.country == country);
   const dispatch = useAppDispatch()
@@ -221,7 +239,7 @@ const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = ["
 
 
   return (
-    <AccordionItem title={title} variant="outline">
+    <AccordionItem title={title} variant={variant}>
     <div className="space-y-2">
        <label className="text-sm font-medium">
          Provide your Matrc business license
