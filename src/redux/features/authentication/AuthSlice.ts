@@ -54,6 +54,10 @@ const authSlice = createSlice({
     addNewBusiness: (state, action) => {
       state.businessInfo = action.payload;
     },
+    removeCountry : (state, action) => {
+      const { country } = action.payload;
+      state.businessInfo = state.businessInfo.filter((business) => business.country !== country);
+    },
     addStateToBusiness: (state, action) => {
       const { country, stateName } = action.payload;
 
@@ -215,6 +219,7 @@ const authSlice = createSlice({
     
     updateMetrcLicense: (state, action) => {
       const { index, newLicenseValue, metrcInfoIndex, name } = action.payload;
+
     
       // Validate the business index
       if (!state.businessInfo?.[metrcInfoIndex]) {
@@ -332,7 +337,8 @@ export const {
   updateCannabisLicense,
   updateBusinessLicense,
   addStateToBusiness,
-  removeStateFromBusiness
+  removeStateFromBusiness,
+  removeCountry
 
 } = authSlice.actions;
 
