@@ -43,7 +43,7 @@ export default function ProfileCompletion() {
           className="h-2 w-[270px] bg-[#C5C5C5] [&>div]:bg-[#0057A8] dark:[&>div]:bg-pinkGradient"
         /> 
          <div className="flex justify-between text-[12px] ml-5">
-        <span>Profile complete {profileData.completionPercentage}%</span>
+        <span className="text-[12px] text-[#444444] font-normal">Profile complete {profileData.completionPercentage}%</span>
       </div>
       </div>
 

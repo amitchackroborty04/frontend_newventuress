@@ -97,8 +97,7 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
           </div>
           
           
-          <div className="absolute right-0 top-full mt-1 w-max max-w-xs bg-primary dark:bg-pinkGradient z-50  p-4 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 dark:text-[#FFFFFF] ">
-            
+          <div className="absolute right-0 top-full mt-1 w-max max-w-xs bg-primary dark:bg-pinkGradient z-[5]  p-4 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 dark:text-[#FFFFFF] ">
             {row.original.Comments}
           </div>
         </div>

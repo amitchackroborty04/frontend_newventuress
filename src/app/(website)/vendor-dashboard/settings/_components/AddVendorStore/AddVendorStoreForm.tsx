@@ -223,7 +223,7 @@ export default function AddVendorStoreForm() {
                             <button
                               type="button"
                               onClick={() => handleDeleteImage("storeLogo")}
-                              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                              className="absolute z-50 top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
                             >
                               <X className="w-4 h-4" />
                             </button>
@@ -297,7 +297,7 @@ export default function AddVendorStoreForm() {
                             <button
                               type="button"
                               onClick={() => handleDeleteImage("storeBanner")}
-                              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
+                              className="absolute z-50 top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition-colors"
                             >
                               <X className="w-4 h-4" />
                             </button>

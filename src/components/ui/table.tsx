@@ -72,7 +72,7 @@ const TableRow = React.forwardRef<
     style={{
       boxShadow: "0px 0px 10px 5px #C1C9E4",
       borderRadius: "8px",
-
+      
       overflow: "hidden"
     }}
     {...props}

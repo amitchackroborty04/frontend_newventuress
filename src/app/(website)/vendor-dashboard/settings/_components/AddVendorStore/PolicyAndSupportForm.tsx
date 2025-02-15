@@ -38,7 +38,11 @@ export default function PolicySupportForm() {
   })
 
   function onSubmit(data: FormValues) {
-    console.log(data)
+    console.log({
+      ...data,
+      media1: supportPreview1,
+      media2: supportPreview2,
+    })
   }
 
   const [supportPreview1, setSupportPreview1] = useState<string | null>(null)
@@ -163,6 +167,7 @@ export default function PolicySupportForm() {
                               const file = e.target.files?.[0]
                               if (file) {
                                 setSupportPreview1(URL.createObjectURL(file))
+                                console.log("Media 1:", URL.createObjectURL(file))
                               }
                             }}
                           />
@@ -214,6 +219,7 @@ export default function PolicySupportForm() {
                               const file = e.target.files?.[0]
                               if (file) {
                                 setSupportPreview2(URL.createObjectURL(file))
+                                console.log("Media 2:", URL.createObjectURL(file))
                               }
                             }}
                           />

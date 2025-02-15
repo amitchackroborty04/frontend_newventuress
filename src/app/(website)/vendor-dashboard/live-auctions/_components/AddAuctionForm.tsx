@@ -31,10 +31,13 @@ const formSchema = z.object({
   sku: z.string().optional(),
   stockQuantity: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  productType: z.enum(["CBD", "Recreational"])
+  productType: z.enum(["CBD", "Recreational"]),
+   images: z.array(z.string()).optional(),
 });
 
 const AddAuctionForm: React.FC = () => {
+    const [images, setImages] = useState<File[]>([]);
+    const [formValues, setFormValues] = useState({ /* your form values here */ });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,7 +50,8 @@ const AddAuctionForm: React.FC = () => {
       sku: "",
       stockQuantity: "",
       tags: [],
-      productType: "CBD"
+      productType: "CBD",
+      images: [],
     }
   });
 
@@ -56,11 +60,18 @@ const AddAuctionForm: React.FC = () => {
     () => {
       form.setValue("tags", tags); // Update the 'tags' field in the form
       form.trigger("tags");
+      form.setValue("images", images.map((image) => image.name));
     },
-    [tags, form, form.trigger]
+    [tags, form,images, form.trigger]
   );
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(data);
+  };
+  const handleImageChange = (images: File[]) => {
+    setImages(images);
+    setFormValues({ ...formValues, images }); // Update the form values
+   
+
   };
 
   // const [date12, setDate12] = useState<Date | undefined>(undefined);
@@ -321,7 +332,7 @@ const AddAuctionForm: React.FC = () => {
                 </div>
               </div>
               <div className="w-[600px] h-full mt-[16px] border border-[#B0B0B0] rounded-lg  ">
-                <ProductGallery />
+                <ProductGallery onImageChange={handleImageChange}/>
               </div>
             </div>
             <div className="flex justify-end">
