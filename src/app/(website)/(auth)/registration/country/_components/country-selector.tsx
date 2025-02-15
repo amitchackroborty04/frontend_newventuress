@@ -207,6 +207,8 @@ function CountrySelector() {
     </div>
   )}
 </div>
+
+
  <div>
      <motion.div
    
@@ -219,7 +221,7 @@ function CountrySelector() {
    style={{
      margin: "auto",
      width: "100%",
-     height: "600px",
+     height: "500px",
      position: "relative",
    }}
  >
