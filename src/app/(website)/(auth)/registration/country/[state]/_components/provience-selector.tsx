@@ -1,6 +1,15 @@
 "use client";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { getRegionByCountry } from "@/data/countries";
 import { canadaProvinces, usStates } from "@/data/registration";
 import { cn } from "@/lib/utils";
 import { useAppSelector } from "@/redux/store";
@@ -8,6 +17,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import StateHeader from "./State-Header";
 import StateContainer from "./stats-container";
+
 
 interface Props {
   currentState: string;
@@ -65,6 +75,15 @@ const NextButton = ({
 export function ProvienceSelector({  currentState, countries }: Props) {
 
   const isEmptyPreviousField = useAppSelector((state) => state.auth.profession.length === 0);
+  const authstate = useAppSelector((state) => state.auth)
+
+  const business = authstate.businessInfo
+
+
+
+ 
+
+
 
   if(isEmptyPreviousField) {
     redirect("/registration")
@@ -79,7 +98,30 @@ export function ProvienceSelector({  currentState, countries }: Props) {
 
 
 
-  
+  const BreadCumb = (
+   <>
+  {business.map(({country, state}) => {
+    const continent = getRegionByCountry(country)
+    return (
+      <div className="flex items-center gap-x-5 text-[14px]" key={country}>
+     Region:  <Breadcrumb>
+ <BreadcrumbList>
+ <BreadcrumbItem>
+ <BreadcrumbLink>{continent}</BreadcrumbLink>
+ </BreadcrumbItem>
+ <BreadcrumbSeparator />
+ <BreadcrumbItem>
+ <BreadcrumbLink>{country}</BreadcrumbLink>
+ </BreadcrumbItem>
+{state && state.length > 0 && <><BreadcrumbSeparator />
+ <BreadcrumbItem>
+ <BreadcrumbPage>{state?.join(", ")}</BreadcrumbPage>
+ </BreadcrumbItem></> }
+ </BreadcrumbList>
+ </Breadcrumb></div>
+    )
+  })}</>
+  )
 
 
 
@@ -87,6 +129,11 @@ export function ProvienceSelector({  currentState, countries }: Props) {
 
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mx-auto px-4 space-y-[70px]">
+
+      
+<div className="my-5">
+  {BreadCumb}
+</div>
       
       
       {isUs &&<div>

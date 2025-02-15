@@ -1,60 +1,54 @@
-import { AnimatePresence, motion } from "framer-motion";
-import React, { ReactNode, useState } from "react";
+"use client"
 
-/**
- * Reusable Accordion Component
- * @param {string} title - The title displayed in the accordion header.
- * @param {ReactNode} children - Content to be shown when expanded.
- * @param {string} openColor - Background color when the accordion is expanded.
- * @param {string} closedColor - Background color when the accordion is closed.
- */
-interface AccordionProps {
-  title: string;
-  children: ReactNode;
-  openColor?: string;
-  closedColor?: string;
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronDown } from "lucide-react"
+import { type ReactNode, useState } from "react"
+
+interface AccordionItemProps {
+  title: string
+  children: ReactNode
+  variant?: "fill" | "outline"
+  defaultOpen?: boolean
 }
 
-const MotionAccordion: React.FC<AccordionProps> = ({
-  title,
-  children,
-  openColor = "#FF0088",
-  closedColor = "#0055FF"
-}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export function AccordionItem({ title, children, variant = "outline", defaultOpen = false }: AccordionItemProps) {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+
+  const variants = {
+    fill: "bg-[#1a237e] text-white",
+    outline: "bg-white border border-gray-200",
+  }
 
   return (
-    <div className="accordion-item">
-      <motion.header
+    <div className="mb-2">
+      <motion.button
         initial={false}
-        animate={{ backgroundColor: isOpen ? openColor : closedColor }}
         onClick={() => setIsOpen(!isOpen)}
-        className="p-4 cursor-pointer text-white"
+        className={`w-full p-4 flex items-center justify-between rounded-md ${variants[variant]}`}
       >
-        {title}
-      </motion.header>
+        <span className="font-medium">{title}</span>
+        <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          <ChevronDown className="h-5 w-5" />
+        </motion.div>
+      </motion.button>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.section
-            key="content"
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={{
-              open: { opacity: 1, height: "auto" },
-              collapsed: { opacity: 0, height: 0 }
-            }}
-            transition={{ duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] }}
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="p-4 bg-gray-100">{children}</div>
-          </motion.section>
+            <div className="pt-2 pb-4 ">{children}</div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default MotionAccordion
-
+export function Accordion({ children }: { children: ReactNode }) {
+  return <div className="w-full max-w-2xl mx-auto">{children}</div>
+}
 

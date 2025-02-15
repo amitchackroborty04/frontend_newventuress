@@ -115,7 +115,7 @@ export default function UserInformationForm() {
     >
       <FormHeader
         label="Sign Up"
-        paragraph="Continue to register as a customer or vendor, Please provide the information."
+        paragraph="Please enter the following information to continue your registration"
         title="Enter your Business Information"
       />
 
@@ -134,7 +134,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <Input
                     className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
-                    placeholder="Write your business name"
+                    placeholder="Enter your business name"
                     onChange={(e) => {
                       dispatch(
                         setRegistrationValue({
@@ -160,7 +160,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <Input
                     className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
-                    placeholder="Write your email"
+                    placeholder="Enter your email"
                     onChange={(e) => {
                       dispatch(
                         setRegistrationValue({
@@ -187,7 +187,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <Input
                     className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
-                    placeholder="Write your full name"
+                    placeholder="Enter your full name"
                     onChange={(e) => {
                       dispatch(
                         setRegistrationValue({
