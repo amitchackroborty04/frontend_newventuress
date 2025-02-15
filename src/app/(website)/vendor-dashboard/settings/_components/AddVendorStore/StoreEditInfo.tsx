@@ -131,7 +131,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
                   />
 
                   <FormField
-                    control={form.control}
+                    control={form.control} 
                     name="storeEmail"
                     render={({ field }) => (
                       <FormItem>

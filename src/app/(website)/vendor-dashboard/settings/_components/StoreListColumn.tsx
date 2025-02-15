@@ -184,7 +184,7 @@ export const StoreListColumn = ({
                 align="end"
                 className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
               >
-                <DropdownMenuItem
+                <DropdownMenuItem 
                   className="p-[8px] hover:bg-[#E6EEF6] focus:outline-none rounded-t-[8px] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 cursor-pointer dark:hover:bg-[#482D721A] dark:!text-[#6841A5]"
                   onClick={() => { 
                     setSelectedRow(row.original);// Set the selected row
