@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
 // Local imports
-import { AdminApprovalModal } from "@/app/(website)/(auth)/_components/admin-aproval-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionItem } from "@/components/ui/motion-accordion";
@@ -129,9 +128,6 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
   }, [router, authState])
 
 
-
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
   
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -188,13 +184,7 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
           </Button>
         </div>
       </form>
-      <AdminApprovalModal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          submitForm();
-        }}
-      />
+      
     </div>
   );
 }

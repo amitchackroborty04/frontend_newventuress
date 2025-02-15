@@ -3,12 +3,17 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { resetAuthSlice } from "@/redux/features/authentication/AuthSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { Loader2 } from "lucide-react";
+import { redirect, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AdminApprovalModal } from "../../../_components/admin-aproval-modal";
 
 const SignUpOverview = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [loading,setLoading] = useState(false)
     const authState = useAppSelector((state) => state.auth);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const router = useRouter()
 
     const businessName = authState.businessName;
     const email = authState.email;
@@ -16,8 +21,14 @@ const SignUpOverview = () => {
     const experiences = authState.industry;
     const businessInfos = authState.businessInfo
 
+    useEffect(() => {
 
-    console.log("authState", authState)
+      return () => {
+        setLoading(false)
+      }
+
+    }, [])
+
 
 
 
@@ -32,12 +43,14 @@ const SignUpOverview = () => {
         }))
       );
 
-    console.log(licenses)
+      useEffect(() => {
+        if (!businessName || !email || !fullName || experiences.length === 0) {
+          dispatch(resetAuthSlice());
+          redirect("/registration")
+        };
 
-    if(!businessName || !email || !fullName || experiences.length == 0) {
-        dispatch(resetAuthSlice());
-        redirect("/registration")
-    }
+        
+      }, [businessName, email, fullName, experiences, dispatch]);
 
   return (
     <>
@@ -88,9 +101,18 @@ const SignUpOverview = () => {
         
 
     </div>
-    <Button className="mt-[20px]" asChild>
-    <Link href="/login">
-    <span>Next →</span></Link></Button></>
+    <Button disabled={loading} className="mt-[20px]" onClick={() => {
+      setIsModalOpen(true);
+    }}>
+    <span className="flex items-center gap-x-2">Next {loading ? <Loader2 className="animate-spin h-3 w-3" /> : "→"}</span></Button> <AdminApprovalModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setLoading(true)
+          router.push("/")
+          
+        }}
+      /></>
   )
 }
 
