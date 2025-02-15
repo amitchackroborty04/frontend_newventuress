@@ -54,9 +54,9 @@ const SignUpOverview = () => {
             <div>
             <h3>Country - {i + 1}: {item.country}</h3>
            {item?.state && item.state.length >= 1 &&  <h3>State Of {item.country}: {item.state.join(", ")}</h3>}
-           {item?.metrcLicense.length >= 1 && <h3 className="flex items-center gap-x-4 flex-wrap">Metrc license No: {item.metrcLicense.join(", ")} <CustomBadge className="text-[#CA8A04] bg-[#FEFCE8]">Pending</CustomBadge></h3>}
-            {item?.cannabisLicense.length >= 1 && <h3 className="flex items-center gap-x-4 flex-wrap">Cannabis license No: {item.cannabisLicense.join(", ")} <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Auto Approved</CustomBadge></h3>}
-            {item?.businessLicense.length >= 1 && <h3>Metrc license No: {item.businessLicense.join(", ")}</h3>}
+           {item?.metrcLicense.length > 0 && <h3 className="flex items-center gap-x-4 flex-wrap">Metrc license No: {item.metrcLicense.join(", ")} <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Pending</CustomBadge></h3>}
+            {item?.cannabisLicense.length > 0 && <h3 className="flex items-center gap-x-4 flex-wrap">Cannabis license No: {item.cannabisLicense.join(", ")} <CustomBadge  className="text-[#CA8A04] bg-[#FEFCE8]">Auto Approved</CustomBadge></h3>}
+            {item?.businessLicense.length > 0 && <h3>Business license No: {item.businessLicense.join(", ")}</h3>}
               </div>
 
             {/* <Badge >Pending</Badge> */}
