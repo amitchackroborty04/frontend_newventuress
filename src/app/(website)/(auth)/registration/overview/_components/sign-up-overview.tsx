@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { resetAuthSlice } from "@/redux/features/authentication/AuthSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AdminApprovalModal } from "../../../_components/admin-aproval-modal";
 
 const SignUpOverview = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
     const authState = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch()
 
@@ -16,8 +18,6 @@ const SignUpOverview = () => {
     const experiences = authState.industry;
     const businessInfos = authState.businessInfo
 
-
-    console.log(authState)
 
 
 
@@ -32,10 +32,12 @@ const SignUpOverview = () => {
         }))
       );
 
-    if(!businessName || !email || !fullName || experiences.length == 0) {
-        dispatch(resetAuthSlice());
-        redirect("/registration")
-    }
+      useEffect(() => {
+        if (!businessName || !email || !fullName || experiences.length === 0) {
+          dispatch(resetAuthSlice());
+          redirect("/registration")
+        }
+      }, [businessName, email, fullName, experiences, dispatch]);
 
   return (
     <>
@@ -71,9 +73,16 @@ const SignUpOverview = () => {
         
 
     </div>
-    <Button className="mt-[20px]" asChild>
-    <Link href="/login">
-    <span>Next →</span></Link></Button></>
+    <Button className="mt-[20px]" onClick={() => {
+      setIsModalOpen(true);
+      dispatch(resetAuthSlice())
+    }}>
+    <span>Next →</span></Button> <AdminApprovalModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+      /></>
   )
 }
 
