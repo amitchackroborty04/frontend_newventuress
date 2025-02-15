@@ -120,6 +120,7 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
 
 
 
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   
 
@@ -128,6 +129,7 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
   };
 
   const submitForm = () => {
+   
     router.push("/registration/overview")
   };
 
@@ -201,8 +203,6 @@ const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = ["
 
   if(!myBusinessInfoAsCountry) return null;
 
-  console.log(metrcLicense)
-
 
 
 
@@ -238,12 +238,13 @@ const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = ["
               updateMetrcLicense({
                 index: i,
                 newLicenseValue: e.target.value,
-                metrcInfoIndex: index
+                metrcInfoIndex: index,
+                name: title
               })
             )
           }
         />
-       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({businessIndex: index}))}><PlusIcon /></Button>}
+       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
        </div>
       ))}
      </div>
@@ -262,12 +263,13 @@ const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = ["
                 updateCannabisLicense({
                   index: i,
                   newLicenseValue: e.target.value,
-                  cannabisInfoIndex: index
+                  cannabisInfoIndex: index,
+                  name: title
                 })
               )
             }
           />
-         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({businessIndex: index}))}><PlusIcon /></Button>}
+         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
          </div>
        ))}
      </div>
@@ -286,12 +288,13 @@ const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = ["
                 updateBusinessLicense({
                   index: i,
                   newLicenseValue: e.target.value,
-                  businessInfoIndex: index
+                  businessInfoIndex: index,
+                  name: title
                 })
               )
             }
           />
-         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({businessIndex: index}))}><PlusIcon /></Button>}
+         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
          </div>
        ))}
      </div>}

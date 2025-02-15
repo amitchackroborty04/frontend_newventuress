@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck 
 import { createSlice } from "@reduxjs/toolkit";
 
 
@@ -107,145 +107,210 @@ const authSlice = createSlice({
         console.error(`No business found for country: ${country}`);
       }
     },
-    updateBusiness: (state, action) => {
-      // if (state.businessInfo.length === 0) {
-      //   // If no business exists, add a default one first
-      //   state.businessInfo.push({
-      //     country: "",
-      //     state: [""],
-      //     license: {
-      //       metrcLicense: [""],
-      //       cannabisLicense: [""],
-      //       businessLicense: [""]
+    // updateBusiness: (state, action) => {
+    //   // if (state.businessInfo.length === 0) {
+    //   //   // If no business exists, add a default one first
+    //   //   state.businessInfo.push({
+    //   //     country: "",
+    //   //     state: [""],
+    //   //     license: {
+    //   //       metrcLicense: [""],
+    //   //       cannabisLicense: [""],
+    //   //       businessLicense: [""]
         
-      //     }
-      //   });
-      // }
-      // // Update the last business in the array
-      // const lastIndex = state.businessInfo.length - 1;
-      // state.businessInfo[lastIndex] = {
-      //   ...state.businessInfo[lastIndex],
-      //   ...action.payload,
-      // };
-    },
+    //   //     }
+    //   //   });
+    //   // }
+    //   // // Update the last business in the array
+    //   // const lastIndex = state.businessInfo.length - 1;
+    //   // state.businessInfo[lastIndex] = {
+    //   //   ...state.businessInfo[lastIndex],
+    //   //   ...action.payload,
+    //   // };
+    // },
     addMetrcField: (state, action) => {
-      // const {businessIndex} = action.payload
-      // // Ensure businessInfo is not empty
-      // if (businessIndex !== -1) {
-      //   // Add a new empty string to the metrcLicense array for the specific business
-      //   state.businessInfo[businessIndex].license.metrcLicense.push("");
-      // } else {
-      //   console.error(`No business found for for add new field`);
-      // }
+      const { businessIndex, name } = action.payload;
+    
+      // Validate business index
+      if (!state.businessInfo?.[businessIndex]) {
+        console.error("Invalid business index or no business found.");
+        return;
+      }
+    
+      const business = state.businessInfo[businessIndex];
+    
+      // Ensure the business has a license array (for non-US/Canada countries)
+      if (Array.isArray(business.license) && business.license.length > 0) {
+        // Find the correct license entry based on the name
+        const licenseEntry = business.license.find((license) => license.name === name);
+    
+        if (licenseEntry) {
+          // Add a new empty string to metrcLicense of the found license entry
+          licenseEntry.metrcLicense.push("");
+        } else {
+          console.error(`No license found with name: ${name}`);
+        }
+      } else {
+        console.error("No license available to add a new field.");
+      }
     },
+    
+    
     addCannabisField: (state, action) => {
-      // const {businessIndex} = action.payload
-      // // Ensure businessInfo is not empty
-      // if (businessIndex !== -1) {
-      //   // Add a new empty string to the metrcLicense array for the specific business
-      //   state.businessInfo[businessIndex].license.cannabisLicense.push("");
-      // } else {
-      //   console.error(`No business found for for add new field`);
-      // }
+      const { businessIndex, name } = action.payload;
+    
+      // Validate business index
+      if (!state.businessInfo?.[businessIndex]) {
+        console.error("Invalid business index or no business found.");
+        return;
+      }
+    
+      const business = state.businessInfo[businessIndex];
+    
+      // Ensure the business has a license array (for non-US/Canada countries)
+      if (Array.isArray(business.license) && business.license.length > 0) {
+        // Find the correct license entry based on the name
+        const licenseEntry = business.license.find((license) => license.name === name);
+    
+        if (licenseEntry) {
+          // Add a new empty string to cannabisLicense of the found license entry
+          licenseEntry.cannabisLicense.push("");
+        } else {
+          console.error(`No license found with name: ${name}`);
+        }
+      } else {
+        console.error("No license available to add a new cannabis field.");
+      }
     },
+    
+    
     addBusinessField: (state, action) => {
-      // const {businessIndex} = action.payload
-      // // Ensure businessInfo is not empty
-      // if (businessIndex !== -1) {
-      //   // Add a new empty string to the metrcLicense array for the specific business
-      //   state.businessInfo[businessIndex].license.businessLicense.push("");
-      // } else {
-      //   console.error(`No business found for for add new field`);
-      // }
+      const { businessIndex, name } = action.payload;
+    
+      // Validate business index
+      if (!state.businessInfo?.[businessIndex]) {
+        console.error("Invalid business index or no business found.");
+        return;
+      }
+    
+      const business = state.businessInfo[businessIndex];
+    
+      // Ensure the business has a license array (for non-US/Canada countries)
+      if (Array.isArray(business.license) && business.license.length > 0) {
+        // Find the correct license entry based on the name
+        const licenseEntry = business.license.find((license) => license.name === name);
+    
+        if (licenseEntry) {
+          // Add a new empty string to businessLicense of the found license entry
+          licenseEntry.businessLicense.push("");
+        } else {
+          console.error(`No license found with name: ${name}`);
+        }
+      } else {
+        console.error("No license available to add a new business field.");
+      }
     },
+    
+    
     
     updateMetrcLicense: (state, action) => {
-      // const { index, newLicenseValue, metrcInfoIndex } = action.payload;
+      const { index, newLicenseValue, metrcInfoIndex, name } = action.payload;
     
-      // // Ensure metrcInfoIndex is valid
-      // if (
-      //   state.businessInfo?.[metrcInfoIndex]?.license?.metrcLicense &&
-      //   index >= 0 &&
-      //   index < state.businessInfo[metrcInfoIndex].license.metrcLicense.length
-      // ) {
-      //   state.businessInfo = state.businessInfo.map((business, i) =>
-      //     i === metrcInfoIndex
-      //       ? {
-      //           ...business,
-      //           license: {
-      //             ...business.license,
-      //             metrcLicense: business.license.metrcLicense.map((license, j) =>
-      //               j === index ? newLicenseValue : license
-      //             )
-      //           }
-      //         }
-      //       : business
-      //   );
-      // } else {
-      //   if (!state.businessInfo?.length) {
-      //     console.error("No businessInfo available to update a metrc license");
-      //   } else {
-      //     console.error("Invalid metrcLicense index or metrcInfoIndex");
-      //   }
-      // }
-    }
-,    
-    updateCannabisLicense: (state, action) => {
-      // const { index, newLicenseValue, cannabisInfoIndex } = action.payload;
+      // Validate the business index
+      if (!state.businessInfo?.[metrcInfoIndex]) {
+        console.error("Invalid business index or no businessInfo available.");
+        return;
+      }
     
-      // // Ensure cannabisInfoIndex is valid
-      // if (
-      //   state.businessInfo?.[cannabisInfoIndex]?.license?.cannabisLicense &&
-      //   index >= 0 &&
-      //   index < state.businessInfo[cannabisInfoIndex].license.cannabisLicense.length
-      // ) {
-      //   state.businessInfo = state.businessInfo.map((business, i) =>
-      //     i === cannabisInfoIndex
-      //       ? {
-      //           ...business,
-      //           license: {
-      //             ...business.license,
-      //             cannabisLicense: business.license.cannabisLicense.map((license, j) =>
-      //               j === index ? newLicenseValue : license
-      //             )
-      //           }
-      //         }
-      //       : business
-      //   );
-      // } else {
-      //   if (!state.businessInfo?.length) {
-      //     console.error("No businessInfo available to update a cannabis license");
-      //   } else {
-      //     console.error("Invalid cannabisLicense index or cannabisInfoIndex");
-      //   }
-      // }
+      const business = state.businessInfo[metrcInfoIndex];
+    
+      // Ensure the business has a license array (for non-US/Canada countries)
+      if (Array.isArray(business.license) && business.license.length > 0) {
+        // Find the correct license object based on the name
+        const licenseEntry = business.license.find((license) => license.name === name);
+    
+        if (licenseEntry) {
+          // Ensure the index is valid within metrcLicense
+          if (licenseEntry.metrcLicense && index >= 0 && index < licenseEntry.metrcLicense.length) {
+            licenseEntry.metrcLicense[index] = newLicenseValue;
+          } else {
+            console.error("Invalid metrcLicense index.");
+          }
+        } else {
+          console.error(`No license found with name: ${name}`);
+        }
+      } else {
+        console.error("No metrcLicense available to update.");
+      }
     },
     
-    updateBusinessLicense: (state, action) => {
-    //   const { index, newLicenseValue, businessInfoIndex } = action.payload;
     
-    //   if (
-    //     state.businessInfo?.[businessInfoIndex]?.license?.businessLicense &&
-    //     index >= 0 &&
-    //     index < state.businessInfo[businessInfoIndex].license.businessLicense.length
-    //   ) {
-    //     // Immutably update the state
-    //     state.businessInfo = state.businessInfo.map((business, i) => 
-    //       i === businessInfoIndex
-    //         ? {
-    //             ...business,
-    //             license: {
-    //               ...business.license,
-    //               businessLicense: business.license.businessLicense.map((license, j) =>
-    //                 j === index ? newLicenseValue : license
-    //               )
-    //             }
-    //           }
-    //         : business
-    //     );
-    //   }
-    }
-    ,
+
+    updateCannabisLicense: (state, action) => {
+      const { index, newLicenseValue, cannabisInfoIndex, name } = action.payload;
+    
+      // Validate the business index
+      if (!state.businessInfo?.[cannabisInfoIndex]) {
+        console.error("Invalid business index or no businessInfo available.");
+        return;
+      }
+    
+      const business = state.businessInfo[cannabisInfoIndex];
+    
+      // Ensure the business has a license array (for non-US/Canada countries)
+      if (Array.isArray(business.license) && business.license.length > 0) {
+        // Find the correct license object based on the name
+        const licenseEntry = business.license.find((license) => license.name === name);
+    
+        if (licenseEntry) {
+          // Ensure the index is valid within cannabisLicense
+          if (licenseEntry.cannabisLicense && index >= 0 && index < licenseEntry.cannabisLicense.length) {
+            licenseEntry.cannabisLicense[index] = newLicenseValue;
+          } else {
+            console.error("Invalid cannabisLicense index.");
+          }
+        } else {
+          console.error(`No license found with name: ${name}`);
+        }
+      } else {
+        console.error("No cannabisLicense available to update.");
+      }
+    },
+    
+    
+    updateBusinessLicense: (state, action) => {
+      const { index, newLicenseValue, businessInfoIndex, name } = action.payload;
+    
+      // Validate the business index
+      if (!state.businessInfo?.[businessInfoIndex]) {
+        console.error("Invalid business index or no businessInfo available.");
+        return;
+      }
+    
+      const business = state.businessInfo[businessInfoIndex];
+    
+      // Ensure the business has a license array (for non-US/Canada countries)
+      if (Array.isArray(business.license) && business.license.length > 0) {
+        // Find the correct license object based on the name
+        const licenseEntry = business.license.find((license) => license.name === name);
+    
+        if (licenseEntry) {
+          // Ensure the index is valid within businessLicense
+          if (licenseEntry.businessLicense && index >= 0 && index < licenseEntry.businessLicense.length) {
+            licenseEntry.businessLicense[index] = newLicenseValue;
+          } else {
+            console.error("Invalid businessLicense index.");
+          }
+        } else {
+          console.error(`No license found with name: ${name}`);
+        }
+      } else {
+        console.error("No businessLicense available to update.");
+      }
+    },
+    
+    
+    
 
     
     resetAuthSlice: () => {
@@ -258,7 +323,7 @@ const authSlice = createSlice({
 export const {
   setRegistrationValue,
   addNewBusiness,
-  updateBusiness,
+  // updateBusiness,
   resetAuthSlice,
   updateMetrcLicense,
   addMetrcField,
