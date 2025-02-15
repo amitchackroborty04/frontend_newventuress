@@ -110,7 +110,7 @@ const OrderDetailsTable = ({ className }: { className: string }) => {
                 height={80}
                 className="rounded-lg"
               />
-              <span className="text-sm font-medium text-gray-900">
+              <span className="text-sm font-medium text-gray-900 dark:text-gradient-pink">
                 {product.name}
               </span>
             </div>

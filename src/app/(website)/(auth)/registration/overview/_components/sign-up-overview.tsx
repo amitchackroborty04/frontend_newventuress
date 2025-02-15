@@ -3,20 +3,31 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { resetAuthSlice } from "@/redux/features/authentication/AuthSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { redirect } from "next/navigation";
+import { Loader2 } from "lucide-react";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AdminApprovalModal } from "../../../_components/admin-aproval-modal";
 
 const SignUpOverview = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [loading,setLoading] = useState(false)
     const authState = useAppSelector((state) => state.auth);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const router = useRouter()
 
     const businessName = authState.businessName;
     const email = authState.email;
     const fullName = authState.fullName;
     const experiences = authState.industry;
     const businessInfos = authState.businessInfo
+
+    useEffect(() => {
+
+      return () => {
+        setLoading(false)
+      }
+
+    }, [])
 
 
 
@@ -36,7 +47,9 @@ const SignUpOverview = () => {
         if (!businessName || !email || !fullName || experiences.length === 0) {
           dispatch(resetAuthSlice());
           redirect("/registration")
-        }
+        };
+
+        
       }, [businessName, email, fullName, experiences, dispatch]);
 
   return (
@@ -55,10 +68,25 @@ const SignUpOverview = () => {
             <div className="flex items-start justify-between">
             <div>
             <h3>Country - {i + 1}: {item.country}</h3>
-           {item?.state && item.state.length >= 1 &&  <h3>State Of {item.country}: {item.state.join(", ")}</h3>}
-           {item?.metrcLicense.length > 0 && <h3 className="flex items-center gap-x-4 flex-wrap">Metrc license No: {item.metrcLicense.join(", ")} <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Pending</CustomBadge></h3>}
-            {item?.cannabisLicense.length > 0 && <h3 className="flex items-center gap-x-4 flex-wrap">Cannabis license No: {item.cannabisLicense.join(", ")} <CustomBadge  className="text-[#CA8A04] bg-[#FEFCE8]">Auto Approved</CustomBadge></h3>}
-            {item?.businessLicense.length > 0 && <h3>Business license No: {item.businessLicense.join(", ")}</h3>}
+           {item?.state && item.state.length >= 1 &&  <h3>License Of {item.name}</h3>}
+           {item?.metrcLicense.length > 0 && item.metrcLicense.some((license) => license.trim() !== "") && (
+  <h3 className="flex items-center gap-x-4 flex-wrap">
+    Metrc license No: {item.metrcLicense.join(", ")}
+    <CustomBadge className="text-[#CA8A04] bg-[#FEFCE8]">Pending</CustomBadge>
+  </h3>
+)}
+
+           {item?.cannabisLicense.length > 0 && item.cannabisLicense.some((license) => license.trim() !== "") && (
+  <h3 className="flex items-center gap-x-4 flex-wrap">
+    Cannabis license No: {item.cannabisLicense.join(", ")}
+    <CustomBadge className="text-[#16A34A] bg-[#F0FDF4]">Auto Approved</CustomBadge>
+  </h3>
+)}
+
+            {item?.businessLicense.length > 0 && item.businessLicense.some((license) => license.trim() !== "") && (
+  <h3>Business license No: {item.businessLicense.join(", ")}</h3>
+)}
+
               </div>
 
             {/* <Badge >Pending</Badge> */}
@@ -73,14 +101,16 @@ const SignUpOverview = () => {
         
 
     </div>
-    <Button className="mt-[20px]" onClick={() => {
+    <Button disabled={loading} className="mt-[20px]" onClick={() => {
       setIsModalOpen(true);
-      dispatch(resetAuthSlice())
     }}>
-    <span>Next →</span></Button> <AdminApprovalModal
+    <span className="flex items-center gap-x-2">Next {loading ? <Loader2 className="animate-spin h-3 w-3" /> : "→"}</span></Button> <AdminApprovalModal
         isOpen={isModalOpen}
         onClose={() => {
           setIsModalOpen(false);
+          setLoading(true)
+          router.push("/")
+          
         }}
       /></>
   )

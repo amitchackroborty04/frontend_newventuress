@@ -38,10 +38,9 @@ export function AdminApprovalModal({
             <p className="text-gradient text-xl mb-2">
               Kindly Wait for Admin Approval.
             </p>
-            <p className="text-gray-600 mb-6">Keep shopping with Rim Fusion.</p>
 
             {/* Button */}
-            <Button onClick={onClose} className=" px-12 py-2 rounded">
+            <Button onClick={onClose} className=" px-12 py-2 mt-3 rounded">
               Okay
             </Button>
           </div>

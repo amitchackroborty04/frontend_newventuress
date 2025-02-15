@@ -30,6 +30,8 @@ export function BusinessInfoForm() {
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  console.log("authState", authState);
+
   const businesses = authState["businessInfo"];
 
   const business1 = businesses.filter((item) => item.country === "United States" || item.country === "Canada")
@@ -126,9 +128,6 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
   }, [router, authState])
 
 
-
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
   
 
   const handleSubmit = (e: React.FormEvent) => {
