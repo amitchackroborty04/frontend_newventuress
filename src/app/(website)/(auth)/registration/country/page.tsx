@@ -11,7 +11,7 @@ const Page = () => {
       sidebarImage="https://i.postimg.cc/QCCySSfp/image-9.png"
       fullWidth
     >
-      <h1 className="text-[36px] font-semibold leading-[43.2px] text-primary text-center ">
+      <h1 className="text-[36px] font-semibold leading-[43.2px] text-primary dark:text-gradient-pink text-center ">
       Select Your Country Locations
       </h1>
       <p className="text-[12px] leading-[14.4px] font-normal text-[#6D6D6D] text-center mb-[30px]">

@@ -14,7 +14,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     cell: ({ row }) => {
       return (
         <div className=" ">
-          <span className="text-[16px] text-gradient font-mediuml dark:text-gradient-pink ">
+          <span className="text-[14px] 2xl:text-[16px] text-gradient font-mediuml dark:text-gradient-pink ">
             {row.original.code}
           </span>
         </div>
@@ -25,8 +25,8 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     header: "Type",
     cell: ({ row }) => {
       return (
-        <div className=" w-[149px]">
-          <span className="text-[12px]  text-white bg-primary p-[10px] rounded-[12px] font-normal dark:bg-pinkGradient" >
+        <div className="w-[140px]">
+          <span className="text-[12px] text-white bg-primary px-[8px] py-[5px] 2xl:px-[10px] 2xl:py-[8px] rounded-[12px] font-normal dark:bg-pinkGradient" >
             {row.original.type}
           </span>
         </div>
@@ -37,7 +37,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     header: "Amount",
     cell: ({ row }) => {
       return (
-        <div className=" w-[50px]">
+        <div className="">
           <span className="text-[16px] text-[#444444] font-mediuml">
             {row.original.amount}
           </span>
@@ -50,7 +50,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     cell: ({ row }) => {
       return (
         <div className="">
-          <span className="text-[16px] text-[#444444] font-mediuml">
+          <span className="text-[12px] 2xl:text-[16px] text-[#444444] font-mediuml">
             {row.original.store}
           </span>
         </div>
@@ -61,7 +61,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     header: "Usage Limits",
     cell: ({ row }) => {
       return (
-        <div className=" w-[90px]">
+        <div className=" ">
           <span className="text-[16px] text-[#444444] font-mediuml">
             Limit-{row.original.limit}
           </span>
@@ -73,7 +73,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     header: "Permission",
     cell: () => {
       return (
-        <div className=" w-[90px]">
+        <div className="">
           <Toggle />
         </div>
       );
@@ -83,12 +83,12 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     header: "Expired Date",
     cell: ({ row }) => {
       return (
-        <div className="w-[149px]">
-          <span className="text-[16px] w-[149px] text-[#444444] font-mediuml">
+        <div className="">
+          <span className="text-[12px] 2xl:text-[16px] text-[#444444] font-mediuml">
             {row.original.expiredDate}
           </span>{" "}
           <br />
-          <span className="text-[16px]  text-center  text-[#444444] font-mediuml">
+          <span className="text-[12px] 2xl:text-[16px]  text-center  text-[#444444] font-mediuml">
             {row.original.time}
           </span>
         </div>
@@ -99,7 +99,7 @@ export const CupomColumn: ColumnDef<CuponTableItemsType>[] = [
     header: "Actions", // Column header
     cell: ({ row }) => {
       return (
-        <div className=" w-[90px] py-[24px]">
+        <div className="py-[24px]">
           <AuctionsButton row={row} />
         </div>
       );

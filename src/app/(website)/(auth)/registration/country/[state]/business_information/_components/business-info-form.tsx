@@ -35,17 +35,17 @@ export function BusinessInfoForm() {
   const businesses = authState["businessInfo"];
 
   const business1 = businesses.filter((item) => item.country === "United States" || item.country === "Canada")
- 
+
 
   const business3 = businesses
-  .filter((item) => item.country !== "United States" && item.country !== "Canada")  // Filter countries
-  .flatMap((every) => 
+    .filter((item) => item.country !== "United States" && item.country !== "Canada")  // Filter countries
+    .flatMap((every) =>
       every.license.map(lic => ({
-          license: lic,
-          businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
+        license: lic,
+        businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
       }))
-  );
- 
+    );
+
 
 
   const router = useRouter();
@@ -56,7 +56,7 @@ export function BusinessInfoForm() {
     };
   }, []);
 
-  const {  isPending } = useMutation({
+  const { isPending } = useMutation({
     mutationKey: ["registration"],
     mutationFn: (data: authSliceType) =>
       fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
@@ -116,19 +116,19 @@ export function BusinessInfoForm() {
   });
 
   // Check if any business in the businessInfo array has an empty metrcLicense field
-const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
-  business.license.some((liences) => liences.metrcLicense.some((l) => !l.trim())))
-;
+  const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
+    business.license.some((liences) => liences.metrcLicense.some((l) => !l.trim())))
+    ;
 
 
   useEffect(() => {
-    if(authState["businessInfo"].length === 0) {
+    if (authState["businessInfo"].length === 0) {
       router.push("/registration")
     }
   }, [router, authState])
 
 
-  
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,13 +136,13 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
 
   const submitForm = () => {
     setLoading(true)
-   
+
     router.push("/registration/overview")
   };
 
   const isNextDisabled =
-  !authState.businessInfo.length || // Check if businessInfo array is empty
-  isAnyMetrcLicenseEmpty || loading; 
+    !authState.businessInfo.length || // Check if businessInfo array is empty
+    isAnyMetrcLicenseEmpty || loading;
 
   return (
     <div className="space-y-6">
@@ -152,24 +152,24 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
         title="Select location and enter license information"
       />
       <form onSubmit={handleSubmit} className="space-y-4">
-      
-<Accordion>
-  
-{business1.map(({country, license}, i) => (
-        <AccordionItem title={country} key={country} variant="fill">
-          {license.map(({metrcLicense, name, cannabisLicense, businessLicense}) => (
-              <LicenseGroup key={name} country={country} index={i} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
-          ))}
-        </AccordionItem>
-      ))}
-{business3.map(({businessIndex, license}) => (
-      <LicenseGroup variant="fill" key={businessIndex} country={license.name} index={businessIndex} metrcLicense={license.metrcLicense} cannabisLicense={license.cannabisLicense} businessLicenses={license.businessLicense} title={license.name} />
-        
-      ))}
-</Accordion>
-      
 
-       <div className="flex items-center justify-between pt-[40px]">
+        <Accordion>
+
+          {business1.map(({ country, license }, i) => (
+            <AccordionItem title={country} key={country} variant="fill">
+              {license.map(({ metrcLicense, name, cannabisLicense, businessLicense }) => (
+                <LicenseGroup key={name} country={country} index={i} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
+              ))}
+            </AccordionItem>
+          ))}
+          {business3.map(({ businessIndex, license }) => (
+            <LicenseGroup variant="fill" key={businessIndex} country={license.name} index={businessIndex} metrcLicense={license.metrcLicense} cannabisLicense={license.cannabisLicense} businessLicenses={license.businessLicense} title={license.name} />
+
+          ))}
+        </Accordion>
+
+
+        <div className="flex items-center justify-between pt-[40px]">
           <Button
             disabled={isNextDisabled}
             className="min-w-[155px]"
@@ -184,7 +184,7 @@ const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
           </Button>
         </div>
       </form>
-      
+
     </div>
   );
 }
@@ -202,12 +202,12 @@ interface LicenseGroupProps {
   variant?: "outline" | "fill"
 }
 
-const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title , variant = "outline"}: LicenseGroupProps) => {
+const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title, variant = "outline" }: LicenseGroupProps) => {
   const authState = useAppSelector((state) => state.auth);
   const myBusinessInfoAsCountry = authState.businessInfo.find((item) => item.country == country);
   const dispatch = useAppDispatch()
 
-  if(!myBusinessInfoAsCountry) return null;
+  if (!myBusinessInfoAsCountry) return null;
 
 
 
@@ -220,92 +220,92 @@ const LicenseGroup = ({country, index, metrcLicense = [""], cannabisLicense = ["
 
 
   const lastMetrcIndex = metrcLicense.length - 1;
-  const lastCannabisLicenceIndex =  cannabisLicense.length - 1
-  const lastBusinessLicenceIndex =  businessLicenses.length - 1
+  const lastCannabisLicenceIndex = cannabisLicense.length - 1
+  const lastBusinessLicenceIndex = businessLicenses.length - 1
 
- 
+
 
 
   return (
     <AccordionItem title={title} variant={variant}>
-    <div className="space-y-2">
-       <label className="text-sm font-medium">
-         Provide your Matrc business license
-         <span className="text-red-500">*</span>
-       </label>
-      {metrcLicense.map((_, i) => (
-       <div className="flex items-center gap-x-2" key={i}>
-       <Input
-          placeholder="Enter license number"
-          
-          value={metrcLicense[i]}
-          onChange={(e) =>
-            dispatch(
-              updateMetrcLicense({
-                index: i,
-                newLicenseValue: e.target.value,
-                metrcInfoIndex: index,
-                name: title
-              })
-            )
-          }
-        />
-       {Number(lastMetrcIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
-       </div>
-      ))}
-     </div>
-     <div className="space-y-2">
-       <label className="text-sm font-medium">
-         Provide your Cannabis business license 
-       </label>
-       {cannabisLicense.map((_, i) => (
-         <div className="flex items-center gap-x-2" key={i}>
-         <Input
-            placeholder="Enter license number"
-            
-            value={cannabisLicense[i]}
-            onChange={(e) =>
-              dispatch(
-                updateCannabisLicense({
-                  index: i,
-                  newLicenseValue: e.target.value,
-                  cannabisInfoIndex: index,
-                  name: title
-                })
-              )
-            }
-          />
-         {Number(lastCannabisLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
-         </div>
-       ))}
-     </div>
-     {!authState["industry"].includes("Recreational Cannabis") && <div className="space-y-2">
-       <label className="text-sm font-medium">
-         Provide your Business license 
-       </label>
-       {businessLicenses.map((_, i) => (
-         <div className="flex items-center gap-x-2" key={i}>
-         <Input
-            placeholder="Enter license number"
-            
-            value={businessLicenses[i]}
-            onChange={(e) =>
-              dispatch(
-                updateBusinessLicense({
-                  index: i,
-                  newLicenseValue: e.target.value,
-                  businessInfoIndex: index,
-                  name: title
-                })
-              )
-            }
-          />
-         {Number(lastBusinessLicenceIndex) === i &&  <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({businessIndex: index, name: title}))}><PlusIcon /></Button>}
-         </div>
-       ))}
-     </div>}
-     
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-[#444444]">
+          Provide your Matrc business license
+          <span className="text-red-500">*</span>
+        </label>
+        {metrcLicense.map((_, i) => (
+          <div className="flex items-center gap-x-2" key={i}>
+            <Input
+              placeholder="Enter license number"
+              className="text-black dark:!text-black"
+              value={metrcLicense[i]}
+              onChange={(e) =>
+                dispatch(
+                  updateMetrcLicense({
+                    index: i,
+                    newLicenseValue: e.target.value,
+                    metrcInfoIndex: index,
+                    name: title
+                  })
+                )
+              }
+            />
+            {Number(lastMetrcIndex) === i && <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
+          </div>
+        ))}
+      </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-[#444444]">
+          Provide your Cannabis business license
+        </label>
+        {cannabisLicense.map((_, i) => (
+          <div className="flex items-center gap-x-2" key={i}>
+            <Input
+              placeholder="Enter license number"
+              className="text-black dark:!text-black"
+              value={cannabisLicense[i]}
+              onChange={(e) =>
+                dispatch(
+                  updateCannabisLicense({
+                    index: i,
+                    newLicenseValue: e.target.value,
+                    cannabisInfoIndex: index,
+                    name: title
+                  })
+                )
+              }
+            />
+            {Number(lastCannabisLicenceIndex) === i && <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
+          </div>
+        ))}
+      </div>
+      {!authState["industry"].includes("Recreational Cannabis") && <div className="space-y-2">
+        <label className="text-sm font-medium text-[#444444]">
+          Provide your Business license
+        </label>
+        {businessLicenses.map((_, i) => (
+          <div className="flex items-center gap-x-2" key={i}>
+            <Input
+              placeholder="Enter license number"
+              className="text-black dark:!text-black"
+              value={businessLicenses[i]}
+              onChange={(e) =>
+                dispatch(
+                  updateBusinessLicense({
+                    index: i,
+                    newLicenseValue: e.target.value,
+                    businessInfoIndex: index,
+                    name: title
+                  })
+                )
+              }
+            />
+            {Number(lastBusinessLicenceIndex) === i && <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
+          </div>
+        ))}
+      </div>}
+
     </AccordionItem>
-  
+
   )
 }

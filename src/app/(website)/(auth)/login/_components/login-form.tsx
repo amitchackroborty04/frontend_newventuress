@@ -104,7 +104,7 @@ export default function LoginForm() {
       className="w-full"
     >
       <div className="space-y-2 text-center">
-        <h1 className="text-[36px] leading-[43.2px] font-semibold text-gradient mb-[27px]">
+        <h1 className="text-[36px] leading-[43.2px] font-semibold text-gradient dark:text-gradient-pink mb-[27px]">
           Log In
         </h1>
       </div>
