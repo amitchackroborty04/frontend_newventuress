@@ -26,11 +26,11 @@ export default function EditDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" size="sm" onClick={openModal}>Edit <Pencil /></Button>
+                <Button variant="outline" size="sm" onClick={openModal} className="dark:bg-pinkGradient">Edit <Pencil /></Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Edit Your Information</DialogTitle>
+                    <DialogTitle className="dark:text-black">Edit Your Information</DialogTitle>
                     <DialogDescription>
                         Make changes to your information here. Click save when you&apos;re done.
                     </DialogDescription>

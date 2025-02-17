@@ -153,7 +153,7 @@ export function BusinessInfoForm() {
       />
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        <Accordion>
+        <Accordion >
 
           {business1.map(({ country, license }, i) => (
             <AccordionItem title={country} key={country} variant="fill">
@@ -250,7 +250,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
                 )
               }
             />
-            {Number(lastMetrcIndex) === i && <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
+            {Number(lastMetrcIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
       </div>
@@ -275,7 +275,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
                 )
               }
             />
-            {Number(lastCannabisLicenceIndex) === i && <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
+            {Number(lastCannabisLicenceIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addCannabisField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
       </div>
@@ -300,7 +300,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
                 )
               }
             />
-            {Number(lastBusinessLicenceIndex) === i && <Button className="h-9" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
+            {Number(lastBusinessLicenceIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
       </div>}

@@ -114,7 +114,7 @@ export default function EditRegistrationForm({toggle}: Props) {
           name="businessName"
           render={({ field }) => (
             <FormItem className="col-span-1 lg:col-span-2">
-              <FormLabel>Business Name</FormLabel>
+              <FormLabel className="dark:text-black">Business Name</FormLabel>
               <FormControl>
                 <Input 
                 placeholder=""
@@ -133,7 +133,7 @@ export default function EditRegistrationForm({toggle}: Props) {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email Address</FormLabel>
+              <FormLabel className="dark:text-black">Email Address</FormLabel>
               <FormControl>
                 <Input 
                 placeholder=""
@@ -152,7 +152,7 @@ export default function EditRegistrationForm({toggle}: Props) {
           name="fullName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel className="dark:text-black">Full Name</FormLabel>
               <FormControl>
                 <Input 
                 placeholder=""
@@ -195,21 +195,21 @@ export default function EditRegistrationForm({toggle}: Props) {
               name="profession"
               render={({ field }) => (
                 <FormItem className="lg:col-span-2">
-                  <FormLabel>Roles</FormLabel>
-                  <FormControl>
+                  <FormLabel className="dark:text-black">Roles</FormLabel>
+                  <FormControl >
                     <MultiSelector
                       values={field.value}
                       onValuesChange={field.onChange}
                       loop
-                      className="max-w-xs"
+                      className="max-w-xs  dark:bg-white"
                     >
-                      <MultiSelectorTrigger>
-                        <MultiSelectorInput placeholder="Select Your Role" />
+                      <MultiSelectorTrigger className="dark:bg-white">
+                        <MultiSelectorInput placeholder="Select Your Role" className="dark:placeholder:text-black"/>
                       </MultiSelectorTrigger>
                       <MultiSelectorContent>
-                      <MultiSelectorList>
+                      <MultiSelectorList  className="dark:bg-white dark:border-none">
                        {professions.map(({id, label}) => (
-                         <MultiSelectorItem value={id} key={id}>{label}</MultiSelectorItem>
+                         <MultiSelectorItem value={id} key={id} className="dark:text-black dark:hover:text-white">{label}</MultiSelectorItem>
                        ))}
                       </MultiSelectorList>
                       </MultiSelectorContent>

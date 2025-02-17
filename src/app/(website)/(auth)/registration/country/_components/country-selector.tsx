@@ -187,7 +187,7 @@ function CountrySelector() {
 <div className="py-4">
   {cSelectedCountries.length > 0 && (
     <div className="mt-4 p-4 border rounded-sm shadow-md bg-gray-100">
-      <h3 className="text-lg font-semibold">Selected Countries:</h3>
+      <h3 className="text-lg font-semibold text-black">Selected Countries:</h3>
       <div className="flex flex-wrap gap-2 mt-2">
         {cSelectedCountries.map((country, index) => {
           const isNorthAmerica = ["Canada", "United States", "Germany"].includes(country);
@@ -294,7 +294,7 @@ function CountrySelector() {
 
 
    <div className="mt-4 hidden">
-     <h3 className="text-gradient dark:!text-gradient-pink">Selected Countries:</h3>
+     <h3 >Selected Countries:</h3>
      <ul>
        {selectedCountries.map((country, index) => (
          <li key={index}>{country}</li>

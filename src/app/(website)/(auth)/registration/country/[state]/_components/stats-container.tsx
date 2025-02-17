@@ -51,7 +51,7 @@ const StateContainer = ({
           className={`p-2 md:p-3 border rounded-md transition-colors duration-300 text-[14px] md:text-lg font-medium ${
             myStats?.includes(state.name)
               ? "border-[#B0CBE4] bg-primary dark:bg-pinkGradient text-white"
-              : "border-[#B0CBE4] dark:border-[#6841A5]  hover:bg-[#E9EBF8]"
+              : "border-[#B0CBE4] dark:border-[#6841A5] dark:text-gradient-pink hover:bg-[#E9EBF8]"
           }`}
         >
           {state.name}
