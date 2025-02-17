@@ -76,7 +76,7 @@ export default function AddVendorStoreForm() {
                   User Name <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
+                  <Input {...field}  className="h-[51px] border-[#9C9C9C] dark:border-[#B0B0B0] dark:!text-black" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -118,5 +118,24 @@ body {
   }
   
 }
+input:-webkit-autofill {
+  background: #ffffff !important; /* White background */
+  -webkit-text-fill-color: #000 !important; /* Black text */
+  border: 1px solid #9c9c9c !important;
+  transition: background-color 5000s ease-in-out 0s; /* Prevent autofill color from flashing */
+}
+
+/* Autofill hover, focus, and active states */
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background: #ffffff !important; /* Ensure it stays white */
+  -webkit-text-fill-color: #000 !important;
+}
+input:-webkit-autofill{
+  background-color: white;
+}
+
+
 
 
