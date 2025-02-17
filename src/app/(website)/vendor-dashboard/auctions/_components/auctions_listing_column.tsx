@@ -45,8 +45,8 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
       </div>,
     cell: ({ row }) => (
       <div>
-        <div className="flex  items-center gap-x-[8px] w-[360px]  ">
-          <div className="h-[110px] w-[110px] relative rounded-[12px]">
+        <div className="flex  items-center gap-x-[8px] ">
+          <div className="h-[80px] w-[90px] 2xl:h-[110px] 2xl:w-[110px] relative rounded-[12px]">
             <Image
               src={row.original.image}
               fill
@@ -55,11 +55,11 @@ export const AuctionListingColumns: ColumnDef<AuctionsListingDataType>[] = [
             />
           </div>
           <div className="flex flex-col gap-y-[8px]">
-            <h3 className="text-[18px] leading-[21.6px] font-semibold text-gradient dark:text-gradient-pink">
+            <h3 className="text-[15px] 2xl:text-[18px] leading-[21.6px] font-semibold text-gradient dark:text-gradient-pink">
               {row.original.name}
             </h3>
             <div className="flex items-center  py-1 rounded">
-              <span className="text-sm text-[#444444] font-normal  border border-[#444444] rounded-3xl flex items-center gap-2 px-2 py-1 ">
+              <span className="text-sm text-[#444444] font-normal  border border-[#444444] rounded-3xl flex items-center gap-1 2xl:gap-2 px-1 2xl:px-2 2xl:py-1 ">
                 <Check className="w-3 h-3" />
                 In stock (08)
               </span>

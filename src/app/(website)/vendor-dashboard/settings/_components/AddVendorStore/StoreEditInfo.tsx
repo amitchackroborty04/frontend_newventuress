@@ -85,7 +85,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()} >
       
         <DialogContent
-          className="max-w-[1350px]  dark:bg-white dark:!border-none p-0"
+          className="max-w-[1150px] 2xl:max-w-[1350px]  dark:bg-white dark:!border-none p-0"
           style={{ boxShadow: "0px 0px 22px 8px #C1C9E4" }}
         >
       <div
@@ -95,7 +95,7 @@ export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
       >
        Edit Store Info
       </div>
-        <ScrollArea className="h-[650px] p-4">
+        <ScrollArea className="h-[550px] 2xl:h-[650px] p-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid lg:grid-cols-2 gap-8 ">

@@ -125,7 +125,7 @@ const isButtonDisabled = selectedProfessions.length === 0;
                   />
                   <label
                     htmlFor={profession.id}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#444444] dark:text-[#444444]"
                   >
                     {profession.label}
                   </label>
@@ -143,7 +143,7 @@ const isButtonDisabled = selectedProfessions.length === 0;
                   />
                   <label
                     htmlFor="all"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#444444] dark:text-[#444444]"
                   >
                     Select All
                   </label>
