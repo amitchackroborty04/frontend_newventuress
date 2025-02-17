@@ -30,29 +30,29 @@ const NextButton = ({
   currentState,
   isUsa,
   isCanada
-  
+
 }: {
   currentState: string;
   isUsa?: boolean;
-  isCanada?:boolean
+  isCanada?: boolean
 }) => {
 
-    // Selectors for USA and Canada states
-    const businessInfo = useAppSelector((state) => state.auth.businessInfo);
+  // Selectors for USA and Canada states
+  const businessInfo = useAppSelector((state) => state.auth.businessInfo);
 
-    // Ensure the correct states are retrieved based on the country flag
-    const usaStats = isUsa
-      ? businessInfo.find((item) => item.country === "United States")?.state || []
-      : [];
-  
-    const canadaStats = isCanada
-      ? businessInfo.find((item) => item.country === "Canada")?.state || []
-      : [];
-  
-    // Determine if the button should be disabled (example logic placeholder)
-    const isDisabled = (!usaStats.length && isUsa) || (!canadaStats.length && isCanada);
+  // Ensure the correct states are retrieved based on the country flag
+  const usaStats = isUsa
+    ? businessInfo.find((item) => item.country === "United States")?.state || []
+    : [];
 
-  
+  const canadaStats = isCanada
+    ? businessInfo.find((item) => item.country === "Canada")?.state || []
+    : [];
+
+  // Determine if the button should be disabled (example logic placeholder)
+  const isDisabled = (!usaStats.length && isUsa) || (!canadaStats.length && isCanada);
+
+
 
 
 
@@ -72,7 +72,7 @@ const NextButton = ({
 };
 
 /** Main StateSelector Component */
-export function ProvienceSelector({  currentState, countries }: Props) {
+export function ProvienceSelector({ currentState, countries }: Props) {
 
   const isEmptyPreviousField = useAppSelector((state) => state.auth.profession.length === 0);
   const authstate = useAppSelector((state) => state.auth)
@@ -81,11 +81,11 @@ export function ProvienceSelector({  currentState, countries }: Props) {
 
 
 
- 
 
 
 
-  if(isEmptyPreviousField) {
+
+  if (isEmptyPreviousField) {
     redirect("/registration")
   }
 
@@ -94,33 +94,33 @@ export function ProvienceSelector({  currentState, countries }: Props) {
   const isCA = countries.includes("Canada");
 
 
- 
+
 
 
 
   const BreadCumb = (
-   <>
-  {business.map(({country, state}) => {
-    const continent = getRegionByCountry(country)
-    return (
-      <div className="flex items-center gap-x-5 text-[14px]" key={country}>
-     Region:  <Breadcrumb>
- <BreadcrumbList>
- <BreadcrumbItem>
- <BreadcrumbLink>{continent}</BreadcrumbLink>
- </BreadcrumbItem>
- <BreadcrumbSeparator />
- <BreadcrumbItem>
- <BreadcrumbLink>{country}</BreadcrumbLink>
- </BreadcrumbItem>
-{state && state.length > 0 && <><BreadcrumbSeparator />
- <BreadcrumbItem>
- <BreadcrumbPage>{state?.join(", ")}</BreadcrumbPage>
- </BreadcrumbItem></> }
- </BreadcrumbList>
- </Breadcrumb></div>
-    )
-  })}</>
+    <>
+      {business.map(({ country, state }) => {
+        const continent = getRegionByCountry(country)
+        return (
+          <div className="flex items-center gap-x-5 text-[14px] text-gradient dark:text-gradient-pink" key={country}>
+            Region:  <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink>{continent}</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink>{country}</BreadcrumbLink>
+                </BreadcrumbItem>
+                {state && state.length > 0 && <><BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>{state?.join(", ")}</BreadcrumbPage>
+                  </BreadcrumbItem></>}
+              </BreadcrumbList>
+            </Breadcrumb></div>
+        )
+      })}</>
   )
 
 
@@ -130,23 +130,23 @@ export function ProvienceSelector({  currentState, countries }: Props) {
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mx-auto px-4 space-y-[70px]">
 
-      
-<div className="my-5">
-  {BreadCumb}
-</div>
-      
-      
-      {isUs &&<div>
+
+      <div className="my-5">
+        {BreadCumb}
+      </div>
+
+
+      {isUs && <div>
         <StateHeader country="USA" />
         <StateContainer
-        country="United States"
-        displayedStates={usStates}
-      /></div>}
+          country="United States"
+          displayedStates={usStates}
+        /></div>}
       {isCA && <div> <StateHeader country="Canada" /> <StateContainer
-      country="Canada"
+        country="Canada"
         displayedStates={canadaProvinces}
-      /></div> }
-      <NextButton  currentState={currentState} isCanada={isCA} isUsa={isUs} />
+      /></div>}
+      <NextButton currentState={currentState} isCanada={isCA} isUsa={isUs} />
     </div>
   );
 }

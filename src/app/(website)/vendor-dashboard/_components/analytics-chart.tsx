@@ -90,7 +90,7 @@ export default function AnalyticsChart() {
   }
 
   return (
-    <Card className="w-full max-w-md bg-white rounded-xl shadow-sm">
+    <Card className="w-full bg-white rounded-xl shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
         <CardTitle className="text-[28px] font-semibold text-[#494949]">Analytics</CardTitle>
         <Select

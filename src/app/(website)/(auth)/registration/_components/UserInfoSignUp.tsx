@@ -133,7 +133,7 @@ export default function UserInformationForm() {
                 <FormLabel>Business Name</FormLabel>
                 <FormControl>
                   <Input
-                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                     placeholder="Enter your business name"
                     onChange={(e) => {
                       dispatch(
@@ -159,7 +159,7 @@ export default function UserInformationForm() {
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
                   <Input
-                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                     placeholder="Enter your email"
                     onChange={(e) => {
                       dispatch(
@@ -186,7 +186,7 @@ export default function UserInformationForm() {
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
                   <Input
-                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                     placeholder="Enter your full name"
                     onChange={(e) => {
                       dispatch(
@@ -214,7 +214,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <div className="relative">
                     <Input
-                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                       type={passwordVisibility.password ? "text" : "password"}
                       placeholder="Enter your password"
                       onChange={(e) => {
@@ -256,7 +256,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <div className="relative">
                     <Input
-                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                       type={
                         passwordVisibility.confirmPassword ? "text" : "password"
                       }
@@ -305,14 +305,14 @@ export default function UserInformationForm() {
                   />
                   <label
                     htmlFor="remember"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black dark:!text-black"
                   >
                     I agree with the{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       term of service
                     </Link>{" "}
                     and{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       privacy policy
                     </Link>
                   </label>

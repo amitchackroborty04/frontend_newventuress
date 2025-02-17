@@ -294,7 +294,7 @@ function CountrySelector() {
 
 
    <div className="mt-4 hidden">
-     <h3>Selected Countries:</h3>
+     <h3 className="text-gradient dark:!text-gradient-pink">Selected Countries:</h3>
      <ul>
        {selectedCountries.map((country, index) => (
          <li key={index}>{country}</li>

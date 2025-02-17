@@ -8,7 +8,7 @@ const FormHeader = ({ label, paragraph, title }: Props) => {
   return (
     <div>
       <div className="text-center mb-8">
-        <h1 className="text-[36px] font-semibold text-gradient !leading-[43px] mb-2">
+        <h1 className="text-[36px] font-semibold text-gradient dark:text-gradient-pink !leading-[43px] mb-2">
           {label}
         </h1>
         <p className="text-[12px] text-[#6D6D6D] font-normal max-w-[70%] mx-auto">{paragraph}</p>

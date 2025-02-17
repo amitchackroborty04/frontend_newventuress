@@ -100,7 +100,7 @@ console.log(isButtonDisabled)
               />
               <label
                 htmlFor="HEMP/CBD"
-                className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70 "
+                className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#444444]"
               >
                 HEMP/CBD
               </label>
@@ -115,7 +115,7 @@ console.log(isButtonDisabled)
               />
               <label
                 htmlFor="recreational"
-                className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#444444]"
               >
                 Recreational Cannabis
               </label>
@@ -128,7 +128,7 @@ console.log(isButtonDisabled)
               />
               <label
                 htmlFor="both"
-                className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-[20px] font-medium leading-[24px] peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#444444]"
               >
                 Select All
               </label>
