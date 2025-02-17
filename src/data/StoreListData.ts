@@ -16,6 +16,7 @@ export interface DemoTableItemsType {
   adminFees?: number;
   paidFees?: number;
   totalFees: number;
+  
 }
 
 export const StoreListData: DemoTableItemsType[] = [
@@ -35,6 +36,7 @@ export const StoreListData: DemoTableItemsType[] = [
     userName: "johndoe@gmail.com",
     userStatus: "Shaken Not Stirred - Adrian Jordan (#127 - 007Euro)",
     grossSales: 0.25,
+  
   },
   {
     image: "/assets/img/image839.png",
