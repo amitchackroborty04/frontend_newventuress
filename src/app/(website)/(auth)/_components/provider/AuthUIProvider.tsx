@@ -43,7 +43,7 @@ const AuthUIProvider = async ({
                   className="rounded-full"
                   priority
                 />
-                <span className="font-semibold text-[10px] md:text-[15px] leading-[12px] md:leading-[16px]">
+                <span className="font-semibold text-[10px] md:text-[15px] leading-[12px] md:leading-[16px] text-gradient dark:text-gradient-pink">
                   Pacific <br /> Rim <br /> Fusion
                 </span>
               </div>

@@ -18,10 +18,11 @@ const Contact: React.FC = () => {
                 },
               ]}
             />
-            <div className="mt-[-10px]">
+            <section className="py-[80px]">
             <SectionHeading heading={"Rewards"} subheading="" />
-          </div>
+          
       <Rewards/>
+      </section>
     </div>
   );
 };
