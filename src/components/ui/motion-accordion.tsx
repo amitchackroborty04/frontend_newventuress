@@ -15,7 +15,7 @@ export function AccordionItem({ title, children, variant = "outline", defaultOpe
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   const variants = {
-    fill: "bg-[#1a237e] text-white",
+    fill: "bg-[#1a237e] text-white dark:!text-white",
     outline: "bg-white border border-gray-200",
   }
 
@@ -38,7 +38,7 @@ export function AccordionItem({ title, children, variant = "outline", defaultOpe
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden"
+            className="overflow-hidden dark:text-black"
           >
             <div className="pt-2 pb-4 ">{children}</div>
           </motion.div>

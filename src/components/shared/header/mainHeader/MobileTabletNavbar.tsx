@@ -14,31 +14,32 @@ import { motion } from "framer-motion";
 import AuctionMobileNav from "./AuctionMobileNav";
 import PagesMobileNav from "./PagesMobileNav";
 import SearchBer from "../../searchBer/searchBer";
+import { Bell, CircleUser, Heart, ShoppingCart } from "lucide-react";
 
 const Navicons = [
   {
     href: "/notifications",
-    src: "/assets/svg/bell.svg",
+    icon: <Bell />,
     alt: "bell-icon",
     count: 4,
     srOnlyText: "View notifications",
   },
   {
     href: "/wishlist",
-    src: "/assets/svg/heart.svg",
+    icon: <Heart />,
     alt: "heart-icon",
     srOnlyText: "View wishlist",
   },
   {
     href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
+    icon: <ShoppingCart />,
     alt: "cart-icon",
     count: 2,
     srOnlyText: "View cart",
   },
   {
     href: "/account",
-    src: "/assets/svg/user-circle.svg",
+    icon: <CircleUser />,
     alt: "user-icon",
     srOnlyText: "View account",
   },
@@ -46,13 +47,13 @@ const Navicons = [
 const mobileNavicons = [
   {
     href: "/wishlist",
-    src: "/assets/svg/heart.svg",
+    icon: <Heart />,
     alt: "heart-icon",
     srOnlyText: "View wishlist",
   },
   {
     href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
+    icon: <ShoppingCart />,
     alt: "cart-icon",
     count: 4,
     srOnlyText: "View cart",

@@ -170,7 +170,7 @@ export function VerifyOTPForm({ onVerified }: VerifyOTPFormProps) {
       className="w-full"
     >
       <div className="space-y-2 text-center">
-        <h1 className="text-[36px] font-semibold text-gradient leading-[43.2px]">
+        <h1 className="text-[36px] font-semibold text-gradient dark:text-gradient-pink leading-[43.2px]">
           Verify Email
         </h1>
         {form.formState.errors.otp ? (

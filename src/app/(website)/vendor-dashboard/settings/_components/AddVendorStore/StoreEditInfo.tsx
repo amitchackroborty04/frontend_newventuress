@@ -17,6 +17,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { DemoTableItemsType } from "@/data/StoreListData";
 import { ScrollArea } from "@/components/ui/scroll-area"
 
+
 const formSchema = z.object({
   storeName: z.string().min(2, "Store name is required"),
   storeSlug: z.string().min(2, "Store slug is required"),
@@ -25,6 +26,8 @@ const formSchema = z.object({
   storeDetails: z.string().min(10, "Store details are required"),
   licenseType: z.string().min(1, "Please select a license type"),
   licenseNumber: z.string().min(1, "License number is required"),
+  storeLogo:z.string().min(1, "Storelogo is required"),
+  storeBanner:z.string().min(1, "Storebanner number is required"),
 })
 
 interface OrderDetailsProps {
@@ -33,21 +36,24 @@ interface OrderDetailsProps {
   rowData: DemoTableItemsType | null;
 }
 
-export default function StoreEditInfo({ isOpen, onClose }: OrderDetailsProps)  {
+export default function StoreEditInfo({ isOpen, onClose, rowData }: OrderDetailsProps)  {
   const [logoPreview, setLogoPreview] = useState<string | null>(null)
   const [bannerPreview, setBannerPreview] = useState<string | null>(null)
-
+ console.log(rowData);
+ 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      storeName: "Island Guy Smokes", 
+      storeName: rowData?.name || "", 
       storeSlug: "#53863",
-      storeEmail: "alinaulgi@gmail.com",
+      storeEmail: rowData?.userName || "" ,
       storePhone: "+68 0036856365",
       storeDetails:
         "Welcome to Island Guys Smoke, where we bring you the best in Flower Cannabis. Our mission is to provide high-quality, affordable, and curated products that cater to we strive to build a community of happy customers by offering not just products, but solutions. Whether you're looking to your trusted source for high-quality cannabis",
       licenseType: "business",
       licenseNumber: "",
+      storeLogo:rowData?.image,
+      storeBanner:rowData?.image
     },
   })
 

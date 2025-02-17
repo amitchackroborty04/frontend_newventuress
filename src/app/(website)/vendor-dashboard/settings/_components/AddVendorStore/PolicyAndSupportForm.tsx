@@ -40,13 +40,13 @@ export default function PolicySupportForm() {
   function onSubmit(data: FormValues) {
     console.log({
       ...data,
-      media1: supportPreview1,
-      media2: supportPreview2,
+     
     })
   }
 
   const [supportPreview1, setSupportPreview1] = useState<string | null>(null)
   const [supportPreview2, setSupportPreview2] = useState<string | null>(null)
+ 
   return (
     <div className="bg-white rounded-[24px] p-[32px]">
       <div
@@ -146,7 +146,10 @@ export default function PolicySupportForm() {
                           />
                           <button
                             type="button"
-                            onClick={() => setSupportPreview1(null)}
+                            onClick={() => {
+                              setSupportPreview1(null)
+                              form.setValue("media1", undefined)
+                            }}
                             className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
                           >
                             <Trash2 size={16} />
@@ -166,8 +169,9 @@ export default function PolicySupportForm() {
                             onChange={(e) => {
                               const file = e.target.files?.[0]
                               if (file) {
-                                setSupportPreview1(URL.createObjectURL(file))
-                                console.log("Media 1:", URL.createObjectURL(file))
+                                const previewUrl = URL.createObjectURL(file)
+                                setSupportPreview1(previewUrl)
+                                form.setValue("media1", previewUrl)
                               }
                             }}
                           />
@@ -198,7 +202,10 @@ export default function PolicySupportForm() {
                           />
                           <button
                             type="button"
-                            onClick={() => setSupportPreview2(null)}
+                            onClick={() => {
+                              setSupportPreview2(null)
+                              form.setValue("media2", undefined)
+                            }}
                             className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
                           >
                             <Trash2 size={16} />
@@ -218,8 +225,9 @@ export default function PolicySupportForm() {
                             onChange={(e) => {
                               const file = e.target.files?.[0]
                               if (file) {
-                                setSupportPreview2(URL.createObjectURL(file))
-                                console.log("Media 2:", URL.createObjectURL(file))
+                                const previewUrl = URL.createObjectURL(file)
+                                setSupportPreview2(previewUrl)
+                                form.setValue("media2", previewUrl)
                               }
                             }}
                           />

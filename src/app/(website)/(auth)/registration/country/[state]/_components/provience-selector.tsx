@@ -107,15 +107,15 @@ export function ProvienceSelector({ currentState, countries }: Props) {
             Region:  <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink>{continent}</BreadcrumbLink>
+                  <BreadcrumbLink className="dark:hover:text-black text-black">{continent}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink>{country}</BreadcrumbLink>
+                  <BreadcrumbLink className="dark:text-gradient-pink dark:hover:text-gradient-pink">{country}</BreadcrumbLink>
                 </BreadcrumbItem>
                 {state && state.length > 0 && <><BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbPage>{state?.join(", ")}</BreadcrumbPage>
+                    <BreadcrumbPage className="dark:text-gradient-pink">{state?.join(", ")}</BreadcrumbPage>
                   </BreadcrumbItem></>}
               </BreadcrumbList>
             </Breadcrumb></div>
