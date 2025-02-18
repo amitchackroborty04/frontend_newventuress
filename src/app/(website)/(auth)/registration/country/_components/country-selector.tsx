@@ -31,7 +31,7 @@ function CountrySelector() {
   const [loading, setLoading] = useState<true | false>(false)
 
   const [regionColors, setRegionColors] = useState({
-    US: 80,
+    US: 50,
     CA: 80,
     MX: 100,
     DE: 80,
