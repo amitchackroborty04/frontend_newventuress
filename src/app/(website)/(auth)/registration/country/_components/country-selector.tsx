@@ -10,7 +10,6 @@ import { Loader2, X } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-
 // Local imports
 import { Button } from "@/components/ui/button"
 import { countriesData } from "@/data/countries"
@@ -18,11 +17,7 @@ import { cn } from "@/lib/utils"
 import { addNewBusiness } from "@/redux/features/authentication/AuthSlice"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 
-// Define the countries you want to include
-const countries = countriesData.reduce((acc, { countryCode, country }) => {
-  acc[countryCode] = country;
-  return acc;
-}, {});
+
 
 const disabledColor = "#808080" // Gray color for disabled countries
 const colorScale = ["#C8EEFF", "#0071A4", "#008000"] // Green for selected countries
@@ -30,18 +25,8 @@ const colorScale = ["#C8EEFF", "#0071A4", "#008000"] // Green for selected count
 function CountrySelector() {
   const [loading, setLoading] = useState<true | false>(false)
 
-  const [regionColors, setRegionColors] = useState({
-    US: 80,
-    CA: 80,
-    MX: 100,
-    DE: 80,
-    ES: 100,
-    TH: 100,
-    NL: 100,
-    MT: 80,
-    UY: 100,
-    CO: 100,
-  })
+
+  
 
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
 
@@ -53,6 +38,29 @@ function CountrySelector() {
   const [mapPaths, setMapPaths] = useState(null)
 
   const authState = useAppSelector((state) => state.auth)
+
+  const industry = authState.industry
+
+  console.log(industry)
+
+  const filteredCountries = countriesData.filter(country =>
+    industry.some(i => country.allow.includes(i))
+  );
+  
+  
+  console.log(filteredCountries);
+
+  // Define the countries you want to include
+const countries = filteredCountries.reduce((acc, { countryCode, country }) => {
+  acc[countryCode] = country;
+  return acc;
+}, {});
+
+  const regionColors = filteredCountries.reduce((acc, { countryCode, color }) => {
+    acc[countryCode] = color;
+    return acc;
+  }, {});
+
 
   const businesses = authState.businessInfo;
 
@@ -106,12 +114,7 @@ function CountrySelector() {
       // Log the selected countries
       console.log("AuthState", authState)
 
-      // Update the clicked region's color (for visual feedback)
-      setRegionColors((prevColors) => {
-        const newColors = { ...prevColors }
-       
-        return newColors
-      })
+    
 
       const businessessArray =  newSelected.map((country) => {
         if (country === "United States" || country === "Canada") {
@@ -179,27 +182,37 @@ function CountrySelector() {
         ? `/registration/country/${countriesLists}`
         : `/registration/country/${countriesLists}/business_information`;
 
-  
-
   return (
    <>
-
+{/* selected data  */}
 <div className="py-4">
   {cSelectedCountries.length > 0 && (
     <div className="mt-4 p-4 border rounded-sm shadow-md bg-gray-100">
       <h3 className="text-lg font-semibold">Selected Countries:</h3>
       <div className="flex flex-wrap gap-2 mt-2">
         {cSelectedCountries.map((country, index) => {
-          const isNorthAmerica = ["Canada", "United States", "Germany"].includes(country);
+          
+          // Find country data and determine bgColor
+          const countryData = countriesData.find((c) => c.country === country);
+          const bgColor = countryData?.allow.length === 1 && countryData.allow.includes("CBD/HEMP")
+            ? "#2387b4"
+            : "#007853";
+          const type = countryData?.allow.length === 1 && countryData.allow.includes("CBD/HEMP")
+            ? "HEMP/CBD"
+            :
+            countryData.allow.includes("Select All")
+            ?  "HEMP/CBD & Recreational Cannabis both" : " Recreational Cannabis" 
+
           return (
             <span
               key={index}
-              className={`px-3 py-1 ${
-                isNorthAmerica ? "bg-[#007853]" : "bg-[#008000]"
-              } text-white rounded-full text-sm flex items-center gap-x-2`}
+              style={{ backgroundColor: bgColor }} // ✅ Correct way to apply dynamic colors
+              className="px-3 py-1 text-white rounded-full text-sm flex items-center gap-x-2"
             >
-              {country}: {isNorthAmerica ? "HEMP/CBD" : "Recreational Cannabis"}
-              <span className="bg-white hover:bg-white/80 cursor-pointer text-black rounded-full" onClick={() => handleRemoveCountry(country)}><X className="h-4 w-4" /></span>
+              {country}: {type}
+              <span className="bg-white hover:bg-white/80 cursor-pointer text-black rounded-full" onClick={() => handleRemoveCountry(country)}>
+                <X className="h-4 w-4" />
+              </span>
             </span>
           );
         })}
@@ -209,6 +222,8 @@ function CountrySelector() {
 </div>
 
 
+
+{/* map area  */}
  <div>
      <motion.div
    
@@ -307,15 +322,15 @@ function CountrySelector() {
  <nav className="flex items-center bg-gray-300  gap-6 p-4">
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#007853]" />
-        <span className="text-slate-600 text-sm">HEMP/CBD </span>
+        <span className="text-slate-600 text-sm font-bold">HEMP/CBD & Recreational Cannabis</span>
       </div>
       <div className="flex items-center gap-2">
-        <div className="w-5 h-5 rounded-full bg-[#008000]" />
-        <span className="text-slate-600 text-sm">Recreational Cannabis</span>
+        <div className="w-5 h-5 rounded-full bg-[#2387b4]" />
+        <span className="text-slate-600 text-sm font-bold">HEMP/CBD</span>
       </div>
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 rounded-full bg-[#ffffff]" />
-        <span className="text-slate-600 text-sm">No Service</span>
+        <span className="text-slate-600 text-sm font-bold">No Service</span>
       </div>
     </nav>
 
