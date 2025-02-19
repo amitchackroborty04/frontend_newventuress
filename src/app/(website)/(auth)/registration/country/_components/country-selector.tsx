@@ -26,8 +26,6 @@ function CountrySelector() {
   const [loading, setLoading] = useState<true | false>(false)
 
 
-  
-
   const [selectedCountries, setSelectedCountries] = useState<string[]>([])
 
   
