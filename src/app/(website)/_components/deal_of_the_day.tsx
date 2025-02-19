@@ -1,7 +1,7 @@
 "use client";
 import CountdownTimers from "@/components/shared/CountdownTimer/CountdownTimer";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import Link from "next/link";
 
 const DealOfTheDay = () => {
   return (
@@ -57,8 +57,11 @@ const DealOfTheDay = () => {
         </style>
       </section>
       <div className="mt-[10px]">
-        <Button className="w-full ">
+        <Button className="w-full " asChild>
+          <Link href="/live-auctions" className="w-full h-full">
           Shop Now
+          </Link>
+         
         </Button>
       </div>
     </div>

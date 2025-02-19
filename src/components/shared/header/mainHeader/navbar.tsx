@@ -15,7 +15,7 @@ interface Props {
   loggedin: boolean;
 }
 
-function Navbar({  }: Props) {
+function Navbar({ loggedin }: Props) {
   const pathName = usePathname();
 
   return (
@@ -31,10 +31,10 @@ function Navbar({  }: Props) {
     >
       <header className={cn("bg-white", pathName !== "/" && "")}>
         <div className="lg:hidden">
-          <MobileTabletNavbar loggedin={true} />
+          <MobileTabletNavbar loggedin={loggedin} />
         </div>
         <div className="hidden lg:block">
-          <DesktopNavbar pathName={pathName} loggedin={true} />
+          <DesktopNavbar pathName={pathName} loggedin={loggedin} />
         </div>
       </header>
     </Hideon>
