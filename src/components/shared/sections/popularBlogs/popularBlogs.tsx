@@ -10,11 +10,14 @@ import { fadeIn } from "@/components/animations/variant";
 import ErrorContainer from "@/components/ui/error-container";
 import SkeletonWrapper from "@/components/ui/skeleton-wrapper";
 import { BlogResponse } from "@/types/blog";
+import { useSession } from "next-auth/react";
 import { ButtonArrow } from "../../button/ButtonArrow";
 import PopularBlogsCards from "../../cards/BlogsCards";
 import SectionHeading from "../../SectionHeading/SectionHeading";
 
 function PopularBlog() {
+  const session = useSession();
+  const token = session?.data?.user?.token
   // Fetch blogs data with React Query
   const {
     data: resData,
@@ -24,10 +27,17 @@ function PopularBlog() {
   } = useQuery<BlogResponse>({
     queryKey: ["blogs"],
     queryFn: () =>
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/get-blog`).then((res) =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/get-blog`, {
+        method: 'GET',
+        headers: {
+          "Authorizations": `Bearer ${token}`
+        }
+      }).then((res) =>
         res.json()
       ),
   });
+
+  console.log(resData)
 
   const blogs = resData?.data;
 
