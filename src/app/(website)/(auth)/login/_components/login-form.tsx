@@ -121,7 +121,7 @@ export default function LoginForm() {
                 <FormControl>
                   <Input
                     placeholder="Write your user name or email"
-                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E] text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
+                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E]  text-black dark:!text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
                     {...field}
                   />
                 </FormControl>
@@ -142,7 +142,7 @@ export default function LoginForm() {
                   <Input
                     type="password"
                     placeholder="Write your password"
-                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E] text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
+                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E] text-black dark:!text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
                     {...field}
                   />
                 </FormControl>
@@ -167,11 +167,11 @@ export default function LoginForm() {
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     I agree with the{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       term of service
                     </Link>{" "}
                     and{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       privacy policy
                     </Link>
                   </label>
@@ -194,7 +194,7 @@ export default function LoginForm() {
         <div className="mt-[24px]">
           <Link
             href="/forgot-password"
-            className={`text-gradient text-[16px] font-normal leading-[19.2px] ${
+            className={`text-gradient dark:text-gradient-pink text-[16px] font-normal leading-[19.2px] ${
               isPending && "pointer-events-none"
             }`}
           >
@@ -207,7 +207,7 @@ export default function LoginForm() {
           </span>
           <Link
             href="/registration"
-            className={`text-gradient text-[16px] font-normal  ${
+            className={`text-gradient dark:text-gradient-pink text-[16px] font-normal  ${
               isPending && "pointer-events-none"
             }`}
           >

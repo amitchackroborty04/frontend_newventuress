@@ -1,4 +1,5 @@
 "use client";
+
 import PacificPagination from "@/components/ui/PacificPagination";
 import { useState } from "react";
 import { ReviewdemoTableItems, ReviewdemoTableItemsType } from "@/data/Reviews";
@@ -13,11 +14,13 @@ const productData = {
   rating: 4,
 };
 import Image from "next/image";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
 export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
+
   {
     id: "profile",
     header: () => <div className=" flex items-center justify-center gap-2 ">
@@ -68,7 +71,7 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
       return (
         <div
           className="w-[110px]   text-[16px] font-normal text-[#444444] "
-        
+
         >
           {row.original.date}
         </div>
@@ -78,37 +81,14 @@ export const MediaColumns: ColumnDef<ReviewdemoTableItemsType>[] = [
   {
     accessorKey: "Comments",
     header: "Comments",
-    cell: ({ row }) => {
-     
-      return (
-        <div className="relative group 2xl:w-[518px] text-start">
-          <div 
-            className="overflow-hidden text-ellipsis cursor-pointer"
-            style={{
-              display: "-webkit-box",
-              WebkitBoxOrient: "vertical",
-              WebkitLineClamp: 3,
-              overflow: "hidden",
-              color: "#444444",
-              fontSize: "16px",
-            }}
-          >
-            {row.original.Comments} 
-          </div>
-          
-          
-          <div className="absolute right-0 top-full mt-1 w-max max-w-xs bg-primary dark:bg-pinkGradient z-[5]  p-4 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 dark:text-[#FFFFFF] ">
-            {row.original.Comments}
-          </div>
-        </div>
-      );
-    },
+    cell: ({ row }) => <CommentCell comment={row.original.Comments} />,
     size: 600,
-  }
+  },
 ];
 
 const ReviewContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <div >
       <TableContainer data={ReviewdemoTableItems} columns={MediaColumns} />
@@ -152,5 +132,43 @@ const TableContainer = ({
     <>
       <DataTable table={table} columns={columns} title="Review List" />
     </>
+  );
+};
+
+
+
+
+// row.original.Comments area =====================================
+
+const CommentCell = ({ comment }: { comment: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const truncatedComment =
+    comment.split(" ").length > 5 ? comment.split(" ").slice(0, 5).join(" ") + "..." : comment;
+
+  return (
+    <div className="text-start">
+      <div className="flex items-start">
+        <div className="flex-grow overflow-hidden text-ellipsis relative">
+          {truncatedComment}
+          {comment.split(" ").length > 5 && (
+            <div className="absolute bottom-0 2xl:right-[45px] right-[5px]">
+              <button onClick={() => setIsOpen(true)} className="text-[12px] font-bold hover:underline">
+                More
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Full Comment</DialogTitle>
+          </DialogHeader>
+          <div className="mt-2">{comment}</div>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };

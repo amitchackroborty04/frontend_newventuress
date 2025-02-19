@@ -133,7 +133,7 @@ export default function UserInformationForm() {
                 <FormLabel>Business Name</FormLabel>
                 <FormControl>
                   <Input
-                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2"
                     placeholder="Enter your business name"
                     onChange={(e) => {
                       dispatch(

@@ -10,6 +10,7 @@ import HeaderIconMenu from "../headerIconMenu/headerIconMenu";
 import AuctionList from "./AuctionList";
 // import Dropdown, { AuctionMobileMenu } from "./demonav";
 import PagesList from "./PagesList";
+import { Bell, CircleUser, Gift, Heart, ShoppingCart } from "lucide-react";
 
 interface DesktopNavbarProps {
   pathName: string;
@@ -19,33 +20,33 @@ interface DesktopNavbarProps {
 const Navicons = [
   {
     href: "/notifications",
-    src: "/assets/svg/bell.svg",
+    icon: <Bell />,
     alt: "bell-icon",
     count: 4,
     srOnlyText: "View notifications",
   },
   {
     href: "/wishlist",
-    src: "/assets/svg/heart.svg",
+    icon: <Heart />,
     alt: "heart-icon",
     srOnlyText: "View wishlist",
   },
   {
     href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
+    icon: <ShoppingCart />,
     alt: "cart-icon",
     count: 2,
     srOnlyText: "View cart",
   },
   {
     href: "/account",
-    src: "/assets/svg/user-circle.svg",
+    icon: <CircleUser />,
     alt: "user-icon",
     srOnlyText: "View account",
   },
   {
     href: "/rewards",
-    src: "/assets/svg/gift.svg",
+    icon: <Gift />,
     alt: "rewards",
     srOnlyText: "View rewards",
   }

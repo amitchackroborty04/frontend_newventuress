@@ -82,7 +82,7 @@ const FaqContainer = () => {
               className="border border-[#0057A8] dark:border-[#6841A5] rounded-lg overflow-hidden"
             >
               <AccordionTrigger className="flex justify-between items-center text-start lg:text-center py-4 px-6 text-gradient bg-white hover:no-underline focus:outline-none lg:max-w-[700px]">
-                <span className="text-lg font-semibold">{item.question}</span>
+                <span className="text-lg font-semibold text-black">{item.question}</span>
                 <div className="shrink-0 bg-[#ECECEC] dark:bg-[#482D721A]  w-[32px] h-[32px] flex items-center justify-center rounded-2xl">
                   <Plus className="h-5 w-5 group-data-[state=closed]:block group-data-[state=open]:hidden text-black" />
                   <Minus className="h-5 w-5 group-data-[state=closed]:hidden group-data-[state=open]:block text-black" />

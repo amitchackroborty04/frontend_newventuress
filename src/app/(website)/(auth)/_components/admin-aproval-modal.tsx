@@ -32,10 +32,10 @@ export function AdminApprovalModal({
             />
 
             {/* Text content */}
-            <DialogTitle className="text-2xl font-bold mb-2">
+            <DialogTitle className="text-2xl font-bold mb-2 dark:text-black">
               PACIFIC RIM FUSION
             </DialogTitle>
-            <p className="text-gradient text-xl mb-2">
+            <p className="text-gradient dark:text-gradient-pink text-xl mb-2">
               Kindly Wait for Admin Approval.
             </p>
 
