@@ -1,6 +1,6 @@
 // package import
 import { motion } from "framer-motion";
-import { ArrowRight, CalendarDays, User } from "lucide-react";
+import { ArrowRight, CalendarDays, MessageCircle, User } from "lucide-react";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,7 +41,7 @@ function BlogsCards({ data, index = 0 }: Props) {
         height: 0,
       }}
     >
-      <Card className="overflow-hidden bg-[#E6EEF6] bg-[#482D721A] shadow-none border-0">
+      <Card className="overflow-hidden bg-[#E6EEF6] dark:bg-[#482D721A] shadow-none border-0">
         <CardHeader className="p-0 group overflow-hidden">
           <Image
             src={image}
@@ -51,7 +51,7 @@ function BlogsCards({ data, index = 0 }: Props) {
             className="w-full w-[370px], lg:h-[230px] h-[270px] transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-150 duration-300"
           />
         </CardHeader>
-        <CardContent className="p-4">
+        <CardContent className="p-[20px]">
           <div className="flex items-center gap-4 text-sm text-[#444444] mb-4">
             <div className="flex items-center gap-1 text-[12px]">
               <CalendarDays className="w-4 h-4" />
@@ -61,16 +61,16 @@ function BlogsCards({ data, index = 0 }: Props) {
               <User className="w-4 h-4" />
               By admin
             </div>
-            {/* <div className="flex items-center gap-1 text-[12px]">
+            <div className="flex items-center gap-1 text-[12px]">
                             <MessageCircle className="w-4 h-4" />
                             {} Comments
-                        </div> */}
+                        </div>
           </div>
           <h3 className="font-medium line-clamp-2 text-[18px] text-[#000000]">
             {title}
           </h3>
         </CardContent>
-        <CardFooter className="p-6 pt-0">
+        <CardFooter className="ml-[-5px] pt-0">
           <Link
             href={`/blogs/${_id}`}
             className="text-gradient hover:text-primary font-medium inline-flex items-center gap-1 dark:text-gradient-pink"
