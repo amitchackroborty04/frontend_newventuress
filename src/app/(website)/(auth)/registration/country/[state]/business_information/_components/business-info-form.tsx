@@ -279,7 +279,8 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
           </div>
         ))}
       </div>
-      {!authState["industry"].includes("Recreational Cannabis") && <div className="space-y-2">
+      
+     <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
           Provide your Business license
         </label>
@@ -303,7 +304,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
             {Number(lastBusinessLicenceIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
-      </div>}
+      </div>
 
     </AccordionItem>
 

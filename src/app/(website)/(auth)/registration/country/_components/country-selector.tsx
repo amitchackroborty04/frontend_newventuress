@@ -37,6 +37,7 @@ function CountrySelector() {
 
   const authState = useAppSelector((state) => state.auth)
 
+  // select industry 
   const industry = authState.industry
 
   console.log(industry)
