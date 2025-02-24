@@ -48,6 +48,7 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
     },
   });
 
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const newSubmission = {
       ...values,
@@ -64,38 +65,38 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
       <DialogContent className="w-[96%] lg:min-w-[650px] h-[668px] lg:h-[751px] p-[12px] lg:p-[40px] bg-[#E6EEF6] dark:border-none rounded-[12px]">
         <div>
           <div className="bg-white rounded-[12px] p-[20px] mb-[30px] lg:mb-[40px]">
-            <h3 className="text-[20px] lg:text-[26px] font-semibold text-[#444444]">Standard</h3>
+            <h3 className="text-[20px] lg:text-[26px] font-semibold text-[#444444]">{data?.planType}</h3>
             <div className="mt-4 space-y-3">
               <div className="flex justify-between ">
                 <div className="flex items-center gap-3 text-[16px] font-normal text-[#444444]">
                   <span>
-                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] dark:!text-[#6841A5]" />
+                    <IoCheckmarkCircle size={16} className="text-[#152764] dark:!text-[#6841A5]" />
                   </span>
                   <span>Auction/Listing</span>
                 </div>
-                <span className="text-[#0057A8] dark:text-gradient-pink text-[15px] font-bold">
+                <span className="text-[#152764] dark:text-gradient-pink text-[15px] font-bold">
                   {data.numberOfAuction}
                 </span>
               </div>
               <div className="flex justify-between">
                 <div className="flex items-center gap-3 text-[16px] font-normal text-[#444444]">
                   <span>
-                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] dark:!text-[#6841A5]" />
+                    <IoCheckmarkCircle size={16} className="text-[#152764] dark:!text-[#6841A5]" />
                   </span>
                   <span>Bids</span>
                 </div>
-                <span className="text-[#0057A8] dark:text-gradient-pink text-[15px] font-bold">
+                <span className="text-[#152764] dark:text-gradient-pink text-[15px] font-bold">
                   {data.numberOfBids}
                 </span>
               </div>
               <div className="flex justify-between">
                 <div className="flex items-center gap-3 text-[16px] font-normal text-[#444444]">
                   <span>
-                    <IoCheckmarkCircle size={16} className="text-[#2A6C2D] dark:!text-[#6841A5]" />
+                    <IoCheckmarkCircle size={16} className="text-[#152764] dark:!text-[#6841A5]" />
                   </span>
                   <span>Messages</span>
                 </div>
-                <span className="text-[#0057A8] dark:text-gradient-pink text-[15px] font-bold">
+                <span className="text-[#152764] dark:text-gradient-pink text-[15px] font-bold">
                   Unlimited
                 </span>
               </div>
@@ -124,9 +125,9 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
                         className="space-y-3"
                       >
                         <div
-                          className={`flex items-center justify-between h-[52px] bg-[#ffffff] border-[#0057A8] rounded-md border p-4 ${
+                          className={`flex items-center justify-between h-[52px] bg-[#ffffff] border-[#152764] rounded-md border p-4 ${
                             field.value === "credit-card"
-                              ? "border-[#0057A8] bg-[#244b7210]"
+                              ? "border-[#152764] bg-[#244b7210]"
                               : ""
                           }`}
                         >
@@ -134,7 +135,7 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
                             <RadioGroupItem
                               value="credit-card"
                               id="credit-card"
-                              className="h-[20px] w-[20px] border-[#0057A8] text-[#0057A8]  fill-[#0057A8]"
+                              className="h-[20px] w-[20px] border-[#152764] text-[#152764]  fill-[#152764]"
                             />
                             <Label htmlFor="credit-card" className="dark:text-gradient-pink">Credit Card</Label>
                           </div>
@@ -231,9 +232,9 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
                           )}
                         </div>
                         <div
-                          className={`flex items-center justify-between bg-[#FFFFFF] h-[52px] border-[#0057A8] rounded-md border p-4 ${
+                          className={`flex items-center justify-between bg-[#FFFFFF] h-[52px] border-[#152764] rounded-md border p-4 ${
                             field.value === "paypal"
-                              ? "border-[#0057A8] bg-[#244b7210]"
+                              ? "border-[#152764] bg-[#244b7210]"
                               : ""
                           }`}
                         >
@@ -241,7 +242,7 @@ function PlansPayment({ isOpen, onClose, data }: PaymentModalProps) {
                             <RadioGroupItem
                               value="paypal"
                               id="paypal"
-                              className="h-[20px] w-[20px] border-[#0057A8] text-[#0057A8] fill-[#0057A8]"
+                              className="h-[20px] w-[20px] border-[#152764] text-[#152764] fill-[#152764]"
                             />
                             <Label htmlFor="paypal" className="dark:text-gradient-pink">PayPal</Label>
                           </div>
