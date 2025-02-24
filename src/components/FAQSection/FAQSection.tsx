@@ -6,7 +6,7 @@ function FAQSection() {
     <section className="container h-auto relative my-[80px]">
       <div className="flex flex-col lg:flex-row gap-[28px]">
         {/* Left Image Section */}
-        <div className="lg:flex items-center justify-center hidden mt-3">
+        <div className="lg:flex justify-center hidden mt-3">
           <div>
             <Image
               src="/assets/img/faq-Image.png"

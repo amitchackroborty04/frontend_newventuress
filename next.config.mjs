@@ -37,7 +37,22 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.ibb.co.com",
       },
-
+      {
+        protocol: "https",
+        hostname: "www.dea.gov", // ✅ Added this domain
+      },
+      {
+        protocol: "https",
+        hostname: "example.com", // ✅ Added example.com here
+      },
+      {
+        protocol: "http", // Allow http for Cloudinary
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https", // Also allow https for Cloudinary
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };
