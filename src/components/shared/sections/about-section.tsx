@@ -1,10 +1,14 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { blurDataUrl } from "@/data/blur-data-url";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SocialIcons from "../cards/social-icons";
 
 export default function AboutSection({ image }: { image: string }) {
+  const pathName = usePathname();
+  const isClickBtnWillBeHide = pathName === "/about"
   {
     return (
       <div className="container section">
@@ -70,11 +74,11 @@ export default function AboutSection({ image }: { image: string }) {
 
               <div className="flex flex-col lg:flex-row items-center gap-[25px]">
                 {/* Links  */}
-                <Button asChild size="md" className="w-[160px]">
-                  <Link href="/Click" className=" text-white">
+               {!isClickBtnWillBeHide &&  <Button asChild size="md" className="w-[160px]">
+                  <Link href="/about" className=" text-white">
                     Click Here
                   </Link>
-                </Button>
+                </Button>}
                 <SocialIcons />
               </div>
             </div>

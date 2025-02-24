@@ -2,7 +2,6 @@
 // local import
 import OurAuction from "@/app/(website)/_components/our_auction";
 import OurFeatureSection from "@/app/(website)/_components/our_feature_section";
-import PersonalizedRecomendation from "@/app/(website)/_components/personalized-recomendatin";
 import FindFavourite from "../../app/(website)/_components/FindFavourite";
 import SectionHeading from "../shared/SectionHeading/SectionHeading";
 import PopularCategoriesCard from "../shared/cards/PopularCategoriesCard";
@@ -36,7 +35,6 @@ const PopularCategories = ({ loggedin, token }: Props) => {
         <>
           <OurFeatureSection token={token} />
           <OurAuction token={token} />
-          <PersonalizedRecomendation />
         </>
       )}
     </div>
