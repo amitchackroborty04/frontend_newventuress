@@ -61,14 +61,18 @@ function PopularBlog() {
           <SkeletonWrapper isLoading={isLoading} key={id}>
             <PopularBlogsCards
               data={{
-                __v: 0,
-                _id: "f",
-                createdAt: new Date(),
-                description: "dfsd",
-                image:
-                  "https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                title: "dfas",
-                updatedAt: new Date(),
+                ...{
+                  __v: 0,
+                  _id: "f",
+                  createdAt: new Date(),
+                  description: "dfsd",
+                  image:
+                    "https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                  title: "dfas",
+                  updatedAt: new Date(),
+                },
+                author: "",
+                views: 0,
               }}
             />
           </SkeletonWrapper>

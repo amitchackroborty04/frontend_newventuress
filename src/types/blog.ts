@@ -3,6 +3,8 @@ export type Blog = {
   image: string;
   title: string;
   description: string;
+  author: string;
+  views: number;
   createdAt: Date; // or Date if you plan to convert it to a Date object
   updatedAt: Date; // or Date if you plan to convert it to a Date object
   __v: number;
