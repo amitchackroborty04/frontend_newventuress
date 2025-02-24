@@ -5,13 +5,19 @@ export type MembershipPlan = {
   price: number;
   numberOfAuction: number;
   numberOfBids: number;
-  createdAt: Date; // or Date if you plan to convert it to a Date object
-  updatedAt: Date; // or Date if you plan to convert it to a Date object
+  createdAt: Date;
+  updatedAt: Date;
   __v: number;
+
+
+  payMethod : string
+  store : number
+  time : string
 };
 
-export type MembershipPlanResponse = {
-  status: boolean,
-  message: string,
-  data: MembershipPlan[]
-}
+export type MembershipResponse = {
+  status: boolean;
+  message: string;
+  data: MembershipPlan[];
+};
+
