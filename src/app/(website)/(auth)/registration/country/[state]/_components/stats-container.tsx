@@ -57,7 +57,7 @@ const StateContainer = ({
             : "border-[#B0CBE4] dark:border-[#6841A5] dark:text-gradient-pink hover:bg-[#E9EBF8]"
         }`}
       >
-        {state.name} {isOnlyHempCBD && <Star fill="#FFDF00" className="text-[#FFDF00] h-4 w-4" />}
+        {state.name} {isOnlyHempCBD && <Star fill="#2387b4" className="text-[#2387b4] h-4 w-4" />}
       </button>
       })}
     </div>
