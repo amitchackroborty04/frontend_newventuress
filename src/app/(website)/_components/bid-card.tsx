@@ -7,12 +7,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Rating } from "@/components/ui/Rating";
-import { useCountdown } from "@/hooks/useCountDown";
+// import { useCountdown } from "@/hooks/useCountDown";
 import { Product } from "@/types/product";
+import CountdownTimer from "@/components/shared/CountdownTimer/CountdownTimer";
 
 export default function BiddingCard({ product }: { product: Product }) {
-  const endDate = new Date("2025-01-31T23:59:59");
-  const timeLeft = useCountdown(endDate);
+  // const endDate = new Date("2025-01-31T23:59:59");
+  // const timeLeft = useCountdown(endDate);
 
   return (
     <Card className="relative p-[16px] shadow-none">
@@ -53,7 +54,7 @@ export default function BiddingCard({ product }: { product: Product }) {
           <span className="ml-2 text-[#9C9C9C]">8 Views</span>
         </div>
 
-        <h2 className="text-gradient mb-2 text-center text-[25px] font-semibold leading-[30px]">
+        <h2 className="text-gradient dark:text-gradient-pink mb-2 text-center text-[25px] font-semibold leading-[30px]">
           {product.title}
         </h2>
 
@@ -64,9 +65,9 @@ export default function BiddingCard({ product }: { product: Product }) {
           </span>
         </div>
 
-        <div className="mx-auto max-w-[275px] rounded-[8px] bg-[#E6EEF6] p-[12px]">
+        {/* <div className="mx-auto max-w-[275px] rounded-[8px] bg-[#E6EEF6] p-[12px]">
           <p className="mb-2 text-center text-sm text-gray-500">
-            Hurry up! Offer ends in:
+            Hurry up! Offer ends in: 
           </p>
           <div className="grid grid-cols-4 gap-2 text-center">
             <div>
@@ -94,7 +95,8 @@ export default function BiddingCard({ product }: { product: Product }) {
               <div className="text-xs text-gray-500">Secs</div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <CountdownTimer targetDate = "12"/>
       </CardContent>
     </Card>
   );
