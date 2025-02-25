@@ -56,7 +56,7 @@ function VendorOrderContainer() {
       console.error("Error updating order:", error);
     }
   };
-  
+
 
   const { data, isLoading, isError, } = useQuery<orderDataResponse>({
     queryKey: ["order"],
@@ -86,7 +86,7 @@ function VendorOrderContainer() {
   } else if (data && data.data && data.data.length === 0) {
     content = (
       <div className="mt-7">
-        {/* <NotFound message="No found your data" /> */}
+        <NotFound message="No found your data" />
       </div>
     )
   }
@@ -187,14 +187,16 @@ import { useSession } from "next-auth/react";
 import { orderDataResponse, orderDataType } from "./data";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Modal from "@/components/shared/modal/modal";
-import TableSkeletonWrapper from "@/components/shared/tableSkeleton/TableSkeletaion";
+import TableSkeletonWrapper from "@/components/shared/TableSkeletonWrapper/TableSkeletonWrapper";
+import NotFound from "@/components/shared/NotFound/NotFound";
+
 
 const TableContainer = ({
   data,
   columns,
 }: {
   data: any[];
-    columns: ColumnDef<orderDataType>[];
+  columns: ColumnDef<orderDataType>[];
 }) => {
   const table = useReactTable({
     data,

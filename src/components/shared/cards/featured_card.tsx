@@ -82,7 +82,7 @@ export default function FeaturedProductCard({
               <Rating productId={product._id} />
             </div>
           </div>
-          <div className="text-gradient mt-2 text-left text-[16px] font-medium leading-[19.2px]">
+          <div className="text-gradient dark:text-gradient-pink mt-2 text-left text-[16px] font-medium leading-[19.2px]">
             {product.title}
           </div>
           <div className="mt-2 flex items-end gap-1 self-start font-medium leading-tight">
