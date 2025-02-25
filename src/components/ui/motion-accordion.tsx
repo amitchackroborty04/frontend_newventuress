@@ -12,6 +12,8 @@ interface AccordionItemProps {
 }
 
 export function AccordionItem({ title, children, variant = "outline", defaultOpen = false }: AccordionItemProps) {
+
+  
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   const variants = {

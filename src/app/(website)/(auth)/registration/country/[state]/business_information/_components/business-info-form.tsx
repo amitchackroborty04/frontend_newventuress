@@ -24,6 +24,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import FormHeader from "../../../../_components/form-header";
+import { canadaProvinces, usStates } from "@/data/registration";
 
 export function BusinessInfoForm() {
   const [loading, setLoading] = useState<true | false>(false);
@@ -120,7 +121,13 @@ export function BusinessInfoForm() {
   const isAnyBusinessLicenseEmpty = authState.businessInfo.some((business) =>
     business.license.some((liences) => liences.businessLicense.some((l) => !l.trim())))
     ;
-
+    const isAnyFieldFilled = authState.businessInfo.some((business) =>
+      business.license.some((license) =>
+        license.businessLicense.some((l) => l.trim()) ||
+        license.cannabisLicense.some((l) => l.trim()) ||
+        license.metrcLicense.some((l) => l.trim())
+      )
+    );
 
   useEffect(() => {
     if (authState["businessInfo"].length === 0) {
@@ -143,6 +150,9 @@ export function BusinessInfoForm() {
 
   const isNextDisabled =
     !authState.businessInfo.length || // Check if businessInfo array is empty
+     (!isOnlyHempSelected && !isAnyFieldFilled) || 
+
+
     (isOnlyHempSelected && isAnyBusinessLicenseEmpty) || loading;
 
   return (
@@ -210,9 +220,8 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
 
   if (!myBusinessInfoAsCountry) return null;
 
-  const industries = authState.industry;
-  const isOnlyHempSelected = JSON.stringify(industries) === JSON.stringify(["CBD/HEMP"])
-  const isOnlyRecreationalSelected = JSON.stringify(industries) === JSON.stringify(["Recreational Cannabis"])
+ 
+ 
 
 
 
@@ -226,14 +235,26 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
 
   const lastMetrcIndex = metrcLicense.length - 1;
   const lastCannabisLicenceIndex = cannabisLicense.length - 1
-  const lastBusinessLicenceIndex = businessLicenses.length - 1
+  const lastBusinessLicenceIndex = businessLicenses.length - 1;
+
+
+  const allStates = [...usStates, ...canadaProvinces];
+
+  const state = allStates.find((state) => state.name === title);
+
+  const isOnlyHempSelected = JSON.stringify(state?.allow) === JSON.stringify(["CBD/HEMP"])
+  const isOnlyRecreationalSelected = JSON.stringify(state?.allow) === JSON.stringify(["Recreational Cannabis"])
+
+
+
+
 
 
 
 
   return (
     <AccordionItem title={title} variant={variant}>
-      <div className="space-y-2">
+{!isOnlyHempSelected &&       <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
           Provide your Matrc business license
          
@@ -258,8 +279,10 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
             {Number(lastMetrcIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
-      </div>
-      <div className="space-y-2">
+      </div>}
+
+      {
+        !isOnlyHempSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
           Provide your Recreational Cannabis license
         </label>
@@ -284,6 +307,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
           </div>
         ))}
       </div>
+      }
       
      {!isOnlyRecreationalSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
