@@ -13,31 +13,33 @@ import HeaderIconMenu from "../headerIconMenu/headerIconMenu";
 import { motion } from "framer-motion";
 import AuctionMobileNav from "./AuctionMobileNav";
 import PagesMobileNav from "./PagesMobileNav";
+import SearchBer from "../../searchBer/searchBer";
+import { Bell, CircleUser, Heart, ShoppingCart } from "lucide-react";
 
 const Navicons = [
   {
     href: "/notifications",
-    src: "/assets/svg/bell.svg",
+    icon: <Bell />,
     alt: "bell-icon",
     count: 4,
     srOnlyText: "View notifications",
   },
   {
     href: "/wishlist",
-    src: "/assets/svg/heart.svg",
+    icon: <Heart />,
     alt: "heart-icon",
     srOnlyText: "View wishlist",
   },
   {
     href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
+    icon: <ShoppingCart />,
     alt: "cart-icon",
     count: 2,
     srOnlyText: "View cart",
   },
   {
     href: "/account",
-    src: "/assets/svg/user-circle.svg",
+    icon: <CircleUser />,
     alt: "user-icon",
     srOnlyText: "View account",
   },
@@ -45,13 +47,13 @@ const Navicons = [
 const mobileNavicons = [
   {
     href: "/wishlist",
-    src: "/assets/svg/heart.svg",
+    icon: <Heart />,
     alt: "heart-icon",
     srOnlyText: "View wishlist",
   },
   {
     href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
+    icon: <ShoppingCart />,
     alt: "cart-icon",
     count: 4,
     srOnlyText: "View cart",
@@ -72,10 +74,10 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
 
   const pagesMobileLinks = [
     { href: "/about", label: "About Us" },
-    { href: "/faqs", label: "FAQ" },
-    { href: "", label: "Membership Plans" },
-    { href: "", label: "Vendor Store" },
-    { href: "", label: "404 Page" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/plans", label: "Membership Plans" },
+    { href: "/vendor-store", label: "Vendor Store" },
+    { href: "/404", label: "404 Page" },
   ];
 
   const sidebarVariants = {
@@ -100,6 +102,9 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
           </Link>
         </div>
         <div className="flex items-center gap-4">
+          <div className="md:hidden">
+          <SearchBer />
+          </div>
           <HeaderIconMenu icons={mobileNavicons} />
           <button
             type="button"
@@ -151,14 +156,14 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   About
                 </Link>
@@ -172,36 +177,41 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/blogs"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Blog
                 </Link>
                 <PagesMobileNav
-                  label="page"
+                  label="Page"
                   links={pagesMobileLinks}
                   onClose={closeMobileMenu}
                 />
                 <Link
                   href="/contact"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Contact
                 </Link>
               </div>
 
+
               <div className="container pt-6">
                 {!loggedin ? (
                   <div className="grid grid-cols-2 gap-[30px]">
-                    <Button variant="outline" >
-                      Log in
-                    </Button>
-                    <Button type="button" >
-                      Sign up
-                    </Button>
+                    <Link href="/login">
+                      <Button variant="outline" className="w-[163px] dark:hover:bg-[#482D721A] dark:text-black dark:bg-white">
+                        Log in
+                      </Button>
+                    </Link>
+                    <Link href="/registration">
+                      <Button type="button" className="w-[163px]">
+                        Sign up 
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
-                  <HeaderIconMenu icons={Navicons} />
+                  <HeaderIconMenu icons={Navicons} onClick={closeMobileMenu}/>
                 )}
               </div>
             </div>

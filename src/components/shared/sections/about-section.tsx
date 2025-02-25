@@ -1,21 +1,25 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { blurDataUrl } from "@/data/blur-data-url";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SocialIcons from "../cards/social-icons";
 
 export default function AboutSection({ image }: { image: string }) {
+  const pathName = usePathname();
+  const isClickBtnWillBeHide = pathName === "/about"
   {
     return (
       <div className="container section">
-        <section className=" h-auto   flex md:flex-row flex-col justify-between gap-8 items-center w-full  ">
+        <section className=" h-auto flex md:flex-row flex-col justify-between gap-8 items-center w-full  ">
           <div className="flex-1">
             <div>
-              <div className="my-4">
-                <h1 className=" text-[25px] lg:text-[32px] font-semibold text-primary-green-hover leading-[30px] lg:leading-[38.4px]">
+              <div className="my-4 space-y-2">
+                <h1 className=" text-[25px] lg:text-[32px] font-semibold text-gradient dark:bg-pinkGradient leading-[38.4px] lg:leading-[38.4px]">
                   About Pacific Rim Fusion
                 </h1>
-                <h4 className="text-[16px] leading-[19.2px] lg:text-[20px] font-medium lg:leading-[24px] bg-clip-text text-transparent bg-gradient-to-r from-[#1D4C1F] to-[#44B249]">
+                <h4 className="text-[16px] leading-[20.2px] lg:text-[20px] font-medium lg:leading-[24px] text-gradient dark:text-gradient-pink">
                   Cannabis B2B Marketplace
                 </h4>
               </div>
@@ -70,16 +74,16 @@ export default function AboutSection({ image }: { image: string }) {
 
               <div className="flex flex-col lg:flex-row items-center gap-[25px]">
                 {/* Links  */}
-                <Button asChild size="md" className="w-[160px]">
-                  <Link href="/Click" className=" text-white">
+               {!isClickBtnWillBeHide &&  <Button asChild size="md" className="w-[160px]">
+                  <Link href="/about" className=" text-white">
                     Click Here
                   </Link>
-                </Button>
+                </Button>}
                 <SocialIcons />
               </div>
             </div>
           </div>
-          <div className="hidden relative w-[500px] h-[600px] overflow-hidden rounded-[16px]  md:block">
+          <div className="hidden relative md:w-[400px] lg:w-[500px] h-[600px] overflow-hidden rounded-[16px]  md:block">
             <Image
               src={image}
               alt="Picture of the author"

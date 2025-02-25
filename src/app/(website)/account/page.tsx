@@ -4,10 +4,10 @@ import UserInfo from "../_components/UserInfo";
 
 const Page = () => {
   return (
-    <div className="max-w-[870px] flex  items-center flex-col  md:flex-row">
+    <div className="flex  items-center flex-col  md:flex-row">
       <div className="mb-[80px]">
         {/* user infro dtails       */}
-        <div className="max-w-[870px] flex items-start justify-between   mb-[10px] flex-col   md:flex-row   ">
+        <div className="max-w-[870px] lg:flex lg:items-start justify-between   mb-[10px] flex-col   md:flex-row  gap-4 ">
           <UserInfo />
           <UserDetailsInfo />
         </div>

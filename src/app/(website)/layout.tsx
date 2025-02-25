@@ -7,15 +7,16 @@ import { Inter } from "next/font/google";
 
 // Local imports
 import { auth } from "@/auth";
-import LocomotiveWrapper from "@/components/animations/locomotive-wrapper";
 import AgeRestrictionGuard from "@/components/providers/AgeRestrictionGuard";
 import AppProvider from "@/components/providers/AppProvider";
 import NProgress from "@/components/providers/NProgress";
 import Footer from "@/components/shared/footer/mainFooter/footer";
-import NewsletterPage from "@/components/shared/footer/newsletter/page";
+import NewsletterPage from "@/components/shared/footer/newsletter/newsletter";
 import Navbar from "@/components/shared/header/mainHeader/navbar";
-import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/provider/theme-provider";
+import { Toaster } from "sonner";
+import SearchBerCategories from "@/components/shared/searchBerCategories/searchBerCategories";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,24 +34,28 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+
   return (
     <SessionProvider session={session}>
       <AppProvider>
-        <html lang="en">
-          <body className={cn("antialiased", inter.className)}>
+        <html lang="en" >
+          <body className={cn("antialiased dark:bg-white",  inter.className)}>
+            <ThemeProvider attribute="class" defaultTheme="light" >
             <div>
               <Navbar loggedin={!!session} />
             </div>
-            <LocomotiveWrapper>
-              <AgeRestrictionGuard>{children}</AgeRestrictionGuard>
+            <div>
+            <SearchBerCategories />
+            </div>
+            <AgeRestrictionGuard>{children}</AgeRestrictionGuard>
 
-              <div>
-                <NewsletterPage />
-                <Footer />
-              </div>
-            </LocomotiveWrapper>
+            <div>
+              <NewsletterPage />
+              <Footer />
+            </div>
             <NProgress />
             <Toaster />
+            </ThemeProvider>
           </body>
         </html>
       </AppProvider>

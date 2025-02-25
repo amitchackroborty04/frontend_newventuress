@@ -1,7 +1,7 @@
 "use client";
 import CountdownTimers from "@/components/shared/CountdownTimer/CountdownTimer";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import Link from "next/link";
 
 const DealOfTheDay = () => {
   return (
@@ -24,9 +24,9 @@ const DealOfTheDay = () => {
             Join Us Today
           </p>
           <div className="flex gap-1 justify-center mt-2">
-            <div className="w-3 h-1 bg-[#E6EEF6] opacity-30" />
-            <div className="w-10 h-1 bg-[#E6EEF6]" />
-            <div className="w-3 h-1 bg-[#E6EEF6] opacity-30" />
+            <div className="w-3 h-1 bg-[#E6EEF6] opacity-30 dark:bg-[#C8B9DF]" />
+            <div className="w-10 h-1 bg-[#E6EEF6] dark:bg-[#6A41A3]" />
+            <div className="w-3 h-1 bg-[#E6EEF6] opacity-30 dark:bg-[#C8B9DF]" />
           </div>
         </div>
 
@@ -57,8 +57,11 @@ const DealOfTheDay = () => {
         </style>
       </section>
       <div className="mt-[10px]">
-        <Button className="w-full ">
+        <Button className="w-full " asChild>
+          <Link href="/live-auctions" className="w-full h-full">
           Shop Now
+          </Link>
+         
         </Button>
       </div>
     </div>

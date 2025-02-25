@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 // package import
 import { Heart } from "lucide-react";
@@ -6,6 +7,7 @@ import Image from "next/image";
 // local import
 
 import { Button } from "@/components/ui/button";
+import { Rating } from "@/components/ui/Rating";
 import { FeatureCardType } from "@/data/featured";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -24,96 +26,71 @@ export default function FeaturedProductCard({
 
   return (
     <Link
-      href={`/products/534543`}
-      className="flex overflow-hidden relative flex-col grow shrink self-stretch p-3 my-auto mx-auto bg-white rounded-[8px] border border-gray-200 border-solid w-full md:w-[260px] hover:shadow-feature_card transition-shadow duration-300 cursor-pointer "
+      href={`/products/${product._id}`}
+      className="relative mx-auto my-auto flex w-full shrink grow cursor-pointer flex-col self-stretch overflow-hidden rounded-[8px] border border-solid border-gray-200 bg-white p-3 transition-shadow duration-300 hover:shadow-feature_card lg:w-[260px]"
     >
       <div className="overflow-hidden rounded-[8px]">
         <Image
           loading="lazy"
-          src={product.image}
+          src={
+            "https://images.pexels.com/photos/1466335/pexels-photo-1466335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
           alt="Product image"
           width={300}
           height={100}
-          className="object-contain z-0 w-full rounded-[8px] aspect-[1.07]  hover:scale-105 duration-300"
+          className="z-0 aspect-[1.07] w-full rounded-[8px] object-cover duration-300 hover:scale-105"
         />
       </div>
 
       {/* ======= add wishlist ========= */}
-      <div className="flex absolute top-5 z-0 flex-col w-[32px] right-[20px]">
-        <button
+      <div className="absolute right-[20px] top-5 z-0 flex w-[32px] flex-col">
+      <button
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
             handleWishlistToggle();
           }}
-          className={`flex gap-2.5 justify-center items-center px-2 bg-white rounded-full   ${
-            isWishlist
-              ? " border-none text-white bg-primary"
-              : " border-blue-500 text-black hover:bg-hover-gradient hover:text-white"
-          }  min-h-[32px] w-[32px]`}
+          className={`flex gap-2.5 justify-center items-center px-2 bg-white rounded-full   ${isWishlist
+              ? " border-none text-white bg-primary dark:bg-pinkGradient"
+              : " border-blue-500 text-black hover:bg-hover-gradient dark:hover:bg-pinkGradient hover:text-white"
+            }  min-h-[32px] w-[32px]`}
           aria-label="Add to wishlist"
-          // className="flex gap-2.5 items-center p-2 w-full h-8 bg-white hover:bg-primary-green rounded-[30px] transition-colors duration-300 group"
+       
         >
           <Heart className="group-hover:fill-white hover:border-0 w-4 h-4" />
         </button>
       </div>
-      <div className="flex z-0 flex-col mt-2 w-full">
-        <div className="flex flex-col w-full">
-          <div className="flex gap-10 justify-between items-center w-full">
-            <div className="flex gap-2 items-center self-stretch my-auto text-xs leading-tight text-[#E10E0E] whitespace-nowrap">
-              <div className="flex gap-1 items-center self-stretch my-auto">
-                {/* hot icon  */}
-                {/* <Image
-                  loading="lazy"
-                  width={9}
-                  height={9}
-                  src="/assets/svg/hot.svg"
-                  alt="hot icon"
-                  className="object-contain shrink-0 self-stretch my-auto aspect-[0.75] fill-[#E10E0E] w-[9px]"
-                /> */}
+      <div className="z-0 mt-2 flex w-full flex-col">
+        <div className="flex w-full flex-col">
+          <div className="flex w-full items-center justify-between gap-10">
+            <div className="my-auto flex items-center gap-2 self-stretch whitespace-nowrap text-xs leading-tight text-[#E10E0E]">
+              <div className="my-auto flex items-center gap-1 self-stretch">
+              
                 <div
                   className={cn(
-                    "text-[12px] font-normal my-auto",
+                    "my-auto text-[12px] font-normal",
                     product.stoke === "In Stock"
                       ? "text-[#2A6C2D]"
-                      : "text-red-500"
+                      : "text-red-500",
                   )}
                 >
-                  {product.stoke}
+                  {product.stockStatus}
                 </div>
               </div>
             </div>
-            <div className="flex gap-1 items-start self-stretch my-auto">
-              {[1, 2, 3, 4].map((star) => (
-                <Image
-                  key={star}
-                  loading="lazy"
-                  src="/assets/svg/star-fill.svg"
-                  alt="star fill"
-                  height={12}
-                  width={12}
-                  className="object-contain shrink-0 w-3 aspect-square fill-amber-500"
-                />
-              ))}
-              <Image
-                loading="lazy"
-                src="/assets/svg/star-outline.svg"
-                alt="star outline"
-                height={12}
-                width={12}
-                className="object-contain shrink-0 w-3 aspect-square fill-stone-300"
-              />
+            <div className="my-auto flex items-start gap-1 self-stretch">
+              <Rating productId={product._id} />
             </div>
           </div>
-          <div className="mt-2 text-[16px] text-left font-medium leading-[19.2px] text-gradient">
-            American Beauty
+          <div className="text-gradient mt-2 text-left text-[16px] font-medium leading-[19.2px]">
+            {product.title}
           </div>
-          <div className="flex gap-1 items-end self-start mt-2 font-medium leading-tight">
-            <div className="self-stretch text-base text-[16px] leading-[19.2px] whitespace-nowrap text-[#1A1A1A]">
-              ₿{product.price}
+          <div className="mt-2 flex items-end gap-1 self-start font-medium leading-tight">
+            <div className="self-stretch whitespace-nowrap text-[16px] text-base leading-[19.2px] text-[#1A1A1A]">
+              ₿{product.discountPrice}
             </div>
-            <div className="self-stretch text-[12px] leading-[14.4px] font-medium text-[#9C9C9C]">
-              <span className="line-through">₿{product.originalPrice}</span>
+            <div className="self-stretch text-[12px] font-medium leading-[14.4px] text-[#9C9C9C]">
+              <span className="line-through">₿{product.selllingPrice}</span>
             </div>
           </div>
         </div>
@@ -124,7 +101,7 @@ export default function FeaturedProductCard({
 
             console.log("add to cart");
           }}
-          className=" mt-[16px] w-full "
+          className="mt-[16px] w-full"
           aria-label="Add to cart"
         >
           Add to cart

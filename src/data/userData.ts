@@ -1,6 +1,6 @@
 export const userData = {
     id: "1",
-    name: "Fahim Bro",
+    name: "Cameron Williamson",
     role: "Admin",
     avatarUrl: "/assets/img/profile.png"
   }

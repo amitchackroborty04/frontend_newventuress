@@ -2,18 +2,18 @@
 // local import
 import OurAuction from "@/app/(website)/_components/our_auction";
 import OurFeatureSection from "@/app/(website)/_components/our_feature_section";
-import PersonalizedRecomendation from "@/app/(website)/_components/personalized-recomendatin";
 import FindFavourite from "../../app/(website)/_components/FindFavourite";
 import SectionHeading from "../shared/SectionHeading/SectionHeading";
 import PopularCategoriesCard from "../shared/cards/PopularCategoriesCard";
 
 interface Props {
   loggedin: boolean;
+  token: string | null
 }
 
-const PopularCategories = ({ loggedin }: Props) => {
+const PopularCategories = ({ loggedin, token }: Props) => {
   return (
-    <div className=" pt-[54px]  pb-[40px] md:pb-[100px] section rounded-[16px]  lg:rounded-[52px] bg-[#E6EEF6] ">
+    <div className=" pt-[54px]  pb-[40px] md:pb-[100px] section rounded-[16px]  lg:rounded-[52px] bg-[#E6EEF6] dark:bg-[#482D721A]">
       <SectionHeading
         subheading="Popular categories"
         heading="Shop By Popular categories"
@@ -33,9 +33,8 @@ const PopularCategories = ({ loggedin }: Props) => {
 
       {loggedin && (
         <>
-          <OurFeatureSection />
-          <OurAuction />
-          <PersonalizedRecomendation />
+          <OurFeatureSection token={token} />
+          <OurAuction token={token} />
         </>
       )}
     </div>

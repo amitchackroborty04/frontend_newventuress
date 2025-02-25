@@ -50,6 +50,7 @@ const AgeAlert = () => {
         position: "absolute",
         top: 0,
         left: 0,
+        overflow: "hidden",
       }}
     >
       <Modal>
@@ -65,7 +66,7 @@ const AgeAlert = () => {
           <h2 className="text-center text-[28px] md:text-[36.53px] text-[#333333] font-bold leading-[33.6px] md:leading-[43.84px] mt-2">
             PACIFIC RIM FUSION
           </h2>
-          <h3 className="text-center text-[32px] text-[#152764] font-semibold leading-[38.4px] mt-[25px]">
+          <h3 className="text-center text-[32px] text-[#152764] dark:text-gradient-pink font-semibold leading-[38.4px] mt-[25px]">
             Are you 21 years or older
           </h3>
           <p className="text-center text-[22px] text-[#102011] font-normal leading-[26.4px] mt-4">
@@ -82,7 +83,7 @@ const AgeAlert = () => {
             </Button>
           </div>
           <div className="flex justify-center mt-[14px]">
-            <Button onClick={handleNo} variant="outline" className="w-[396px] h-[56px] text-[#121D42] border border-[#121D42]">
+            <Button onClick={handleNo} variant="outline" className="w-[396px] h-[56px] text-[#121D42] border border-[#121D42] dark:bg-white dark:hover:text-black">
               No
             </Button>
           </div>

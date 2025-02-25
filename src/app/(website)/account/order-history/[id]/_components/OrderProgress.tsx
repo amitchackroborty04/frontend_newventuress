@@ -1,6 +1,7 @@
 
 import { Check } from 'lucide-react'
 import { Progress } from "@/components/ui/progress"
+import { cn } from '@/lib/utils'
 
 interface OrderStatus {
   isComplete: boolean
@@ -14,7 +15,7 @@ interface OrderStatusState {
   delivered: OrderStatus
 }
 
-export default function OrderProgress() {
+export default function OrderProgress({className}: {className: string}) {
   const orderStatus: OrderStatusState = {
     ordered: {
       isComplete: true
@@ -38,44 +39,44 @@ export default function OrderProgress() {
 
 
   return (
-    <div className="relative w-full max-w-[800px] pt-6 mx-auto">
+    <div className={cn("relative w-full max-w-[800px] pt-6 mx-auto", className )}>
       {/* Progress Line */}
-      <Progress value={progressValue} className="absolute left-0 top-[38px] h-[5px] w-full bg-gray-200 [&>div]:bg-[#2A6C2D]" />
+      <Progress value={progressValue} className="absolute left-0 top-[42px] h-[5px] w-full bg-gray-200 [&>div]:bg-primary dark:[&>div]:bg-pinkGradient" />
       {/* Status Points */}
       <div className="relative flex justify-between">
         {/* Ordered */}
         <div className="flex flex-col items-start">
           <div
-            className={`flex h-8 w-8 items-center justify-center rounded-full ${
+            className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.ordered.isComplete
-                ? "bg-[#2A6C2D]"
-                : "bg-white"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.ordered.isComplete && (
               <Check className="h-5 w-5 text-white" />
             )}
           </div>
-          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.ordered.isComplete ? "text-[#2A6C2D]" : "text-black"} `}>Order received</p>
+          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.ordered.isComplete ? "text-gradient dark:bg-pinkGradient" : "text-black"} `}>Order received</p>
           
         </div>
 
         {/* Processing */}
         <div className="flex flex-col items-center -translate-x-10">
           <div
-            className={`flex h-8 w-8 items-center justify-center rounded-full ${
+            className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.processing.isComplete
-                ? "bg-[#2A6C2D]"
-                : "bg-white border border-[#2A6C2D] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.processing.isComplete ? (
               <Check className="h-5 w-5 text-white" />
             ) : (
-              <span className="text-[#2A6C2D]">2</span>
+              <span className="text-gardient dark:text-gradient-pink">2</span>
             )}
           </div>
-          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.processing.isComplete ? "text-[#2A6C2D]" : "text-black"} `}>
+          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.processing.isComplete ? "text-gradient dark:text-gradient-pink" : "text-black"} `}>
             Processing
           </p>
         </div>
@@ -83,19 +84,19 @@ export default function OrderProgress() {
         {/* Shipping */}
         <div className="flex flex-col items-center -translate-x-6">
           <div
-            className={`flex h-8 w-8 items-center justify-center rounded-full ${
+            className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.shipping.isComplete
-                ? "bg-[#2A6C2D]"
-                : "bg-white border border-[#2A6C2D] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.shipping.isComplete ? (
               <Check className="h-5 w-5 text-white" />
             ) : (
-              <span className="text-[#2A6C2D]">3</span>
+              <span className="text-gradient dark:text-gradient-pink">3</span>
             )}
           </div>
-          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.shipping.isComplete ? "text-[#2A6C2D]" : "text-black"} `}>
+          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.shipping.isComplete ? "text-gradient dark:text-gradient-pink" : "text-black"} `}>
             On the way
           </p>
         </div>
@@ -103,19 +104,19 @@ export default function OrderProgress() {
         {/* Delivered */}
         <div className="flex flex-col items-end">
           <div
-            className={`flex h-8 w-8 items-center justify-center rounded-full ${
+            className={`flex h-[40px] w-[40px] items-center justify-center rounded-full ${
               orderStatus.delivered.isComplete
-                ? "bg-[#2A6C2D]"
-                : "bg-white border border-[#2A6C2D] border-dashed"
+                ? "bg-primary dark:bg-pinkGradient"
+                : "bg-white border border-[#0f283f] dark:border-[#6841A5] border-dashed"
             }`}
           >
             {orderStatus.delivered.isComplete ? (
               <Check className="h-5 w-5 text-white" />
             ) : (
-              <span className="text-[#2A6C2D]">4</span>
+              <span className="text-gradient dark:text-gradient-pink">4</span>
             )}
           </div>
-          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.delivered.isComplete ? "text-[#2A6C2D]" : "text-black"} `}>
+          <p className={`mt-2 text-sm font-medium sm:text-base ${orderStatus.delivered.isComplete ? "text-gradient dark:text-gradient-pink" : "text-black"} `}>
             Delivered
           </p>
           <p className="text-xs text-gray-500 sm:text-sm">

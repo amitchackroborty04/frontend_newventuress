@@ -1,9 +1,13 @@
+import { auth } from "@/auth";
 import SectionHeading from "@/components/shared/SectionHeading/SectionHeading";
-import React from "react";
-import PlansCard from "./_components/plansCard";
 import { PageHeader } from "@/components/shared/sections/page-header";
+import PlansContainer from "./_components/PlansContainer";
 
-const page = () => {
+const page = async () => {
+  const currentuser = await auth();
+
+  const token = currentuser?.user.token;
+
   return (
     <>
       <PageHeader
@@ -21,41 +25,7 @@ const page = () => {
       />
       <div className="container section px-4 my-[80px]">
         <SectionHeading heading="Membership Plans" subheading="Plans" />
-        <div className="flex justify-between mt-[20px] md:mt-[43px] flex-wrap lg:flex-nowrap gap-y-4">
-          <div className="w-full md:w-[32%]">
-            <PlansCard
-              cardtitle="Basic"
-              cardcontent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer "
-              cardprice="7,000.00"
-              action="5"
-              bids="5"
-              messages="Unlimited"
-
-            />
-          </div>
-          <div className="w-full md:w-[32%]">
-          <PlansCard
-              cardtitle="Standard"
-              cardcontent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer "
-              cardprice="8,000.00"
-              action="10"
-              bids="25"
-              messages="Unlimited"
-
-            />
-          </div>
-          <div className="w-full md:w-[32%]">
-          <PlansCard
-              cardtitle="Premium"
-              cardcontent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer "
-              cardprice="7,000.00"
-              action="25"
-              bids="100"
-              messages="Unlimited"
-
-            />
-          </div>
-        </div>
+        <PlansContainer token={token} />
       </div>
     </>
   );

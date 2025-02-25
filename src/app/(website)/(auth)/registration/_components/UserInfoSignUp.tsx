@@ -3,8 +3,8 @@
 // Packages
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { ArrowRight, EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, EyeIcon, EyeOffIcon, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -29,6 +29,7 @@ import FormHeader from "./form-header";
 // Zod Schema for validation
 const formSchema = z
   .object({
+    businessName: z.string().nonempty("Business name is required"),
     email: z.string().email("Invalid email address"),
     fullName: z.string().min(2, "Full name must be at least 2 characters"),
     password: z.string().min(6, "Password must be at least 6 characters"),
@@ -47,6 +48,7 @@ const formSchema = z
 export type UserInformationFormType = z.infer<typeof formSchema>;
 
 export default function UserInformationForm() {
+  const [loading, setLoading] = useState<true | false>(false);
   const [passwordVisibility, setPasswordVisibility] = useState({
     password: false,
     confirmPassword: false,
@@ -55,7 +57,13 @@ export default function UserInformationForm() {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const form = useForm({
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, []);
+
+  const form = useForm<UserInformationFormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: authState.email,
@@ -63,6 +71,7 @@ export default function UserInformationForm() {
       password: authState.password,
       confirmPassword: authState.confirmPassword,
       agreed: false,
+      businessName: authState["businessName"]
     },
   });
 
@@ -73,13 +82,15 @@ export default function UserInformationForm() {
     !watch("fullName") ||
     !watch("password") ||
     !watch("confirmPassword") ||
-    !watch("agreed");
+    !watch("agreed") ||
+    loading;
 
   const togglePasswordVisibility = (field: "password" | "confirmPassword") => {
     setPasswordVisibility((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
   const onSubmit = () => {
+    setLoading(true);
     router.push(`/registration/experiences`);
   };
 
@@ -104,8 +115,8 @@ export default function UserInformationForm() {
     >
       <FormHeader
         label="Sign Up"
-        paragraph="Continue to register as a customer or vendor, Please provide the information."
-        title="Enter your Personal Information"
+        paragraph="Please enter the following information to continue your registration"
+        title="Enter your Business Information"
       />
 
       <Form {...form}>
@@ -113,6 +124,32 @@ export default function UserInformationForm() {
           className="flex flex-col gap-[20px] text-[20px]"
           onSubmit={form.handleSubmit(onSubmit)}
         >
+          {/* business name Field */}
+           <FormField
+            name="businessName"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Business Name</FormLabel>
+                <FormControl>
+                  <Input
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2"
+                    placeholder="Enter your business name"
+                    onChange={(e) => {
+                      dispatch(
+                        setRegistrationValue({
+                          businessName: e.target.value,
+                        })
+                      );
+                      field.onChange(e.target.value);
+                    }}
+                    value={field.value}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {/* Email Field */}
           <FormField
             name="email"
@@ -122,8 +159,8 @@ export default function UserInformationForm() {
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
                   <Input
-                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
-                    placeholder="Write your email"
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
+                    placeholder="Enter your email"
                     onChange={(e) => {
                       dispatch(
                         setRegistrationValue({
@@ -149,8 +186,8 @@ export default function UserInformationForm() {
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
                   <Input
-                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
-                    placeholder="Write your full name"
+                    className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
+                    placeholder="Enter your full name"
                     onChange={(e) => {
                       dispatch(
                         setRegistrationValue({
@@ -177,7 +214,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <div className="relative">
                     <Input
-                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                       type={passwordVisibility.password ? "text" : "password"}
                       placeholder="Enter your password"
                       onChange={(e) => {
@@ -219,7 +256,7 @@ export default function UserInformationForm() {
                 <FormControl>
                   <div className="relative">
                     <Input
-                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E]"
+                      className="p-5 text-[20px] focus:outline-none focus:ring-2 focus:ring-[#9E9E9E] text-black dark:!text-black"
                       type={
                         passwordVisibility.confirmPassword ? "text" : "password"
                       }
@@ -268,14 +305,14 @@ export default function UserInformationForm() {
                   />
                   <label
                     htmlFor="remember"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black dark:!text-black"
                   >
                     I agree with the{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       term of service
                     </Link>{" "}
                     and{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       privacy policy
                     </Link>
                   </label>
@@ -288,7 +325,11 @@ export default function UserInformationForm() {
           <div className="pt-[40px]">
             <Button disabled={isDisable} size="md" type="submit">
               Next
-              <ArrowRight className="ml-2" />
+              {loading ? (
+                <Loader2 className="ml-2 animate-spin" />
+              ) : (
+                <ArrowRight className="ml-2" />
+              )}
             </Button>
           </div>
         </form>

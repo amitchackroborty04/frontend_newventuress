@@ -62,7 +62,7 @@ const PopularCategoriesCard = () => {
       {categories.map((category, i) => (
         <Card
           key={category.id}
-          className="overflow-hidden w-full  lg:w-[270px] shadow-none "
+          className="overflow-hidden w-full  lg:w-[270px] shadow-none bg-white border-0"
         >
           <CardContent className=" p-[12px]">
             <motion.div
@@ -108,9 +108,7 @@ export default PopularCategoriesCard;
 const CardButtons = () => {
   return (
     <>
-      <Button className="w-full  text-[14px] md:text-[16px] px-[16px] md:px-[20px] py-[8px] md:py-[10px]">
-        Flowers
-      </Button>
+      <Button className="w-full ">Flowers</Button>
     </>
   );
 };

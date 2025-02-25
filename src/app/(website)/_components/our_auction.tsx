@@ -5,56 +5,108 @@ import dynamic from "next/dynamic";
 
 import FeaturedProductCard from "@/components/shared/cards/featured_card";
 import SectionHeading from "@/components/shared/SectionHeading/SectionHeading";
+import ProductCardSkeleton from "@/components/shared/skeletons/productCardSkeleton";
 import { Button } from "@/components/ui/button";
-import { featureProducts } from "@/data/featured";
+import ErrorContainer from "@/components/ui/error-container";
+import { Product, ProductResponse } from "@/types/product";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+
+interface FeaturedCardsProps {
+  data: Product[],
+  isLoading: boolean
+}
+const FeaturedCards = ({data, isLoading}: FeaturedCardsProps) => {
+
+  let content;
+
+  if(isLoading) {
+    content = <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      {[1,2,3,4].map((n) => (
+        <ProductCardSkeleton  key={n} />
+      ))}
+    </div>
+  } else {
+    content = <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    {data.slice(0, 4).map((items: any) => (
+        <FeaturedProductCard key={items._id} product={items} />
+    ))}
+  </div>
+  }
+
+
+  return content
+};
+
 const BiddingCard = dynamic(() => import("./bid-card"), {
   ssr: false,
 });
 
-const OurAuction = () => {
-  return (
-    <div className="section container">
-      <SectionHeading heading="Our Auctions" subheading="Auctions" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-[17px] lg:gap-[27px] pt-[40px] h-auto">
-        <FeaturedCards />
 
-        <div className="space-y-4">
-          <BiddingCard />
-          <JoinAsSeller />
-        </div>
+interface Props {
+  token: string | null
+}
+export default function OurAuction({token} : Props) {
+  
+  const { data, error, isError, isLoading } = useQuery<ProductResponse>({
+      queryKey: ["products"],
+      queryFn: async () => {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/product`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+        if (!response.ok) {
+          throw new Error("Network error");
+        }
+        return response.json();
+      },
+    });
+
+    if(!token) return null
+  const products = data?.data;
+  
+
+  let content;
+
+
+
+
+  if (isError) {
+    content =  <div className="container">
+      <ErrorContainer message={error?.message || "something went wrong"} />
+    </div>;
+  } else if (products?.length === 0 ) {
+    content = <ErrorContainer message="NO DATA FOUND " />
+  } else if(products && products.length > 0) {
+    content =  <div className="section container">
+    <SectionHeading heading="Our Auctions" subheading="Auctions" />
+
+    <div className="grid h-auto grid-cols-1 gap-[17px] pt-[40px] md:grid-cols-2 lg:gap-[27px]">
+      <FeaturedCards data={products} isLoading={isLoading} />
+
+      <div className="space-y-4">
+        <BiddingCard product={products[0]} />
+        <JoinAsSeller />
       </div>
     </div>
-  );
-};
-
-export default OurAuction;
-
-const FeaturedCards = () => {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-      {featureProducts.slice(0, 4).map((product) => (
-        <FeaturedProductCard key={product.id} product={product} />
-      ))}
-    </div>
-  );
-};
+  </div>
+  }
+  return  content
+}
 
 const JoinAsSeller = () => {
   return (
-    <div className="p-6 rounded-xl h-fit bg-white  space-y-7">
+    <div className="h-fit space-y-7 rounded-xl bg-white p-6">
       <div>
-        <h2 className="text-[22px]  font-semibold text-gradient mb-2 text-center">
+        <h2 className="text-gradient mb-2 text-center text-[22px] font-semibold">
           Partner with Us. Grow Your Business on
         </h2>
         <p
-          className="text-[20px] font-medium text-center text-gradient"
-          // style={{
-          //   background: "linear-gradient(90deg, #1D4C1F 0%, #44B249 100%)",
-          //   WebkitBackgroundClip: "text",
-          //   WebkitTextFillColor: "transparent",
-          // }}
+          className="text-gradient text-center text-[20px] font-medium"
+          
         >
           Join Our Marketplace Today
         </p>
@@ -70,7 +122,7 @@ const JoinAsSeller = () => {
           alt="Picture of the author"
         />
       </div>
-      <Button className="w-full mb-4 s py-2">Join As a Sellers</Button>
+      <Button className="s mb-4 w-full py-2">Join As a Sellers</Button>
     </div>
   );
 };

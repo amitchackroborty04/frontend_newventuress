@@ -16,15 +16,17 @@ export default auth((req) => {
 
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (isApiAuthRoute) {
+  return NextResponse.next();
+
+  if (isApiAuthRoute || isPublicRoutes) {
     return NextResponse.next();
   }
+  return NextResponse.next();
 
   if (isAuthRoute) {
     if (isLoggedin) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
-    return NextResponse.next();
   }
 
   if (!isLoggedin && !isPublicRoutes) {

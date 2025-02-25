@@ -61,50 +61,50 @@ const products: Product[] = [
 const OrderHistory = () => {
   return (
     <div>
-      <div className=" w-[370px] lg:w-[870px] mx-auto   ">
+      <div className="  ">
         {/* Table for medium and larger screens */}
-        <div className="hidden md:block overflow-hidden rounded-lg  border-[#C5C5C5] border-[1px]">
+        <div className="w-full hidden lg:block overflow-hidden rounded-lg  border-[#C5C5C5] border-[1px]">
           <div className="flex justify-between items-center p-3">
-            <h1 className="text-[32px] font-semibold my-5 text-[#2A6C2D]">
+            <h1 className="text-[32px] font-semibold my-5 text-gradient dark:text-gradient-pink">
               Recet Order History
             </h1>
 
-            <ButtonArrow text=" Explore More" href="/" />
+            <ButtonArrow text=" Explore More" href="/"/>
           </div>
           <table className="w-full ">
-            <thead className="bg-gray-100 ">
+            <thead className="bg-gray-100  dark:bg-[#482D721A]">
               <tr className="">
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-[16px] font-medium text-[#444444]">
                   Order Id{" "}
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-[16px] font-medium text-[#444444]">
                   Date
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-[16px] font-medium text-[#444444]">
                   Total
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-[16px] font-medium text-[#444444]">
                   Status
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600"></th>
+                <th className="px-6 py-4 text-left text-[16px] font-medium text-[#444444]"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 ">
               {products.map((product) => (
-                <tr className="hover:bg-[#EAF0EA]" key={product.id}>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                <tr className="hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] text-[#444444] text-[16px] font-normal" key={product.id}>
+                  <td className="px-6 py-4 ">
                     <p className="">#{product.id}</p>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-6 py-4 ">
                     {product.date}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-6 py-4">
                     {product.price} ({product.quantity} products)
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900 font-medium">
+                  <td className="px-6 py-4 font-medium">
                     {product.status}
                   </td>
-                  <td className="px-6 py-4 text-sm text-[#2A6C2D] font-medium">
+                  <td className="px-6 py-4 text-gradient font-medium dark:text-gradient-pink">
                     <Link href="#"> view Details </Link>
                   </td>
                 </tr>
@@ -114,14 +114,14 @@ const OrderHistory = () => {
         </div>
 
         {/* Card layout for small screens */}
-        <div className="md:hidden   w-[343px] border border-[#C5C5C5] rounded-lg">
-          <h1 className="text-[20px] leading-[24px] text-center font-semibold py-3 text-[#2A6C2D] border-b">
+        <div className="lg:hidden border border-[#C5C5C5] rounded-lg">
+          <h1 className="text-[20px] leading-[24px] text-center font-semibold py-3 text-gradient border-b">
             Recet Order History
           </h1>
           {products.map((product) => (
             <div
               key={product.id}
-              className=" w-full  border-b border-[#C5C5C5] p-3  hover:bg-[#EAF0EA] "
+              className=" w-full  border-b border-[#C5C5C5] p-3  hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] "
             >
               <div className="flex justify-between gap-4 mb-4">
                 <p className="text-[16px] font-normal text-[#444444]">
@@ -158,7 +158,7 @@ const OrderHistory = () => {
                     {product.status}
                   </span>
                 </div>
-                <div className="text-[16px] p-2 text-sm text-center text-[#2A6C2D] ">
+                <div className="text-[16px] p-2 text-sm text-center text-gradient ">
                   <Link href="#"> View Details </Link>
                 </div>
               </div>

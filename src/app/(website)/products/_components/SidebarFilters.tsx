@@ -1,20 +1,20 @@
 "use client";
 
-import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RootState, AppDispatch } from "@/redux/store";
-import { setPriceRange, toggleFlower, toggleCategory } from "@/redux/features/filtering/FilterSlice";
+import { Slider } from "@/components/ui/slider";
+import { setPriceRange, toggleFlower } from "@/redux/features/filtering/FilterSlice";
+import { AppDispatch, RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import CategoryFilter from "./category-filter/category-filter";
 
 export default function SidebarFilters() {
   const dispatch = useDispatch<AppDispatch>();
-  const { priceRange, flowers, categories } = useSelector((state: RootState) => state.filters);
+  const { priceRange, flowers } = useSelector((state: RootState) => state.filters);
 
   const flowerOptions = ["Indica", "Sativa", "Hybrid"];
-  const categoryOptions = ["Flower", "Topical", "Apparel", "Edibles", "Vape Products", "Concentrations"];
+  
 
   // Handle changes to the slider's value
   const handlePriceChange = (value: number[]) => {
@@ -37,9 +37,7 @@ export default function SidebarFilters() {
     dispatch(toggleFlower(flower));
   };
 
-  const handleCategoryToggle = (category: string) => {
-    dispatch(toggleCategory(category));
-  };
+  
 
   return (
     <aside className="w-[270px] space-y-4 mt-[52px]">
@@ -98,23 +96,7 @@ export default function SidebarFilters() {
       </div>
 
       {/* Categories */}
-      <div className="rounded-lg bg-[#E6EEF6] p-4">
-        <h2 className="text-[28px] font-bold text-gradient mb-4">Categories</h2>
-        <div className="space-y-3">
-          {categoryOptions.map((category) => (
-            <div key={category} className="flex items-center space-x-2">
-              <Checkbox
-                id={category.toLowerCase()}
-                checked={categories.includes(category)}
-                onCheckedChange={() => handleCategoryToggle(category)}
-              />
-              <Label htmlFor={category.toLowerCase()} className="text-[20px] leading-[24px] text-[#001E3B]">
-                {category}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
+      <CategoryFilter />
     </aside>
   );
 }

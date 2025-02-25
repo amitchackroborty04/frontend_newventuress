@@ -37,7 +37,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   }, [targetDate]);
 
   return (
-    <div className="bg-[#E6EEF6] shadow-md rounded-lg p-4 text-center max-w-md mx-auto">
+    <div className="bg-[#E6EEF6] dark:bg-[#ECEAF0]  shadow-md rounded-lg p-4 text-center max-w-md mx-auto">
       <p className="text-[21px] font-normal leading-[27px] text-[#9C9C9C]">Hurry up! Offer ends in:</p>
       <div className="flex justify-center mt-2 space-x-4 text-gray-800 font-bold text-2xl">
         <div>

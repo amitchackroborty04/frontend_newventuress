@@ -1,7 +1,6 @@
-import { Dialog } from '@headlessui/react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-
+import { Dialog } from "@headlessui/react";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 interface PagesModalProps {
   isOpen: boolean;
@@ -12,11 +11,11 @@ interface PagesModalProps {
 const PagesModal: React.FC<PagesModalProps> = ({ isOpen, onClose }) => {
   // Links array as a variable
   const links = [
-    { href: '/about', label: 'About Us' },
-    { href: '/faq', label: 'FAQ' },
-    { href: '/membership-plans', label: 'Membership Plans' },
-    { href: '/vendor-store', label: 'Vendor Store' },
-    { href: '/404', label: '404 Page' },
+    { href: "/about", label: "About Us" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/plans", label: "Membership Plans" },
+    { href: "/vendor-store", label: "Vendor Store" },
+    { href: "/404", label: "404 Page" },
   ];
 
   // Animation variants for links
@@ -49,7 +48,7 @@ const PagesModal: React.FC<PagesModalProps> = ({ isOpen, onClose }) => {
             initial={{ y: -50, opacity: 0 }} // Start above viewport and invisible
             animate={{ y: 0, opacity: 1 }} // Slide in and become visible
             exit={{ y: -50, opacity: 0 }} // Slide up and fade out
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="flex justify-center ml-[270px]"
           >
             <Dialog.Panel className="bg-white shadow-lg rounded-b-[8px] z-50">
@@ -69,8 +68,8 @@ const PagesModal: React.FC<PagesModalProps> = ({ isOpen, onClose }) => {
                   <Dialog.Title className="w-full">
                     <Link
                       href={link.href}
-                      className={`inline-block hover:bg-[#E6EEF6] w-full p-6 py-[12px] text-black font-normal text-[16px] 
-                        ${index === links.length - 1 ? 'rounded-b-[8px]' : ''}`}
+                      className={`inline-block hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] w-full p-6 py-[12px] text-black font-normal text-[16px] 
+                        ${index === links.length - 1 ? "rounded-b-[8px]" : ""}`}
                       onClick={onClose}
                     >
                       {link.label}
@@ -84,6 +83,6 @@ const PagesModal: React.FC<PagesModalProps> = ({ isOpen, onClose }) => {
       )}
     </AnimatePresence>
   );
-}
+};
 
 export default PagesModal;

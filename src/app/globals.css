@@ -47,6 +47,9 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --gradient: hsl(205, 100%, 25%)
+
   }
 
   .dark {
@@ -82,6 +85,8 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --gradient: hsl(267, 52%, 40%)
   }
 }
 
@@ -104,8 +109,33 @@ body {
   .text-gradient {
     @apply text-transparent bg-clip-text bg-gradient-to-br from-[#121D42] via-[#152764] to-[#4857BD];
   }
+
+  .text-gradient-pink {
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-[#482D72] via-[#6841A5] to-[#8855D8]
+  }
   .heading {
     @apply text-[25px]  md:text-[36px] font-semibold leading-[30px] md:leading-[43.2px] text-gradient;
   }
   
 }
+input:-webkit-autofill {
+  background: #ffffff !important; /* White background */
+  -webkit-text-fill-color: #000 !important; /* Black text */
+  border: 1px solid #9c9c9c !important;
+  transition: background-color 5000s ease-in-out 0s; /* Prevent autofill color from flashing */
+}
+
+/* Autofill hover, focus, and active states */
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background: #ffffff !important; /* Ensure it stays white */
+  -webkit-text-fill-color: #000 !important;
+}
+input:-webkit-autofill{
+  background-color: white;
+}
+
+
+
+

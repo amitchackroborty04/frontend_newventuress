@@ -12,7 +12,7 @@ export interface ContactItemProps {
 export const ContactItem: React.FC<ContactItemProps> = ({ icon, title, details, iconAlt }) => {
   return (
     <div className="flex gap-3 items-start w-full max-md:max-w-full">
-      <div className="flex gap-2.5 items-center p-3 w-11 h-11 bg-primary rounded-[30px]">
+      <div className="flex gap-2.5 items-center p-3 w-11 h-11 bg-primary dark:bg-pinkGradient  rounded-[30px]">
         <Image
           loading="lazy"
           src={icon}

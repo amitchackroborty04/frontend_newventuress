@@ -10,7 +10,10 @@ import { z } from "zod";
 
 // Local imports
 
-import { SignInWithEmailAndPassword } from "@/actions/authentications/authentication";
+import {
+  ServerResType,
+  SignInWithEmailAndPassword,
+} from "@/actions/authentications/authentication";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -22,9 +25,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
-const loginSchema = z.object({
+export const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters long"),
   agreed: z
@@ -36,6 +40,9 @@ export type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
   const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
+  const callback = useSearchParams().get("callback") || "/"
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -49,15 +56,26 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormValues) => {
     startTransition(() => {
       SignInWithEmailAndPassword(data)
-        .then((res: any) => {
+        .then((res: ServerResType) => {
+          console.log(res);
           if (res.success) {
             toast.success("Login successfull 🎉", {
               position: "bottom-right",
               richColors: true,
             });
+
+            router.push(callback);
+
+            router.refresh();
+          } else {
+            toast.error(res.message, {
+              position: "top-center",
+              richColors: true,
+            });
           }
         })
         .catch((err) => {
+          console.log(err.message);
           toast.error(err.message, {
             position: "bottom-right",
             richColors: true,
@@ -86,7 +104,7 @@ export default function LoginForm() {
       className="w-full"
     >
       <div className="space-y-2 text-center">
-        <h1 className="text-[36px] leading-[43.2px] font-semibold text-gradient mb-[27px]">
+        <h1 className="text-[36px] leading-[43.2px] font-semibold text-gradient dark:text-gradient-pink mb-[27px]">
           Log In
         </h1>
       </div>
@@ -103,7 +121,7 @@ export default function LoginForm() {
                 <FormControl>
                   <Input
                     placeholder="Write your user name or email"
-                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E] text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
+                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E]  text-black dark:!text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
                     {...field}
                   />
                 </FormControl>
@@ -124,7 +142,7 @@ export default function LoginForm() {
                   <Input
                     type="password"
                     placeholder="Write your password"
-                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E] text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
+                    className="border-[1px] border-[#9E9E9E] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[#9E9E9E] text-black dark:!text-black font-normal text-[16px] leading-[19.2px] p-[16px] h-[51px]"
                     {...field}
                   />
                 </FormControl>
@@ -149,11 +167,11 @@ export default function LoginForm() {
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     I agree with the{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       term of service
                     </Link>{" "}
                     and{" "}
-                    <Link href="#" className="text-gradient">
+                    <Link href="#" className="text-gradient dark:text-gradient-pink">
                       privacy policy
                     </Link>
                   </label>
@@ -176,7 +194,7 @@ export default function LoginForm() {
         <div className="mt-[24px]">
           <Link
             href="/forgot-password"
-            className={`text-gradient text-[16px] font-normal leading-[19.2px] ${
+            className={`text-gradient dark:text-gradient-pink text-[16px] font-normal leading-[19.2px] ${
               isPending && "pointer-events-none"
             }`}
           >
@@ -189,7 +207,7 @@ export default function LoginForm() {
           </span>
           <Link
             href="/registration"
-            className={`text-gradient text-[16px] font-normal  ${
+            className={`text-gradient dark:text-gradient-pink text-[16px] font-normal  ${
               isPending && "pointer-events-none"
             }`}
           >

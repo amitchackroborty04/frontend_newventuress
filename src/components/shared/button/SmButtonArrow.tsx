@@ -16,7 +16,7 @@ const SmButtonArrow = ({ text }: BackToListButtonProps) => {
     const [isHovered, setIsHovered] = useState(false)
   return (
     <Button
-      className="bg-[#2A6C2D] hover:bg-[#2A6C2D]/90 text-white rounded-md transition-all duration-300 ease-in-out  px-[16px] py-[10px] mx-auto"
+      className=" text-white rounded-md transition-all duration-300 ease-in-out h-[40px]  px-[16px] py-[10px] mx-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

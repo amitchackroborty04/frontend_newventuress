@@ -37,8 +37,8 @@ export default function ProductReview({
             />
           ))}
         </div>
-        <h3 className="text-[18px] font-semibold truncate my-2">{title}</h3>
-        <p className="text-[16px] text-[#444444] truncate">{reviewer}</p>
+        <h3 className="text-[18px] font-semibold truncate mt-3 text-gradient dark:text-gradient-pink">{title}</h3>
+        <p className="text-[16px] text-[#444444] truncate mt-2">{reviewer}</p>
       </div>
     </div>
   );

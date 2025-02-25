@@ -1,6 +1,6 @@
 // package import =========
-import * as React from "react";
 import Image from "next/image";
+import * as React from "react";
 
 // local import ------------
 import { Card, CardContent } from "@/components/ui/card";
@@ -35,8 +35,8 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
           <StarRating rating={rating} />
         </div>
         <div className="mt-4 text-base font-medium leading-5 text-center text-green-900">
-          <p className="mb-2 text-gradient">{title}</p>
-          <p className="text-gradient">{review}</p>
+          <p className="mb-2 text-gradient dark:text-gradient-pink">{title}</p>
+          <p className="text-gradient dark:text-gradient-pink">{review}</p>
         </div>
       </CardContent>
     </Card>
