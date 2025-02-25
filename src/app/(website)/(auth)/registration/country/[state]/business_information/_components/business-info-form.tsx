@@ -31,8 +31,6 @@ export function BusinessInfoForm() {
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const industries = authState.industry;
-  const isOnlyHempSelected = JSON.stringify(industries) === JSON.stringify(["CBD/HEMP"])
 
   const businesses = authState["businessInfo"];
 
@@ -47,6 +45,35 @@ export function BusinessInfoForm() {
         businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
       }))
     );
+
+    // const business5 = [...business1, ...business3]
+
+  //   const updatedBusiness5 = business5.map(country => {
+  //     if (!country.state || !country.license) return country;
+  
+  //     return {
+  //         ...country,
+  //         license: country.license.map(stateObj => {
+  //             let matchingData;
+  
+  //             if (country.country === "United States") {
+  //                 matchingData = usStates.find(s => s.name === stateObj.name);
+  //             } else if (country.country === "Canada") {
+  //                 matchingData = canadaProvinces.find(p => p.name === stateObj.name);
+  //             } else {
+  //                 // If not US or Canada, check in countriesData using the country name
+  //                 matchingData = countriesData.find(c => c.country === country.country);
+  //             }
+  
+  //             return {
+  //                 ...stateObj,
+  //                 allow: matchingData ? matchingData.allow : []
+  //             };
+  //         })
+  //     };
+  // });
+  
+  
 
 
 
@@ -118,16 +145,66 @@ export function BusinessInfoForm() {
   });
 
   // Check if any business in the businessInfo array has an empty metrcLicense field
-  const isAnyBusinessLicenseEmpty = authState.businessInfo.some((business) =>
-    business.license.some((liences) => liences.businessLicense.some((l) => !l.trim())))
-    ;
-    const isAnyFieldFilled = authState.businessInfo.some((business) =>
-      business.license.some((license) =>
-        license.businessLicense.some((l) => l.trim()) ||
-        license.cannabisLicense.some((l) => l.trim()) ||
-        license.metrcLicense.some((l) => l.trim())
-      )
-    );
+  // const isAnyBusinessLicenseEmpty = authState.businessInfo.some((business) =>
+  //   business.license.some((liences) => liences.businessLicense.some((l) => !l.trim())))
+  //   ;
+  //   const isAnyFieldFilled = authState.businessInfo.some((business) =>
+  //     business.license.some((license) =>
+  //       license.cannabisLicense.some((l) => l.trim()) ||
+  //       license.metrcLicense.some((l) => l.trim())
+  //     )
+  //   );
+
+  // const isEveryStateValid = authState?.businessInfo?.every((business) =>
+  //   business?.license?.every((license) => {
+  //     const allowList = license?.allow ?? [];
+  //     const isOnlyHemp = allowList.length === 1 && allowList.includes("CBD/HEMP");
+  
+  //     if (isOnlyHemp) {
+  //       // If ONLY "CBD/HEMP", businessLicense is REQUIRED
+  //       return (license?.businessLicense ?? []).some((l) => l.trim());
+  //     }
+  
+  //     // If NOT only "CBD/HEMP", at least one license from any category is REQUIRED
+  //     return (
+  //       (license?.metrcLicense ?? []).some((l) => l.trim()) ||
+  //       (license?.cannabisLicense ?? []).some((l) => l.trim()) ||
+  //       (license?.businessLicense ?? []).some((l) => l.trim())
+  //     );
+  //   })
+  // );
+
+  const isEveryStateValid = authState?.businessInfo?.every((business) =>
+    business?.license?.every((license) => {
+      const stateData = usStates.find((state) => state.name === license.name); // Get state data
+      const allowList = stateData?.allow ?? []; // Extract allow list from state
+  
+      const isOnlyHemp = allowList.length === 1 && allowList.includes("CBD/HEMP");
+  
+      if (isOnlyHemp) {
+        // If ONLY "CBD/HEMP", businessLicense is REQUIRED
+        return (license?.businessLicense ?? []).some((l) => l.trim());
+      }
+  
+      // If NOT only "CBD/HEMP", at least one license from any category is REQUIRED
+      return (
+        (license?.metrcLicense ?? []).some((l) => l.trim()) ||
+        (license?.cannabisLicense ?? []).some((l) => l.trim()) ||
+        (license?.businessLicense ?? []).some((l) => l.trim())
+      );
+    })
+  );
+  
+  const isNextDisabled =
+    !(authState?.businessInfo?.length > 0) || // No businesses added
+    !isEveryStateValid || // If any state is invalid, disable the button
+    loading;
+  
+  console.log("Is Next Disabled:", isNextDisabled);
+  
+  
+  
+  
 
   useEffect(() => {
     if (authState["businessInfo"].length === 0) {
@@ -148,12 +225,7 @@ export function BusinessInfoForm() {
     router.push("/registration/overview")
   };
 
-  const isNextDisabled =
-    !authState.businessInfo.length || // Check if businessInfo array is empty
-     (!isOnlyHempSelected && !isAnyFieldFilled) || 
-
-
-    (isOnlyHempSelected && isAnyBusinessLicenseEmpty) || loading;
+  
 
   return (
     <div className="space-y-6">
@@ -211,6 +283,7 @@ interface LicenseGroupProps {
   businessLicenses: string[];
   title: string;
   variant?: "outline" | "fill"
+  
 }
 
 const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title, variant = "outline" }: LicenseGroupProps) => {
