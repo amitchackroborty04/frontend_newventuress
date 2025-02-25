@@ -4,7 +4,7 @@ export type State = {
 };
 
 export const usStates: State[] = [
-  { name: "Alaska", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Alaska", allow:  ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
   { name: "Arizona" , allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
   { name: "California" , allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
   { name: "Colorado" , allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
@@ -54,12 +54,17 @@ export const usStates: State[] = [
 ];
 
 export const canadaProvinces: State[] = [
-  { name: "Ontario" ,allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { name: "Quebec",allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
-  { name: "British Columbia" ,allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { name: "Alberta" ,allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { name: "Manitoba" ,allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { name: "Nova Scotia",allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { name: "Saskatchewan", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { name: "New Brunswick", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
+  { name: "Ontario", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Quebec", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "British Columbia", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Alberta", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Manitoba", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Nova Scotia", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Saskatchewan", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "New Brunswick", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Newfoundland and Labrador", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Prince Edward Island", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Northwest Territories", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Yukon", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Nunavut", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] }
 ];
