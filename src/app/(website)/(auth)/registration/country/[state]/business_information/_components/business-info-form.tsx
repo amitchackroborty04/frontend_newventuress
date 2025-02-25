@@ -30,7 +30,8 @@ export function BusinessInfoForm() {
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  console.log("authState", authState);
+  const industries = authState.industry;
+  const isOnlyHempSelected = JSON.stringify(industries) === JSON.stringify(["CBD/HEMP"])
 
   const businesses = authState["businessInfo"];
 
@@ -116,8 +117,8 @@ export function BusinessInfoForm() {
   });
 
   // Check if any business in the businessInfo array has an empty metrcLicense field
-  const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
-    business.license.some((liences) => liences.metrcLicense.some((l) => !l.trim())))
+  const isAnyBusinessLicenseEmpty = authState.businessInfo.some((business) =>
+    business.license.some((liences) => liences.businessLicense.some((l) => !l.trim())))
     ;
 
 
@@ -142,7 +143,7 @@ export function BusinessInfoForm() {
 
   const isNextDisabled =
     !authState.businessInfo.length || // Check if businessInfo array is empty
-    isAnyMetrcLicenseEmpty || loading;
+    (isOnlyHempSelected && isAnyBusinessLicenseEmpty) || loading;
 
   return (
     <div className="space-y-6">
@@ -209,6 +210,10 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
 
   if (!myBusinessInfoAsCountry) return null;
 
+  const industries = authState.industry;
+  const isOnlyHempSelected = JSON.stringify(industries) === JSON.stringify(["CBD/HEMP"])
+  const isOnlyRecreationalSelected = JSON.stringify(industries) === JSON.stringify(["Recreational Cannabis"])
+
 
 
 
@@ -231,7 +236,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
       <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
           Provide your Matrc business license
-          <span className="text-red-500">*</span>
+         
         </label>
         {metrcLicense.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
@@ -256,7 +261,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
       </div>
       <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
-          Provide your Cannabis business license
+          Provide your Recreational Cannabis license
         </label>
         {cannabisLicense.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
@@ -280,9 +285,9 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
         ))}
       </div>
       
-     <div className="space-y-2">
+     {!isOnlyRecreationalSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
-          Provide your Business license
+          Provide your Business license {isOnlyHempSelected &&  <span className="text-red-500">*</span>}
         </label>
         {businessLicenses.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
@@ -304,7 +309,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
             {Number(lastBusinessLicenceIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
-      </div>
+      </div>}
 
     </AccordionItem>
 
