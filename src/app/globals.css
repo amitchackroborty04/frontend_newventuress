@@ -49,7 +49,6 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     --gradient: hsl(205, 100%, 25%)
-
   }
 
   .dark {
@@ -102,6 +101,7 @@ body {
   .section {
     @apply my-[40px] md:my-[80px];
   }
+
   .dev {
     @apply p-2 m-5;
   }
@@ -113,29 +113,53 @@ body {
   .text-gradient-pink {
     @apply text-transparent bg-clip-text bg-gradient-to-br from-[#482D72] via-[#6841A5] to-[#8855D8]
   }
+
   .heading {
-    @apply text-[25px]  md:text-[36px] font-semibold leading-[30px] md:leading-[43.2px] text-gradient;
+    @apply text-[25px] md:text-[36px] font-semibold leading-[30px] md:leading-[43.2px] text-gradient;
   }
-  
+
 }
+
 input:-webkit-autofill {
-  background: #ffffff !important; /* White background */
-  -webkit-text-fill-color: #000 !important; /* Black text */
+  background: #ffffff !important;
+  /* White background */
+  -webkit-text-fill-color: #000 !important;
+  /* Black text */
   border: 1px solid #9c9c9c !important;
-  transition: background-color 5000s ease-in-out 0s; /* Prevent autofill color from flashing */
+  transition: background-color 5000s ease-in-out 0s;
+  /* Prevent autofill color from flashing */
 }
 
 /* Autofill hover, focus, and active states */
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  background: #ffffff !important; /* Ensure it stays white */
+  background: #ffffff !important;
+  /* Ensure it stays white */
   -webkit-text-fill-color: #000 !important;
 }
-input:-webkit-autofill{
+
+input:-webkit-autofill {
   background-color: white;
 }
 
 
+h1 {
+  @apply text-4xl font-bold;
+}
 
+h2 {
+  @apply text-3xl font-semibold;
+}
 
+h3 {
+  @apply text-2xl font-medium;
+}
+
+ul {
+  @apply list-disc pl-5;
+}
+
+ol {
+  @apply list-decimal pl-5;
+}
