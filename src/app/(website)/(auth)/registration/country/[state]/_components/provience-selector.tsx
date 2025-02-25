@@ -13,6 +13,7 @@ import { getRegionByCountry } from "@/data/countries";
 import { canadaProvinces, State, usStates } from "@/data/registration";
 import { cn } from "@/lib/utils";
 import { useAppSelector } from "@/redux/store";
+import { Star } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import StateHeader from "./State-Header";
@@ -118,8 +119,20 @@ const isOnlyRecreational = industries.length === 1 && industries.includes("Recre
       states = usStates; // Show all states if multiple industries are selected
     }
 
+    let filteredcanadaProviences: State[];
 
-
+    
+    if (isOnlyHempCBD) {
+      filteredcanadaProviences = canadaProvinces.filter((i) => 
+        i.allow.includes("CBD/HEMP") || i.allow.includes("Select All")
+      );
+    } else if (isOnlyRecreational) {
+      filteredcanadaProviences = canadaProvinces.filter((i) => 
+        i.allow.includes("Recreational Cannabis") || i.allow.includes("Select All")
+      );
+    } else {
+      filteredcanadaProviences = canadaProvinces; // Show all states if multiple industries are selected
+    }
 
 
 
@@ -169,8 +182,12 @@ const isOnlyRecreational = industries.length === 1 && industries.includes("Recre
         /></div>}
       {isCA && <div> <StateHeader country="Canada" /> <StateContainer
         country="Canada"
-        displayedStates={canadaProvinces}
+        displayedStates={filteredcanadaProviences}
       /></div>}
+
+      {!isOnlyRecreational && <div className="flex items-center gap-x-2 font-medium">
+      <Star fill="#FFDF00" className="text-[#FFDF00] h-4 w-4" /> NOTE:   Allowed only HEMP/CBD
+      </div>}
       <NextButton currentState={currentState} isCanada={isCA} isUsa={isUs} />
     </div>
   );
