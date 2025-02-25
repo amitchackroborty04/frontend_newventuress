@@ -7,8 +7,8 @@ import { redirect, usePathname } from "next/navigation";
 // Local imports
 import ErrorContainer from "@/components/ui/error-container";
 import SkeletonWrapper from "@/components/ui/skeleton-wrapper";
-import { MembershipPlanResponse } from "@/types/membership";
 import PlansCard from "./plansCard";
+import { MembershipResponse } from "@/types/membership";
 
 interface Props {
   token: string | undefined;
@@ -21,7 +21,7 @@ const PlansContainer = ({token}: Props) => {
 
   if(!token) redirect(`/login?callback=${pathName}`)
   
-  const { data: resData, isLoading, isError, error } = useQuery<MembershipPlanResponse>({
+  const { data: resData, isLoading, isError, error } = useQuery<MembershipResponse>({
     queryKey: ["MembershipList"],
     queryFn: () =>
       fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/memberships`, {
@@ -54,6 +54,9 @@ const PlansContainer = ({token}: Props) => {
                   numberOfBids: 50,
                   price: 432,
                   updatedAt: new Date(),
+                  payMethod : "Credit Card",
+                  store : 5,
+                  time : "One Time",
                 }}
               />
             </div>

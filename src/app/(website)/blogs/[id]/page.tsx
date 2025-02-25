@@ -4,7 +4,7 @@ import BlogCommets from "./_components/blogCommets";
 import BlogDetails from "./_components/blogDetails";
 import BlogSidebar from "./_components/blogSidebar";
 
-const Page = ({}: { params: { id: string } }) => {
+const Page = (props: { params: { id: string } }) => {
   return (
     <div>
       <PageHeader
@@ -29,7 +29,7 @@ const Page = ({}: { params: { id: string } }) => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="col-span-1 lg:col-span-2">
-            <BlogDetails />
+            <BlogDetails id={props.params.id} />
             <BlogCommets />
           </div>
           <div className="col-span-1 lg:col-span-1">
