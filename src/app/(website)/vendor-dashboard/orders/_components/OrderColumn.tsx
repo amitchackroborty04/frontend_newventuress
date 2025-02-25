@@ -10,16 +10,21 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
-import { DemoTableItemsType } from "./data";
+import { orderDataType } from "./data";
+
 
 
 export const OrderColumn = ({
   setIsOpen,
   setSelectedRow,
+  deleteOrder,
+  acceptOrder,
 }: {
   setIsOpen: (value: boolean) => void;
-  setSelectedRow: (row: DemoTableItemsType | null) => void;
-}): ColumnDef<DemoTableItemsType>[] => [
+    setSelectedRow: (row: orderDataType | null) => void;
+    deleteOrder: (orderId: string) => void;
+    acceptOrder: (orderId: string) => void;
+  }): ColumnDef<orderDataType>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -48,7 +53,7 @@ export const OrderColumn = ({
     cell: ({ row }) => (
       <div>
         <span className="text-[16px] text-[#444444] font-normal">
-          ${row.original.OrderID}
+          ${row.original.cartDetail}
         </span>
       </div>
     ),
@@ -59,14 +64,14 @@ export const OrderColumn = ({
       <div className="">
         <div>
           <span className="text-[16px] text-[#444444] font-normal">
-            ${row.original.Data}
+            ${row.original.address}
           </span>
         </div>
-        <div>
+        {/* <div>
           <span className="text-[16px] text-[#444444] font-normal">
-            ${row.original.Time}
+            ${row.original.apartment}
           </span>
-        </div>
+        </div> */}
       </div>
     ),
   },
@@ -75,7 +80,7 @@ export const OrderColumn = ({
     cell: ({ row }) => (
       <div>
         <span className="text-[16px] text-[#444444] font-normal">
-          {row.original.name}
+          {row.original.fullName}
         </span>
       </div>
     ),
@@ -85,40 +90,40 @@ export const OrderColumn = ({
     cell: ({ row }) => (
       <div>
         <span className="text-[16px] text-[#444444] font-normal">
-          {row.original.TotalProducts}
+          {row.original.country}
         </span>
       </div>
     ),
   },
-  {
-    header: "Status",
-    cell: ({ row }) => {
-      type StatusType = "processing" | "pending" | "completed";
+    {
+      header: "Status",
+      cell: ({ row }) => {
+        type StatusType = "processing" | "pending" | "completed";
 
-      const styles: Record<StatusType, string> = {
-        processing:
-          "bg-[#FF4D00] text-white w-[110px] h-[35px] text-[14px] rounded-sm",
-        pending:
-          "bg-[#00417E] text-white  w-[110px] h-[35px] text-[14px] rounded-sm",
-        completed:
-          "bg-[#2A6C2D] text-white  w-[110px] h-[35px] text-[14px] rounded-sm",
-      };
+        const styles: Record<StatusType, string> = {
+          processing:
+            "bg-[#FF4D00] text-white w-[110px] h-[35px] text-[14px] rounded-sm",
+          pending:
+            "bg-[#00417E] text-white  w-[110px] h-[35px] text-[14px] rounded-sm",
+          completed:
+            "bg-[#2A6C2D] text-white  w-[110px] h-[35px] text-[14px] rounded-sm",
+        };
 
-      const status = (row.original.Status || "").toLowerCase() as StatusType;
+        const status = (row.original.orderStatus || "").toLowerCase() as StatusType;
 
-      return (
-        <button className={`text-[16px] font-normal ${styles[status] || ""}`}>
-          {row.original.Status}
-        </button>
-      );
+        return (
+          <button className={`text-[16px] font-normal ${styles[status] || ""}`}>
+            {row.original.orderStatus}
+          </button>
+        );
+      },
     },
-  },
   {
     header: "Action",
     cell: ({ row }) => {
       type StatusType = "processing" | "pending" | "completed";
 
-      const status = (row.original.Status || "").toLowerCase() as StatusType;
+      const status = (row.original.orderStatus || "").toLowerCase() as StatusType;
 
       return (
         <div className="!py-[24px]" >
@@ -136,7 +141,12 @@ export const OrderColumn = ({
               className="bg-white h-auto w-[110px] rounded-lg shadow-[4px_4px_8px_0px_#0000000D,-4px_-4px_8px_0px_#0000000D]"
             >
               {status === "pending" && (
-                <DropdownMenuItem className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] dark:!text-[#6841A5] rounded-t-[8px] focus:outline-none">
+                <DropdownMenuItem
+                  onClick={() => {
+                    acceptOrder(row.original._id ?? "");
+                    // setAceptOrder("processing");
+                  }}
+                  className="p-[8px] hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] dark:!text-[#6841A5] rounded-t-[8px] focus:outline-none">
                   Accept
                 </DropdownMenuItem>
               )}
@@ -149,7 +159,9 @@ export const OrderColumn = ({
               >
                 Details
               </DropdownMenuItem>
-              <DropdownMenuItem className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none cursor-pointer">
+              <DropdownMenuItem
+                onClick={() => deleteOrder(row.original._id ?? "")}
+                className="p-[8px] text-red-600 hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] focus:outline-none cursor-pointer">
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>

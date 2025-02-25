@@ -149,7 +149,7 @@ const CommentCell = ({ comment }: { comment: string }) => {
   return (
     <div className="text-start">
       <div className="flex items-start">
-        <div className="flex-grow overflow-hidden text-ellipsis relative">
+        <div className="flex-grow overflow-hidden text-ellipsis relative text-[#444444]">
           {truncatedComment}
           {comment.split(" ").length > 5 && (
             <div className="absolute bottom-0 2xl:right-[45px] right-[5px]">
@@ -162,11 +162,11 @@ const CommentCell = ({ comment }: { comment: string }) => {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] text-left">
           <DialogHeader>
             <DialogTitle>Full Comment</DialogTitle>
           </DialogHeader>
-          <div className="mt-2">{comment}</div>
+          <div className="mt-2 text-[#444444]">{comment}</div>
         </DialogContent>
       </Dialog>
     </div>
