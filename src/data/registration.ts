@@ -4,7 +4,7 @@ export type State = {
 };
 
 export const usStates: State[] = [
-  { name: "Alaska", allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { name: "Alaska", allow:  ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
   { name: "Arizona" , allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
   { name: "California" , allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
   { name: "Colorado" , allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},

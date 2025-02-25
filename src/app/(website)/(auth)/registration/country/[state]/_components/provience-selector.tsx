@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { getRegionByCountry } from "@/data/countries";
-import { canadaProvinces, usStates } from "@/data/registration";
+import { canadaProvinces, State, usStates } from "@/data/registration";
 import { cn } from "@/lib/utils";
 import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
@@ -77,7 +77,11 @@ export function ProvienceSelector({ currentState, countries }: Props) {
   const isEmptyPreviousField = useAppSelector((state) => state.auth.profession.length === 0);
   const authstate = useAppSelector((state) => state.auth)
 
-  const business = authstate.businessInfo
+  const business = authstate.businessInfo;
+
+  const industries = authstate.industry;
+  const isOnlyHempCBD = industries.length === 1 && industries.includes("CBD/HEMP");
+const isOnlyRecreational = industries.length === 1 && industries.includes("Recreational Cannabis");
 
 
 
@@ -89,9 +93,30 @@ export function ProvienceSelector({ currentState, countries }: Props) {
     redirect("/registration")
   }
 
+  console.log("isHEMP", isOnlyHempCBD)
+  console.log("ISrECREATIONAL", isOnlyRecreational)
+
 
   const isUs = countries.includes("United States");
   const isCA = countries.includes("Canada");
+
+  let states: State[];
+
+    // const filteredCountries = countriesData.filter(country =>
+    //   industry.some(i => country.allow.includes(i))
+    // );
+
+    if (isOnlyHempCBD) {
+      states = usStates.filter((i) => 
+        i.allow.includes("CBD/HEMP") || i.allow.includes("Select All")
+      );
+    } else if (isOnlyRecreational) {
+      states = usStates.filter((i) => 
+        i.allow.includes("Recreational Cannabis") || i.allow.includes("Select All")
+      );
+    } else {
+      states = usStates; // Show all states if multiple industries are selected
+    }
 
 
 
@@ -140,7 +165,7 @@ export function ProvienceSelector({ currentState, countries }: Props) {
         <StateHeader country="USA" />
         <StateContainer
           country="United States"
-          displayedStates={usStates}
+          displayedStates={states}
         /></div>}
       {isCA && <div> <StateHeader country="Canada" /> <StateContainer
         country="Canada"
