@@ -136,30 +136,41 @@ const isOnlyRecreational = industries.length === 1 && industries.includes("Recre
 
 
 
-  const BreadCumb = (
-    <>
-      {business.map(({ country, state }) => {
-        const continent = getRegionByCountry(country)
-        return (
-          <div className="flex items-center gap-x-5 text-[14px] text-gradient dark:text-gradient-pink" key={country}>
-            Region:  <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink className="dark:hover:text-black text-black">{continent}</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink className="dark:text-gradient-pink dark:hover:text-gradient-pink">{country}</BreadcrumbLink>
-                </BreadcrumbItem>
-                {state && state.length > 0 && <><BreadcrumbSeparator />
+    const BreadCumb = (
+      <>
+        {business
+          .map(({ country, state }) => {
+            const continent = getRegionByCountry(country);
+            return { continent, country, state };
+          })
+          .sort((a, b) => a.continent.localeCompare(b.continent))  // Sort by continent alphabetically
+          .map(({ continent, country, state }) => (
+            <div className="flex items-center gap-x-5 text-[14px] text-gradient dark:text-gradient-pink" key={country}>
+              Region:  
+              <Breadcrumb>
+                <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbPage className="dark:text-gradient-pink">{state?.join(", ")}</BreadcrumbPage>
-                  </BreadcrumbItem></>}
-              </BreadcrumbList>
-            </Breadcrumb></div>
-        )
-      })}</>
-  )
+                    <BreadcrumbLink className="dark:hover:text-black text-black">{continent}</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink className="dark:text-gradient-pink dark:hover:text-gradient-pink">{country}</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  {state && state.length > 0 && (
+                    <>
+                      <BreadcrumbSeparator />
+                      <BreadcrumbItem>
+                        <BreadcrumbPage className="dark:text-gradient-pink">{state?.join(", ")}</BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </>
+                  )}
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          ))}
+      </>
+    );
+    
 
 
 
