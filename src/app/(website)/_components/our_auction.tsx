@@ -101,11 +101,11 @@ const JoinAsSeller = () => {
   return (
     <div className="h-fit space-y-7 rounded-xl bg-white p-6">
       <div>
-        <h2 className="text-gradient mb-2 text-center text-[22px] font-semibold">
+        <h2 className="text-gradient dark:text-gradient-pink mb-2 text-center text-[22px] font-semibold">
           Partner with Us. Grow Your Business on
         </h2>
         <p
-          className="text-gradient text-center text-[20px] font-medium"
+          className="text-gradient dark:text-gradient-pink text-center text-[20px] font-medium"
           
         >
           Join Our Marketplace Today

@@ -67,8 +67,8 @@ const CategoryFilter = () => {
 
 
   return (
-          <div className="rounded-lg bg-[#E6EEF6] p-4">
-        <h2 className="text-[28px] font-bold text-gradient mb-4">Categories</h2>
+    <div className="rounded-lg bg-[#E6EEF6] dark:bg-[#482D721A] p-4">
+        <h2 className="text-[28px] font-bold text-gradient dark:text-gradient-pink mb-4">Categories</h2>
         {content}
       </div>
   )
