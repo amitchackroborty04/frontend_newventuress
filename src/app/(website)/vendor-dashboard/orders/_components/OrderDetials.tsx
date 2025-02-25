@@ -6,16 +6,16 @@ import { Button } from "@/components/ui/button";
 import { AddressCard } from "@/app/(website)/account/order-history/[id]/_components/AddressCard";
 import { OrderSummary } from "@/app/(website)/account/order-history/[id]/_components/OrderSummary";
 import type { AddressInfo, OrderDetails as OrderDetailsType } from "./types";
-import { DemoTableItemsType } from "./data"; // Import this if not already imported
 import OrderProgress from "@/app/(website)/account/order-history/[id]/_components/OrderProgress";
 import OrderDetailsTable from "@/app/(website)/account/order-history/[id]/_components/OrderDetailsTable";
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { orderDataType } from "./data";
 
 
 interface OrderDetailsProps {
   isOpen: boolean;
   onClose: () => void;
-  rowData: DemoTableItemsType | null;
+  rowData: orderDataType | null;
 }
 
 export default function OrderDetails({ isOpen, onClose, rowData }: OrderDetailsProps) {

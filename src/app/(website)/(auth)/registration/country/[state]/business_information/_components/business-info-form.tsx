@@ -256,7 +256,9 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
     <AccordionItem title={title} variant={variant}>
 {!isOnlyHempSelected &&       <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
+
           Provide your METRC business license
+
          
         </label>
         {metrcLicense.map((_, i) => (
