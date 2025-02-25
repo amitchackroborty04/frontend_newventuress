@@ -7,15 +7,23 @@ import { Loader2 } from "lucide-react";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AdminApprovalModal } from "../../../_components/admin-aproval-modal";
+import StatusDropdown from "./StatusDropdown";
 
 const SignUpOverview = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [loading,setLoading] = useState(false)
+
+  // from dropdown 
+  const [state, setState] = useState("")  
+  console.log("show ",state)
+
     const authState = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const router = useRouter();
+   
 
-    const approvalStatus = "approved" as "pending" | "approved" | "one"
+    // status from dropdown
+    const approvalStatus = state as "pending" | "approved" | "one";
 
     const businessName = authState.businessName;
     const email = authState.email;
@@ -56,6 +64,9 @@ const SignUpOverview = () => {
 
   return (
     <>
+{/* it will be remove when we will get data from API  */}
+<StatusDropdown setState={setState} />
+
     <div className="w-full border-[#162866] border-[1px] rounded-[20px] p-[20px] mt-[40px]">
         <div className="text-[#444444] font-medium text-[20px] grid grid-cols-2 gap-x-[30px] gap-y-[20px]">
         <h3>Business Name: {businessName}</h3>
@@ -81,12 +92,12 @@ const SignUpOverview = () => {
            {item?.cannabisLicense.length > 0 && item.cannabisLicense.some((license) => license.trim() !== "") && (
   <h3 className="flex items-center gap-x-4 flex-wrap">
     Cannabis license No: {item.cannabisLicense.join(", ")}
-    <CustomBadge status="approved">Auto Approved</CustomBadge>
+    <CustomBadge status={approvalStatus === "approved" ? "approved" : "pending"}>{approvalStatus === "approved" ? "AUto Approved" : "Peending"}</CustomBadge>
   </h3>
 )}
 
             {item?.businessLicense.length > 0 && item.businessLicense.some((license) => license.trim() !== "") && (
-  <h3 className="flex items-center gap-x-4 flex-wrap">Business license No: {item.businessLicense.join(", ")}  <CustomBadge status="approved">Auto Approved</CustomBadge></h3>
+  <h3 className="flex items-center gap-x-4 flex-wrap">Business license No: {item.businessLicense.join(", ")}        <CustomBadge status={approvalStatus === "approved" ? "approved" : "pending"}>{approvalStatus === "approved" ? "AUto Approved" : "Peending"}</CustomBadge></h3>
 )}
 
               </div>
