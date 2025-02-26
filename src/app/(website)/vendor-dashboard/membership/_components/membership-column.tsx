@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { MembershipPlan } from "@/types/membership";
 
 import {
   DropdownMenu,
@@ -11,9 +12,7 @@ import {
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
-import { MemberTableDataType } from "@/data/member";
-
-export const Column: ColumnDef<MemberTableDataType>[] = [
+export const Column: ColumnDef<MembershipPlan>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -43,7 +42,7 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
         <div>
           <div className="text-center">
             <span className="text-[12px] font-medium leading-[14.4px] text-[#F9FAFD] py-[10px] px-[33px] bg-primary dark:bg-pinkGradient rounded-[12px] text-center">
-              {row.original.Plan}
+              {row.original.planType}
             </span>
           </div>
         </div>
@@ -56,7 +55,7 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
       return (
         <div className="text-center">
           <p className="text-base text-[#444444] font-normal leading-[19.2px]">
-            {row.original["Pay Method"]}
+            {row.original.payMethod || "Credit Card"  }
           </p>
         </div>
       );
@@ -68,7 +67,7 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
       return (
         <div className="text-center">
           <p className="text-[18px] font-bold text-gradient dark:text-gradient-pink">
-            {row.original.Store}
+            {row.original.store || 5}
           </p>
         </div>
       );
@@ -80,7 +79,7 @@ export const Column: ColumnDef<MemberTableDataType>[] = [
       return (
         <div className="text-center">
           <p className="text-base font-normal text-[#444444]">
-            {row.original["Time"]}
+            {row.original.time || "One time"}
           </p>
         </div>
       );

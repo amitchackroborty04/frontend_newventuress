@@ -24,13 +24,13 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import FormHeader from "../../../../_components/form-header";
+import { canadaProvinces, usStates } from "@/data/registration";
 
 export function BusinessInfoForm() {
   const [loading, setLoading] = useState<true | false>(false);
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  console.log("authState", authState);
 
   const businesses = authState["businessInfo"];
 
@@ -45,6 +45,35 @@ export function BusinessInfoForm() {
         businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
       }))
     );
+
+    // const business5 = [...business1, ...business3]
+
+  //   const updatedBusiness5 = business5.map(country => {
+  //     if (!country.state || !country.license) return country;
+  
+  //     return {
+  //         ...country,
+  //         license: country.license.map(stateObj => {
+  //             let matchingData;
+  
+  //             if (country.country === "United States") {
+  //                 matchingData = usStates.find(s => s.name === stateObj.name);
+  //             } else if (country.country === "Canada") {
+  //                 matchingData = canadaProvinces.find(p => p.name === stateObj.name);
+  //             } else {
+  //                 // If not US or Canada, check in countriesData using the country name
+  //                 matchingData = countriesData.find(c => c.country === country.country);
+  //             }
+  
+  //             return {
+  //                 ...stateObj,
+  //                 allow: matchingData ? matchingData.allow : []
+  //             };
+  //         })
+  //     };
+  // });
+  
+  
 
 
 
@@ -116,10 +145,66 @@ export function BusinessInfoForm() {
   });
 
   // Check if any business in the businessInfo array has an empty metrcLicense field
-  const isAnyMetrcLicenseEmpty = authState.businessInfo.some((business) =>
-    business.license.some((liences) => liences.metrcLicense.some((l) => !l.trim())))
-    ;
+  // const isAnyBusinessLicenseEmpty = authState.businessInfo.some((business) =>
+  //   business.license.some((liences) => liences.businessLicense.some((l) => !l.trim())))
+  //   ;
+  //   const isAnyFieldFilled = authState.businessInfo.some((business) =>
+  //     business.license.some((license) =>
+  //       license.cannabisLicense.some((l) => l.trim()) ||
+  //       license.metrcLicense.some((l) => l.trim())
+  //     )
+  //   );
 
+  // const isEveryStateValid = authState?.businessInfo?.every((business) =>
+  //   business?.license?.every((license) => {
+  //     const allowList = license?.allow ?? [];
+  //     const isOnlyHemp = allowList.length === 1 && allowList.includes("CBD/HEMP");
+  
+  //     if (isOnlyHemp) {
+  //       // If ONLY "CBD/HEMP", businessLicense is REQUIRED
+  //       return (license?.businessLicense ?? []).some((l) => l.trim());
+  //     }
+  
+  //     // If NOT only "CBD/HEMP", at least one license from any category is REQUIRED
+  //     return (
+  //       (license?.metrcLicense ?? []).some((l) => l.trim()) ||
+  //       (license?.cannabisLicense ?? []).some((l) => l.trim()) ||
+  //       (license?.businessLicense ?? []).some((l) => l.trim())
+  //     );
+  //   })
+  // );
+
+  const isEveryStateValid = authState?.businessInfo?.every((business) =>
+    business?.license?.every((license) => {
+      const stateData = usStates.find((state) => state.name === license.name); // Get state data
+      const allowList = stateData?.allow ?? []; // Extract allow list from state
+  
+      const isOnlyHemp = allowList.length === 1 && allowList.includes("CBD/HEMP");
+  
+      if (isOnlyHemp) {
+        // If ONLY "CBD/HEMP", businessLicense is REQUIRED
+        return (license?.businessLicense ?? []).some((l) => l.trim());
+      }
+  
+      // If NOT only "CBD/HEMP", at least one license from any category is REQUIRED
+      return (
+        (license?.metrcLicense ?? []).some((l) => l.trim()) ||
+        (license?.cannabisLicense ?? []).some((l) => l.trim()) ||
+        (license?.businessLicense ?? []).some((l) => l.trim())
+      );
+    })
+  );
+  
+  const isNextDisabled =
+    !(authState?.businessInfo?.length > 0) || // No businesses added
+    !isEveryStateValid || // If any state is invalid, disable the button
+    loading;
+  
+  console.log("Is Next Disabled:", isNextDisabled);
+  
+  
+  
+  
 
   useEffect(() => {
     if (authState["businessInfo"].length === 0) {
@@ -140,9 +225,7 @@ export function BusinessInfoForm() {
     router.push("/registration/overview")
   };
 
-  const isNextDisabled =
-    !authState.businessInfo.length || // Check if businessInfo array is empty
-    isAnyMetrcLicenseEmpty || loading;
+  
 
   return (
     <div className="space-y-6">
@@ -200,6 +283,7 @@ interface LicenseGroupProps {
   businessLicenses: string[];
   title: string;
   variant?: "outline" | "fill"
+  
 }
 
 const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [""], businessLicenses, title, variant = "outline" }: LicenseGroupProps) => {
@@ -208,6 +292,9 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
   const dispatch = useAppDispatch()
 
   if (!myBusinessInfoAsCountry) return null;
+
+ 
+ 
 
 
 
@@ -221,17 +308,31 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
 
   const lastMetrcIndex = metrcLicense.length - 1;
   const lastCannabisLicenceIndex = cannabisLicense.length - 1
-  const lastBusinessLicenceIndex = businessLicenses.length - 1
+  const lastBusinessLicenceIndex = businessLicenses.length - 1;
+
+
+  const allStates = [...usStates, ...canadaProvinces];
+
+  const state = allStates.find((state) => state.name === title);
+
+  const isOnlyHempSelected = JSON.stringify(state?.allow) === JSON.stringify(["CBD/HEMP"])
+  const isOnlyRecreationalSelected = JSON.stringify(state?.allow) === JSON.stringify(["Recreational Cannabis"])
+
+
+
+
 
 
 
 
   return (
     <AccordionItem title={title} variant={variant}>
-      <div className="space-y-2">
+{!isOnlyHempSelected &&       <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
-          Provide your Matrc business license
-          <span className="text-red-500">*</span>
+
+          Provide your METRC business license
+
+         
         </label>
         {metrcLicense.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
@@ -253,10 +354,12 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
             {Number(lastMetrcIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addMetrcField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
-      </div>
-      <div className="space-y-2">
+      </div>}
+
+      {
+        !isOnlyHempSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
-          Provide your Cannabis business license
+          Provide your Recreational Cannabis license
         </label>
         {cannabisLicense.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
@@ -279,10 +382,11 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
           </div>
         ))}
       </div>
+      }
       
-     <div className="space-y-2">
+     {!isOnlyRecreationalSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
-          Provide your Business license
+          Provide your Business license {isOnlyHempSelected &&  <span className="text-red-500">*(Only HEMP/CBD Allowed)</span>}
         </label>
         {businessLicenses.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
@@ -304,7 +408,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
             {Number(lastBusinessLicenceIndex) === i && <Button className="h-9 dark:bg-white" size="sm" variant="outline" onClick={() => dispatch(addBusinessField({ businessIndex: index, name: title }))}><PlusIcon /></Button>}
           </div>
         ))}
-      </div>
+      </div>}
 
     </AccordionItem>
 

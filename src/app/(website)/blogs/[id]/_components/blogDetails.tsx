@@ -30,7 +30,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
     enabled: !!blogId, // Fetch only when blogId exists
   });
 
-  console.log(blogData?.description)
+
   if (isLoading) return <p>Loading blog details...</p>;
   if (isError) return <ErrorContainer message={error.message} />;
   console.log(blogData?.title);
@@ -73,6 +73,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
           </div>
           <div className="text-[#444444] font-[16px] leading-[19.2px]">
             <div className="list-item list-none" dangerouslySetInnerHTML={{ __html: blogData?.description ?? "Blog Description" }} />
+          <div dangerouslySetInnerHTML={{ __html: blogData?.description ?? "Blog Description" }} />
           </div>
         </div>
       </article>

@@ -7,6 +7,7 @@ interface License {
   metrcLicense: string[];
   cannabisLicense: string[];
   businessLicense: string[];
+  
 }
 
 // Define the initial state of the counter
