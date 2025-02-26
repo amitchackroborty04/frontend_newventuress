@@ -1,10 +1,12 @@
 import React from 'react'
 import ProductDetails from "./_components/ProductDetails"
 
-const page = () => {
+const page = ({ params }: { params: { id: string} } ) => {
+  
+  
   return (
     <div >
-      <ProductDetails/>
+      <ProductDetails productId={params.id}   />
     </div>
   )
 }

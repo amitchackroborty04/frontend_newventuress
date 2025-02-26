@@ -7,7 +7,10 @@ const Page = async () => {
   const currentUser = await auth();
 
   if(!currentUser) redirect("/login?callback=/products");
-  const token = currentUser["user"]["token"]
+  const token = currentUser["user"]["token"];
+  
+  
+
   return (
     <div>
       <PageHeader
