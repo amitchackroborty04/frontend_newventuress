@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionItem } from "@/components/ui/motion-accordion";
+import { canadaProvinces, usStates } from "@/data/registration";
 import {
   addBusinessField,
   addCannabisField,
@@ -24,7 +25,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import FormHeader from "../../../../_components/form-header";
-import { canadaProvinces, usStates } from "@/data/registration";
 
 export function BusinessInfoForm() {
   const [loading, setLoading] = useState<true | false>(false);
@@ -34,7 +34,17 @@ export function BusinessInfoForm() {
 
   const businesses = authState["businessInfo"];
 
-  const business1 = businesses.filter((item) => item.country === "United States" || item.country === "Canada")
+  console.log(businesses)
+
+  const business1 = businesses
+  .map((item, index) => ({
+    ...item,
+    businessIndex: index
+  }))
+  .filter(item => item.country === "United States" || item.country === "Canada");
+
+console.log(business1);
+
 
 
   const business3 = businesses
@@ -45,6 +55,8 @@ export function BusinessInfoForm() {
         businessIndex: businesses.findIndex(business => business === every)  // Store the actual index of the business
       }))
     );
+
+    console.log(business3)
 
     // const business5 = [...business1, ...business3]
 
@@ -238,10 +250,10 @@ export function BusinessInfoForm() {
 
         <Accordion >
 
-          {business1.map(({ country, license }, i) => (
+          {business1.map(({ country, license, businessIndex }) => (
             <AccordionItem title={country} key={country} variant="fill">
               {license.map(({ metrcLicense, name, cannabisLicense, businessLicense }) => (
-                <LicenseGroup key={name} country={country} index={i} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
+                <LicenseGroup key={name} country={country} index={businessIndex} metrcLicense={metrcLicense} cannabisLicense={cannabisLicense} businessLicenses={businessLicense} title={name} />
               ))}
             </AccordionItem>
           ))}
@@ -293,6 +305,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
 
   if (!myBusinessInfoAsCountry) return null;
 
+
  
  
 
@@ -316,7 +329,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
   const state = allStates.find((state) => state.name === title);
 
   const isOnlyHempSelected = JSON.stringify(state?.allow) === JSON.stringify(["CBD/HEMP"])
-  const isOnlyRecreationalSelected = JSON.stringify(state?.allow) === JSON.stringify(["Recreational Cannabis"])
+
 
 
 
@@ -384,7 +397,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
       </div>
       }
       
-     {!isOnlyRecreationalSelected && <div className="space-y-2">
+     {isOnlyHempSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
           Provide your Business license {isOnlyHempSelected &&  <span className="text-red-500">*(Only HEMP/CBD Allowed)</span>}
         </label>

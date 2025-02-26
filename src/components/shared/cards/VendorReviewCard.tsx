@@ -23,13 +23,13 @@ const VendorReviewCard: React.FC<CustomerReviewsCardProps> = ({
   return (
     <div className=" mt-5 pb-6 ">
       <div className="flex items-center gap-x-[8px] lg:gap-x-[12px] ">
-        <div className="w-[52px] h-auto lg:w-[80px]">
+        <div className="w-[52px] h-[52px] lg:h-[80px] lg:w-[80px] rounded-full overflow-hidden">
           <Image
             src={imageSrc}
             alt="Customer Image"
             width={80}
             height={80}
-            style={{ width: "100%", height: "auto", objectFit: "cover" }}
+            className="w-full h-full object-cover"
           />
         </div>
 

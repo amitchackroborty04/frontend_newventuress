@@ -50,12 +50,14 @@ export const ReviewForm: React.FC<ReviewFormProps> = () => {
         />
       </div>
 
-      <Button
-        type="submit"
-        className="self-start px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-600"
-      >
-        Submit
-      </Button>
+      <div className="pb-7">
+        <Button
+          type="submit"
+          className="self-start px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-600"
+        >
+          Submit
+        </Button>
+    </div>
     </form>
   );
 };
