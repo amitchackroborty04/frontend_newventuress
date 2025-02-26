@@ -399,7 +399,7 @@ const LicenseGroup = ({ country, index, metrcLicense = [""], cannabisLicense = [
       
      {isOnlyHempSelected && <div className="space-y-2">
         <label className="text-sm font-medium text-[#444444]">
-          Provide your Business license {isOnlyHempSelected &&  <span className="text-red-500">(Only HEMP/CBD Allowed)</span>}
+          Provide your Business license {isOnlyHempSelected &&  <span className="text-red-500">*(Only HEMP/CBD Allowed)</span>}
         </label>
         {businessLicenses.map((_, i) => (
           <div className="flex items-center gap-x-2" key={i}>
