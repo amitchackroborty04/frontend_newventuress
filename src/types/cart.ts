@@ -16,4 +16,25 @@ export interface CartItem {
     items: CartItem[]
   }
   
+  // interface CartProduct {
+  //   productId: string;
+  //   _id: string;
+  // }
+  
+  // export interface CartData {
+  //   _id: string;
+  //   user: string | null;
+  //   subTotal: number;
+  //   shippingCost: number;
+  //   taxEstimate: number;
+  //   totalItem: number;
+  //   product: CartProduct[];
+  //   __v: number;
+  // }
+  
+  // export interface CartResponse {
+  //   status: boolean;
+  //   message: string;
+  //   data: CartData;
+  // }
   

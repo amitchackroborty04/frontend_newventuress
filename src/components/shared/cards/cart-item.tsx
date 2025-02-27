@@ -75,9 +75,9 @@ export function CartItemCard({
               </div>
             </div>
           </div>
-          {/* shadow-[-4px_-4px_8px_0px_#0000000D] */}
+       
           <div className=" flex items-center justify-between gap-4 mt-[8px]">
-            {/* quantity buttons */}
+       
             <div className="w-[163px] h-[32px] flex justify-between items-center px-[24px] bg-white border border-white rounded-[24px] shadow-[28px_28px_20px_28px_#0000000D]  ">
               <button
                 onClick={() =>
@@ -95,7 +95,7 @@ export function CartItemCard({
                <Plus className="w-[20px] h-[20px] text-[#272323]"/>
               </button>
             </div>
-            {/* cart item remove button */}
+            
             <button
               onClick={() => onRemove(item.id)}
               className="text-base font-normal leading-[19px] text-[#00417E] dark:text-gradient-pink"
