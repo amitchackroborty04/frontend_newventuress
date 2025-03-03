@@ -77,7 +77,7 @@ const OurFeatureSection = ({token} : Props) => {
   >
      {products?.map((product: any) => (
       <SkeletonWrapper isLoading={false} key={product._id}>
-        <h1>{product.categoryName}</h1>
+     
         <FeaturedProductCard  product={product} />
       </SkeletonWrapper>
     ))}
