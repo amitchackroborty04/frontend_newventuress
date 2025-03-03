@@ -42,12 +42,6 @@ const OurFeatureSection = ({token} : Props) => {
   });
   if(!token) return;
   
-<<<<<<< HEAD
-console.log(data);
- 
-  
-=======
->>>>>>> 922c22c8ef9a3d16a6ba6992cf9b4deaade32612
   const products = data?.data;
   let content;
 

@@ -38,12 +38,6 @@ const nextConfig = {
         hostname: "i.ibb.co.com",
       },
       {
-<<<<<<< HEAD
-        protocol: "http",
-        hostname: "res.cloudinary.com",
-      }
-
-=======
         protocol: "https",
         hostname: "www.pexels.com",
       },
@@ -63,7 +57,6 @@ const nextConfig = {
         protocol: "https", // Also allow https for Cloudinary
         hostname: "res.cloudinary.com",
       },
->>>>>>> 922c22c8ef9a3d16a6ba6992cf9b4deaade32612
     ],
   },
 };
