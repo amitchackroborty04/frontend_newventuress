@@ -16,33 +16,7 @@ import ErrorContainer from "@/components/ui/error-container";
 interface Props {
   token: string | null
 }
-// category array data -------
-// const categories: CategoryCard[] = [
-//   {
-//     _id: 6,
-//     title: "Flowers",
-//     image: "/assets/img/popularCategori.png",
-//     href: "/categories/flowers",
-//   },
-//   {
-//     _id: 5,
-//     title: "Concentrates",
-//     image: "/assets/img/popularCategori.png",
-//     href: "/categories/concentrates",
-//   },
-//   {
-//     _id: 1,
-//     title: "Edibles",
-//     image: "/assets/img/popularCategori.png",
-//     href: "/categories/edibles",
-//   },
-//   {
-//     _id: 99,
-//     title: "Topicals",
-//     image: "/assets/img/popularCategori.png",
-//     href: "/categories/topicals",
-//   },
-// ];
+
 
 const PopularCategoriesCard = ({token}:Props) => {
   const [ref, inView] = useInView({
@@ -53,7 +27,7 @@ const PopularCategoriesCard = ({token}:Props) => {
 
    //? // Fetch products
    const { data, isError, error, isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["categories"],
     queryFn: async () => {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories/popular`, {
