@@ -31,7 +31,7 @@ const OurFeatureSection = ({token} : Props) => {
     queryKey: ["products"],
     queryFn: async () => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/product`, {
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}api/product`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -44,7 +44,7 @@ const OurFeatureSection = ({token} : Props) => {
   });
   if(!token) return;
   
-
+console.log(data);
  
   
   const products = data?.data;
@@ -54,7 +54,7 @@ const OurFeatureSection = ({token} : Props) => {
 
   if (isLoading) {
     content = <div className="grid grid-cols-1 gap-[17px] pt-[40px] md:grid-cols-3 md:gap-[27px] lg:grid-cols-4">
-      {[1,2,3,4,5,67,8].map((n) => (
+      {[1,2,3,4,5,6,7,8].map((n) => (
         <ProductCardSkeleton key={n} />
       ))}
     </div>
@@ -79,6 +79,7 @@ const OurFeatureSection = ({token} : Props) => {
     ))}
   </motion.div>
   }
+  console.log(products);
   return (
     <motion.div ref={ref} className="section container py-[80px]">
       <SectionHeading heading="Our Featured Products" subheading="Products" />

@@ -8,50 +8,86 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useQuery } from "@tanstack/react-query";
+import ProductCardSkeleton from "../skeletons/productCardSkeleton";
+import ErrorContainer from "@/components/ui/error-container";
 // category type ////
-interface CategoryCard {
-  id: number;
-  title: string;
-  image: string;
-  href: string;
+
+interface Props {
+  token: string | null
 }
-
 // category array data -------
-const categories: CategoryCard[] = [
-  {
-    id: 6,
-    title: "Flowers",
-    image: "/assets/img/popularCategori.png",
-    href: "/categories/flowers",
-  },
-  {
-    id: 5,
-    title: "Concentrates",
-    image: "/assets/img/popularCategori.png",
-    href: "/categories/concentrates",
-  },
-  {
-    id: 1,
-    title: "Edibles",
-    image: "/assets/img/popularCategori.png",
-    href: "/categories/edibles",
-  },
-  {
-    id: 99,
-    title: "Topicals",
-    image: "/assets/img/popularCategori.png",
-    href: "/categories/topicals",
-  },
-];
+// const categories: CategoryCard[] = [
+//   {
+//     _id: 6,
+//     title: "Flowers",
+//     image: "/assets/img/popularCategori.png",
+//     href: "/categories/flowers",
+//   },
+//   {
+//     _id: 5,
+//     title: "Concentrates",
+//     image: "/assets/img/popularCategori.png",
+//     href: "/categories/concentrates",
+//   },
+//   {
+//     _id: 1,
+//     title: "Edibles",
+//     image: "/assets/img/popularCategori.png",
+//     href: "/categories/edibles",
+//   },
+//   {
+//     _id: 99,
+//     title: "Topicals",
+//     image: "/assets/img/popularCategori.png",
+//     href: "/categories/topicals",
+//   },
+// ];
 
-const PopularCategoriesCard = () => {
+const PopularCategoriesCard = ({token}:Props) => {
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
   });
+  console.log(token);
 
-  return (
-    <motion.div
+   //? // Fetch products
+   const { data, isError, error, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories/popular`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+      if (!response.ok) {
+        throw new Error("Network error");
+      }
+      return response.json();
+    },
+  });
+  if(!token) return;
+  
+
+  console.log(data?.data);
+  const categories = data?.data;
+
+  let content;
+
+
+  if (isLoading) {
+    content = <div className="grid grid-cols-1 gap-[17px] pt-[40px] md:grid-cols-3 md:gap-[27px] lg:grid-cols-4">
+      {[1,2,3,4].map((n) => (
+        <ProductCardSkeleton key={n} />
+      ))}
+    </div>
+  }else if(isError) {
+    content = <ErrorContainer message={error.message} />
+  } else if(!data) {
+    content = <div className="text-center text-2xl font-black text-gray-400 ">NO Product Found!</div>
+  }else if(data) {
+    content =   <motion.div
       variants={fadeIn("up", 0.3)}
       initial="hidden"
       animate={inView ? "show" : "hidden"} // Start animation only when in view
@@ -59,9 +95,9 @@ const PopularCategoriesCard = () => {
       className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[13px] justify-items-center"
       ref={ref}
     >
-      {categories.map((category, i) => (
+      {categories.map((category:any, i:any) => (
         <Card
-          key={category.id}
+          key={category._id}
           className="overflow-hidden w-full  lg:w-[270px] shadow-none bg-white border-0"
         >
           <CardContent className=" p-[12px]">
@@ -88,7 +124,7 @@ const PopularCategoriesCard = () => {
             >
               <Image
                 src={category.image}
-                alt={category.title}
+                alt={category.categoryName}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover w-[246px] h-[204px]"
@@ -99,6 +135,10 @@ const PopularCategoriesCard = () => {
         </Card>
       ))}
     </motion.div>
+  }
+
+  return (
+  content
   );
 };
 

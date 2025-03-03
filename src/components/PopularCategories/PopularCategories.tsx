@@ -21,7 +21,7 @@ const PopularCategories = ({ loggedin, token }: Props) => {
 
       {/*================= cardd ========================= */}
       <div className="container mx-auto pt-[20px] md:pt-[30px] mb-[40px] lg:mb-[85px]">
-        <PopularCategoriesCard />
+        <PopularCategoriesCard token={token}/>
       </div>
 
       {/*///////////// find favourite if user not found then show it ///////////////////// */}
