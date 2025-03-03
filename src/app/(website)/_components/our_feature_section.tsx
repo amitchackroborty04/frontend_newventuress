@@ -12,7 +12,7 @@ import SectionHeading from "@/components/shared/SectionHeading/SectionHeading";
 import ProductCardSkeleton from "@/components/shared/skeletons/productCardSkeleton";
 import ErrorContainer from "@/components/ui/error-container";
 import SkeletonWrapper from "@/components/ui/skeleton-wrapper";
-import { Product, ProductResponse } from "@/types/product";
+import {  ProductResponse } from "@/types/product";
 
 interface Props {
   token: string | null
@@ -75,9 +75,12 @@ const OurFeatureSection = ({token} : Props) => {
     viewport={{ once: false, amount: 0.3 }}
     className="grid grid-cols-1 gap-[17px] pt-[40px] md:grid-cols-3 md:gap-[27px] lg:grid-cols-4"
   >
-      {data && data.data?.slice(0, 4).map((product: Product) => (
-             <FeaturedProductCard key={product._id} product={product} />
-           ))}
+     {products?.map((product: any) => (
+      <SkeletonWrapper isLoading={false} key={product._id}>
+        <h1>{product.categoryName}</h1>
+        <FeaturedProductCard  product={product} />
+      </SkeletonWrapper>
+    ))}
   </motion.div>
   }
   console.log("ffdata",products);
