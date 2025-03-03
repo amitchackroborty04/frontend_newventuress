@@ -19,6 +19,7 @@ export interface Product {
     tags: string[];
     review: string[];
     __v: number;
+    purchases: number;
   }
 
   export interface ProductResponse {
