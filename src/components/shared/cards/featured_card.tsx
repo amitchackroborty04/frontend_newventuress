@@ -44,6 +44,9 @@ export default function FeaturedProductCard({
     console.log("Product added to cart:", product.title);
   };
 
+
+
+
   const handleWishlistToggle = () => {
     setIsWishlist((prev) => !prev); // Toggle wishlist state
   };

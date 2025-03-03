@@ -35,7 +35,7 @@ function Categories() {
       }).then((res) => res.json() as Promise<categoryDataResponse>),
 
   });
-  console.log("data", data);
+  // console.log("data", data);
   let content;
   if (isLoading) {
     content = (

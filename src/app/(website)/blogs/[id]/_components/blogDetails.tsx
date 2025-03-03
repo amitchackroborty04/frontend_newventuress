@@ -8,6 +8,7 @@ import moment from "moment";
 import React from "react";
 import ErrorContainer from "@/components/ui/error-container";
 import { Blog } from "@/types/blog";
+import "./blogDetails.css";
 
 interface BlogDetailsProps {
   id?: string; // Optional, since we get it from the URL
@@ -71,6 +72,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
             </div>
           </div>
           <div className="text-[#444444] font-[16px] leading-[19.2px]">
+            <div className="list-item list-none" dangerouslySetInnerHTML={{ __html: blogData?.description ?? "Blog Description" }} />
           <div dangerouslySetInnerHTML={{ __html: blogData?.description ?? "Blog Description" }} />
           </div>
         </div>
