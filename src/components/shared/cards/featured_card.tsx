@@ -8,17 +8,17 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { Rating } from "@/components/ui/Rating";
-import { FeatureCardType } from "@/data/featured";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/store";
 import { addToCart } from "@/redux/features/cart/cartSlice";
+import { Product } from "@/types/product";
 
 export default function FeaturedProductCard({
   product,
 }: {
-  product: FeatureCardType;
+  product: Product;
 }) {
   const [isWishlist, setIsWishlist] = useState(false);
 
@@ -59,9 +59,7 @@ export default function FeaturedProductCard({
       <div className="overflow-hidden rounded-[8px]">
         <Image
           loading="lazy"
-          src={
-            "https://images.pexels.com/photos/1466335/pexels-photo-1466335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
+          src={product.images[0] || "https://images.pexels.com/photos/1466335/pexels-photo-1466335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} // Ensure there's an image
           alt="Product image"
           width={300}
           height={100}
@@ -96,7 +94,7 @@ export default function FeaturedProductCard({
                 <div
                   className={cn(
                     "my-auto text-[12px] font-normal",
-                    product.stoke === "In Stock"
+                    product.stockStatus === "In Stock"
                       ? "text-[#2A6C2D]"
                       : "text-red-500",
                   )}

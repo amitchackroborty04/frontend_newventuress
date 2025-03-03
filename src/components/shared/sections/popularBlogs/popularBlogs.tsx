@@ -101,7 +101,7 @@ function PopularBlog() {
   return (
     <motion.div ref={ref}>
       <div className="container mx-auto pt-[56px]">
-        <SectionHeading heading="Shop By Popular Blogs" subheading="Blog" />
+        <SectionHeading heading="Popular Blogs" subheading="Blog" />
         {content} {/* Render content based on the state */}
         <div className="text-center">
           <ButtonArrow href="/blogs" text="Explore More" />

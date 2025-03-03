@@ -12,6 +12,7 @@ import { blurDataUrl } from "@/data/blur-data-url";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Heart } from "lucide-react";
+import Link from "next/link";
 const AuctionCountDownTimer = dynamic(
   () => import("@/components/shared/cards/auction-card/countdown-timer"),
   {
@@ -53,6 +54,7 @@ export default function AuctionCard({ isExpired, index }: Props) {
           },
         }}
       >
+        <Link href="/auction/[id]" as={`/auction/${index + 1}`}>
         <Image
           loading="lazy"
           src="https://i.postimg.cc/7Lbk8Yby/image-559.png"
@@ -63,6 +65,7 @@ export default function AuctionCard({ isExpired, index }: Props) {
           blurDataURL={blurDataUrl}
           onLoad={() => setImgLoaded(true)}
         />
+          </Link>
       </motion.div>
       {imgLoaded && (
         <motion.div
@@ -148,7 +151,7 @@ export default function AuctionCard({ isExpired, index }: Props) {
         </div>
         {!isExpired && <AuctionCountDownTimer endDate={endDate} />}
         <Button
-          aria-label="Add to cart"
+          aria-label="Bid Now"
           disabled={isExpired}
           size="md"
           className={`mt-2 ${isExpired ? "bg-[#C5C5C5] text-base font-medium leading-[19px] text-white" : "bg-gradient-to-br from-[#121D42] via-[#152764] to-[#4857BD] text-base font-medium leading-[19px] text-white"}`}
