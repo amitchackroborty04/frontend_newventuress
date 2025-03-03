@@ -37,9 +37,9 @@ function CountrySelector() {
 
   const authState = useAppSelector((state) => state.auth)
 
+  // select industry 
   const industry = authState.industry
 
-  console.log(industry)
 
   const filteredCountries = countriesData.filter(country =>
     industry.some(i => country.allow.includes(i))

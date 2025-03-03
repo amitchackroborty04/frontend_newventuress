@@ -7,13 +7,10 @@ export interface CartItem {
     quantity: number
     rating: number
     stock : string
-    // isHot?: boolean
-    // icon: "heart",
-    // views?: number
   }
   
   export interface CartState {
     items: CartItem[]
   }
-  
+
   

@@ -25,7 +25,7 @@ const DashSidebar = () => {
         style={{
           backgroundImage: "url('/assets/img/dashboard_sidebar_bg.svg')",
         }}
-        className="bg-cover bg-center bg-no-repeat h-screen  w-[218px] 2xl:w-[354px] bg-white rounded-tr-lg shadow-[0px_28px_20px_0px_#0000000D] sticky top-[0px] pt-[20px] -mt-24"
+        className="bg-cover bg-center bg-no-repeat h-screen  w-[218px] 2xl:w-[354px] bg-white rounded-tr-lg shadow-[0px_28px_20px_0px_#0000000D] sticky top-[0px]  -mt-24"
       >
         <ScrollArea className="h-full overflow-y-auto " style={{ scrollbarColor: '#ffffff #F9FAFD' }}>
           <div className="bg-[#F9FAFD] flex justify-center items-center gap-[12px] w-[186px]  2xl:w-[266px] h-[85px] 2xl:h-[95px] shadow-[0px_4px_22px_0px_#D3D8FF99] rounded-[36px] ml-[18px] 2xl:ml-[38px] mt-[32px] mr-[50px] ">

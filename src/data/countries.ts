@@ -6,16 +6,17 @@ export type Country = {
   allow: string[]
 }
 
+
 export const countriesData: Country[] = [
   { region: "Americas", countryCode: "US", country: "United States", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
   { region: "Americas", countryCode: "CA", country: "Canada", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
+  { region: "Europe", countryCode: "DE", country: "Germany", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"] },
+  { region: "Asia", countryCode: "TH", country: "Thailand", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
+  { region: "Americas", countryCode: "UY", country: "Uruguay", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
+  { region: "Europe", countryCode: "NL", country: "Netherlands", color: 50, allow: ["CBD/HEMP"]},
+  { region: "Europe", countryCode: "ES", country: "Spain", color: 50, allow: ["CBD/HEMP"]},
   { region: "Americas", countryCode: "MX", country: "Mexico", color: 50, allow: ["CBD/HEMP"]},
-  { region: "Europe", countryCode: "DE", country: "Germany", color: 80, allow: ["Recreational Cannabis"] },
-  { region: "Europe", countryCode: "ES", country: "Spain", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { region: "Asia", countryCode: "TH", country: "Thailand", color: 50, allow: ["CBD/HEMP"]},
-  { region: "Europe", countryCode: "NL", country: "Netherlands", color: 80, allow: ["CBD/HEMP", "Recreational Cannabis", "Select All"]},
-  { region: "Americas", countryCode: "UY", country: "Uruguay", color: 80, allow: ["Recreational Cannabis"]},
-  { region: "Americas", countryCode: "CO", country: "Colombia", color: 80, allow: ["Recreational Cannabis"]},
+  { region: "Americas", countryCode: "CO", country: "Colombia", color: 50, allow: ["CBD/HEMP"]},
   { region: "Europe", countryCode: "AT", country: "Austria", color: 50, allow: ["CBD/HEMP"] },
   { region: "Europe", countryCode: "BE", country: "Belgium", color: 50, allow: ["CBD/HEMP"] },
   { region: "Europe", countryCode: "BG", country: "Bulgaria", color: 50, allow: ["CBD/HEMP"] },

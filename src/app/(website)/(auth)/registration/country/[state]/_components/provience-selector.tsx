@@ -10,9 +10,10 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { getRegionByCountry } from "@/data/countries";
-import { canadaProvinces, usStates } from "@/data/registration";
+import { canadaProvinces, State, usStates } from "@/data/registration";
 import { cn } from "@/lib/utils";
 import { useAppSelector } from "@/redux/store";
+import { Star } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import StateHeader from "./State-Header";
@@ -77,7 +78,11 @@ export function ProvienceSelector({ currentState, countries }: Props) {
   const isEmptyPreviousField = useAppSelector((state) => state.auth.profession.length === 0);
   const authstate = useAppSelector((state) => state.auth)
 
-  const business = authstate.businessInfo
+  const business = authstate.businessInfo;
+
+  const industries = authstate.industry;
+  const isOnlyHempCBD = industries.length === 1 && industries.includes("CBD/HEMP");
+const isOnlyRecreational = industries.length === 1 && industries.includes("Recreational Cannabis");
 
 
 
@@ -89,39 +94,83 @@ export function ProvienceSelector({ currentState, countries }: Props) {
     redirect("/registration")
   }
 
+  console.log("isHEMP", isOnlyHempCBD)
+  console.log("ISrECREATIONAL", isOnlyRecreational)
+
 
   const isUs = countries.includes("United States");
   const isCA = countries.includes("Canada");
 
+  let states: State[];
+
+    // const filteredCountries = countriesData.filter(country =>
+    //   industry.some(i => country.allow.includes(i))
+    // );
+
+    if (isOnlyHempCBD) {
+      states = usStates.filter((i) => 
+        i.allow.includes("CBD/HEMP") || i.allow.includes("Select All")
+      );
+    } else if (isOnlyRecreational) {
+      states = usStates.filter((i) => 
+        i.allow.includes("Recreational Cannabis") || i.allow.includes("Select All")
+      );
+    } else {
+      states = usStates; // Show all states if multiple industries are selected
+    }
+
+    let filteredcanadaProviences: State[];
+
+    
+    if (isOnlyHempCBD) {
+      filteredcanadaProviences = canadaProvinces.filter((i) => 
+        i.allow.includes("CBD/HEMP") || i.allow.includes("Select All")
+      );
+    } else if (isOnlyRecreational) {
+      filteredcanadaProviences = canadaProvinces.filter((i) => 
+        i.allow.includes("Recreational Cannabis") || i.allow.includes("Select All")
+      );
+    } else {
+      filteredcanadaProviences = canadaProvinces; // Show all states if multiple industries are selected
+    }
 
 
 
-
-
-  const BreadCumb = (
-    <>
-      {business.map(({ country, state }) => {
-        const continent = getRegionByCountry(country)
-        return (
-          <div className="flex items-center gap-x-5 text-[14px] text-gradient dark:text-gradient-pink" key={country}>
-            Region:  <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink className="dark:hover:text-black text-black">{continent}</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink className="dark:text-gradient-pink dark:hover:text-gradient-pink">{country}</BreadcrumbLink>
-                </BreadcrumbItem>
-                {state && state.length > 0 && <><BreadcrumbSeparator />
+    const BreadCumb = (
+      <>
+        {business
+          .map(({ country, state }) => {
+            const continent = getRegionByCountry(country);
+            return { continent, country, state };
+          })
+          .sort((a, b) => a.continent.localeCompare(b.continent))  // Sort by continent alphabetically
+          .map(({ continent, country, state }) => (
+            <div className="flex items-center gap-x-5 text-[14px] text-gradient dark:text-gradient-pink" key={country}>
+              Region:  
+              <Breadcrumb>
+                <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbPage className="dark:text-gradient-pink">{state?.join(", ")}</BreadcrumbPage>
-                  </BreadcrumbItem></>}
-              </BreadcrumbList>
-            </Breadcrumb></div>
-        )
-      })}</>
-  )
+                    <BreadcrumbLink className="dark:hover:text-black text-black">{continent}</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink className="dark:text-gradient-pink dark:hover:text-gradient-pink">{country}</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  {state && state.length > 0 && (
+                    <>
+                      <BreadcrumbSeparator />
+                      <BreadcrumbItem>
+                        <BreadcrumbPage className="dark:text-gradient-pink">{state?.join(", ")}</BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </>
+                  )}
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          ))}
+      </>
+    );
+    
 
 
 
@@ -140,12 +189,16 @@ export function ProvienceSelector({ currentState, countries }: Props) {
         <StateHeader country="USA" />
         <StateContainer
           country="United States"
-          displayedStates={usStates}
+          displayedStates={states}
         /></div>}
       {isCA && <div> <StateHeader country="Canada" /> <StateContainer
         country="Canada"
-        displayedStates={canadaProvinces}
+        displayedStates={filteredcanadaProviences}
       /></div>}
+
+      {!isOnlyRecreational && <div className="flex items-center gap-x-2 font-medium">
+      <Star fill="#2387b4" className="text-[#2387b4] h-4 w-4" /> NOTE:   Allowed only HEMP/CBD
+      </div>}
       <NextButton currentState={currentState} isCanada={isCA} isUsa={isUs} />
     </div>
   );

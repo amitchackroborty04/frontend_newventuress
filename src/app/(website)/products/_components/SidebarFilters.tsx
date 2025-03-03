@@ -42,8 +42,8 @@ export default function SidebarFilters() {
   return (
     <aside className="w-[270px] space-y-4 mt-[52px]">
       {/* Price Filter */}
-      <div className="rounded-lg bg-[#E6EEF6] p-4">
-        <h2 className="text-[28px] font-bold text-gradient mb-4">Filter by Price</h2>
+      <div className="rounded-lg bg-[#E6EEF6] dark:bg-[#482D721A] p-4">
+        <h2 className="text-[28px] font-bold text-gradient dark:text-gradient-pink mb-4">Filter by Price</h2>
         <Slider
           value={priceRange}  // Bind the slider value to the Redux state
           max={1000}
@@ -51,7 +51,7 @@ export default function SidebarFilters() {
           step={1}
           minStepsBetweenThumbs={5}
           onValueChange={handlePriceChange}  // Handle slider value change
-          className="my-4"
+          className="my-4 "
         />
         <div className="flex gap-4 items-center">
           <div className="space-y-1.5">
@@ -76,8 +76,8 @@ export default function SidebarFilters() {
       </div>
 
       {/* Shop by Flowers */}
-      <div className="rounded-lg bg-[#E6EEF6] p-4">
-        <h2 className="text-[28px] leading-[30px] font-bold text-gradient mb-4">Shop by Flowers</h2>
+      <div className="rounded-lg bg-[#E6EEF6] dark:bg-[#482D721A] p-4">
+        <h2 className="text-[28px] leading-[30px] font-bold text-gradient dark:text-gradient-pink mb-4">Shop by Flowers</h2>
         <p className="text-[18px] text-[#434851] mb-3">Sub Categories List</p>
         <div className="space-y-3">
           {flowerOptions.map((flower) => (

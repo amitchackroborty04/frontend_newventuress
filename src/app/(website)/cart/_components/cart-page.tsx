@@ -1,33 +1,36 @@
-"use client";
-
+'use client'
 import { CartItemCard } from "@/components/shared/cards/cart-item";
-import { initialItems } from "@/data/CartData";
-import { CartItem } from "@/types/cart";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CartSummary } from "./cart-summary";
 import SectionHeading from "@/components/shared/SectionHeading/SectionHeading";
+import { useAppSelector, useAppDispatch } from "@/redux/store"; // Import useAppDispatch
+import EmptyCart from "./empty-cart";
+import { updateQuantity, removeFromCart } from "@/redux/features/cart/cartSlice"; // Import actions
 
 export default function CartPage() {
-  const [items, setItems] = useState<CartItem[]>(initialItems);
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
+  const dispatch = useAppDispatch(); // Use dispatch
 
-  const updateQuantity = (id: string, quantity: number) => {
-    setItems(
-      items.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
+  const cartItems = useAppSelector((state) => state.cart.items); // Get cart items from Redux
+
+  useEffect(() => {
+    console.log("Cart Items from Redux:", cartItems); // Log cart items
+  }, [cartItems]); // Re-log when cartItems change
+
+  const updateQuantityHandler = (id: string, quantity: number) => {
+    dispatch(updateQuantity({ id, quantity })); // Dispatch updateQuantity action
   };
 
-  const removeItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
+  const removeItemHandler = (id: string) => {
+    dispatch(removeFromCart(id)); // Dispatch removeFromCart action
   };
 
   const calculateTotals = () => {
-    const subtotal = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
+    const subtotal = cartItems.reduce(
+      (sum, item) => sum + item.discountPrice * item.quantity,
       0
     );
     const shipping = subtotal > 0 ? 100 : 0;
@@ -48,11 +51,15 @@ export default function CartPage() {
 
   const { subtotal, shipping, tax, total } = calculateTotals();
 
+  if (cartItems.length === 0) {
+    return <EmptyCart />;
+  }
+
   return (
-    <div className="container section md:border-b-[1px] border-[#C0CFE6]/50 pb-10 ">
+    <div className="container section md:border-b-[1px] border-[#C0CFE6]/50 pb-10">
       <div className="mt-[-10px]">
-            <SectionHeading heading={"Your Shopping Cart"} subheading={""} />
-          </div>
+        <SectionHeading heading={"Your Shopping Cart"} subheading={""} />
+      </div>
 
       <div className="max-w-7xl mx-auto lg:grid md:grid-cols-[1fr_500px] gap-8">
         <div className="space-y-6 lg:border-r-[.5px] border-[#C0CFE6]/70 md:pr-8">
@@ -60,12 +67,12 @@ export default function CartPage() {
             Cart Items
           </h2>
           <div className="space-y-4">
-            {items.slice(0, 3).map((item) => (
+            {cartItems.map((item) => (
               <CartItemCard
-                key={item.id}
+                key={item._id}
                 item={item}
-                onUpdateQuantity={updateQuantity}
-                onRemove={removeItem}
+                onUpdateQuantity={updateQuantityHandler} // Use the handler
+                onRemove={removeItemHandler} // Use the handler
                 icon={<Heart className="w-4 h-4 text-gray-600" />}
               />
             ))}

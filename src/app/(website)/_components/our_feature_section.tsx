@@ -1,10 +1,8 @@
 "use client";
-
 // Packages
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
 
 // local import
 import { fadeIn } from "@/components/animations/variant";
@@ -44,11 +42,13 @@ const OurFeatureSection = ({token} : Props) => {
   });
   if(!token) return;
   
+<<<<<<< HEAD
 console.log(data);
  
   
+=======
+>>>>>>> 922c22c8ef9a3d16a6ba6992cf9b4deaade32612
   const products = data?.data;
-
   let content;
 
 
@@ -61,7 +61,7 @@ console.log(data);
   }
 
   else if (isError) {
-    content = <ErrorContainer message={error.message} />
+    content = <ErrorContainer message={error?.message || "Something went Wrong"} />
   } else if (products && products.length === 0 ) {
     content = <div>NO Product Found</div>
   } else if (products && products.length > 0) {
