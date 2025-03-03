@@ -12,6 +12,8 @@ import { FeatureCardType } from "@/data/featured";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
+import { useAppDispatch } from "@/redux/store";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 export default function FeaturedProductCard({
   product,
@@ -19,6 +21,31 @@ export default function FeaturedProductCard({
   product: FeatureCardType;
 }) {
   const [isWishlist, setIsWishlist] = useState(false);
+
+
+  const dispatch = useAppDispatch();
+
+  const handleAddToCart = (e: { stopPropagation: () => void; preventDefault: () => void; }) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+
+    // add data in redux 
+    dispatch(addToCart({ 
+      _id: product._id,
+      title: product.title,
+      discountPrice: product.discountPrice,
+      sellingPrice: product.selllingPrice,
+      stockStatus: product.stockStatus,
+      image: product.images[0] || "default-image-url", // Ensure there's an image
+      quantity: 1,
+    }));
+
+    console.log("Product added to cart:", product.title);
+  };
+
+
+
 
   const handleWishlistToggle = () => {
     setIsWishlist((prev) => !prev); // Toggle wishlist state
@@ -94,13 +121,12 @@ export default function FeaturedProductCard({
             </div>
           </div>
         </div>
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
 
-            console.log("add to cart");
-          }}
+
+
+        {/* ===========add to cart ===== */}
+        <Button
+         onClick={handleAddToCart}
           className="mt-[16px] w-full"
           aria-label="Add to cart"
         >

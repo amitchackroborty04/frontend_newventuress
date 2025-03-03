@@ -1,5 +1,6 @@
 import authReducer from "@/redux/features/authentication/AuthSlice";
 import filtersReducer from "@/redux/features/filtering/FilterSlice";
+import cardReducer from "@/redux/features/cart/cartSlice";
 
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     filters: filtersReducer,
+    cart: cardReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

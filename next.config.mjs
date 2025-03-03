@@ -39,6 +39,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.pexels.com",
+      },
+      {
+        protocol: "https",
         hostname: "www.dea.gov", // ✅ Added this domain
       },
       {

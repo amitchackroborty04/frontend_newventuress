@@ -2,28 +2,34 @@
 
 import { CartItemCard } from "@/components/shared/cards/cart-item";
 import { Button } from "@/components/ui/button";
-import { initialItems } from "@/data/CartData";
+import { useAppSelector } from "@/redux/store";
 import { ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const WishlistContainer = () => {
-  const [items, setItems] = useState(initialItems);
+
+   const cartItems = useAppSelector((state) => state.cart.items); // Get cart items from Redux
+    useEffect(() => {
+      console.log("Cart Items from Redux:", cartItems); // Log cart items
+    }, [cartItems]); // Re-log when cartItems change
+  
+  const [items, setItems] = useState(cartItems);
 
   const updateQuantity = (id: string, quantity: number) => {
     setItems(
-      items.map((item) => (item.id === id ? { ...item, quantity } : item))
+      items.map((item) => (item._id === id ? { ...item, quantity } : item))
     );
   };
 
   const removeItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
+    setItems(items.filter((item) => item._id !== id));
   };
   return (
     <section>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {items.slice(0, 6).map((item, index) => (
           <div
-            key={item.id}
+            key={item._id}
             className={`w-full pb-[16px] ${
               index % 2 === 0 ? "" : ""
             }`}
