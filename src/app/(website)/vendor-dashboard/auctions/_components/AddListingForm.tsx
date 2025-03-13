@@ -15,6 +15,7 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+// Update the form schema to include country and state fields
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   shortDescription: z.string(),
@@ -28,6 +29,8 @@ const formSchema = z.object({
   tags: z.array(z.string()).optional(),
   thc: z.string().optional(),
   cbd: z.string().optional(),
+  country: z.string().min(1, "Country is required"),
+  state: z.string().optional(),
   coa: z.boolean().default(false),
   photos: z.array(z.any()).optional(),
   coaCertificate: z.any().optional(),
@@ -45,8 +48,7 @@ function AddListingForm({ setShowAddAuction }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [categories, setCategories] = useState<any[]>([])
   const [subCategories, setSubCategories] = useState<any[]>([])
-
-
+  // Move the form declaration before any references to it
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,11 +64,66 @@ function AddListingForm({ setShowAddAuction }: Props) {
       tags: [],
       thc: "",
       cbd: "",
+      country: "",
+      state: "",
       coa: false,
       photos: [],
       coaCertificate: null,
     },
   })
+
+  // Add state variables for locations, countries, and states
+  const [locations, setLocations] = useState<any[]>([])
+  const [countries, setCountries] = useState<string[]>([])
+  const [states, setStates] = useState<string[]>([])
+  const [selectedCountry, setSelectedCountry] = useState<string>("")
+
+  // Add the fetch function for locations after the session declaration
+  const session = useSession()
+  const userid = session.data?.user.id
+
+  // Fetch locations data
+  const token = session.data?.user.token
+
+  const { data: locationsData } = useQuery({
+    queryKey: ["locations", userid],
+    queryFn: () =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/store/locations/${userid}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json()),
+    enabled: !!userid && !!token,
+  })
+
+  // Process locations data to extract unique countries and states
+  useEffect(() => {
+    if (locationsData?.verifiedLocations) {
+      setLocations(locationsData.verifiedLocations)
+
+      // Extract unique countries
+      const uniqueCountries = Array.from(
+        new Set(locationsData.verifiedLocations.map((loc: any) => loc.country)),
+      ) as string[]
+      setCountries(uniqueCountries)
+    }
+  }, [locationsData])
+
+  // Update states when country changes
+  useEffect(() => {
+    if (selectedCountry && (selectedCountry === "United States" || selectedCountry === "Canada")) {
+      const countryStates = locations.filter((loc: any) => loc.country === selectedCountry).map((loc: any) => loc.state)
+
+      // Remove duplicates
+      const uniqueStates = Array.from(new Set(countryStates)) as string[]
+      setStates(uniqueStates)
+    } else {
+      setStates([])
+      form.setValue("state", "")
+    }
+  }, [selectedCountry, locations, form])
+
+  // Update the form defaultValues to include country and state
 
   const [tags, setTags] = React.useState<string[]>([])
 
@@ -88,9 +145,6 @@ function AddListingForm({ setShowAddAuction }: Props) {
     setCoaCertificate(image)
     setFormValues({ ...formValues, coaCertificate: image })
   }
-
-  const session = useSession()
-  const token = session.data?.user.token
 
   // Fetch categories based on selected industry
   const { data: categoriesData, refetch: refetchCategories } = useQuery({
@@ -178,6 +232,7 @@ function AddListingForm({ setShowAddAuction }: Props) {
     },
   })
 
+  // Add the country and state fields to the onSubmit function
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     const formData = new FormData()
     formData.append("title", data.title)
@@ -192,6 +247,15 @@ function AddListingForm({ setShowAddAuction }: Props) {
     formData.append("tags", JSON.stringify(data.tags))
     formData.append("thc", data.thc || "")
     formData.append("cbd", data.cbd || "")
+    formData.append("country", data.country)
+
+    // Only append state if country is US or Canada, otherwise send null
+    if (data.country === "United States" || data.country === "Canada") {
+      formData.append("state", data.state || "")
+    } else {
+      formData.append("state", "null")
+    }
+
     formData.append("coa", data.coa.toString())
 
     if (images.length > 0) {
@@ -204,13 +268,6 @@ function AddListingForm({ setShowAddAuction }: Props) {
       formData.append("coaCertificate", coaCertificate)
     }
 
-    // Log the complete FormData to see all entries including files
-    // console.log("Form data being submitted:")
-    // for (const pair of formData.entries()) {
-    //   console.log(pair[0], pair[1])
-    // }
-
-    // Log the original data object for reference
     console.log("Original form data:", data)
     console.log("Images array:", images)
     console.log("COA Certificate:", coaCertificate)
@@ -463,27 +520,93 @@ function AddListingForm({ setShowAddAuction }: Props) {
                     </FormItem>
                   )}
                 />
-              { !(selectedCategory === "67d1b9ecf2ed66e4a542fe5e" || selectedCategory === "67d1ba16f2ed66e4a542fe7b") ? (
+                {!(
+                  selectedCategory === "67d1b9ecf2ed66e4a542fe5e" || selectedCategory === "67d1ba16f2ed66e4a542fe7b"
+                ) ? (
+                  <div className="grid grid-cols-12 gap-4">
+                    <div className="col-span-6">
+                      <FormField
+                        control={form.control}
+                        name="thc"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                              THC
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="0.0"
+                                type="number"
+                                step="0.1"
+                                className="h-[51px] border-[#9C9C9C] dark:!text-black"
+                                disabled={shouldDisableThcCbd()}
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="col-span-6">
+                      <FormField
+                        control={form.control}
+                        name="cbd"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                              CBD
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="0.0"
+                                type="number"
+                                step="0.1"
+                                className="h-[51px] border-[#9C9C9C] dark:!text-black"
+                                disabled={shouldDisableThcCbd()}
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+                ) : null}
+                <div>
+                <h3>Select country:</h3>
                 <div className="grid grid-cols-12 gap-4">
                   <div className="col-span-6">
                     <FormField
                       control={form.control}
-                      name="thc"
+                      name="country"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
-                            THC
+                            Country<span className="text-red-500">*</span>
                           </FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="0.0"
-                              type="number"
-                              step="0.1"
-                              className="h-[51px] border-[#9C9C9C] dark:!text-black"
-                              disabled={shouldDisableThcCbd()}
-                              {...field}
-                            />
-                          </FormControl>
+                          <Select
+                            onValueChange={(value) => {
+                              field.onChange(value)
+                              setSelectedCountry(value)
+                            }}
+                            value={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="h-[51px] border-[#9C9C9C] dark:!text-black">
+                                <SelectValue placeholder="Select Country" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {countries.map((country) => (
+                                <SelectItem key={country} value={country}>
+                                  {country}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -491,33 +614,38 @@ function AddListingForm({ setShowAddAuction }: Props) {
                   </div>
 
                   <div className="col-span-6">
-                    <FormField
-                      control={form.control}
-                      name="cbd"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
-                            CBD
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="0.0"
-                              type="number"
-                              step="0.1"
-                              className="h-[51px] border-[#9C9C9C] dark:!text-black"
-                              disabled={shouldDisableThcCbd()}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    {(selectedCountry === "United States" || selectedCountry === "Canada") && (
+                      <FormField
+                        control={form.control}
+                        name="state"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                              State<span className="text-red-500">*</span>
+                            </FormLabel>
+                            <Select onValueChange={field.onChange} value={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="h-[51px] border-[#9C9C9C] dark:!text-black">
+                                  <SelectValue placeholder="Select State" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {states.map((state) => (
+                                  <SelectItem key={state} value={state}>
+                                    {state}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
                   </div>
+                </div>
 
                 </div>
-              ) : null
-              }
 
                 <div className="mt-3">
                   <InputWithTags placeholder="Add Tags" limit={10} tags={tags} setTags={setTags} />
@@ -558,64 +686,16 @@ function AddListingForm({ setShowAddAuction }: Props) {
                     />
                   </div>
                 )}
-
-                {/* <FormField
-                  control={form.control}
-                  name="makeAnOfferCheck"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 mt-4">
-                      <FormControl>
-                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm font-normal text-[#444444]">
-                          Allow users to make an offer
-                        </FormLabel>
-                        <p className="text-xs text-muted-foreground">
-                          Enable this to allow users to make custom offers
-                        </p>
-                      </div>
-                    </FormItem>
-                  )}
-                /> */}
-
-                {/* {form.watch("makeAnOfferCheck") && (
-                  <FormField
-                    control={form.control}
-                    name="makeAnOfferValue"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-col">
-                        <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
-                          Minimum Offer Value
-                        </FormLabel>
-                        <div className="flex justify-between mt-2 w-full whitespace-nowrap rounded-md border border-solid border-[#B0B0B0] h-[51px]">
-                          <div className="gap-3 self-stretch px-4 dark:!text-[#6841A5] text-sm font-semibold leading-tight text-[#0057A8] dark:bg-[#482D721A] bg-gray-200 rounded-l-lg h-[49px] w-[42px] flex items-center justify-center">
-                            $
-                          </div>
-                          <FormControl>
-                            <Input
-                              placeholder="0.00"
-                              type="number"
-                              className="flex-1 shrink gap-2 self-stretch py-3 pr-5 pl-4 my-auto text-base leading-snug rounded-lg min-w-[240px] border-none h-[50px] dark:!text-black"
-                              {...field}
-                            />
-                          </FormControl>
-                        </div>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )} */}
               </div>
               <div className="w-[600px] h-full mt-[16px] border border-[#B0B0B0] rounded-lg">
-                <ProductGallery onImageChange={handleImageChange}/>
+                <ProductGallery onImageChange={handleImageChange} />
               </div>
             </div>
             <div className="flex justify-end mt-6">
-            <Button type="submit" className="py-[12px] px-[24px]" disabled={isPending}>
+              <Button type="submit" className="py-[12px] px-[24px]" disabled={isPending}>
                 {isPending ? (
                   <>
-                  Submitting...
+                    Submitting...
                     <svg
                       className="animate-spin -ml-1 mr-3 h-4 w-4 text-white"
                       xmlns="http://www.w3.org/2000/svg"
@@ -636,7 +716,6 @@ function AddListingForm({ setShowAddAuction }: Props) {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    
                   </>
                 ) : (
                   "Confirm"
