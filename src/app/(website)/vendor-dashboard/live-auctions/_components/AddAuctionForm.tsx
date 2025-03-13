@@ -16,6 +16,7 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+// Update the form schema to include country and state fields
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   shortDescription: z.string(),
@@ -32,6 +33,8 @@ const formSchema = z.object({
   tags: z.array(z.string()).optional(),
   thc: z.string().optional(),
   cbd: z.string().optional(),
+  country: z.string().min(1, "Country is required"),
+  state: z.string().optional(),
   makeAnOfferCheck: z.boolean().default(false),
   makeAnOfferValue: z.string().optional(),
   hasCOA: z.boolean().default(false),
@@ -49,6 +52,12 @@ const AddAuctionForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<any[]>([])
   const [startDate, setStartDate] = useState<Date | undefined>(new Date())
   const [endDate, setEndDate] = useState<Date | undefined>(new Date())
+
+  // Add state variables for locations, countries, and states
+  const [locations, setLocations] = useState<any[]>([])
+  const [countries, setCountries] = useState<string[]>([])
+  const [states, setStates] = useState<string[]>([])
+  const [selectedCountry, setSelectedCountry] = useState<string>("")
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -68,6 +77,8 @@ const AddAuctionForm: React.FC = () => {
       tags: [],
       thc: "",
       cbd: "",
+      country: "",
+      state: "",
       makeAnOfferCheck: false,
       makeAnOfferValue: "",
       hasCOA: false,
@@ -99,6 +110,46 @@ const AddAuctionForm: React.FC = () => {
 
   const session = useSession()
   const token = session.data?.user.token
+  const userid = session.data?.user.id
+
+  // Fetch locations data
+  const { data: locationsData } = useQuery({
+    queryKey: ["locations", userid],
+    queryFn: () =>
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/store/locations/${userid}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json()),
+    enabled: !!userid && !!token,
+  })
+
+  // Process locations data to extract unique countries and states
+  useEffect(() => {
+    if (locationsData?.verifiedLocations) {
+      setLocations(locationsData.verifiedLocations)
+
+      // Extract unique countries
+      const uniqueCountries = Array.from(
+        new Set(locationsData.verifiedLocations.map((loc: any) => loc.country)),
+      ) as string[]
+      setCountries(uniqueCountries)
+    }
+  }, [locationsData])
+
+  // Update states when country changes
+  useEffect(() => {
+    if (selectedCountry && (selectedCountry === "United States" || selectedCountry === "Canada")) {
+      const countryStates = locations.filter((loc: any) => loc.country === selectedCountry).map((loc: any) => loc.state)
+
+      // Remove duplicates
+      const uniqueStates = Array.from(new Set(countryStates)) as string[]
+      setStates(uniqueStates)
+    } else {
+      setStates([])
+      form.setValue("state", "")
+    }
+  }, [selectedCountry, locations, form])
 
   // Fetch categories based on selected industry
   const { data: categoriesData, refetch: refetchCategories } = useQuery({
@@ -202,6 +253,15 @@ const AddAuctionForm: React.FC = () => {
     formData.append("tags", JSON.stringify(data.tags))
     formData.append("thc", data.thc || "")
     formData.append("cbd", data.cbd || "")
+    formData.append("country", data.country)
+
+    // Only append state if country is US or Canada, otherwise send null
+    if (data.country === "United States" || data.country === "Canada") {
+      formData.append("state", data.state || "")
+    } else {
+      formData.append("state", "null")
+    }
+
     formData.append("makeAnOfferCheck", data.makeAnOfferCheck.toString())
     formData.append("makeAnOfferValue", data.makeAnOfferValue || "")
     formData.append("hasCOA", data.hasCOA.toString())
@@ -549,62 +609,135 @@ const AddAuctionForm: React.FC = () => {
                   )}
                 />
 
-               { !(selectedCategory === "67d1b9ecf2ed66e4a542fe5e" || selectedCategory === "67d1ba16f2ed66e4a542fe7b") ? (
-                              <div className="grid grid-cols-12 gap-4">
-                                <div className="col-span-6">
-                                  <FormField
-                                    control={form.control}
-                                    name="thc"
-                                    render={({ field }) => (
-                                      <FormItem>
-                                        <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
-                                          THC
-                                        </FormLabel>
-                                        <FormControl>
-                                          <Input
-                                            placeholder="0.0"
-                                            type="number"
-                                            step="0.1"
-                                            className="h-[51px] border-[#9C9C9C] dark:!text-black"
-                                            disabled={shouldDisableThcCbd()}
-                                            {...field}
-                                          />
-                                        </FormControl>
-                                        <FormMessage />
-                                      </FormItem>
-                                    )}
-                                  />
-                                </div>
-              
-                                <div className="col-span-6">
-                                  <FormField
-                                    control={form.control}
-                                    name="cbd"
-                                    render={({ field }) => (
-                                      <FormItem>
-                                        <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
-                                          CBD
-                                        </FormLabel>
-                                        <FormControl>
-                                          <Input
-                                            placeholder="0.0"
-                                            type="number"
-                                            step="0.1"
-                                            className="h-[51px] border-[#9C9C9C] dark:!text-black"
-                                            disabled={shouldDisableThcCbd()}
-                                            {...field}
-                                          />
-                                        </FormControl>
-                                        <FormMessage />
-                                      </FormItem>
-                                    )}
-                                  />
-                                </div>
-              
-                              </div>
-                            ) : null
-                            }
-              
+                {!(
+                  selectedCategory === "67d1b9ecf2ed66e4a542fe5e" || selectedCategory === "67d1ba16f2ed66e4a542fe7b"
+                ) ? (
+                  <div className="grid grid-cols-12 gap-4">
+                    <div className="col-span-6">
+                      <FormField
+                        control={form.control}
+                        name="thc"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                              THC
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="0.0"
+                                type="number"
+                                step="0.1"
+                                className="h-[51px] border-[#9C9C9C] dark:!text-black"
+                                disabled={shouldDisableThcCbd()}
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="col-span-6">
+                      <FormField
+                        control={form.control}
+                        name="cbd"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                              CBD
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="0.0"
+                                type="number"
+                                step="0.1"
+                                className="h-[51px] border-[#9C9C9C] dark:!text-black"
+                                disabled={shouldDisableThcCbd()}
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+                ) : null}
+
+                {/* Add country and state fields here */}
+                <div>
+                <h3>Select Country:</h3>
+                <div className="grid grid-cols-12 gap-4">
+                  <div className="col-span-6">
+                    <FormField
+                      control={form.control}
+                      name="country"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                            Country<span className="text-red-500">*</span>
+                          </FormLabel>
+                          <Select
+                            onValueChange={(value) => {
+                              field.onChange(value)
+                              setSelectedCountry(value)
+                            }}
+                            value={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="h-[51px] border-[#9C9C9C] dark:!text-black">
+                                <SelectValue placeholder="Select Country" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {countries.map((country) => (
+                                <SelectItem key={country} value={country}>
+                                  {country}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="col-span-6">
+                    {(selectedCountry === "United States" || selectedCountry === "Canada") && (
+                      <FormField
+                        control={form.control}
+                        name="state"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="leading-[19.2px] text-[#444444] text-[16px] font-normal">
+                              State<span className="text-red-500">*</span>
+                            </FormLabel>
+                            <Select onValueChange={field.onChange} value={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="h-[51px] border-[#9C9C9C] dark:!text-black">
+                                  <SelectValue placeholder="Select State" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {states.map((state) => (
+                                  <SelectItem key={state} value={state}>
+                                    {state}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                </div>
+
 
                 <div className="mt-3">
                   <InputWithTags placeholder="Add Tags" limit={10} tags={tags} setTags={setTags} />
@@ -711,3 +844,4 @@ const AddAuctionForm: React.FC = () => {
 }
 
 export default AddAuctionForm
+
