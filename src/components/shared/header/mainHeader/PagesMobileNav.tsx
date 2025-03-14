@@ -21,7 +21,7 @@ export default function PagesMobileNav({ label, links, onClose }: DropdownProps)
       <button
         onClick={toggleDropdown}
         aria-expanded={isOpen}
-        className="flex items-center w-full text-left rounded-lg px-6 py-2 text-[20px] font-normal text-black hover:bg-[#E6EEF6]"
+        className="flex items-center w-full text-left rounded-lg px-6 py-2 text-[20px] font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
       >
         {label}<ChevronRight className="w-[16px] h-[16px]"/>
       </button>
@@ -56,7 +56,7 @@ export default function PagesMobileNav({ label, links, onClose }: DropdownProps)
                 closeDropdown();
                 onClose(); // Ensures the mobile menu also closes
               }}
-              className="block pl-10 py-2 text-[20px] font-normal text-black hover:bg-[#E6EEF6]"
+              className="block pl-10 py-2 text-[20px] font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
             >
               {link.label}
             </Link>

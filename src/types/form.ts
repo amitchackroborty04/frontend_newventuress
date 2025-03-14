@@ -1,5 +1,5 @@
 // Existing types that are still relevant
-export type ExperienceType = "CBD/HEMP" | "Recreational Cannabis";
+export type ExperienceType = "HEMP/CBD" | "Recreational Cannabis";
 
 export type FormStep =
   | "country-selection" // New step for country selection

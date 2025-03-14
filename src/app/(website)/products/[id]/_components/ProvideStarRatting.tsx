@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Star } from "lucide-react";
 import * as React from "react";
 import { StarRatingProps } from "./types";
+import { FaStar } from "react-icons/fa";
 
 export const ProvideStarRating: React.FC<StarRatingProps> = ({
   rating,
@@ -27,7 +27,7 @@ export const ProvideStarRating: React.FC<StarRatingProps> = ({
           onClick={() => handleClick(index)}
           aria-label={`Rate ${index + 1} star${index + 1 > 1 ? "s" : ""}`}
         >
-          <Star />
+          <FaStar className="w-[22px] h-[22px]"/>
         </button>
       ))}
     </div>

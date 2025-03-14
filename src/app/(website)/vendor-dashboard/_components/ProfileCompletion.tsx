@@ -32,23 +32,23 @@ export default function ProfileCompletion() {
   return (
   <div className="w-full h-[173px] bg-white rounded-[12px] p-[24px] my-[30px]">
       <div className="w-full max-w-2xl   space-y-2">
-      <h1 className="text-[22px] font-semibold text-blue-700">
+      <h1 className="text-[22px] font-semibold  text-gradient text-transparent dark:text-gradient-pink ">
         Welcome to the {profileData.domain}
       </h1>
       
-      <div className="space-y-2 flex  items-center ">
+      <div className="flex items-center">
        
         <Progress 
           value={profileData.completionPercentage} 
-          className="h-2 w-[270px] bg-[#C5C5C5] [&>div]:bg-[#0057A8]"
+          className="h-2 w-[270px] bg-[#C5C5C5] [&>div]:bg-[#0057A8] dark:[&>div]:bg-pinkGradient"
         /> 
-         <div className="flex justify-between text-sm ml-5">
-        <span>Profile complete {profileData.completionPercentage}%</span>
+         <div className="flex justify-between text-[12px] ml-5">
+        <span className="text-[12px] text-[#444444] font-normal">Profile complete {profileData.completionPercentage}%</span>
       </div>
       </div>
 
       <Button 
-        className="bg-[#0057A8] hover:bg-blue-800 text-white w-fit"
+        className=" bg-primary hover:bg-blue-800 text-white w-fit"
         onClick={() => console.log("Navigating to profile...")}
       >
         Go To Customer Profile

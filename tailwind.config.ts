@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -22,8 +22,16 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
+          pink: {
+            main: "#4A2E74",
+            hover: "#8A4BE9"
+          },
+          blue: {
+            main: "#121D42"
+          },
           DEFAULT:
             "linear-gradient(150.75deg, #121D42 -1.08%, #152764 44.87%, #4857BD 89.46%)",
+          pinkGradient: "linear-gradient(180deg, #482D72 0%, #6841A5 50%, #8855D8 100%)",
           foreground: "hsl(var(--primary-foreground))",
           green: "#1D4C1F",
           "green-hover": "#2A6C2D",
@@ -108,6 +116,8 @@ const config: Config = {
         fadeIn: "fadeIn 1s ease-in-out",
       },
       backgroundImage: {
+        pinkGradient: "linear-gradient(180deg, #482D72 0%, #6841A5 50%, #8855D8 100%)",
+        blurGradient: "blurGradient: linear-gradient(150.75deg, #121D42 -1.08%, #152764 44.87%, #4857BD 89.46%)",
        
         'hover-gradient': "linear-gradient(150.75deg, rgba(112, 145, 255, 0.8) -1.08%, rgba(47, 70, 151, 0.8) 48.26%, rgba(116, 133, 251, 0.8) 89.46%)",
         "green-linear": "linear-gradient(90deg, #1D4C1F 0%, #44B249 100%)",
@@ -122,6 +132,8 @@ const config: Config = {
         feature_card: "0px 0px 10px 1px #C1C9E4",
       },
     },
+
+    
   },
   variants: {
     extend: {

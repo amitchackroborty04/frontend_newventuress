@@ -9,8 +9,8 @@ const VendorMediaContainer = () => {
   return (
     <div>
       <TableContainer data={demoTableItems} columns={MediaColumns} />
-      <div className="mt-[40px] flex justify-between">
-        <div className="text-[#444444] font-normal text-[16px]">Showing 1 to 25 in first entries</div>
+      <div className="mt-[40px] flex justify-between pb-[30px]">
+        <div className="text-[#444444]   font-normal text-[16px]">Showing 1 to 25 in first entries</div>
        <div className=" w-[400px]">
        <PacificPagination
           currentPage={currentPage}

@@ -1,7 +1,13 @@
 import * as React from "react";
 import { TimeUnit } from "./TimeUnit";
 
-export function CountdownTimer() {
+
+interface CountdownTimerProps {
+  startingTime: string;
+  endingTime: string;
+}
+
+export function CountdownTimer({ startingTime, endingTime }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = React.useState({
     days: "00",
     hours: "00",
@@ -10,12 +16,14 @@ export function CountdownTimer() {
   });
 
   React.useEffect(() => {
-    // Set the target end time (e.g., 24 hours from now)
-    const targetTime = new Date().getTime() + 24 * 60 * 60 * 1000;
-
+    // Parse starting and ending times from props
+    const start = new Date(startingTime).getTime();
+    const end = new Date(endingTime).getTime();
+    console.log(start);
+    
     const interval = setInterval(() => {
       const now = new Date().getTime();
-      const remainingTime = targetTime - now;
+      const remainingTime = end - now; // Calculate remaining time until the ending time
 
       if (remainingTime <= 0) {
         clearInterval(interval);
@@ -38,7 +46,7 @@ export function CountdownTimer() {
     }, 1000);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+  }, [startingTime, endingTime]);
 
   return (
     <div className="flex flex-col justify-center items-center p-3 text-center bg-[#E6EEF6] rounded-lg w-full">

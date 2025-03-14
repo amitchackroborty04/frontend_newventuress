@@ -14,6 +14,7 @@ const ResetPasswordForm = dynamic(() => import("./reset-password-form"), {
 
 const ResetPasswordContainer = () => {
   const [isOTPVerified, setIsOTPVerified] = useState<boolean>(false);
+
   return (
     <>
       {isOTPVerified ? (

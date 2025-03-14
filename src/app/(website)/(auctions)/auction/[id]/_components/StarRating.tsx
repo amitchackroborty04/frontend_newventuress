@@ -11,7 +11,7 @@ export const StarRating: React.FC<StarRatingProps> = ({ rating, maxRating = 5 })
           key={index}
           className={cn(
             "w-4 h-4",
-            index < rating ? "fill-amber-500 text-amber-500" : "fill-stone-300 text-stone-300"
+            index < rating ? "fill-amber-500 text-amber-500" : "fill-stone-300 text-stone-300 "
           )}
         />
       ))}

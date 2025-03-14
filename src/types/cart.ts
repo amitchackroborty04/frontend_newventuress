@@ -6,13 +6,11 @@ export interface CartItem {
     image: string
     quantity: number
     rating: number
-    isHot?: boolean
-    icon: "heart",
-    views?: number
+    stock : string
   }
   
   export interface CartState {
     items: CartItem[]
   }
-  
+
   

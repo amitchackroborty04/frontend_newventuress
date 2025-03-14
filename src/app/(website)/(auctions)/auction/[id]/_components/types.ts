@@ -1,6 +1,7 @@
 export interface ProductImage {
     src: string;
-    alt: string;
+  alt: string;
+
   }
   
   export interface SizeOption {

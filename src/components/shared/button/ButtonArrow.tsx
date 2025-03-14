@@ -24,6 +24,7 @@ export function ButtonArrow({ text, size, href }: BackToListButtonProps) {
       onMouseLeave={() => setIsHovered(false)}
       size={size}
       asChild
+      className="h-[40px]"
     >
       <Link href={href}>
         <span className="">{text}</span>

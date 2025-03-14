@@ -8,11 +8,13 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 interface AdminApprovalModalProps {
   isOpen: boolean;
   onClose: () => void;
+  message: string;
 }
 
 export function AdminApprovalModal({
   isOpen,
   onClose,
+  message
 }: AdminApprovalModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -32,16 +34,15 @@ export function AdminApprovalModal({
             />
 
             {/* Text content */}
-            <DialogTitle className="text-2xl font-bold mb-2">
+            <DialogTitle className="text-2xl font-bold mb-2 dark:text-black">
               PACIFIC RIM FUSION
             </DialogTitle>
-            <p className="text-gradient text-xl mb-2">
-              Kindly Wait for Admin Approval.
+            <p className="text-gradient dark:text-gradient-pink text-xl mb-2">
+              {message}
             </p>
-            <p className="text-gray-600 mb-6">Keep shopping with Rim Fusion.</p>
 
             {/* Button */}
-            <Button onClick={onClose} className=" px-12 py-2 rounded">
+            <Button onClick={onClose} className=" px-12 py-2 mt-3 rounded">
               Okay
             </Button>
           </div>

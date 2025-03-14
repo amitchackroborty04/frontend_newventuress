@@ -27,11 +27,11 @@ export function BillingDetails() {
     <div className="">
       <div className="flex flex-wrap gap-8 items-center  lg:min-w-[879px] min-h-[300px]">
         <div className="relative flex overflow-hidden flex-wrap grow shrink justify-between items-start self-stretch my-auto bg-white rounded-xl border border-solid border-stone-300 md:w-[516px] max-md:max-w-full">
-          <AddressCard title="Billing Address" info={addressInfo} />
+          <AddressCard title="Billing Address" info={addressInfo} className=""/>
           <div className="shrink-0 w-0 border border-solid border-t-stone-300 h-[295px] hidden md:block" />
           <div className="absolute shrink-0 border border-solid border-t-stone-300 w-full h-[1px] md:hidden top-[320px] right-0]" />
           <div className="mt-14 md:mt-0">
-            <AddressCard title="Shipping Address" info={addressInfo} />
+            <AddressCard title="Shipping Address" info={addressInfo} className=""/>
           </div>
         </div>
         <OrderSummary orderDetails={orderDetails} />

@@ -11,20 +11,26 @@ export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedin = !!req.auth;
 
+
+
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoutes = publicRoutes.includes(nextUrl.pathname);
 
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  // Check if any `authRoute` is a prefix of the current path
+  const isAuthRoute = authRoutes.some((route) =>
+    nextUrl.pathname.startsWith(route)
+  );
 
-  if (isApiAuthRoute) {
+  if (isApiAuthRoute || isPublicRoutes) {
     return NextResponse.next();
   }
 
   if (isAuthRoute) {
     if (isLoggedin) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+    } else {
+      return NextResponse.next();
     }
-    return NextResponse.next();
   }
 
   if (!isLoggedin && !isPublicRoutes) {
@@ -33,6 +39,7 @@ export default auth((req) => {
 
   return NextResponse.next();
 });
+
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {

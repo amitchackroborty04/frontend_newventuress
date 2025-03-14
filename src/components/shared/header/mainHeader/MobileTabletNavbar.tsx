@@ -7,58 +7,58 @@ import Link from "next/link";
 import { useState } from "react";
 
 // Local imports
-import { Button } from "@/components/ui/button";
 import HeaderIconMenu from "../headerIconMenu/headerIconMenu";
 // import Dropdown, { AuctionMobileMenu } from "./demonav";
 import { motion } from "framer-motion";
+import { Heart, ShoppingCart } from "lucide-react";
+import SearchBer from "../../searchBer/searchBer";
 import AuctionMobileNav from "./AuctionMobileNav";
-import PagesMobileNav from "./PagesMobileNav";
 
-const Navicons = [
-  {
-    href: "/notifications",
-    src: "/assets/svg/bell.svg",
-    alt: "bell-icon",
-    count: 4,
-    srOnlyText: "View notifications",
-  },
-  {
-    href: "/wishlist",
-    src: "/assets/svg/heart.svg",
-    alt: "heart-icon",
-    srOnlyText: "View wishlist",
-  },
-  {
-    href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
-    alt: "cart-icon",
-    count: 2,
-    srOnlyText: "View cart",
-  },
-  {
-    href: "/account",
-    src: "/assets/svg/user-circle.svg",
-    alt: "user-icon",
-    srOnlyText: "View account",
-  },
-];
+// const Navicons = [
+//   {
+//     href: "/notifications",
+//     icon: <Bell />,
+//     alt: "bell-icon",
+//     count: 4,
+//     srOnlyText: "View notifications",
+//   },
+//   {
+//     href: "/wishlist",
+//     icon: <Heart />,
+//     alt: "heart-icon",
+//     srOnlyText: "View wishlist",
+//   },
+//   {
+//     href: "/cart",
+//     icon: <ShoppingCart />,
+//     alt: "cart-icon",
+//     count: 2,
+//     srOnlyText: "View cart",
+//   },
+//   {
+//     href: "/account",
+//     icon: <CircleUser />,
+//     alt: "user-icon",
+//     srOnlyText: "View account",
+//   },
+// ];
 const mobileNavicons = [
   {
     href: "/wishlist",
-    src: "/assets/svg/heart.svg",
+    icon: <Heart />,
     alt: "heart-icon",
     srOnlyText: "View wishlist",
   },
   {
     href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
+    icon: <ShoppingCart />,
     alt: "cart-icon",
     count: 4,
     srOnlyText: "View cart",
   },
 ];
 
-function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
+function MobileTabletNavbar({  }: { loggedin: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -70,13 +70,7 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
 
   // Pages Mobile Links
 
-  const pagesMobileLinks = [
-    { href: "/about", label: "About Us" },
-    { href: "/faqs", label: "FAQ" },
-    { href: "", label: "Membership Plans" },
-    { href: "", label: "Vendor Store" },
-    { href: "", label: "404 Page" },
-  ];
+ 
 
   const sidebarVariants = {
     hidden: { y: "-100%", opacity: 0 },
@@ -100,6 +94,9 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
           </Link>
         </div>
         <div className="flex items-center gap-4">
+          <div className="md:hidden">
+          <SearchBer />
+          </div>
           <HeaderIconMenu icons={mobileNavicons} />
           <button
             type="button"
@@ -151,14 +148,14 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   About
                 </Link>
@@ -172,38 +169,58 @@ function MobileTabletNavbar({ loggedin }: { loggedin: boolean }) {
                 <Link
                   href="/blogs"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Blog
                 </Link>
-                <PagesMobileNav
-                  label="page"
+                <Link
+                  href="/about"
+                  onClick={closeMobileMenu}
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
+                >
+                  About US
+                </Link>
+                {/* <PagesMobileNav
+                  label="Page"
                   links={pagesMobileLinks}
                   onClose={closeMobileMenu}
-                />
+                /> */}
+
                 <Link
                   href="/contact"
                   onClick={closeMobileMenu}
-                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6]"
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
                 >
                   Contact
                 </Link>
+                <Link
+                  href="/plans"
+                  onClick={closeMobileMenu}
+                  className="text-[20px] block py-2 px-6 font-normal text-black hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A]"
+                >
+                  Membership Plan
+                </Link>
               </div>
 
-              <div className="container pt-6">
+
+              {/* <div className="container pt-6">
                 {!loggedin ? (
                   <div className="grid grid-cols-2 gap-[30px]">
-                    <Button variant="outline" >
-                      Log in
-                    </Button>
-                    <Button type="button" >
-                      Sign up
-                    </Button>
+                    <Link href="/login">
+                      <Button variant="outline" className="w-[163px] dark:hover:bg-[#482D721A] dark:text-black dark:bg-white">
+                        Log in
+                      </Button>
+                    </Link>
+                    <Link href="/registration">
+                      <Button type="button" className="w-[163px]">
+                        Sign up 
+                      </Button>
+                    </Link>
                   </div>
                 ) : (
-                  <HeaderIconMenu icons={Navicons} />
+                  <HeaderIconMenu icons={Navicons} onClick={closeMobileMenu}/>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </motion.div>

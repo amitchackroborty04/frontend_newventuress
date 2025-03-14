@@ -1,0 +1,22 @@
+.list-item {
+    @apply text-base leading-relaxed;
+}
+
+.list-item ul {
+    @apply list-disc pl-5;
+}
+
+.list-item ol {
+    @apply list-decimal pl-5;
+}
+
+.list-item h1 h2 h3 h4 h5 h6 {
+    list-style: none;
+}
+
+.list-item ul::marker,
+.list-item ol::marker {
+    content: none; /* Ensures markers are completely removed */
+    list-style: none;
+    display: none;
+}

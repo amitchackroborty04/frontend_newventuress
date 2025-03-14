@@ -9,9 +9,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+    
   },
   {
     id: "2",
@@ -21,9 +20,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+   
   },
   {
     id: "3",
@@ -33,9 +31,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "Out of Stoke"
+    
   },
   {
     id: "4",
@@ -45,9 +42,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+    
   },
   {
     id: "5",
@@ -57,9 +53,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+  
   },
   {
     id: "6",
@@ -69,9 +64,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "Out of Stoke"
+   
   },
   {
     id: "7",
@@ -81,9 +75,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+   
   },
   {
     id: "8",
@@ -93,9 +86,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+    
   },
   {
     id: "9",
@@ -105,9 +97,8 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "Out of Stoke"
+   
   }, 
   {
     id: "10",
@@ -117,9 +108,10 @@ export const initialItems: CartItem[] = [
     image: "/assets/img/wish_cart_img.png",
     quantity: 1,
     rating: 4,
-    isHot: true,
-    icon: "heart",
-    views: 8,
+    stock : "In Stoke"
+    // isHot: true,
+    // icon: "heart",
+    // views: 8,
   },
 ];
 

@@ -22,7 +22,7 @@ const Progress = React.forwardRef<
   >
     <ProgressPrimitive.Indicator
       className={cn(
-        "h-full w-full flex-1 bg-primary transition-all",
+        "h-full w-full flex-1 bg-primary dark:bg-pinkGradient transition-all",
         orientation === "horizontal"
           ? "transition-[width]"
           : "transition-[height] origin-bottom"

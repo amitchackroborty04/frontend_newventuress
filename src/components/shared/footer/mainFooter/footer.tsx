@@ -1,4 +1,5 @@
 import Hideon from "@/provider/Hideon";
+import { Instagram, Twitter, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,15 +24,15 @@ const footerLinks = [
       { label: "FAQs", href: "/faq" },
     ],
   },
-  {
-    title: "Discover",
-    links: [
-      { label: "Live Auction", href: "/live-auctions" },
-      { label: "Features", href: "/features" },
-      { label: "Ending Soon", href: "/ending-soon" },
-      { label: "Features Auction", href: "/features-auction" },
-    ],
-  },
+  // {
+  //   title: "Discover",
+  //   links: [
+  //     { label: "Live Auction", href: "/live-auctions" },
+  //     { label: "Features", href: "/features" },
+  //     { label: "Ending Soon", href: "/ending-soon" },
+  //     { label: "Features Auction", href: "/features-auction" },
+  //   ],
+  // },
 ];
 
 const Footer = () => {
@@ -40,7 +41,7 @@ const Footer = () => {
       <footer className="bg-[#101218] text-white pt-12 lg:pt-20 pb-12">
         <div className="container mx-auto px-4">
           {/* Footer Content Layout */}
-          <div className="grid grid-cols-4 gap-4 lg:gap-x-24">
+          <div className="grid grid-cols-4 gap-6 lg:gap-x-24">
             {/* Logo Column */}
             <div className="flex flex-col items-center col-span-4 lg:col-span-1">
               <Link href="/" aria-label="Go to homepage">
@@ -55,7 +56,7 @@ const Footer = () => {
               <h2 className="text-[18px] font-semibold mb-1 text-[#ffffff]">
                 PACIFIC RIM FUSION
               </h2>
-              <p className="text-[#E6EEF6] text-[16px]">Share The Balance</p>
+              {/* <p className="text-[#E6EEF6] text-[16px]">Share The Balance</p> */}
             </div>
 
             {/* Information & Discover Columns */}
@@ -67,14 +68,14 @@ const Footer = () => {
                       {title}
                     </h3>
                     <ul className="space-y-2">
-                      {links.map(({ label, href }) => (
+                      {links.map(({ label }) => (
                         <li key={label}>
-                          <Link
-                            href={href}
-                            className="text-[#E6EEF6] text-[14px] font-normal hover:text-white transition-colors"
+                          <p
+                            // href={href}
+                            className="text-[#E6EEF6] text-[14px] font-normal hover:text-white transition-colors cursor-not-allowed"
                           >
                             {label}
-                          </Link>
+                          </p>
                         </li>
                       ))}
                     </ul>
@@ -82,9 +83,19 @@ const Footer = () => {
                 ))}
               </div>
             </div>
+            <div >
+                    <h3 className="text-[16px] font-medium mb-4 border-[#E6EEF6] border-b-[1px] pb-[10px]">
+                      Our Social
+                    </h3>
+                    <ul className="gap-x-5 flex items-center ">
+                      <a href="https://www.instagram.com/pacific_rim_fusion/" target="_blank"><Instagram className="hover:text-primary-pink-hover" /></a>
+                      <a href="https://x.com/PacificRmFusion" target="_blank"><Twitter className="hover:text-primary-pink-hover" /></a>
+                      <a href="https://www.youtube.com/@PacificRimFusion" target="_blank"><Youtube className="hover:text-primary-pink-hover" /></a>
+                    </ul>
+                  </div>
 
             {/* Locate Us Section */}
-            <div className="col-span-3 lg:col-span-1">
+            {/* <div className="col-span-3 lg:col-span-1">
               <h3 className="text-[16px] font-medium mb-4 border-[#E6EEF6] border-b-[1px] pb-[10px] w-[160px] lg:w-[200px]">
                 Locate Us
               </h3>
@@ -93,15 +104,15 @@ const Footer = () => {
                 <br />
                 San Carlos, CA 94070
               </p>
-            </div>
+            </div> */}
 
             {/* Footer Bottom Text */}
-            <div className="lg:col-end-5 lg:col-span-3 col-span-4 text-[#D9D9D9] text-[10px] lg:text-[14px] text-center lg:text-start mt-2 lg:mt-8">
+            {/* <div className="lg:col-end-5 lg:col-span-3 col-span-4 text-[#D9D9D9] text-[10px] lg:text-[14px] text-center lg:text-start mt-2 lg:mt-8">
               <p>
                 2024 WWW Staging - Thailand - Pacific Rim Fusion, LLC. Powered
                 by WWW Staging - Thailand - Pacific Rim Fusion, LLC
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>

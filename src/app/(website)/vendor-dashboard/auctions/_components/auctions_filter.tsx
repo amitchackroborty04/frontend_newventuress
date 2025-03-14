@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import PacificDropdownSelector from "@/components/ui/PacificDropdownSelector";
-import { useState } from "react";
+import { useVendorAuctionListingState } from "@/zustand/vendor-management/auction-listing";
 
 // Demo lists for the dropdowns
 const showList = [
@@ -10,19 +10,28 @@ const showList = [
   { id: 3, name: "Expired", value: "expired" },
 ];
 
-const productTypeLists = [
+const StoreLists = [
+  { id: 1, name: "All Store", value: "all" },
+  { id: 2, name: "CBD", value: "cbd" },
+  { id: 3, name: "Recreational", value: "recreational" },
+];
+const FilterByCtegoryList = [
+  { id: 1, name: "All", value: "all" },
+  { id: 2, name: "CBD", value: "cbd" },
+  { id: 3, name: "Recreational", value: "recreational" },
+];
+const AllProductTypesList = [
   { id: 1, name: "All Product Types", value: "all" },
   { id: 2, name: "CBD", value: "cbd" },
   { id: 3, name: "Recreational", value: "recreational" },
 ];
 
 const AuctionsFilter = () => {
-  const [show, setShow] = useState<string>("all"); // Default to "all"
-  const [productsType, setProductType] = useState("all");
+  const {show, setShow, productsType, setProductType} = useVendorAuctionListingState()
 
   return (
-    <div className="h-[68px] p-[17px] bg-white w-full flex items-center justify-between">
-      <div className="flex items-center h-full  gap-x-[12px]">
+    <div className=" p-[17px] bg-white w-full flex items-center justify-between rounded-[12px] py-[23px]">
+      <div className="flex items-center h-full  gap-x-[12px] pl-4">
         {/* Dropdown for "Show" */}
         <div className="h-full flex items-center gap-x-[9px] w-fit">
           <span className="text-[16px] font-medium leading-[19.2px] text-[#444444]">
@@ -37,14 +46,30 @@ const AuctionsFilter = () => {
         {/* Dropdown for "product type" */}
         <div className="h-full flex items-center">
           <PacificDropdownSelector
-            list={productTypeLists}
+            list={StoreLists}
+            selectedValue={productsType}
+            onValueChange={setProductType}
+            placeholderText="All Product Types"
+          />
+        </div>
+        <div className="h-full flex items-center">
+          <PacificDropdownSelector
+            list={FilterByCtegoryList}
+            selectedValue={productsType}
+            onValueChange={setProductType}
+            placeholderText="All Product Types"
+          />
+        </div>
+        <div className="h-full flex items-center">
+          <PacificDropdownSelector
+            list={AllProductTypesList}
             selectedValue={productsType}
             onValueChange={setProductType}
             placeholderText="All Product Types"
           />
         </div>
       </div>
-      <Button size="sm" className="">
+      <Button className="">
         Bulk Delete
       </Button>
     </div>

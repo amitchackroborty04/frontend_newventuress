@@ -52,17 +52,17 @@ const OrderDetails = ({
             <CardContent className="space-y-4">
               <div className="flex justify-between ">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">{shippingAddress.name}</span>
-                <span className="text-base font-medium leading-[19px] text-[#181818]">₿{payment.subtotal.toLocaleString()}.00</span>
+                <span className="text-base font-medium leading-[19px] text-[#181818]">${payment.subtotal.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">{shippingAddress.street}</span>
-                <span className="text-base font-medium leading-[19px] text-[#181818]">₿{payment.shippingCost.toLocaleString()}.00</span>
+                <span className="text-base font-medium leading-[19px] text-[#181818]">${payment.shippingCost.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">
                   {shippingAddress.cityStateZip}
                 </span>
-                <span className="text-base font-medium leading-[19px] text-[#181818]">₿{payment.taxAmount.toLocaleString()}.00</span>
+                <span className="text-base font-medium leading-[19px] text-[#181818]">${payment.taxAmount.toLocaleString()}.00</span>
               </div>
             </CardContent>
           </Card>
@@ -85,15 +85,15 @@ const OrderDetails = ({
             <CardContent className="space-y-4">
               <div className="flex justify-between">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">Subtotal</span>
-                <span className="text-base font-medium leading-[19px] text-[#181818]">₿{payment.subtotal.toLocaleString()}.00</span>
+                <span className="text-base font-medium leading-[19px] text-[#181818]">${payment.subtotal.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">Shipping Estimate</span>
-                <span className="text-base font-medium leading-[19px] text-[#181818]">₿{payment.shippingCost.toLocaleString()}.00</span>
+                <span className="text-base font-medium leading-[19px] text-[#181818]">${payment.shippingCost.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">Tax Estimate</span>
-                <span className="text-base font-medium leading-[19px] text-[#181818]">₿{payment.taxAmount.toLocaleString()}.00</span>
+                <span className="text-base font-medium leading-[19px] text-[#181818]">${payment.taxAmount.toLocaleString()}.00</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">Total Items</span>
@@ -103,7 +103,7 @@ const OrderDetails = ({
                 <div className="flex justify-between">
                   <span className="text-base font-medium leading-[19px] text-[#9C9C9C]">Order Total</span>
                   <span className="text-base font-medium leading-[19px] text-[#181818]">
-                    ₿{orderTotal.toLocaleString()}.00
+                    ${orderTotal.toLocaleString()}.00
                   </span>
                 </div>
               </div>

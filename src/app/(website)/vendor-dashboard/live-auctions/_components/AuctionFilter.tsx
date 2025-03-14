@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import PacificDropdownSelector from "@/components/ui/PacificDropdownSelector";
 import { useState } from "react";
 
@@ -22,8 +23,8 @@ const FilterByCtegoryList = [
 ];
 const AllProductTypesList = [
   { id: 1, name: "All Product Types", value: "All Product Types" },
-  { id: 2, name: "Sales", value: "sales" },
-  { id: 3, name: "Rentals", value: "rentals" },
+  { id: 2, name: "CBD/HEMP", value: "cbd" },
+  { id: 3, name: "Recreational", value: "recreational" },
 ];
 const AllAuctionsList = [
   { id: 1, name: "All Auctions", value: "All Auctions" },
@@ -31,14 +32,13 @@ const AllAuctionsList = [
   { id: 3, name: "Rentals", value: "rentals" },
 ];
 
-function AuctionFilter() {
+function AuctionFilter({productType, setProductType}:any) {
     const [show, setShow] = useState<string>("all"); // Default to "all"
       const [stores, setStores] = useState<string>("Chose stores"); // Default to "auctions"
       const [ctegorys, setCtegorys] = useState<string>("Filter By category"); // Default to "auctions"
-      const [products, setProducts] = useState<string>("All Product Types"); // Default to "auctions"
       const [auctions, setAuctions] = useState<string>("All Auctions"); // Default to "auctions"
   return (
-    <div className="h-[60px] p-[8px] bg-white w-full flex items-center justify-between rounded-[12px]">
+    <div className="  bg-white w-full flex items-center justify-between rounded-[12px] py-[23px] px-5">
       {/* Dropdown for "Show" */}
       <div className="flex gap-x-[28px]">
         <div className="h-full flex items-center gap-x-[9px] w-fit">
@@ -74,8 +74,8 @@ function AuctionFilter() {
             
             <PacificDropdownSelector
             list={AllProductTypesList}
-            selectedValue={products}
-            onValueChange={setProducts}
+            selectedValue={productType}
+            onValueChange={setProductType}
             />
         </div>
         <div className="h-full flex items-center gap-2">
@@ -88,7 +88,7 @@ function AuctionFilter() {
         </div>
       </div>
       <div>
-        <button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">Bulk Delete</button>
+        <Button className="px-[20px] py-[9px] bg-primary text-[#F5F5F5] rounded-lg">Bulk Delete</Button>
       </div>
     </div>
   )

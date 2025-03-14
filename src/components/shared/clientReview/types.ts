@@ -1,10 +1,11 @@
 export interface ReviewCardProps {
-  name: string;
-  role: string;
-  avatarSrc: string;
-  rating: number;
-  title: string;
-  review: string;
+  _id: string
+      userID: string
+      rating: number
+      comment: string
+      createdAt: string
+      fullName: string
+      userImage: string
 }
 
 export interface NavigationButtonProps {

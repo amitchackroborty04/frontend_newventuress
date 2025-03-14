@@ -1,38 +1,74 @@
 "use client";
 import StoreHeading from "@/app/(website)/vendor-store/[id]/about/_components/storeHeading";
 import VendorReviewCard from "@/components/shared/cards/VendorReviewCard";
+import NotFound from "@/components/shared/NotFound/NotFound";
+import StoreReviewSkeleton from "@/components/storereviewsSkeleton/StoreReviewSkeleton";
+import ErrorContainer from "@/components/ui/error-container";
+import { StoreReviewsResponse } from "@/types/storeReviews";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 
 const VendorReviews = () => {
- 
-  const reviews = [
-    {
-      imageSrc: "/assets/img/reviews-card-imag.png.png",
-      name: "Leslie Alexander",
-      date: "16 June 2025",
-      rating: 4,
-      review:
-        "Welcome to Pacific Rim Fusion, the leading B2B online auction marketplace dedicated to empowering local cannabis farms and businesses in markets often dominated by larger operators. Operating in Federally legal jurisdictions including Thailand, Germany, and Canada, we specialize in facilitating the sale of surplus cannabis and cannabis-related products through a secure and dynamic platform.",
-      storeName: "American Beauty",
+  
+  const params = useParams();
+  const reviewsid = params?.id;
+  console.log("Product ID:", reviewsid);
+
+
+  
+
+  const { data, isError, isLoading, error } = useQuery<StoreReviewsResponse>({
+    queryKey: ["storeReviews"],
+    queryFn: async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/review/store/view/${reviewsid}`);
+      if (!res.ok) throw new Error("Failed to fetch data");
+      return res.json();
     },
-    {
-      imageSrc: "/assets/img/reviews-card-imag.png.png",
-      name: "Leslie Alexander",
-      date: "10 May 2025",
-      rating: 4,
-      review:
-        "Welcome to Pacific Rim Fusion, the leading B2B online auction marketplace dedicated to empowering local cannabis farms and businesses in markets often dominated by larger operators. Operating in Federally legal jurisdictions including Thailand, Germany, and Canada, we specialize in facilitating the sale of surplus cannabis and cannabis-related products through a secure and dynamic platform.",
-      storeName: "Beauty Green",
-    },
-    {
-      imageSrc: "/assets/img/reviews-card-imag.png.png",
-      name: "Leslie Alexander",
-      date: "5 April 2025",
-      rating: 5,
-      review:
-        "Welcome to Pacific Rim Fusion, the leading B2B online auction marketplace dedicated to empowering local cannabis farms and businesses in markets often dominated by larger operators. Operating in Federally legal jurisdictions including Thailand, Germany, and Canada, we specialize in facilitating the sale of surplus cannabis and cannabis-related products through a secure and dynamic platform.",
-      storeName: "Green Leaf",
-    },
-  ];
+  });
+
+  console.log(data);
+
+  let content;
+  if (isLoading) {
+    content = (
+      <div className="container ">
+        <StoreReviewSkeleton/>
+      </div>
+    )
+  }
+  else if (isError) {
+    content = (
+      <div className="container">
+        <ErrorContainer message={error?.message || "something went wrong"} />
+      </div>
+    )
+  }
+  else if (data && data?.data && data?.data?.length === 0) {
+    content = (
+      <div className="container">
+        <NotFound message="Oops! No data available. Modify your filters or check your internet connection." />
+      </div>
+    )
+  }
+  else if (data && data?.data) {
+    content = (
+      <div>
+        {data?.data.map((review, index) => (
+          <div key={index} className="border-b-[1px] border-[#C5C5C5]  last:border-none ">
+            <VendorReviewCard
+              key={index}
+              imageSrc={''}
+              name={review.comment}
+              date={review.createdAt}
+              rating={review.rating}
+              review={review.comment}
+              storeName={review.comment}
+            />
+          </div>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className="w-full lg:w-[870px] border-[1px] border-[#C5C5C5] rounded-[12px]">
@@ -42,19 +78,7 @@ const VendorReviews = () => {
 
      
       <div className=" px-5 ">
-        {reviews.map((review, index) => (
-          <div key={index}  className="border-b-[1px] border-[#C5C5C5]  last:border-none ">
-            <VendorReviewCard
-             key={index} 
-              imageSrc={review.imageSrc}
-              name={review.name}
-              date={review.date}
-              rating={review.rating}
-              review={review.review}
-              storeName={review.storeName}
-            />
-          </div>
-        ))}
+        {content}
       </div>
     </div>
   );

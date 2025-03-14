@@ -106,7 +106,7 @@ function Page() {
                         <div className="">
                         <motion.div whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                             <Avatar >
-                            <AvatarImage src={notification.image} alt="Profile" className="rounded-full w-24 h-12 lg:w-10 lg:h-10"/>
+                            <AvatarImage src={notification.image} alt="Profile" className="rounded-full w-24 h-12 md:w-12 md:h-12 lg:w-10 lg:h-10"/>
                             </Avatar>
                         </motion.div>
                         </div>

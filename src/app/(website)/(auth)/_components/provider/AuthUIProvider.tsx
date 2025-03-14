@@ -1,7 +1,6 @@
 // Packages
 import Image from "next/image";
 import Link from "next/link";
-import { getPlaiceholder } from "plaiceholder";
 import { ReactNode } from "react";
 
 // Local imports
@@ -22,28 +21,22 @@ const AuthUIProvider = async ({
   fullWidth,
   backButton = true,
 }: AuthUIProviderProps) => {
-  // generating a blur data url
-  const buffer = await fetch(sidebarImage, { cache: "no-store" }).then(
-    async (res) => Buffer.from(await res.arrayBuffer())
-  );
-
-  const { base64 } = await getPlaiceholder(buffer);
   return (
     <div className="min-h-screen  overflow-hidden">
       <div className="container ">
-        <div className="relative rounded-lg  mt-[40px]">
-          <div className="flex items-center justify-center md:justify-between  ">
+        <div className="relative rounded-lg ">
+          <div className="flex items-center justify-center md:justify-between h-[100px] ">
             <Link href="/">
-              <div className="flex items-cente gap-1">
+              <div className="flex items-center gap-1">
                 <Image
                   src="/assets/img/logo.png"
                   alt="Pacific Rim Fusion"
-                  width={40}
-                  height={40}
+                  width={60}
+                  height={60}
                   className="rounded-full"
                   priority
                 />
-                <span className="font-semibold text-[10px] leading-[12px]">
+                <span className="font-semibold text-[10px] md:text-[15px] leading-[12px] md:leading-[16px] text-gradient dark:text-gradient-pink">
                   Pacific <br /> Rim <br /> Fusion
                 </span>
               </div>
@@ -66,9 +59,8 @@ const AuthUIProvider = async ({
                   src={sidebarImage}
                   alt="CBD Products"
                   fill
-                  className="object-cover rounded-[16px]"
-                  placeholder="blur"
-                  blurDataURL={base64}
+                  className="object-cover object-center rounded-[16px]"
+                  
                 />
               </div>
             )}

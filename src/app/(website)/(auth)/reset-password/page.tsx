@@ -6,7 +6,7 @@ const ResetPasswordContainer = dynamic(
 
 const Page = () => {
   return (
-    <AuthUIProvider sidebarImage="https://i.postimg.cc/X7ywkKYd/e0ba46c9845debdbdfbf19f3d80aba56-1.png">
+    <AuthUIProvider sidebarImage="https://i.ibb.co.com/jPFh8S6d/image-5.png">
       <ResetPasswordContainer />
     </AuthUIProvider>
   );

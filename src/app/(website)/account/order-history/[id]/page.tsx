@@ -7,9 +7,9 @@ import OrderProgressVertical from "./_components/OrderProgressVertical";
 
 const page = () => {
   return (
-    <div className="">
+    <div className="w-full md:pr-2">
       <div className="flex justify-between mb-10">
-        <div className="text-[#2A6C2D] font-bold text-[32px]">
+        <div className="text-gradient font-bold text-[32px] dark:text-gradient-pink">
           Order Details
         </div>
         <div className="hidden md:block">
@@ -18,14 +18,14 @@ const page = () => {
       </div>
       <BillingDetails />
       <div className="pt-10 pb-10 hidden md:block">
-        <OrderProgress />
+        <OrderProgress className="" />
       </div>
       <div className="md:hidden grid place-items-center">
         <div>
           <OrderProgressVertical />
         </div>
       </div>
-      <OrderDetailsTable />
+      <OrderDetailsTable className=""/>
     </div>
   );
 };

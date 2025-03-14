@@ -40,7 +40,7 @@ const AuctionModal: React.FC<AuctionModalProps> = ({ isOpen, onClose }) => {
             animate={{ y: 0, opacity: 1 }} // Slide into position and become visible
             exit={{ y: -50, opacity: 0 }} // Slide up and fade out
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="flex justify-center ml-[-70px]"
+            className="flex justify-center -ml-[450px]"
           >
             <Dialog.Panel className="bg-white shadow-lg rounded-b-[8px] z-50">
               {/* Staggered Links */}
@@ -60,7 +60,7 @@ const AuctionModal: React.FC<AuctionModalProps> = ({ isOpen, onClose }) => {
                   <Dialog.Title className="w-full">
                     <Link
                       href="/all-auctions"
-                      className="inline-block hover:bg-[#E6EEF6] w-full p-6 py-[12px] text-black font-normal text-[16px]"
+                      className="inline-block hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] w-full p-6 py-[12px] text-black font-normal text-[16px]"
                       onClick={onClose}
                     >
                       All Auctions
@@ -71,7 +71,7 @@ const AuctionModal: React.FC<AuctionModalProps> = ({ isOpen, onClose }) => {
                   <Dialog.Title className="w-full">
                     <Link
                       href="/live-auctions"
-                      className="inline-block hover:bg-[#E6EEF6] rounded-b-[8px] w-full p-6 py-[12px] text-black font-normal text-[16px]"
+                      className="inline-block hover:bg-[#E6EEF6] dark:hover:bg-[#482D721A] rounded-b-[8px] w-full p-6 py-[12px] text-black font-normal text-[16px]"
                       onClick={onClose}
                     >
                       Live Auctions

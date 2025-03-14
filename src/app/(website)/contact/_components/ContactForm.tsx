@@ -11,6 +11,9 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 // Define Zod schema for validation
 const formSchema = z.object({
@@ -23,27 +26,68 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const ContactForm: React.FC = () => {
+
+  const session = useSession();
+  const token = session.data?.user.token;
+  const email = session.data?.user.email;
+  const fullName = session.data?.user.fullName;
+
+  const {mutate} = useMutation<any, unknown, FormData>({
+    mutationKey : ["contact"],
+    mutationFn : (formData)=> fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`,{
+      method : "POST",
+      headers : {
+        Authorization : `Bearer ${token}`
+      },
+      body : formData
+    })
+    .then ((res)=> res.json()),
+
+    onSuccess : (formData) =>{
+      if(!formData.status){
+        toast.error(formData.message, {
+          position : "top-right",
+          richColors : true
+        })
+        return ;
+      }
+      form.reset();
+    toast.success(formData.message, {
+      position : "top-right",
+      richColors : true
+    })
+    }
+
+    
+    
+  })
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema), // Use Zod resolver for validation
     defaultValues: {
-      name: "",
-      email: "",
+      name: fullName || "",
+      email: email || "",
       subject: "",
       message: "",
     },
   });
 
   const onSubmit = (data: FormValues) => {
-    console.log("Form submitted", data);
-
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("subject", JSON.stringify(data.subject));
+    formData.append("message", data.message)
+    mutate(formData);
+    
     // Optionally reset the form
     form.reset();
   };
 
   return (
-    <div className="flex flex-col grow p-[20px] max-w-[670px] bg-[#E6EEF6] rounded-2xl min-h-[648px] max-md:mt-8 max-md:max-w-full gap-[24px]">
+    <div className="flex flex-col grow p-[20px] max-w-[670px] bg-[#E6EEF6] dark:bg-[#482D721A] rounded-2xl min-h-[648px] max-md:mt-8 max-md:max-w-full gap-[24px]">
       <div className="flex flex-col gap-[8px] w-full max-md:max-w-full">
-        <h1 className="text-[25px] lg:text-[32px] font-semibold leading-[38.4px] text-gradiend max-md:max-w-full">
+        <h1 className="text-[25px] lg:text-[32px] font-semibold leading-[38.4px] text-gradient max-md:max-w-full dark:text-gradient-pink">
           We are Here to Help!
         </h1>
         <div >
@@ -66,7 +110,7 @@ const ContactForm: React.FC = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Full Name*" {...field} className="w-full h-[51px] p-[16px] text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                  <Input placeholder="Full Name*" {...field} className="w-full h-[51px] p-[16px] text-black text-[16px] bg-white border-[#0057A8] dark:border dark:border-[#6841A5] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -81,7 +125,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email Address*" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Input placeholder="Email Address*" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white dark:border dark:border-[#6841A5] border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -97,7 +141,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Subject" {...field} className="w-full h-[51px] p-[16px]text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Input placeholder="Subject" {...field} className="w-full h-[51px] p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,7 +157,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea placeholder="Ask your Queries*" {...field} className="w-full p-[16px]text-black text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] h-[170px] focus-visible:ring-0 focus-visible:ring-offset-0"/>
+                    <Textarea placeholder="Ask your Queries*" {...field} className="w-full p-[16px]text-black dark:border dark:border-[#6841A5] text-[16px] bg-white border-[#0057A8] rounded-md placeholder:text-[16px] placeholder:text-[#444444] h-[170px] focus-visible:ring-0 focus-visible:ring-offset-0 dark:!text-[#000000]"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

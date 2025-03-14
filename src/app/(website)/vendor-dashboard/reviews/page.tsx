@@ -9,9 +9,9 @@ const page = () => {
 
   return (
     <div>
- <ReviewData/>
- <ReviewFilter/>
-<ReviewContainer/>
+      <ReviewData />
+      <ReviewFilter />
+      <ReviewContainer />
 
 
 

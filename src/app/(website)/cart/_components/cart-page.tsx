@@ -1,32 +1,36 @@
-"use client";
-
+'use client'
 import { CartItemCard } from "@/components/shared/cards/cart-item";
-import { initialItems } from "@/data/CartData";
-import { CartItem } from "@/types/cart";
-import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CartSummary } from "./cart-summary";
+import SectionHeading from "@/components/shared/SectionHeading/SectionHeading";
+import { useAppSelector, useAppDispatch } from "@/redux/store";
+import EmptyCart from "./empty-cart";
+import { updateQuantity, removeFromCart } from "@/redux/features/cart/cartSlice";
 
 export default function CartPage() {
-  const [items, setItems] = useState<CartItem[]>(initialItems);
   const [loading, setLoading] = useState(false);
-
+  const [isClient, setIsClient] = useState(false); // Track client rendering
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  const updateQuantity = (id: string, quantity: number) => {
-    setItems(
-      items.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
+  const cartItems = useAppSelector((state) => state.cart.items);
+console.log('Cart Item ',cartItems)
+  useEffect(() => {
+    setIsClient(true); // Ensure this runs only on the client
+  }, []);
+
+  const updateQuantityHandler = (id: string, quantity: number) => {
+    dispatch(updateQuantity({ id, quantity }));
   };
 
-  const removeItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
+  const removeItemHandler = (id: string) => {
+    dispatch(removeFromCart(id));
   };
 
   const calculateTotals = () => {
-    const subtotal = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
+    const subtotal = cartItems.reduce(
+      (sum, item) => sum + item.discountPrice * item.quantity,
       0
     );
     const shipping = subtotal > 0 ? 100 : 0;
@@ -47,25 +51,35 @@ export default function CartPage() {
 
   const { subtotal, shipping, tax, total } = calculateTotals();
 
+  // Prevent server-client UI mismatch
+  if (!isClient) {
+    return <div className="h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  if (cartItems.length === 0) {
+    return <EmptyCart />;
+  }
+
+  console.log(cartItems);
   return (
-    <div className="container section border-b-[1px] border-primary-green-hover/50 pb-[50px] ">
-      <h1 className="text-2xl font-semibold text-[#2A6C2D] text-center mb-8">
-        Your Shopping Cart
-      </h1>
+    <div className="container section md:border-b-[1px] border-[#C0CFE6]/50 pb-10">
+      <div className="mt-[-10px]">
+        <SectionHeading heading={"Your Shopping Cart"} subheading={""} />
+      </div>
 
       <div className="max-w-7xl mx-auto lg:grid md:grid-cols-[1fr_500px] gap-8">
-        <div className="space-y-6 lg:border-r-[.5px] border-[#A8C3A9]/70 md:pr-8">
-          <h2 className="text-xl font-semibold text-[#2A6C2D] mb-6">
+        <div className="space-y-6 lg:border-r-[.5px] border-[#C0CFE6]/70 md:pr-8">
+          <h2 className="text-xl font-semibold text-gradient dark:text-gradient-pink mb-6">
             Cart Items
           </h2>
           <div className="space-y-4">
-            {items.slice(0, 3).map((item) => (
+            {cartItems.map((item) => (
               <CartItemCard
-                key={item.id}
+                key={item._id}
                 item={item}
-                onUpdateQuantity={updateQuantity}
-                onRemove={removeItem}
-                icon={<Heart className="w-4 h-4 text-gray-600" />}
+                onUpdateQuantity={updateQuantityHandler}
+                onRemove={removeItemHandler}
+
               />
             ))}
           </div>

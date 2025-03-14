@@ -17,7 +17,7 @@ export const auctionsListingData = [
     image: "https://images.pexels.com/photos/3389513/pexels-photo-3389513.jpeg",
     stock: 50,
     sku: "WH12345",
-    store: "Tech World",
+    store: "Tech World ",
     status: "Available",
     price: 99.99,
     date: "2025-01-15",
@@ -36,7 +36,7 @@ export const auctionsListingData = [
   {
     id: 3,
     name: "Gaming Laptop",
-    image: "https://images.pexels.com/photos/158651/pexels-photo-158651.jpeg",
+    image: "https://images.pexels.com/photos/4065893/pexels-photo-4065893.jpeg",
     stock: 10,
     sku: "GL45678",
     store: "Elite Computers",
@@ -47,7 +47,7 @@ export const auctionsListingData = [
   {
     id: 4,
     name: "Bluetooth Speaker",
-    image: "https://images.pexels.com/photos/765842/pexels-photo-765842.jpeg",
+    image: "https://images.pexels.com/photos/4065893/pexels-photo-4065893.jpeg",
     stock: 25,
     sku: "BS23456",
     store: "Music Zone",

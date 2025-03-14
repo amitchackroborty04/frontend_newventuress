@@ -9,43 +9,66 @@ import { cn } from "@/lib/utils";
 import HeaderIconMenu from "../headerIconMenu/headerIconMenu";
 import AuctionList from "./AuctionList";
 // import Dropdown, { AuctionMobileMenu } from "./demonav";
-import PagesList from "./PagesList";
+import { useAppSelector } from "@/redux/store";
+import { Bell, CircleUser, Gift, Heart, ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface DesktopNavbarProps {
   pathName: string;
   loggedin: boolean;
 }
 
-const Navicons = [
-  {
-    href: "/notifications",
-    src: "/assets/svg/bell.svg",
-    alt: "bell-icon",
-    count: 4,
-    srOnlyText: "View notifications",
-  },
-  {
-    href: "/wishlist",
-    src: "/assets/svg/heart.svg",
-    alt: "heart-icon",
-    srOnlyText: "View wishlist",
-  },
-  {
-    href: "/cart",
-    src: "/assets/svg/cart-icon.svg",
-    alt: "cart-icon",
-    count: 2,
-    srOnlyText: "View cart",
-  },
-  {
-    href: "/account",
-    src: "/assets/svg/user-circle.svg",
-    alt: "user-icon",
-    srOnlyText: "View account",
-  },
-];
+
 
 function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
+
+   const cartItems = useAppSelector((state) => state.cart.items);
+   const wishListItems = useAppSelector((state) => state.wishlist.items);
+   const [itemCount, setItemCount] = useState(0);
+   const [wishListitemCount, setwishListItemCount] = useState(0);
+
+   useEffect(() => {
+     setItemCount(cartItems.length); // Ensure client-only data updates after hydration
+   }, [cartItems]);
+   useEffect(() => {
+    setwishListItemCount(wishListItems.length); // Ensure client-only data updates after hydration
+   }, [wishListItems]);
+
+   const Navicons = [
+    {
+      href: "/notifications",
+      icon: <Bell />,
+      alt: "bell-icon",
+      count: 4,
+      srOnlyText: "View notifications",
+    },
+    {
+      href: "/wishlist",
+      icon: <Heart />,
+      alt: "heart-icon",
+      count: wishListitemCount,
+      srOnlyText: "View wishlist",
+    },
+    {
+      href: "/cart",
+      icon: <ShoppingCart />,
+      alt: "cart-icon",
+      count: itemCount,
+      srOnlyText: "View cart",
+    },
+    {
+      href: "/account",
+      icon: <CircleUser />,
+      alt: "user-icon",
+      srOnlyText: "View account",
+    },
+    {
+      href: "/rewards",
+      icon: <Gift />,
+      alt: "rewards",
+      srOnlyText: "View rewards",
+    }
+  ];
   return (
     <nav
       aria-label="Global"
@@ -64,70 +87,107 @@ function DesktopNavbar({ pathName, loggedin }: DesktopNavbarProps) {
         </Link>
       </div>
       <PopoverGroup className="hidden lg:flex lg:gap-x-[36px] ">
-        <Link
-          href="/"
+        <p
+          // href="/"
           className={cn(
-            "text-[20px] font-medium hover:text-gradient",
-            pathName === "/" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main cursor-not-allowed ",
+            pathName === "/" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
+          
         >
           Home
-        </Link>
-        <Link
+        </p>
+        {/* <Link
           href="/about"
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "/about" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "/about" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           About
-        </Link>
-        <Link
-          href=""
+        </Link> */}
+        <p
+          // href=""
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main cursor-not-allowed",
             pathName === "/products"
-              ? "text-gradient"
+              ? "text-primary-blue-main dark:text-primary-pink-main"
               : "text-black font-normal"
           )}
         >
           <AuctionList />
-        </Link>
-        <Link
-          href="/blogs"
+        </p>
+         <p
+          // href="/products"
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "/blogs" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main cursor-not-allowed",
+            pathName === "/products"
+              ? "text-primary-blue-main dark:text-primary-pink-main"
+              : "text-black font-normal"
           )}
         >
-          Blog
-        </Link>
-        <Link
+         Products
+        </p>
+         {/* <Link
+          href="/about"
+          className={cn(
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "/about"
+              ? "text-primary-blue-main dark:text-primary-pink-main"
+              : "text-black font-normal"
+          )}
+        >
+         About Us
+        </Link> */}
+       
+        {/* <Link
           href=""
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main",
+            pathName === "" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
           <PagesList />
-        </Link>
-        <Link
-          href="/contact"
+        </Link> */}
+         <p
+          // href="/blogs"
           className={cn(
-            "text-[20px] font-normal hover:text-gradient",
-            pathName === "/contact" ? "text-gradient" : "text-black font-normal"
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main cursor-not-allowed",
+            pathName === "/blogs" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
           )}
         >
-          Contact
+          Blog
+        </p>
+        {loggedin ?(
+
+          <Link
+          href="/vendor-dashboard"
+          className={cn(
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main cursor-not-allowed",
+            pathName === "/vendor-dashboard" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
+          )}
+          >
+          My Store
         </Link>
+        ): null}
+
+        <p
+          // href="/plans"
+          className={cn(
+            "text-[20px] font-medium hover:text-primary-blue-main dark:hover:text-primary-pink-main cursor-not-allowed",
+            pathName === "/plans" ? "text-primary-blue-main dark:text-primary-pink-main" : "text-black font-normal"
+          )}
+        >
+          Membership
+        </p>
       </PopoverGroup>
       <div>
         {!loggedin ? (
           <div className="hidden lg:flex lg:flex-1 gap-x-[20px] lg:justify-end">
-            <Button variant="outline" asChild size="md">
+            <Button variant="outline"  size="md" className="dark:bg-white dark:hover:bg-[#482D721A] dark:text-black dark:border dark:border-[#6741a521] dark:shadow" disabled>
               <Link href="/login">Log in</Link>
             </Button>
-            <Button size="md" asChild>
+            <Button size="md"  disabled>
               <Link href="/registration">Sign up</Link>
             </Button>
           </div>

@@ -1,7 +1,16 @@
+import { auth } from "@/auth";
 import { PageHeader } from "@/components/shared/sections/page-header";
+import { redirect } from "next/navigation";
 import ProductsContainer from "./_components/products-container";
 
-const Page = () => {
+const Page = async () => {
+  const currentUser = await auth();
+
+  if(!currentUser) redirect("/login?callback=/products");
+  const token = currentUser["user"]["token"];
+  
+  
+
   return (
     <div>
       <PageHeader
@@ -13,8 +22,7 @@ const Page = () => {
       />
       {/* Render the product grid or list */}
       <div className="">
-        
-      <ProductsContainer />
+        <ProductsContainer token={token} />
       </div>
     </div>
   );

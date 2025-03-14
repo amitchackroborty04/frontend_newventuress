@@ -34,6 +34,8 @@ const getLists = (storeId: string) => {
 };
 
 const VendorNavigationBar = ({ id }: { id: string }) => {
+  
+  
   const pathName = usePathname();
   return (
     <div className="border-[1px] rounded-[12px] border-[#C5C5C5] w-full  md:w-[270px] h-auto md:sticky ">
@@ -57,7 +59,7 @@ const VendorNavigationBar = ({ id }: { id: string }) => {
               )}
               key={id}
             >
-              <span className="text-[20px] font-normal leading-[24px]">
+              <span className="text-[20px] text-[#000000] font-normal leading-[24px]">
                 {name}
               </span>
             </Link>
